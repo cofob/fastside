@@ -1,0 +1,11 @@
+<head>
+  <title>Fastside Redirect</title>
+  <meta http-equiv="refresh" content="1; url={{ path }}">
+  <script>
+    history.pushState({ page: 1 }, "Fastside Redirect");
+  </script>
+</head>
+
+<body>
+  <span>Redirecting to {{ path }}...</span>
+</body>

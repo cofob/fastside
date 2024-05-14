@@ -6,6 +6,7 @@ use actix_web::{
     web::{self, Redirect},
     Responder, Scope,
 };
+use askama::Template;
 use thiserror::Error;
 
 use crate::{
@@ -15,7 +16,9 @@ use crate::{
 };
 
 pub fn scope(_config: &AppConfig) -> Scope {
-    web::scope("").service(base_redirect)
+    web::scope("")
+        .service(history_redirect)
+        .service(base_redirect)
 }
 
 #[derive(Error, Debug)]
@@ -32,6 +35,25 @@ impl_api_error!(RedirectError,
         _ => None,
     }
 );
+
+#[derive(Template)]
+#[template(path = "history_redirect.html")]
+pub struct HistoryRedirectTemplate<'a> {
+    pub path: &'a str,
+}
+
+#[get("/_/{service_name}/{path:.*}")]
+async fn history_redirect(path: web::Path<(String, String)>) -> actix_web::Result<impl Responder> {
+    let (service_name, path) = path.into_inner();
+
+    let path = format!("/{service_name}/{path}");
+    let template = HistoryRedirectTemplate { path: &path };
+
+    Ok(actix_web::HttpResponse::Ok()
+        .content_type("text/html; charset=utf-8")
+        .append_header(("refresh", format!("1; url={path}")))
+        .body(template.render().expect("failed to render error page")))
+}
 
 #[get("/{service_name}/{path:.*}")]
 async fn base_redirect(
