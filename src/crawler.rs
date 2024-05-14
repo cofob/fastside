@@ -28,24 +28,30 @@ pub enum CrawlerError {
 }
 
 #[derive(Clone, Debug)]
-enum CrawledInstanceStatus {
+pub enum CrawledInstanceStatus {
     Ok(Duration),
     TimedOut,
     Unknown,
 }
 
-#[derive(Clone, Debug)]
-struct CrawledInstance {
-    url: Url,
-    status: CrawledInstanceStatus,
+impl std::fmt::Display for CrawledInstanceStatus {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{:?}", self)
+    }
 }
 
 #[derive(Clone, Debug)]
-struct CrawledService {
-    name: String,
-    fallback_url: Url,
-    aliases: HashSet<String>,
-    instances: Vec<CrawledInstance>,
+pub struct CrawledInstance {
+    pub url: Url,
+    pub status: CrawledInstanceStatus,
+}
+
+#[derive(Clone, Debug)]
+pub struct CrawledService {
+    pub name: String,
+    pub fallback_url: Url,
+    pub aliases: HashSet<String>,
+    pub instances: Vec<CrawledInstance>,
 }
 
 impl CrawledService {
@@ -58,7 +64,7 @@ impl CrawledService {
 }
 
 #[derive(Clone, Debug)]
-struct CrawledServices(Vec<CrawledService>);
+pub struct CrawledServices(pub Vec<CrawledService>);
 
 impl CrawledServices {
     fn get_service_by_alias(&self, alias: &str) -> Option<&CrawledService> {
@@ -88,6 +94,10 @@ impl Crawler {
             client,
             data: RwLock::new(None),
         }
+    }
+
+    pub async fn read(&self) -> tokio::sync::RwLockReadGuard<Option<CrawledServices>> {
+        self.data.read().await
     }
 
     pub async fn get_redirect_url_for_service(

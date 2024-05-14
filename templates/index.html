@@ -1,0 +1,76 @@
+<head>
+  <title>Fastside</title>
+  <style>
+    html {
+      font-family: monospace;
+      font-size: 16px;
+      color: #66397C;
+    }
+
+    #parent-div {
+      text-align: center;
+    }
+
+    #child-div {
+      text-align: left;
+      width: 50%;
+      display: inline-block;
+    }
+
+    hr {
+      border: 1px dashed;
+    }
+
+    a:link,
+    a:visited {
+      color: #66397C;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      #child-div {
+        width: 90%;
+      }
+    }
+
+    ul {
+      margin: 10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html {
+        color: #fff;
+        background: #121517;
+      }
+
+      a:link,
+      a:visited {
+        color: #AA8AC1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="parent-div">
+    <div id="child-div">
+      <h1>Fastside [<a href="https://github.com/cofob/fastside">GitHub</a>]</h1>
+      <hr>
+      <div>
+        <ul>
+          {% for service in services %}
+          <li><a href="/{{ service.name }}/">{{ service.name }}</a> Aliases: [{% for alias in service.aliases
+            %}<code>{{ alias }}, </code>{% endfor %}]</li>
+          <ul>
+            {% for instance in service.instances %}
+            <li>
+              <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:
+                <code>{{ instance.status }}</code></span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>

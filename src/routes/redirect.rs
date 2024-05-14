@@ -12,7 +12,7 @@ use url::Url;
 
 use crate::{
     config::AppConfig,
-    crawler::{Crawler, CrawlerError},
+    crawler::{CrawledService, Crawler, CrawlerError},
     errors::impl_api_error,
 };
 
@@ -39,9 +39,25 @@ impl_api_error!(RedirectError,
     }
 );
 
+#[derive(Template)]
+#[template(path = "index.html")]
+pub struct IndexTemplate<'a> {
+    pub services: &'a Vec<CrawledService>,
+}
+
 #[get("/")]
-async fn index() -> actix_web::Result<impl Responder> {
-    Ok(Redirect::to("https://github.com/cofob/fastside").permanent())
+async fn index(crawler: web::Data<Arc<Crawler>>) -> actix_web::Result<impl Responder> {
+    let data = crawler.read().await;
+    let Some(services) = data.as_ref() else {
+        return Err(RedirectError::from(CrawlerError::CrawlerNotFetchedYet))?;
+    };
+    let template = IndexTemplate {
+        services: &services.0,
+    };
+
+    Ok(actix_web::HttpResponse::Ok()
+        .content_type("text/html; charset=utf-8")
+        .body(template.render().expect("failed to render error page")))
 }
 
 #[derive(Template)]
