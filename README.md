@@ -72,16 +72,17 @@ a successful response code, the instance is added to a list of available
 instances for that particular service. If not, it is discarded until the next
 update period.
 
-Fastside's routing is minimal, similar to Farside, but includes an additional `/@cached/<service>#<path>` endpoint,
-which utilizes browser caching to achieve instant redirects without waiting for server responses.
+Fastside's routing is minimal, similar to [Farside](https://github.com/benbusby/farside), but includes
+an additional `/@cached/<service>#<path>` endpoint, which utilizes browser caching to achieve instant
+redirects without waiting for server responses.
 
 ## Why does this fork exist?
 
-Farside operates very slowly for some reason. The ping from my machine to their server in the USA is 300 ms, and
-a redirect request takes about 1 second to process (!). This means that processing a redirect takes 700 ms, which
-is incredibly long for such a simple task. On the other hand, Fastside processes requests in 200-300 ms (taking my
-internet into account). Additionally, the web server at fastside.link supports http3, which saves us an additional
-100-150 ms.
+[Farside](https://github.com/benbusby/farside) operates very slowly for some reason. The ping from my machine to
+their server in the USA is 300 ms, and a redirect request takes about 1 second to process (!). This means that
+processing a redirect takes 700 ms, which is incredibly long for such a simple task. On the other hand, Fastside
+processes requests in 200-300 ms (taking my internet into account). Additionally, the web server at fastside.link
+supports http3, which saves us an additional 100-150 ms.
 
 ## To Do
 
