@@ -1,12 +1,15 @@
-<head>
-  <title>Fastside Redirect</title>
-  <meta http-equiv="refresh" content="1; url={{ path }}">
-  <script>
-    history.pushState({ page: 1 }, "Fastside Redirect");
-    window.location.href = "{{ path }}";
-  </script>
-</head>
+{% extends "base.html" %}
 
-<body>
-  <span>Redirecting to {{ path }}...</span>
-</body>
+{% block title %}Fastside Redirect{% endblock %}
+
+{% block head %}
+<meta http-equiv="refresh" content="1; url={{ path }}">
+<script>
+  history.pushState({ page: 1 }, "Fastside Redirect");
+  window.location.href = "{{ path }}";
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Redirecting to {{ path }}...</h1>
+{% endblock %}

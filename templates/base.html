@@ -1,0 +1,60 @@
+<head>
+  <title>{% block title %}Fastside{% endblock %}</title>
+  <style>
+    html {
+      font-family: monospace;
+      font-size: 16px;
+      color: #66397C;
+    }
+
+    #parent-div {
+      text-align: center;
+    }
+
+    #child-div {
+      text-align: left;
+      width: 50%;
+      display: inline-block;
+    }
+
+    hr {
+      border: 1px dashed;
+    }
+
+    a:link,
+    a:visited {
+      color: #66397C;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      #child-div {
+        width: 90%;
+      }
+    }
+
+    ul {
+      margin: 10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html {
+        color: #fff;
+        background: #121517;
+      }
+
+      a:link,
+      a:visited {
+        color: #AA8AC1;
+      }
+    }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  <div id="parent-div">
+    <div id="child-div">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</body>
