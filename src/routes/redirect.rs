@@ -50,13 +50,13 @@ pub struct CachedRedirectTemplate {
     pub urls: Vec<Url>,
 }
 
-#[get("/@cached/{service_name}")]
+#[get("/@cached/{service_name}/{path:.*}")]
 async fn cached_redirect(
-    path: web::Path<String>,
+    path: web::Path<(String, String)>,
     config: web::Data<AppConfig>,
     crawler: web::Data<Arc<Crawler>>,
 ) -> actix_web::Result<impl Responder> {
-    let service_name = path.into_inner();
+    let (service_name, _) = path.into_inner();
 
     let urls = crawler
         .get_redirect_urls_for_service(&service_name)
