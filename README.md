@@ -60,7 +60,7 @@ For example:
 
 <sup>Note: This table doesn't include all available services. For a complete list of supported frontends, see: https://fastside.link/</sup>
 
-Additionally, Fastside includes a caching feature that makes redirects faster:
+Additionally, Fastside includes a caching feature that makes redirects faster and anonymous:
 `/@cached/<service>#<path>`
 
 ## How It Works
