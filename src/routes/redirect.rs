@@ -44,7 +44,7 @@ pub struct CachedRedirectTemplate {
     pub urls: Vec<Url>,
 }
 
-#[get("/cached/{service_name}")]
+#[get("/@cached/{service_name}")]
 async fn cached_redirect(
     path: web::Path<String>,
     config: web::Data<AppConfig>,
