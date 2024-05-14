@@ -67,7 +67,13 @@ async fn cached_redirect(
 
     Ok(actix_web::HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
-        .append_header(("cache-control", format!("public, max-age {}, only-if-cached, stale-while-revalidate 86400, stale-if-error 86400, immutable", config.crawler.ping_interval.as_secs())))
+        .append_header((
+            "cache-control",
+            format!(
+                "public, max-age={}, stale-while-revalidate=86400, stale-if-error=86400, immutable",
+                config.crawler.ping_interval.as_secs()
+            ),
+        ))
         .body(template.render().expect("failed to render error page")))
 }
 
