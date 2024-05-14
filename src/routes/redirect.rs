@@ -52,7 +52,8 @@ mod filters {
 
     pub fn sort_list(l: &[CrawledInstance]) -> ::askama::Result<Vec<CrawledInstance>> {
         let mut new = l.to_owned();
-        new.sort_by(|a, b| b.status.as_u8().cmp(&a.status.as_u8()));
+        new.sort_by_key(|i| i.status.as_u8());
+        new.reverse();
         Ok(new)
     }
 }

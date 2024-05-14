@@ -37,11 +37,11 @@ pub enum CrawledInstanceStatus {
 
 impl CrawledInstanceStatus {
     /// Used for sorting values in index.html template.
-    pub fn as_u8(&self) -> u8 {
+    pub fn as_u8(&self) -> isize {
         match self {
-            Self::Ok(_) => 3,
-            Self::TimedOut => 2,
-            Self::Unknown => 1,
+            Self::Ok(d) => isize::MAX - d.as_millis() as isize,
+            Self::TimedOut => -2,
+            Self::Unknown => -3,
         }
     }
 }
