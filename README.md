@@ -57,7 +57,7 @@ For example:
     <!-- more rows can be added as needed -->
 </table>
 
-<sup>Note: This table doesn't include all available services. For a complete list of supported frontends, see: https://github.com/cofob/fastside/blob/master/services.json</sup>
+<sup>Note: This table doesn't include all available services. For a complete list of supported frontends, see: https://fastside.link/</sup>
 
 Additionally, Fastside includes a caching feature that makes redirects faster:
 `/@cached/<service>#<path>`
