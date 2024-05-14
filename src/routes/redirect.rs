@@ -8,6 +8,7 @@ use actix_web::{
 };
 use askama::Template;
 use thiserror::Error;
+use url::Url;
 
 use crate::{
     config::AppConfig,
@@ -18,6 +19,7 @@ use crate::{
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("")
         .service(history_redirect)
+        .service(cached_redirect)
         .service(base_redirect)
 }
 
@@ -37,7 +39,34 @@ impl_api_error!(RedirectError,
 );
 
 #[derive(Template)]
-#[template(path = "history_redirect.html")]
+#[template(path = "cached_redirect.html", escape = "none")]
+pub struct CachedRedirectTemplate {
+    pub urls: Vec<Url>,
+}
+
+#[get("/cached/{service_name}")]
+async fn cached_redirect(
+    path: web::Path<String>,
+    config: web::Data<AppConfig>,
+    crawler: web::Data<Arc<Crawler>>,
+) -> actix_web::Result<impl Responder> {
+    let service_name = path.into_inner();
+
+    let urls = crawler
+        .get_redirect_urls_for_service(&service_name)
+        .await
+        .map_err(RedirectError::from)?;
+
+    let template = CachedRedirectTemplate { urls };
+
+    Ok(actix_web::HttpResponse::Ok()
+        .content_type("text/html; charset=utf-8")
+        .append_header(("cache-control", format!("public, max-age {}, only-if-cached, stale-while-revalidate 86400, stale-if-error 86400, immutable", config.crawler.ping_interval.as_secs())))
+        .body(template.render().expect("failed to render error page")))
+}
+
+#[derive(Template)]
+#[template(path = "history_redirect.html", escape = "none")]
 pub struct HistoryRedirectTemplate<'a> {
     pub path: &'a str,
 }

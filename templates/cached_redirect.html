@@ -1,0 +1,21 @@
+<head>
+  <title>Fastside Cached Redirect</title>
+  <script>
+    let instances = [{% for instance in urls %}"{{ instance }}", {% endfor %}];
+    let randomIndex = Math.floor(Math.random() * instances.length);
+    let randomEntry = instances[randomIndex];
+    let hash = window.location.hash;
+    let data = hash.substring(1);
+    if (data.startsWith("/")) {
+      data = data.substring(1);
+    }
+    window.location.href = randomEntry + data;
+  </script>
+</head>
+
+<body>
+  <span>Redirecting...</span>
+  <ul>
+    {% for instance in urls %}<li>{{ instance }}</li>{% endfor %}
+  </ul>
+</body>

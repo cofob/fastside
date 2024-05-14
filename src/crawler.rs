@@ -110,6 +110,25 @@ impl Crawler {
         }
     }
 
+    pub async fn get_redirect_urls_for_service(
+        &self,
+        alias: &str,
+    ) -> Result<Vec<Url>, CrawlerError> {
+        let guard = self.data.read().await;
+        let data = guard.as_ref();
+        let Some(services) = data else {
+            return Err(CrawlerError::CrawlerNotFetchedYet)?;
+        };
+        let Some(service) = services.get_service_by_alias(alias) else {
+            return Err(CrawlerError::ServiceNotFound)?;
+        };
+        Ok(service
+            .get_alive_instances()
+            .iter()
+            .map(|i| i.url.clone())
+            .collect())
+    }
+
     async fn crawl_single_instance(
         service: &Service,
         instance: &Url,
