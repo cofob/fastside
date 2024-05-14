@@ -4,6 +4,7 @@ use std::{
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
+use chrono::{DateTime, Utc};
 use rand::seq::SliceRandom;
 use reqwest::StatusCode;
 use thiserror::Error;
@@ -75,11 +76,14 @@ impl CrawledService {
 }
 
 #[derive(Clone, Debug)]
-pub struct CrawledServices(pub Vec<CrawledService>);
+pub struct CrawledServices {
+    pub services: Vec<CrawledService>,
+    pub time: DateTime<Utc>,
+}
 
 impl CrawledServices {
     fn get_service_by_alias(&self, alias: &str) -> Option<&CrawledService> {
-        self.0
+        self.services
             .iter()
             .find(|&service| service.aliases.contains(alias))
     }
@@ -244,7 +248,10 @@ impl Crawler {
         if data.is_none() {
             info!("Finished initial crawl, we are ready to serve requests");
         }
-        data.replace(CrawledServices(crawled_services));
+        data.replace(CrawledServices {
+            services: crawled_services,
+            time: Utc::now(),
+        });
 
         Ok(())
     }

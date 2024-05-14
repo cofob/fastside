@@ -28,6 +28,7 @@ tokio = { version = "1.37.0", features = ["full"] }    # async
 futures = "0.3.30"                                     # async
 num_cpus = "1.16.0"                                    # get number of cpus
 rand = "0.8.5"                                         # random
+chrono = "0.4.38"                                      # datetime
 
 [profile.release]
 overflow-checks = true

@@ -7,6 +7,7 @@ use actix_web::{
     HttpRequest, Responder, Scope,
 };
 use askama::Template;
+use chrono::{DateTime, Utc};
 use thiserror::Error;
 use url::Url;
 
@@ -43,6 +44,7 @@ impl_api_error!(RedirectError,
 #[template(path = "index.html")]
 pub struct IndexTemplate<'a> {
     pub services: &'a Vec<CrawledService>,
+    pub time: &'a DateTime<Utc>,
 }
 
 mod filters {
@@ -62,7 +64,8 @@ async fn index(crawler: web::Data<Arc<Crawler>>) -> actix_web::Result<impl Respo
         return Err(RedirectError::from(CrawlerError::CrawlerNotFetchedYet))?;
     };
     let template = IndexTemplate {
-        services: &services.0,
+        services: &services.services,
+        time: &services.time,
     };
 
     Ok(actix_web::HttpResponse::Ok()
