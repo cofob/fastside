@@ -52,7 +52,7 @@ For example:
     <tr>
         <td><a href="https://github.com/httpjamesm/AnonymousOverflow">AnonymousOverflow</a></td>
         <td>/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags</td>
-        <td><a href="https://fastside.link/@cached/anonymousoverflow#questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags">https://fastside.link/@cached/anonymousoverflow#questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags</a></td>
+        <td><a href="https://fastside.link/@cached/anonymousoverflow/#questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags">https://fastside.link/@cached/anonymousoverflow/#questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags</a></td>
     </tr>
     <!-- more rows can be added as needed -->
 </table>
