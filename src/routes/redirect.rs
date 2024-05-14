@@ -18,6 +18,7 @@ use crate::{
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("")
+        .service(index)
         .service(history_redirect)
         .service(cached_redirect)
         .service(base_redirect)
@@ -37,6 +38,11 @@ impl_api_error!(RedirectError,
         _ => None,
     }
 );
+
+#[get("/")]
+async fn index() -> actix_web::Result<impl Responder> {
+    Ok(Redirect::to("https://github.com/cofob/fastside").permanent())
+}
 
 #[derive(Template)]
 #[template(path = "cached_redirect.html", escape = "none")]
