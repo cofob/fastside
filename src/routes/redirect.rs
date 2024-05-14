@@ -4,7 +4,7 @@ use actix_web::{
     get,
     http::StatusCode,
     web::{self, Redirect},
-    Responder, Scope,
+    HttpRequest, Responder, Scope,
 };
 use askama::Template;
 use thiserror::Error;
@@ -78,8 +78,16 @@ pub struct HistoryRedirectTemplate<'a> {
 }
 
 #[get("/_/{service_name}/{path:.*}")]
-async fn history_redirect(path: web::Path<(String, String)>) -> actix_web::Result<impl Responder> {
-    let (service_name, path) = path.into_inner();
+async fn history_redirect(
+    req: HttpRequest,
+    path: web::Path<(String, String)>,
+) -> actix_web::Result<impl Responder> {
+    let (service_name, mut path) = path.into_inner();
+    let query = req.query_string();
+    if !query.is_empty() {
+        path.push('?');
+        path.push_str(query);
+    }
 
     let path = format!("/{service_name}/{path}");
     let template = HistoryRedirectTemplate { path: &path };
@@ -92,10 +100,16 @@ async fn history_redirect(path: web::Path<(String, String)>) -> actix_web::Resul
 
 #[get("/{service_name}/{path:.*}")]
 async fn base_redirect(
+    req: HttpRequest,
     path: web::Path<(String, String)>,
     crawler: web::Data<Arc<Crawler>>,
 ) -> actix_web::Result<impl Responder> {
-    let (service_name, path) = path.into_inner();
+    let (service_name, mut path) = path.into_inner();
+    let query = req.query_string();
+    if !query.is_empty() {
+        path.push('?');
+        path.push_str(query);
+    }
 
     let redirect_url = crawler
         .get_redirect_url_for_service(&service_name, &path)
