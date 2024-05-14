@@ -45,6 +45,16 @@ pub struct IndexTemplate<'a> {
     pub services: &'a Vec<CrawledService>,
 }
 
+mod filters {
+    use crate::crawler::CrawledInstance;
+
+    pub fn sort_list(l: &[CrawledInstance]) -> ::askama::Result<Vec<CrawledInstance>> {
+        let mut new = l.to_owned();
+        new.sort_by(|a, b| b.status.as_u8().cmp(&a.status.as_u8()));
+        Ok(new)
+    }
+}
+
 #[get("/")]
 async fn index(crawler: web::Data<Arc<Crawler>>) -> actix_web::Result<impl Responder> {
     let data = crawler.read().await;

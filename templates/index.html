@@ -59,9 +59,10 @@
         <ul>
           {% for service in services %}
           <li><a href="/{{ service.name }}/">{{ service.name }}</a> Aliases: [{% for alias in service.aliases
-            %}<code>{{ alias }}, </code>{% endfor %}]</li>
+            %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{% endfor %}]</li>
           <ul>
-            {% for instance in service.instances %}
+            {% let instances = service.instances|sort_list %}
+            {% for instance in instances %}
             <li>
               <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:
                 <code>{{ instance.status }}</code></span>

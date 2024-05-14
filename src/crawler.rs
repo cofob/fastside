@@ -34,6 +34,17 @@ pub enum CrawledInstanceStatus {
     Unknown,
 }
 
+impl CrawledInstanceStatus {
+    /// Used for sorting values in index.html template.
+    pub fn as_u8(&self) -> u8 {
+        match self {
+            Self::Ok(_) => 3,
+            Self::TimedOut => 2,
+            Self::Unknown => 1,
+        }
+    }
+}
+
 impl std::fmt::Display for CrawledInstanceStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self)
