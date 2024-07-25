@@ -1,4 +1,4 @@
-use std::{collections::HashMap, sync::Arc};
+use std::collections::HashMap;
 
 use actix_web::{
     get,
@@ -65,8 +65,8 @@ mod filters {
 
 #[get("/")]
 async fn index(
-    crawler: web::Data<Arc<Crawler>>,
-    services: web::Data<Arc<ServicesData>>,
+    crawler: web::Data<Crawler>,
+    services: web::Data<ServicesData>,
 ) -> actix_web::Result<impl Responder> {
     let data = crawler.read().await;
     let Some(crawled_services) = data.as_ref() else {
@@ -93,8 +93,8 @@ pub struct CachedRedirectTemplate<'a> {
 async fn cached_redirect(
     path: web::Path<(String, String)>,
     config: web::Data<AppConfig>,
-    crawler: web::Data<Arc<Crawler>>,
-    services: web::Data<Arc<ServicesData>>,
+    crawler: web::Data<Crawler>,
+    services: web::Data<ServicesData>,
 ) -> actix_web::Result<impl Responder> {
     let (service_name, _) = path.into_inner();
 
@@ -152,8 +152,8 @@ async fn history_redirect(
 async fn base_redirect(
     req: HttpRequest,
     path: web::Path<String>,
-    crawler: web::Data<Arc<Crawler>>,
-    services: web::Data<Arc<ServicesData>>,
+    crawler: web::Data<Crawler>,
+    services: web::Data<ServicesData>,
 ) -> actix_web::Result<impl Responder> {
     let path = path.into_inner();
 

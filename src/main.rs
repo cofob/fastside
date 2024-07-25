@@ -14,9 +14,11 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use config::load_config;
 use log_setup::configure_logging;
+use regex::Regex;
 use routes::main_scope;
 use serde_types::Service;
 use std::{
+    collections::HashMap,
     net::{SocketAddr, SocketAddrV4},
     path::PathBuf,
     str::FromStr,
@@ -98,6 +100,17 @@ async fn main() -> Result<()> {
 
                 Arc::new(services_data)
             };
+            let regexes: HashMap<String, Regex> = services
+                .iter()
+                .filter_map(|(name, service)| {
+                    service.regex.as_ref().map(|regex| {
+                        (
+                            name.clone(),
+                            Regex::new(regex).expect("failed to compile regex"),
+                        )
+                    })
+                })
+                .collect();
 
             let crawler = Arc::new(Crawler::new(services.clone(), config.crawler.clone()));
 
@@ -106,13 +119,19 @@ async fn main() -> Result<()> {
 
             info!("Listening on {}", listen);
 
+            let config_web_data = web::Data::new(config.clone());
+            let crawler_web_data = web::Data::from(crawler.clone());
+            let services_web_data = web::Data::from(services.clone());
+            let regexes_web_data = web::Data::new(regexes.clone());
+
             HttpServer::new(move || {
                 let logger = Logger::default();
                 App::new()
                     .wrap(logger)
-                    .app_data(web::Data::new(config.clone()))
-                    .app_data(web::Data::new(crawler.clone()))
-                    .app_data(web::Data::new(services.clone()))
+                    .app_data(config_web_data.clone())
+                    .app_data(crawler_web_data.clone())
+                    .app_data(services_web_data.clone())
+                    .app_data(regexes_web_data.clone())
                     .service(main_scope(&config.clone()))
             })
             .bind(listen)?
