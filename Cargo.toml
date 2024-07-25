@@ -12,6 +12,7 @@ askama = "0.12.1" # templating engine
 reqwest = { version = "0.12.4", default-features = false, features = [
   "rustls-tls",
   "http2",
+  "socks",
 ] } # http client
 
 clap = { version = "4.5.4", features = ["derive"] }    # cli

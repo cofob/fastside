@@ -12,7 +12,7 @@ use url::Url;
 
 use crate::{
     config::CrawlerConfig,
-    serde_types::{Instance, Service, ServicesData},
+    serde_types::{Instance, ProxyData, Service, ServicesData},
 };
 
 #[derive(Error, Debug)]
@@ -27,8 +27,14 @@ pub enum CrawlerError {
 pub enum CrawledInstanceStatus {
     Ok(Duration),
     InvalidStatusCode(StatusCode, Duration),
-    TimedOut,
     StringNotFound,
+    ConnectionError,
+    RedirectPolicyError,
+    BuilderError,
+    RequestError,
+    BodyError,
+    DecodeError,
+    TimedOut,
     Unknown,
 }
 
@@ -79,14 +85,20 @@ pub struct CrawledServices {
 #[derive(Debug)]
 pub struct Crawler {
     services: Arc<ServicesData>,
+    proxies: Arc<ProxyData>,
     config: Arc<CrawlerConfig>,
     data: RwLock<Option<CrawledServices>>,
 }
 
 impl Crawler {
-    pub fn new(services: Arc<ServicesData>, config: CrawlerConfig) -> Self {
+    pub fn new(
+        services: Arc<ServicesData>,
+        proxies: Arc<ProxyData>,
+        config: CrawlerConfig,
+    ) -> Self {
         Self {
             services,
+            proxies,
             config: Arc::new(config),
             data: RwLock::new(None),
         }
@@ -98,10 +110,45 @@ impl Crawler {
     }
 
     async fn crawl_single_instance(
-        client: Client,
+        config: Arc<CrawlerConfig>,
+        proxies: Arc<ProxyData>,
         service: &Service,
         instance: &Instance,
     ) -> Result<CrawledInstance, CrawlerError> {
+        let redirect_policy = if service.follow_redirects {
+            reqwest::redirect::Policy::default()
+        } else {
+            reqwest::redirect::Policy::none()
+        };
+        let mut client_builder = Client::builder()
+            .connect_timeout(config.request_timeout)
+            .read_timeout(config.request_timeout)
+            .redirect(redirect_policy);
+
+        let proxy_name: Option<String> = {
+            let mut val: Option<String> = None;
+            for proxy in proxies.keys() {
+                if instance.tags.contains(proxy) {
+                    val = Some(proxy.clone());
+                    break;
+                }
+            }
+            val
+        };
+        if let Some(proxy_name) = proxy_name {
+            let proxy_config = proxies.get(&proxy_name).unwrap();
+            let proxy = {
+                let mut builder = reqwest::Proxy::all(&proxy_config.url)?;
+                if let Some(auth) = &proxy_config.auth {
+                    builder = builder.basic_auth(&auth.username, &auth.password);
+                }
+                builder
+            };
+            client_builder = client_builder.proxy(proxy);
+        }
+
+        let client = client_builder.build().unwrap();
+
         let test_url = instance.url.join(&service.test_url)?;
         let start = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
         let response = client.get(test_url).send().await;
@@ -137,6 +184,18 @@ impl Crawler {
             Err(e) => {
                 if e.is_timeout() {
                     CrawledInstanceStatus::TimedOut
+                } else if e.is_builder() {
+                    CrawledInstanceStatus::BuilderError
+                } else if e.is_redirect() {
+                    CrawledInstanceStatus::RedirectPolicyError
+                } else if e.is_request() {
+                    CrawledInstanceStatus::RequestError
+                } else if e.is_body() {
+                    CrawledInstanceStatus::BodyError
+                } else if e.is_decode() {
+                    CrawledInstanceStatus::DecodeError
+                } else if e.is_connect() {
+                    CrawledInstanceStatus::ConnectionError
                 } else {
                     CrawledInstanceStatus::Unknown
                 }
@@ -152,25 +211,16 @@ impl Crawler {
     async fn crawl_single_service(
         config: Arc<CrawlerConfig>,
         service: Service,
+        proxies: Arc<ProxyData>,
     ) -> Result<CrawledService, CrawlerError> {
         debug!("Crawling service {}", service.name);
         let mut crawled_instances: Vec<CrawledInstance> =
             Vec::with_capacity(service.instances.len());
 
-        let redirect_policy = if service.follow_redirects {
-            reqwest::redirect::Policy::default()
-        } else {
-            reqwest::redirect::Policy::none()
-        };
-        let client = Client::builder()
-            .timeout(config.request_timeout)
-            .redirect(redirect_policy)
-            .build()
-            .unwrap();
-
         for instance in &service.instances {
             let crawled_instance = match Crawler::crawl_single_instance(
-                client.clone(),
+                config.clone(),
+                proxies.clone(),
                 &service,
                 instance,
             )
@@ -203,6 +253,7 @@ impl Crawler {
             crawl_tasks.spawn(Crawler::crawl_single_service(
                 self.config.clone(),
                 service.clone(),
+                self.proxies.clone(),
             ));
         }
 

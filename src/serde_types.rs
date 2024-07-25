@@ -41,5 +41,25 @@ pub struct Service {
     pub instances: Vec<Instance>,
 }
 
-/// Type for `services.json` file.
 pub type ServicesData = HashMap<String, Service>;
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct ProxyAuth {
+    pub username: String,
+    pub password: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Proxy {
+    pub url: String,
+    #[serde(default)]
+    pub auth: Option<ProxyAuth>,
+}
+
+pub type ProxyData = HashMap<String, Proxy>;
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Data {
+    pub services: Vec<Service>,
+    pub proxies: ProxyData,
+}

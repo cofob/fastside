@@ -9,7 +9,7 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum SearchError {
-    #[error("crawler data not fetched yet")]
+    #[error("crawler data not fetched yet, try again later")]
     CrawlerNotFetchedYet,
     #[error("service not found")]
     ServiceNotFound,

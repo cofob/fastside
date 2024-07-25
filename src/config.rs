@@ -16,7 +16,7 @@ const fn default_ping_interval() -> Duration {
 }
 
 const fn default_request_timeout() -> Duration {
-    Duration::from_secs(2)
+    Duration::from_secs(5)
 }
 
 /// Crawler configuration.
