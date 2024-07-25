@@ -14,7 +14,10 @@ use crate::{
     config::AppConfig,
     crawler::{CrawledService, Crawler},
     errors::impl_api_error,
-    search::{find_redirect_service_by_name, get_redirect_random_instance, SearchError},
+    search::{
+        find_redirect_service_by_name, get_redirect_instances, get_redirect_random_instance,
+        SearchError,
+    },
     serde_types::ServicesData,
 };
 
@@ -22,7 +25,7 @@ pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("")
         .service(index)
         .service(history_redirect)
-        // .service(cached_redirect)
+        .service(cached_redirect)
         .service(base_redirect)
 }
 
@@ -80,38 +83,43 @@ async fn index(
         .body(template.render().expect("failed to render error page")))
 }
 
-// #[derive(Template)]
-// #[template(path = "cached_redirect.html", escape = "none")]
-// pub struct CachedRedirectTemplate {
-//     pub urls: Vec<Url>,
-// }
+#[derive(Template)]
+#[template(path = "cached_redirect.html", escape = "none")]
+pub struct CachedRedirectTemplate<'a> {
+    pub urls: Vec<&'a reqwest::Url>,
+}
 
-// #[get("/@cached/{service_name}/{path:.*}")]
-// async fn cached_redirect(
-//     path: web::Path<(String, String)>,
-//     config: web::Data<AppConfig>,
-//     crawler: web::Data<Arc<Crawler>>,
-// ) -> actix_web::Result<impl Responder> {
-//     let (service_name, _) = path.into_inner();
+#[get("/@cached/{service_name}/{path:.*}")]
+async fn cached_redirect(
+    path: web::Path<(String, String)>,
+    config: web::Data<AppConfig>,
+    crawler: web::Data<Arc<Crawler>>,
+    services: web::Data<Arc<ServicesData>>,
+) -> actix_web::Result<impl Responder> {
+    let (service_name, _) = path.into_inner();
 
-//     let urls = crawler
-//         .get_redirect_urls_for_service(&service_name)
-//         .await
-//         .map_err(RedirectError::from)?;
+    let guard = crawler.read().await;
+    let (crawled_service, _) =
+        find_redirect_service_by_name(&guard, services.as_ref(), &service_name)
+            .await
+            .map_err(RedirectError::from)?;
+    let instances = get_redirect_instances(crawled_service, &[]).map_err(RedirectError::from)?;
 
-//     let template = CachedRedirectTemplate { urls };
+    let template = CachedRedirectTemplate {
+        urls: instances.iter().map(|i| &i.url).collect(),
+    };
 
-//     Ok(actix_web::HttpResponse::Ok()
-//         .content_type("text/html; charset=utf-8")
-//         .append_header((
-//             "cache-control",
-//             format!(
-//                 "public, max-age={}, stale-while-revalidate=86400, stale-if-error=86400, immutable",
-//                 config.crawler.ping_interval.as_secs()
-//             ),
-//         ))
-//         .body(template.render().expect("failed to render error page")))
-// }
+    Ok(actix_web::HttpResponse::Ok()
+        .content_type("text/html; charset=utf-8")
+        .append_header((
+            "cache-control",
+            format!(
+                "public, max-age={}, stale-while-revalidate=86400, stale-if-error=86400, immutable",
+                config.crawler.ping_interval.as_secs()
+            ),
+        ))
+        .body(template.render().expect("failed to render error page")))
+}
 
 #[derive(Template)]
 #[template(path = "history_redirect.html", escape = "none")]
