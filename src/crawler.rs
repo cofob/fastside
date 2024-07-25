@@ -43,7 +43,7 @@ impl CrawledInstanceStatus {
     pub fn as_isize(&self) -> isize {
         match self {
             Self::Ok(d) => d.as_millis() as isize,
-            _ => isize::MIN,
+            _ => isize::MAX,
         }
     }
 }

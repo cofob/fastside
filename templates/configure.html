@@ -1,6 +1,116 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Fastside Configuration</h1>
+<h1>Fastside Configuration [<a href="/"><- Go Home</a>]</h1>
 <hr>
+
+<div id="success-message" style="display: none; color: green;">Your configuration has been saved!</div>
+
+<div>
+  <h3>Required Tags</h3>
+  <input type="text" id="required-tag-input" placeholder="Add required tag">
+  <button onclick="addTag('required')">Add</button>
+  <ul id="required-tags-list"></ul>
+</div>
+
+<div>
+  <h3>Forbidden Tags</h3>
+  <input type="text" id="forbidden-tag-input" placeholder="Add forbidden tag">
+  <button onclick="addTag('forbidden')">Add</button>
+  <ul id="forbidden-tags-list"></ul>
+</div>
+
+<div>
+  <h3>Selector Method</h3>
+  <label><input type="radio" name="selector-method" value="Random" checked> Random</label>
+  <label><input type="radio" name="selector-method" value="LowPing"> LowPing</label>
+</div>
+
+<div>
+  <h3>Generated JSON</h3>
+  <textarea id="generated-json" readonly cols="80" rows="10"></textarea>
+</div>
+
+<button onclick="saveConfiguration()">Save</button>
+
+<script>
+  const currentConfig = '{{ current_config }}';  // Base64-encoded JSON string
+  const tags = {
+    required: [],
+    forbidden: []
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('success')) {
+      document.getElementById('success-message').style.display = 'block';
+    }
+
+    if (currentConfig) {
+      const decodedConfig = JSON.parse(atob(currentConfig));
+      tags.required = decodedConfig.required_tags || [];
+      tags.forbidden = decodedConfig.forbidden_tags || [];
+      const selectorMethod = decodedConfig.select_method || 'Random';
+
+      renderTags('required');
+      renderTags('forbidden');
+      if (selectorMethod) {
+        document.querySelector('input[name="selector-method"]:checked').checked = false;
+        document.querySelector(`input[name="selector-method"][value="${selectorMethod}"]`).checked = true;
+      }
+      generateJSON();
+    }
+  });
+
+  function addTag(type) {
+    const input = document.getElementById(`${type}-tag-input`);
+    const tag = input.value.trim();
+    if (tag && !tags[type].includes(tag)) {
+      tags[type].push(tag);
+      input.value = '';
+      renderTags(type);
+      generateJSON();
+    }
+  }
+
+  function removeTag(type, index) {
+    tags[type].splice(index, 1);
+    renderTags(type);
+    generateJSON();
+  }
+
+  function renderTags(type) {
+    const list = document.getElementById(`${type}-tags-list`);
+    list.innerHTML = '';
+    tags[type].forEach((tag, index) => {
+      const li = document.createElement('li');
+      li.textContent = tag;
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.onclick = () => removeTag(type, index);
+      li.appendChild(removeButton);
+      list.appendChild(li);
+    });
+  }
+
+  function generateJSON() {
+    const selectorMethod = document.querySelector('input[name="selector-method"]:checked')?.value || '';
+    const json = JSON.stringify({
+      required_tags: tags.required,
+      forbidden_tags: tags.forbidden,
+      select_method: selectorMethod
+    });
+    const encoded = btoa(json);
+    document.getElementById('generated-json').value = encoded;
+  }
+
+  function saveConfiguration() {
+    const json = document.getElementById('generated-json').value;
+    window.location.href = `/configure/save?${json}`;
+  }
+
+  document.querySelectorAll('input[name="selector-method"]').forEach(radio => {
+    radio.addEventListener('change', generateJSON);
+  });
+</script>
 {% endblock %}

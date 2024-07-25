@@ -66,8 +66,7 @@ mod filters {
 
     pub fn sort_list(l: &[CrawledInstance]) -> ::askama::Result<Vec<CrawledInstance>> {
         let mut new = l.to_owned();
-        new.sort_by_key(|i| i.status.as_isize());
-        new.reverse();
+        new.sort_by(|a, b| a.status.as_isize().cmp(&b.status.as_isize()));
         Ok(new)
     }
 }
@@ -94,11 +93,23 @@ async fn index(
 
 #[derive(Template)]
 #[template(path = "configure.html")]
-pub struct ConfigureTemplate {}
+pub struct ConfigureTemplate<'a> {
+    current_config: &'a str,
+}
 
 #[get("/configure")]
-async fn configure_page() -> actix_web::Result<impl Responder> {
-    let template = ConfigureTemplate {};
+async fn configure_page(
+    req: HttpRequest,
+    loaded_data: web::Data<LoadedData>,
+) -> actix_web::Result<impl Responder> {
+    let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
+    let json: String = serde_json::to_string(&user_config).map_err(RedirectError::Serialization)?;
+    let data = BASE64_STANDARD.encode(json.as_bytes());
+
+    let template = ConfigureTemplate {
+        current_config: &data,
+    };
+
     Ok(actix_web::HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
         .body(template.render().expect("failed to render error page")))
@@ -176,7 +187,7 @@ async fn cached_redirect(
     )
     .map_err(RedirectError::from)?;
     if user_config.select_method == SelectMethod::LowPing {
-        instances.sort_by_key(|k| k.status.as_isize());
+        instances.sort_by(|a, b| a.status.as_isize().cmp(&b.status.as_isize()));
     }
     debug!("User config: {user_config:?}");
 
