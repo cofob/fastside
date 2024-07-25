@@ -6,11 +6,12 @@
 <h3>Last synced {{ time }}</h3>
 <div>
   <ul>
-    {% for service in services %}
-    <li><a href="/{{ service.name }}/">{{ service.name }}</a> Aliases: [{% for alias in service.aliases
-      %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{% endfor %}]</li>
+    {% for (name, crawled_service) in crawled_services %}
+    <li><a href="/{{ crawled_service.name }}/">{{ crawled_service.name }}</a> Aliases: [{% for (_, service) in services %}{%
+      if service.name == crawled_service.name %}{% for alias in service.aliases %}{% if loop.index != 1 %}, {% endif
+      %}<code>{{ alias }}</code>{% endfor %}{% endif %}{% endfor %}]</li>
     <ul>
-      {% let instances = service.instances|sort_list %}
+      {% let instances = crawled_service.instances|sort_list %}
       {% for instance in instances %}
       <li>
         <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:

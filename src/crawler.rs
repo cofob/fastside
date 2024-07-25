@@ -1,27 +1,22 @@
 use std::{
-    collections::HashSet,
+    collections::HashMap,
     sync::Arc,
     time::{Duration, SystemTime, UNIX_EPOCH},
 };
 
 use chrono::{DateTime, Utc};
-use rand::seq::SliceRandom;
-use reqwest::StatusCode;
+use reqwest::{Client, StatusCode};
 use thiserror::Error;
 use tokio::{sync::RwLock, task::JoinSet, time::sleep};
 use url::Url;
 
 use crate::{
     config::CrawlerConfig,
-    serde_types::{Service, Services},
+    serde_types::{Instance, Service, ServicesData},
 };
 
 #[derive(Error, Debug)]
 pub enum CrawlerError {
-    #[error("crawler not fetched data yet")]
-    CrawlerNotFetchedYet,
-    #[error("service not found")]
-    ServiceNotFound,
     #[error("url error: `{0}`")]
     UrlError(#[from] url::ParseError),
     #[error("request error: `{0}`")]
@@ -31,7 +26,9 @@ pub enum CrawlerError {
 #[derive(Clone, Debug)]
 pub enum CrawledInstanceStatus {
     Ok(Duration),
+    InvalidStatusCode(StatusCode, Duration),
     TimedOut,
+    StringNotFound,
     Unknown,
 }
 
@@ -39,9 +36,8 @@ impl CrawledInstanceStatus {
     /// Used for sorting values in index.html template.
     pub fn as_u8(&self) -> isize {
         match self {
-            Self::Ok(d) => isize::MAX - d.as_millis() as isize,
-            Self::TimedOut => -2,
-            Self::Unknown => -3,
+            Self::Ok(d) => d.as_millis() as isize,
+            _ => isize::MIN,
         }
     }
 }
@@ -56,18 +52,17 @@ impl std::fmt::Display for CrawledInstanceStatus {
 pub struct CrawledInstance {
     pub url: Url,
     pub status: CrawledInstanceStatus,
+    pub tags: Vec<String>,
 }
 
 #[derive(Clone, Debug)]
 pub struct CrawledService {
     pub name: String,
-    pub fallback_url: Url,
-    pub aliases: HashSet<String>,
     pub instances: Vec<CrawledInstance>,
 }
 
 impl CrawledService {
-    fn get_alive_instances(&self) -> Vec<&CrawledInstance> {
+    pub fn get_alive_instances(&self) -> Vec<&CrawledInstance> {
         self.instances
             .iter()
             .filter(|s| matches!(&s.status, CrawledInstanceStatus::Ok(_)))
@@ -77,97 +72,66 @@ impl CrawledService {
 
 #[derive(Clone, Debug)]
 pub struct CrawledServices {
-    pub services: Vec<CrawledService>,
+    pub services: HashMap<String, CrawledService>,
     pub time: DateTime<Utc>,
-}
-
-impl CrawledServices {
-    fn get_service_by_alias(&self, alias: &str) -> Option<&CrawledService> {
-        self.services
-            .iter()
-            .find(|&service| service.aliases.contains(alias))
-    }
 }
 
 #[derive(Debug)]
 pub struct Crawler {
-    services: Arc<Services>,
-    config: CrawlerConfig,
-    client: reqwest::Client,
+    services: Arc<ServicesData>,
+    config: Arc<CrawlerConfig>,
     data: RwLock<Option<CrawledServices>>,
 }
 
 impl Crawler {
-    pub fn new(services: Arc<Services>, config: CrawlerConfig) -> Self {
-        let client = reqwest::Client::builder()
-            .timeout(config.request_timeout)
-            .build()
-            .expect("failed to build http client");
+    pub fn new(services: Arc<ServicesData>, config: CrawlerConfig) -> Self {
         Self {
             services,
-            config,
-            client,
+            config: Arc::new(config),
             data: RwLock::new(None),
         }
     }
 
+    #[inline]
     pub async fn read(&self) -> tokio::sync::RwLockReadGuard<Option<CrawledServices>> {
         self.data.read().await
     }
 
-    pub async fn get_redirect_url_for_service(
-        &self,
-        alias: &str,
-        path: &str,
-    ) -> Result<Url, CrawlerError> {
-        let guard = self.data.read().await;
-        let data = guard.as_ref();
-        let Some(services) = data else {
-            return Err(CrawlerError::CrawlerNotFetchedYet)?;
-        };
-        let Some(service) = services.get_service_by_alias(alias) else {
-            return Err(CrawlerError::ServiceNotFound)?;
-        };
-        let instances = service.get_alive_instances();
-        match instances.choose(&mut rand::thread_rng()) {
-            Some(instance) => Ok(instance.url.join(path)?),
-            None => Ok(service.fallback_url.join(path)?),
-        }
-    }
-
-    pub async fn get_redirect_urls_for_service(
-        &self,
-        alias: &str,
-    ) -> Result<Vec<Url>, CrawlerError> {
-        let guard = self.data.read().await;
-        let data = guard.as_ref();
-        let Some(services) = data else {
-            return Err(CrawlerError::CrawlerNotFetchedYet)?;
-        };
-        let Some(service) = services.get_service_by_alias(alias) else {
-            return Err(CrawlerError::ServiceNotFound)?;
-        };
-        Ok(service
-            .get_alive_instances()
-            .iter()
-            .map(|i| i.url.clone())
-            .collect())
-    }
-
     async fn crawl_single_instance(
+        client: Client,
         service: &Service,
-        instance: &Url,
-        client: &reqwest::Client,
+        instance: &Instance,
     ) -> Result<CrawledInstance, CrawlerError> {
-        let test_url = instance.join(&service.test_url)?;
+        let test_url = instance.url.join(&service.test_url)?;
         let start = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
         let response = client.get(test_url).send().await;
         let status = match response {
             Ok(response) => {
                 let end = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
-                match response.status() {
-                    StatusCode::OK => CrawledInstanceStatus::Ok(end - start),
-                    _ => CrawledInstanceStatus::Unknown,
+                let status_code = response.status().as_u16();
+                let mut status_valid = false;
+                match status_code {
+                    200 => status_valid = true,
+                    300..=399 => {
+                        if service.allow_3xx {
+                            status_valid = true;
+                        }
+                    }
+                    _ => {}
+                }
+                if status_valid {
+                    if let Some(search_string) = &service.search_string {
+                        let body = response.text().await?;
+                        if !body.contains(search_string) {
+                            CrawledInstanceStatus::StringNotFound
+                        } else {
+                            CrawledInstanceStatus::Ok(end - start)
+                        }
+                    } else {
+                        CrawledInstanceStatus::Ok(end - start)
+                    }
+                } else {
+                    CrawledInstanceStatus::InvalidStatusCode(response.status(), end - start)
                 }
             }
             Err(e) => {
@@ -179,28 +143,45 @@ impl Crawler {
             }
         };
         Ok(CrawledInstance {
-            url: instance.clone(),
+            url: instance.url.clone(),
+            tags: instance.tags.clone(),
             status,
         })
     }
 
     async fn crawl_single_service(
-        client: reqwest::Client,
+        config: Arc<CrawlerConfig>,
         service: Service,
     ) -> Result<CrawledService, CrawlerError> {
         debug!("Crawling service {}", service.name);
         let mut crawled_instances: Vec<CrawledInstance> =
             Vec::with_capacity(service.instances.len());
 
+        let redirect_policy = if service.follow_redirects {
+            reqwest::redirect::Policy::default()
+        } else {
+            reqwest::redirect::Policy::none()
+        };
+        let client = Client::builder()
+            .timeout(config.request_timeout)
+            .redirect(redirect_policy)
+            .build()
+            .unwrap();
+
         for instance in &service.instances {
-            let crawled_instance = match Crawler::crawl_single_instance(&service, instance, &client)
-                .await
+            let crawled_instance = match Crawler::crawl_single_instance(
+                client.clone(),
+                &service,
+                instance,
+            )
+            .await
             {
                 Ok(c) => c,
                 Err(e) => {
                     error!(
                         "Failed to crawl instance {instance} of service {service_name} due to error {e}",
-                        service_name = service.name
+                        service_name = service.name,
+                        instance = instance.url,
                     );
                     continue;
                 }
@@ -210,18 +191,17 @@ impl Crawler {
 
         Ok(CrawledService {
             name: service.name.clone(),
-            fallback_url: service.fallback.clone(),
-            aliases: service.aliases.clone(),
             instances: crawled_instances,
         })
     }
 
     async fn crawl(&self) -> Result<(), CrawlerError> {
-        let mut crawled_services: Vec<CrawledService> = Vec::with_capacity(self.services.len());
+        let mut crawled_services: HashMap<String, CrawledService> =
+            HashMap::with_capacity(self.services.len());
         let mut crawl_tasks = JoinSet::<Result<CrawledService, CrawlerError>>::new();
         for service in self.services.as_ref().values() {
             crawl_tasks.spawn(Crawler::crawl_single_service(
-                self.client.clone(),
+                self.config.clone(),
                 service.clone(),
             ));
         }
@@ -241,7 +221,7 @@ impl Crawler {
                     continue;
                 }
             };
-            crawled_services.push(crawled_service);
+            crawled_services.insert(crawled_service.name.clone(), crawled_service);
         }
 
         let mut data = self.data.write().await;

@@ -3,10 +3,11 @@ mod crawler;
 mod errors;
 mod log_setup;
 mod routes;
+mod search;
 mod serde_types;
 
 use crate::crawler::Crawler;
-use crate::serde_types::{load_services_file, Services};
+use crate::serde_types::ServicesData;
 
 use actix_web::{middleware::Logger, web, App, HttpServer};
 use anyhow::{Context, Result};
@@ -14,6 +15,7 @@ use clap::{Parser, Subcommand};
 use config::load_config;
 use log_setup::configure_logging;
 use routes::main_scope;
+use serde_types::Service;
 use std::{
     net::{SocketAddr, SocketAddrV4},
     path::PathBuf,
@@ -81,28 +83,37 @@ async fn main() -> Result<()> {
                 .unwrap_or_else(|| SocketAddr::V4(SocketAddrV4::new([127, 0, 0, 1].into(), 8080)));
             let workers: usize = workers.unwrap_or_else(num_cpus::get);
 
-            let services: Arc<Services> = Arc::new(load_services_file(
-                services
+            let services: Arc<ServicesData> = {
+                let services_path = services
                     .clone()
-                    .unwrap_or_else(|| PathBuf::from_str("services.json").unwrap())
-                    .as_path(),
-            )?);
+                    .unwrap_or_else(|| PathBuf::from_str("services.json").unwrap());
+                let services_content = std::fs::read_to_string(services_path)
+                    .context("failed to read services file")?;
+                let services_vec: Vec<Service> = serde_json::from_str(&services_content)
+                    .context("failed to parse services file")?;
+                let services_data: ServicesData = services_vec
+                    .into_iter()
+                    .map(|service| (service.name.clone(), service))
+                    .collect();
 
-            let crawler = Arc::new(Crawler::new(services, config.crawler.clone()));
+                Arc::new(services_data)
+            };
+
+            let crawler = Arc::new(Crawler::new(services.clone(), config.crawler.clone()));
 
             let cloned_crawler = crawler.clone();
             let crawler_loop_handle = tokio::spawn(crawler_loop(cloned_crawler));
 
             info!("Listening on {}", listen);
 
-            let cloned_config = config.clone();
             HttpServer::new(move || {
                 let logger = Logger::default();
                 App::new()
                     .wrap(logger)
-                    .app_data(web::Data::new(cloned_config.clone()))
+                    .app_data(web::Data::new(config.clone()))
                     .app_data(web::Data::new(crawler.clone()))
-                    .service(main_scope(&cloned_config))
+                    .app_data(web::Data::new(services.clone()))
+                    .service(main_scope(&config.clone()))
             })
             .bind(listen)?
             .workers(workers)
