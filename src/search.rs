@@ -45,11 +45,13 @@ pub async fn find_redirect_service_by_name<'a>(
 pub fn get_redirect_instances<'a>(
     crawled_service: &'a CrawledService,
     required_tags: &[String],
+    forbidden_tags: &[String],
 ) -> Result<Vec<&'a CrawledInstance>, SearchError> {
     let alive_instances = crawled_service.get_alive_instances();
     let instances = alive_instances
         .iter()
         .filter(|i| required_tags.iter().all(|tag| i.tags.contains(tag)))
+        .filter(|i| forbidden_tags.iter().all(|tag| !i.tags.contains(tag)))
         .cloned()
         .collect::<Vec<_>>();
     if instances.is_empty() {
@@ -61,8 +63,9 @@ pub fn get_redirect_instances<'a>(
 pub fn get_redirect_random_instance(
     crawled_service: &CrawledService,
     required_tags: &[String],
+    forbidden_tags: &[String],
 ) -> Result<CrawledInstance, SearchError> {
-    let instances = get_redirect_instances(crawled_service, required_tags)?;
+    let instances = get_redirect_instances(crawled_service, required_tags, forbidden_tags)?;
     let instance = instances.choose(&mut rand::thread_rng()).unwrap();
     Ok(instance.to_owned().to_owned().to_owned()) // wtf is happening here
 }

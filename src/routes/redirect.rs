@@ -103,7 +103,8 @@ async fn cached_redirect(
         find_redirect_service_by_name(&guard, services.as_ref(), &service_name)
             .await
             .map_err(RedirectError::from)?;
-    let instances = get_redirect_instances(crawled_service, &[]).map_err(RedirectError::from)?;
+    let instances =
+        get_redirect_instances(crawled_service, &[], &[]).map_err(RedirectError::from)?;
 
     let template = CachedRedirectTemplate {
         urls: instances.iter().map(|i| &i.url).collect(),
@@ -175,7 +176,7 @@ async fn base_redirect(
             .await
             .map_err(RedirectError::from)?;
     let redirect_instance =
-        get_redirect_random_instance(crawled_service, &[]).map_err(RedirectError::from)?;
+        get_redirect_random_instance(crawled_service, &[], &[]).map_err(RedirectError::from)?;
 
     let mut url = redirect_instance
         .url
