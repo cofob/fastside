@@ -1,11 +1,10 @@
-use std::{collections::HashMap, time::Duration};
+use std::time::Duration;
 
-use regex::Regex;
 use tokio::sync::RwLockReadGuard;
 
 use crate::{
     crawler::{CrawledInstance, CrawledInstanceStatus, CrawledService, CrawledServices},
-    serde_types::{SelectMethod, Service, ServicesData, UserConfig},
+    serde_types::{Regexes, SelectMethod, Service, ServicesData, UserConfig},
 };
 use rand::seq::SliceRandom;
 use thiserror::Error;
@@ -49,7 +48,7 @@ pub async fn find_redirect_service_by_name<'a>(
 pub async fn find_redirect_service_by_url<'a>(
     guard: &'a RwLockReadGuard<'a, Option<CrawledServices>>,
     services: &'a ServicesData,
-    regexes: &'a HashMap<String, Regex>,
+    regexes: &'a Regexes,
     query: &str,
 ) -> Result<(&'a CrawledService, &'a Service, String), SearchError> {
     let data = match guard.as_ref() {
@@ -58,14 +57,17 @@ pub async fn find_redirect_service_by_url<'a>(
     };
     // Search for the service by regexes.
     for (service_name, service) in services.iter() {
-        if let Some(regex) = regexes.get(service_name) {
-            let captures = regex.captures(query);
-            if let Some(captures) = captures {
-                let redir_path = match captures.get(service.regex_group) {
-                    Some(path) => path.as_str().to_string(),
-                    None => continue,
-                };
-                return Ok((&data.services[service_name], service, redir_path));
+        if let Some(service_regexes) = regexes.get(service_name) {
+            for service_regex in service_regexes {
+                let regex = &service_regex.regex;
+                let captures = regex.captures(query);
+                if let Some(captures) = captures {
+                    let redir_path = match captures.get(service_regex.group) {
+                        Some(path) => path.as_str().to_string(),
+                        None => continue,
+                    };
+                    return Ok((&data.services[service_name], service, redir_path));
+                }
             }
         }
     }

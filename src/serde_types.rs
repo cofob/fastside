@@ -25,6 +25,20 @@ const fn default_regex_group() -> usize {
     1
 }
 
+pub struct CompiledRegexSearch {
+    pub regex: regex::Regex,
+    pub group: usize,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct RegexSearch {
+    pub regex: String,
+    #[serde(default = "default_regex_group")]
+    pub group: usize,
+}
+
+pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Service {
     #[serde(rename = "type")]
@@ -39,9 +53,7 @@ pub struct Service {
     #[serde(default)]
     pub search_string: Option<String>,
     #[serde(default)]
-    pub regex: Option<String>,
-    #[serde(default = "default_regex_group")]
-    pub regex_group: usize,
+    pub regexes: Vec<RegexSearch>,
     #[serde(default)]
     pub aliases: Vec<String>,
     pub instances: Vec<Instance>,

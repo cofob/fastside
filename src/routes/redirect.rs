@@ -20,7 +20,7 @@ use crate::{
         find_redirect_service_by_name, find_redirect_service_by_url, get_redirect_instance,
         get_redirect_instances, SearchError,
     },
-    serde_types::{LoadedData, SelectMethod, ServicesData, UserConfig},
+    serde_types::{LoadedData, Regexes, SelectMethod, ServicesData, UserConfig},
 };
 
 pub fn scope(_config: &AppConfig) -> Scope {
@@ -41,6 +41,8 @@ pub enum RedirectError {
     Serialization(#[from] serde_json::Error),
     #[error("urlencode error: `{0}`")]
     Base64Decode(#[from] base64::DecodeError),
+    #[error("url parse error: `{0}`")]
+    UrlParse(#[from] url::ParseError),
 }
 
 impl_api_error!(RedirectError,
@@ -48,6 +50,7 @@ impl_api_error!(RedirectError,
         RedirectError::Search(_) => StatusCode::INTERNAL_SERVER_ERROR,
         RedirectError::Serialization(_) => StatusCode::INTERNAL_SERVER_ERROR,
         RedirectError::Base64Decode(_) => StatusCode::INTERNAL_SERVER_ERROR,
+        RedirectError::UrlParse(_) => StatusCode::INTERNAL_SERVER_ERROR,
     },
     data => {
         _ => None,
@@ -242,7 +245,7 @@ async fn base_redirect(
     path: web::Path<String>,
     crawler: web::Data<Crawler>,
     loaded_data: web::Data<LoadedData>,
-    regexes: web::Data<HashMap<String, regex::Regex>>,
+    regexes: web::Data<Regexes>,
 ) -> actix_web::Result<impl Responder> {
     let path = path.into_inner();
 
@@ -281,7 +284,7 @@ async fn base_redirect(
         .url
         .clone()
         .join(&redir_path)
-        .unwrap()
+        .map_err(RedirectError::from)?
         .to_string();
     let query = req.query_string();
     if !query.is_empty() {

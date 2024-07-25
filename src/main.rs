@@ -16,7 +16,7 @@ use config::load_config;
 use log_setup::configure_logging;
 use regex::Regex;
 use routes::main_scope;
-use serde_types::{LoadedData, StoredData};
+use serde_types::{CompiledRegexSearch, LoadedData, StoredData};
 use std::{
     collections::HashMap,
     net::{SocketAddr, SocketAddrV4},
@@ -106,16 +106,24 @@ async fn main() -> Result<()> {
 
                 Arc::new(data)
             };
-            let regexes: HashMap<String, Regex> = data
+            let regexes: HashMap<String, Vec<CompiledRegexSearch>> = data
                 .services
                 .iter()
                 .filter_map(|(name, service)| {
-                    service.regex.as_ref().map(|regex| {
-                        (
-                            name.clone(),
-                            Regex::new(regex).expect("failed to compile regex"),
-                        )
-                    })
+                    let regexes = service
+                        .regexes
+                        .iter()
+                        .map(|regex| {
+                            let compiled = Regex::new(&regex.regex)
+                                .context(format!("failed to compile regex for {}", name))
+                                .ok()?;
+                            Some(CompiledRegexSearch {
+                                regex: compiled,
+                                group: regex.group,
+                            })
+                        })
+                        .collect::<Option<Vec<CompiledRegexSearch>>>()?;
+                    Some((name.clone(), regexes))
                 })
                 .collect();
 
@@ -129,7 +137,7 @@ async fn main() -> Result<()> {
             let config_web_data = web::Data::new(config.clone());
             let crawler_web_data = web::Data::from(crawler.clone());
             let data_web_data = web::Data::from(data.clone());
-            let regexes_web_data = web::Data::new(regexes.clone());
+            let regexes_web_data = web::Data::new(regexes);
 
             HttpServer::new(move || {
                 let logger = Logger::default();
