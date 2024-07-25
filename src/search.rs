@@ -1,5 +1,6 @@
-use std::time::Duration;
+use std::{collections::HashMap, time::Duration};
 
+use regex::Regex;
 use tokio::sync::RwLockReadGuard;
 
 use crate::{
@@ -33,11 +34,39 @@ pub async fn find_redirect_service_by_name<'a>(
         return Ok((&data.services[query], &services[query]));
     };
     // Search for the service by aliases.
-    for (service_name, crawled_service) in data.services.iter() {
+    let query_string = query.to_string();
+    for crawled_service in data.services.values() {
         for service in services.values() {
-            if service.aliases.contains(service_name) {
+            if service.aliases.contains(&query_string) {
                 return Ok((crawled_service, service));
             };
+        }
+    }
+
+    Err(SearchError::ServiceNotFound)
+}
+
+pub async fn find_redirect_service_by_url<'a>(
+    guard: &'a RwLockReadGuard<'a, Option<CrawledServices>>,
+    services: &'a ServicesData,
+    regexes: &'a HashMap<String, Regex>,
+    query: &str,
+) -> Result<(&'a CrawledService, &'a Service, String), SearchError> {
+    let data = match guard.as_ref() {
+        Some(data) => data,
+        None => return Err(SearchError::CrawlerNotFetchedYet),
+    };
+    // Search for the service by regexes.
+    for (service_name, service) in services.iter() {
+        if let Some(regex) = regexes.get(service_name) {
+            let captures = regex.captures(query);
+            if let Some(captures) = captures {
+                let redir_path = match captures.get(service.regex_group) {
+                    Some(path) => path.as_str().to_string(),
+                    None => continue,
+                };
+                return Ok((&data.services[service_name], service, redir_path));
+            }
         }
     }
 

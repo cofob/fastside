@@ -21,6 +21,10 @@ const fn default_allow_3xx() -> bool {
     false
 }
 
+const fn default_regex_group() -> usize {
+    1
+}
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Service {
     #[serde(rename = "type")]
@@ -36,6 +40,8 @@ pub struct Service {
     pub search_string: Option<String>,
     #[serde(default)]
     pub regex: Option<String>,
+    #[serde(default = "default_regex_group")]
+    pub regex_group: usize,
     #[serde(default)]
     pub aliases: Vec<String>,
     pub instances: Vec<Instance>,
