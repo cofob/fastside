@@ -58,8 +58,34 @@ pub struct Proxy {
 
 pub type ProxyData = HashMap<String, Proxy>;
 
+#[derive(Deserialize, Serialize, Debug, Clone, Default, PartialEq)]
+pub enum SelectMethod {
+    #[default]
+    Random,
+    LowPing,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone, Default)]
+pub struct UserConfig {
+    #[serde(default)]
+    pub required_tags: Vec<String>,
+    #[serde(default)]
+    pub forbidden_tags: Vec<String>,
+    #[serde(default)]
+    pub select_method: SelectMethod,
+}
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
-pub struct Data {
+pub struct StoredData {
     pub services: Vec<Service>,
     pub proxies: ProxyData,
+    #[serde(default)]
+    pub default_settings: UserConfig,
+}
+
+#[derive(Debug)]
+pub struct LoadedData {
+    pub services: ServicesData,
+    pub proxies: ProxyData,
+    pub default_settings: UserConfig,
 }

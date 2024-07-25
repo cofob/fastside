@@ -1,8 +1,10 @@
+use std::time::Duration;
+
 use tokio::sync::RwLockReadGuard;
 
 use crate::{
-    crawler::{CrawledInstance, CrawledService, CrawledServices},
-    serde_types::{Service, ServicesData},
+    crawler::{CrawledInstance, CrawledInstanceStatus, CrawledService, CrawledServices},
+    serde_types::{SelectMethod, Service, ServicesData, UserConfig},
 };
 use rand::seq::SliceRandom;
 use thiserror::Error;
@@ -60,12 +62,26 @@ pub fn get_redirect_instances<'a>(
     Ok(instances)
 }
 
-pub fn get_redirect_random_instance(
+const MAX_DURATION: Duration = Duration::from_secs(std::u64::MAX);
+
+pub fn get_redirect_instance(
     crawled_service: &CrawledService,
-    required_tags: &[String],
-    forbidden_tags: &[String],
+    user_config: &UserConfig,
 ) -> Result<CrawledInstance, SearchError> {
-    let instances = get_redirect_instances(crawled_service, required_tags, forbidden_tags)?;
-    let instance = instances.choose(&mut rand::thread_rng()).unwrap();
+    let instances = get_redirect_instances(
+        crawled_service,
+        &user_config.required_tags,
+        &user_config.forbidden_tags,
+    )?;
+    let instance = match &user_config.select_method {
+        SelectMethod::Random => instances.choose(&mut rand::thread_rng()).unwrap(),
+        SelectMethod::LowPing => instances
+            .iter()
+            .min_by_key(|i| match i.status {
+                CrawledInstanceStatus::Ok(ping) => ping,
+                _ => MAX_DURATION,
+            })
+            .unwrap(),
+    };
     Ok(instance.to_owned().to_owned().to_owned()) // wtf is happening here
 }

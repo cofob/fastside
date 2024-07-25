@@ -7,6 +7,7 @@ edition = "2021"
 [dependencies]
 actix-web = { version = "4.5.1", features = [
   "macros",
+  "cookies",
 ], default-features = false } # web framework
 askama = "0.12.1" # templating engine
 reqwest = { version = "0.12.4", default-features = false, features = [
@@ -31,6 +32,7 @@ num_cpus = "1.16.0"                                    # get number of cpus
 rand = "0.8.5"                                         # random
 chrono = "0.4.38"                                      # datetime
 regex = "1.10.5"                                       # regex
+base64 = "0.22.1"
 
 [profile.release]
 overflow-checks = true

@@ -12,7 +12,7 @@ use url::Url;
 
 use crate::{
     config::CrawlerConfig,
-    serde_types::{Instance, ProxyData, Service, ServicesData},
+    serde_types::{Instance, LoadedData, Service},
 };
 
 #[derive(Error, Debug)]
@@ -40,7 +40,7 @@ pub enum CrawledInstanceStatus {
 
 impl CrawledInstanceStatus {
     /// Used for sorting values in index.html template.
-    pub fn as_u8(&self) -> isize {
+    pub fn as_isize(&self) -> isize {
         match self {
             Self::Ok(d) => d.as_millis() as isize,
             _ => isize::MIN,
@@ -84,21 +84,15 @@ pub struct CrawledServices {
 
 #[derive(Debug)]
 pub struct Crawler {
-    services: Arc<ServicesData>,
-    proxies: Arc<ProxyData>,
+    loaded_data: Arc<LoadedData>,
     config: Arc<CrawlerConfig>,
     data: RwLock<Option<CrawledServices>>,
 }
 
 impl Crawler {
-    pub fn new(
-        services: Arc<ServicesData>,
-        proxies: Arc<ProxyData>,
-        config: CrawlerConfig,
-    ) -> Self {
+    pub fn new(loaded_data: Arc<LoadedData>, config: CrawlerConfig) -> Self {
         Self {
-            services,
-            proxies,
+            loaded_data,
             config: Arc::new(config),
             data: RwLock::new(None),
         }
@@ -111,7 +105,7 @@ impl Crawler {
 
     async fn crawl_single_instance(
         config: Arc<CrawlerConfig>,
-        proxies: Arc<ProxyData>,
+        loaded_data: Arc<LoadedData>,
         service: &Service,
         instance: &Instance,
     ) -> Result<CrawledInstance, CrawlerError> {
@@ -127,7 +121,7 @@ impl Crawler {
 
         let proxy_name: Option<String> = {
             let mut val: Option<String> = None;
-            for proxy in proxies.keys() {
+            for proxy in loaded_data.proxies.keys() {
                 if instance.tags.contains(proxy) {
                     val = Some(proxy.clone());
                     break;
@@ -136,7 +130,7 @@ impl Crawler {
             val
         };
         if let Some(proxy_name) = proxy_name {
-            let proxy_config = proxies.get(&proxy_name).unwrap();
+            let proxy_config = loaded_data.proxies.get(&proxy_name).unwrap();
             let proxy = {
                 let mut builder = reqwest::Proxy::all(&proxy_config.url)?;
                 if let Some(auth) = &proxy_config.auth {
@@ -211,7 +205,7 @@ impl Crawler {
     async fn crawl_single_service(
         config: Arc<CrawlerConfig>,
         service: Service,
-        proxies: Arc<ProxyData>,
+        loaded_data: Arc<LoadedData>,
     ) -> Result<CrawledService, CrawlerError> {
         debug!("Crawling service {}", service.name);
         let mut crawled_instances: Vec<CrawledInstance> =
@@ -220,7 +214,7 @@ impl Crawler {
         for instance in &service.instances {
             let crawled_instance = match Crawler::crawl_single_instance(
                 config.clone(),
-                proxies.clone(),
+                loaded_data.clone(),
                 &service,
                 instance,
             )
@@ -247,13 +241,13 @@ impl Crawler {
 
     async fn crawl(&self) -> Result<(), CrawlerError> {
         let mut crawled_services: HashMap<String, CrawledService> =
-            HashMap::with_capacity(self.services.len());
+            HashMap::with_capacity(self.loaded_data.services.len());
         let mut crawl_tasks = JoinSet::<Result<CrawledService, CrawlerError>>::new();
-        for service in self.services.as_ref().values() {
+        for service in self.loaded_data.services.values() {
             crawl_tasks.spawn(Crawler::crawl_single_service(
                 self.config.clone(),
                 service.clone(),
-                self.proxies.clone(),
+                self.loaded_data.clone(),
             ));
         }
 

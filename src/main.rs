@@ -16,7 +16,7 @@ use config::load_config;
 use log_setup::configure_logging;
 use regex::Regex;
 use routes::main_scope;
-use serde_types::{Data, ProxyData};
+use serde_types::{LoadedData, StoredData};
 use std::{
     collections::HashMap,
     net::{SocketAddr, SocketAddrV4},
@@ -85,24 +85,29 @@ async fn main() -> Result<()> {
                 .unwrap_or_else(|| SocketAddr::V4(SocketAddrV4::new([127, 0, 0, 1].into(), 8080)));
             let workers: usize = workers.unwrap_or_else(num_cpus::get);
 
-            let (services, proxies): (Arc<ServicesData>, Arc<ProxyData>) = {
+            let data: Arc<LoadedData> = {
                 let data_path = services
                     .clone()
                     .unwrap_or_else(|| PathBuf::from_str("services.json").unwrap());
                 let data_content =
                     std::fs::read_to_string(data_path).context("failed to read services file")?;
-                let data: Data =
+                let stored_data: StoredData =
                     serde_json::from_str(&data_content).context("failed to parse services file")?;
-                let services_data: ServicesData = data
+                let services_data: ServicesData = stored_data
                     .services
                     .into_iter()
                     .map(|service| (service.name.clone(), service))
                     .collect();
-                let proxies_data = data.proxies;
+                let data = LoadedData {
+                    services: services_data,
+                    proxies: stored_data.proxies,
+                    default_settings: stored_data.default_settings,
+                };
 
-                (Arc::new(services_data), Arc::new(proxies_data))
+                Arc::new(data)
             };
-            let regexes: HashMap<String, Regex> = services
+            let regexes: HashMap<String, Regex> = data
+                .services
                 .iter()
                 .filter_map(|(name, service)| {
                     service.regex.as_ref().map(|regex| {
@@ -114,11 +119,7 @@ async fn main() -> Result<()> {
                 })
                 .collect();
 
-            let crawler = Arc::new(Crawler::new(
-                services.clone(),
-                proxies.clone(),
-                config.crawler.clone(),
-            ));
+            let crawler = Arc::new(Crawler::new(data.clone(), config.crawler.clone()));
 
             let cloned_crawler = crawler.clone();
             let crawler_loop_handle = tokio::spawn(crawler_loop(cloned_crawler));
@@ -127,8 +128,7 @@ async fn main() -> Result<()> {
 
             let config_web_data = web::Data::new(config.clone());
             let crawler_web_data = web::Data::from(crawler.clone());
-            let services_web_data = web::Data::from(services.clone());
-            let proxies_web_data = web::Data::from(proxies.clone());
+            let data_web_data = web::Data::from(data.clone());
             let regexes_web_data = web::Data::new(regexes.clone());
 
             HttpServer::new(move || {
@@ -137,8 +137,7 @@ async fn main() -> Result<()> {
                     .wrap(logger)
                     .app_data(config_web_data.clone())
                     .app_data(crawler_web_data.clone())
-                    .app_data(services_web_data.clone())
-                    .app_data(proxies_web_data.clone())
+                    .app_data(data_web_data.clone())
                     .app_data(regexes_web_data.clone())
                     .service(main_scope(&config.clone()))
             })
