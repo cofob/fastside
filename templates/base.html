@@ -26,7 +26,9 @@
       color: #66397C;
     }
 
-    input, button, textarea {
+    input,
+    button,
+    textarea {
       background: #66397C;
       color: #fff;
     }
@@ -52,7 +54,9 @@
         color: #AA8AC1;
       }
 
-      input, button, textarea {
+      input,
+      button,
+      textarea {
         background: #121517;
         color: #fff;
       }
@@ -65,6 +69,12 @@
   <div id="parent-div">
     <div id="child-div">
       {% block content %}{% endblock %}
+      {% block footer %}
+      <hr>
+      <p>Version {{ crate::VERSION }}. Made by <a href="https://github.com/cofob" target="_blank">cofob</a> with help
+        of boring archivist. <a href="https://github.com/cofob/fastside" target="_blank">Source code</a>. <a
+          href="">i2p</a>, <a href="">tor</a> mirror.</p>
+      {% endblock %}
     </div>
   </div>
 </body>

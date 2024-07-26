@@ -20,7 +20,6 @@ use crate::{
         get_redirect_instances, SearchError,
     },
     serde_types::{LoadedData, Regexes, SelectMethod, Service, ServicesData, UserConfig},
-    VERSION,
 };
 
 pub fn scope(_config: &AppConfig) -> Scope {
@@ -63,7 +62,6 @@ pub struct IndexTemplate<'a> {
     pub crawled_services: &'a HashMap<String, CrawledService>,
     pub services: &'a ServicesData,
     pub time: &'a DateTime<Utc>,
-    pub version: &'a str,
 }
 
 mod filters {
@@ -89,7 +87,6 @@ async fn index(
         services: &loaded_data.services,
         crawled_services: &crawled_services.services,
         time: &crawled_services.time,
-        version: VERSION,
     };
 
     Ok(actix_web::HttpResponse::Ok()
