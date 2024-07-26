@@ -34,6 +34,8 @@ use thiserror::Error;
 #[macro_use]
 extern crate log;
 
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct Cli {
