@@ -15,6 +15,26 @@ use crate::{
     serde_types::{Instance, LoadedData, Service},
 };
 
+fn default_headers() -> reqwest::header::HeaderMap {
+    let mut headers = reqwest::header::HeaderMap::new();
+    headers.insert(
+        reqwest::header::USER_AGENT,
+        reqwest::header::HeaderValue::from_static(
+            "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+        ),
+    );
+    headers.insert(reqwest::header::ACCEPT, reqwest::header::HeaderValue::from_static("text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8s"));
+    headers.insert(
+        reqwest::header::ACCEPT_LANGUAGE,
+        reqwest::header::HeaderValue::from_static("en-US,en;q=0.5"),
+    );
+    headers.insert(
+        "X-Is-Fastside",
+        reqwest::header::HeaderValue::from_static("true"),
+    );
+    headers
+}
+
 #[derive(Error, Debug)]
 pub enum CrawlerError {
     #[error("url error: `{0}`")]
@@ -117,6 +137,7 @@ impl Crawler {
         let mut client_builder = Client::builder()
             .connect_timeout(config.request_timeout)
             .read_timeout(config.request_timeout)
+            .default_headers(default_headers())
             .redirect(redirect_policy);
 
         let proxy_name: Option<String> = {
