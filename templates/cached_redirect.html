@@ -5,14 +5,28 @@
 {% block head %}
 <script>
   let instances = [{% for instance in urls %}"{{ instance }}", {% endfor %}];
+  {% match select_method %}
+  {% when SelectMethod::Random %}
+  console.log("Random selector")
   let randomIndex = Math.floor(Math.random() * instances.length);
-  let randomEntry = instances[randomIndex];
-  let hash = window.location.hash;
-  let data = hash.substring(1);
-  if (data.startsWith("/")) {
-    data = data.substring(1);
+  let entry = instances[randomIndex];
+  {% when SelectMethod::LowPing %}
+  console.log("LowPing selector")
+  let entry = instances[0];
+  {% else %}
+  console.log("Unknown selector. Using first instance.")
+  let entry = instances[0];
+  {% endmatch %}
+  if (entry == undefined) {
+    alert("No instances available");
+  } else {
+    let hash = window.location.hash;
+    let data = hash.substring(1);
+    if (data.startsWith("/")) {
+      data = data.substring(1);
+    }
+    window.location.href = entry + data;
   }
-  window.location.href = randomEntry + data;
 </script>
 {% endblock %}
 

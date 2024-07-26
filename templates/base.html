@@ -13,7 +13,7 @@
 
     #child-div {
       text-align: left;
-      width: 50%;
+      width: 90%;
       display: inline-block;
     }
 
@@ -26,10 +26,11 @@
       color: #66397C;
     }
 
-    @media only screen and (max-width: 1000px) {
-      #child-div {
-        width: 90%;
-      }
+    input,
+    button,
+    textarea {
+      background: #66397C;
+      color: #fff;
     }
 
     ul {
@@ -46,6 +47,13 @@
       a:visited {
         color: #AA8AC1;
       }
+
+      input,
+      button,
+      textarea {
+        background: #121517;
+        color: #fff;
+      }
     }
   </style>
   {% block head %}{% endblock %}
@@ -55,6 +63,20 @@
   <div id="parent-div">
     <div id="child-div">
       {% block content %}{% endblock %}
+      {% block footer %}
+      <hr>
+      <p>Version {{ crate::VERSION }}. Made by <a href="https://github.com/cofob" target="_blank">cofob</a> with help
+        of boring archivist. <a href="https://github.com/cofob/fastside" target="_blank">Source code</a>. <a
+          href="http://a7xvcthrhfcsox73brt5hgueapwosohmieg5wttvuuuz6mqur5s3rqyd.onion/">tor</a>, <a
+          href="http://fastside.i2p/">i2p</a> (<a
+          href="http://i4autaipx7a4ro34cbwvni6bcph34eueocplwsxaqeeuyb6cavzq.b32.i2p">b32</a>), <a
+          href="http://ygg.fastside.link/">yggdrasil</a> (<a
+          href="http://[200:691d:578e:f10e:e935:f189:aab4:1d98]/">IPv6</a>),
+        <a href="https://cdn.fastside.link/">cloudflare</a>,
+        <a href="https://fastside.link/">clearnet</a>
+        mirror.
+      </p>
+      {% endblock %}
     </div>
   </div>
 </body>

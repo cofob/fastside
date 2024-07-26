@@ -30,7 +30,7 @@
 
         fastside = pkgs.stdenv.mkDerivation {
           pname = "fastside";
-          version = "0.1.0";
+          version = "0.2.0";
 
           src = self;
 
@@ -63,7 +63,9 @@
           default = fastside;
           fastside = fastside;
           fastside-docker = fastside-docker;
-          services = ./services.json;
+          services = pkgs.runCommand "generate-services" {} ''
+            cat '${./services.json}' > $out
+          '';
         };
 
         devShells.default = pkgs.mkShell {

@@ -16,7 +16,7 @@ pub fn configure_logging() -> Result<()> {
     if let Ok(s) = env::var("FS__LOG") {
         builder.parse_filters(&s);
     } else {
-        builder.filter_level(LevelFilter::Error);
+        builder.filter_level(LevelFilter::Info);
     }
 
     builder.try_init()?;

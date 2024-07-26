@@ -7,10 +7,11 @@ Contents
 
 - [fastside](#fastside)
   - [About](#about)
+  - [Features](#features)
   - [Demo](#demo)
+  - [Mirrors](#mirrors)
   - [How It Works](#how-it-works)
   - [Why does this fork exist?](#why-does-this-fork-exist)
-  - [To Do](#to-do)
 
 ## About
 
@@ -22,6 +23,16 @@ Libreddit, etc. This allows for users to have more reliable access to the
 available public instances for a particular service, while also helping to
 distribute traffic more evenly across all instances and avoid performance
 bottlenecks and rate-limiting.
+
+## Features
+
+- [x] Support for hidden networks (tor, i2p, etc).
+- [x] Redirect behaviour can be configured. (for example - you can exclude cloudflare)
+- [x] POST redirects.
+- [x] Regex redirects via `/{url}` routes.
+- [x] Anonymous and cached redirects via `/@cached/#{path}` routes.
+- [x] History redirects via `/_/{path}` routes.
+- [x] Fallback redirects.
 
 ## Demo
 
@@ -51,6 +62,11 @@ For example:
         <td><a href="https://fastside.link/_/invidious/watch?v=zLGDE2j_n5c">https://fastside.link/_/invidious/watch?v=zLGDE2j_n5c</a></td>
     </tr>
     <tr>
+        <td><a href="https://github.com/iv-org/invidious">Invidious</a></td>
+        <td>https://www.youtube.com/watch?v=zLGDE2j_n5c</td>
+        <td><a href="https://fastside.link/https://www.youtube.com/watch?v=zLGDE2j_n5c">https://fastside.link/https://www.youtube.com/watch?v=zLGDE2j_n5c</a></td>
+    </tr>
+    <tr>
         <td><a href="https://github.com/httpjamesm/AnonymousOverflow">AnonymousOverflow</a></td>
         <td>/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags</td>
         <td><a href="https://fastside.link/@cached/anonymousoverflow/#questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags">https://fastside.link/@cached/anonymousoverflow/#questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags</a></td>
@@ -60,8 +76,9 @@ For example:
 
 <sup>Note: This table doesn't include all available services. For a complete list of supported frontends, see: https://fastside.link/</sup>
 
-Additionally, Fastside includes a caching feature that makes redirects faster and anonymous:
-`/@cached/<service>/#<path>`
+## Mirrors
+
+Fastside can be opened in [clearnet](https://fastside.link/), [clearnet cloudflare](https://cdn.fastside.link/), [tor](http://a7xvcthrhfcsox73brt5hgueapwosohmieg5wttvuuuz6mqur5s3rqyd.onion/), [i2p](http://fastside.i2p/) ([b32](http://i4autaipx7a4ro34cbwvni6bcph34eueocplwsxaqeeuyb6cavzq.b32.i2p)), [yggdrasil](http://ygg.fastside.link/) ([IPv6](http://[200:691d:578e:f10e:e935:f189:aab4:1d98]/)).
 
 ## How It Works
 
@@ -83,7 +100,3 @@ their server in the USA is 300 ms, and a redirect request takes about 1 second t
 processing a redirect takes 700 ms, which is incredibly long for such a simple task. On the other hand, Fastside
 processes requests in 200-300 ms (taking my internet into account). Additionally, the web server at fastside.link
 supports http3, which saves us an additional 100-150 ms.
-
-## To Do
-
-- [ ] GeoDB integration

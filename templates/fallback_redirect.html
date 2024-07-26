@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Fastside Fallback Redirect{% endblock %}
+
+{% block head %}
+<script>
+  setTimeout(() => {
+    window.location.href = '{{ fallback }}';
+  }, 15000);
+</script>
+{% endblock %}
+
+{% block content %}
+<h1>Fallback redirect</h1>
+<p>Fastside not able redirect you to one of instances because 0 instances matching your filters was found.</p>
+<a href="{{ fallback }}">But you can still go to fallback <code>{{ fallback }}</code></a>
+<p>Also, you will be automatically redirected in 15 seconds.</p>
+{% endblock %}

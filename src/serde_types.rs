@@ -1,15 +1,34 @@
-use std::{
-    collections::{HashMap, HashSet},
-    path::Path,
-};
+use std::collections::HashMap;
 
-use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use url::Url;
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Instance {
+    pub url: Url,
+    pub tags: Vec<String>,
+}
 
 fn default_test_url() -> String {
     "/".to_string()
 }
+
+const fn default_follow_redirects() -> bool {
+    true
+}
+
+pub struct CompiledRegexSearch {
+    pub regex: regex::Regex,
+    pub url: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct RegexSearch {
+    pub regex: String,
+    pub url: String,
+}
+
+pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Service {
@@ -18,26 +37,70 @@ pub struct Service {
     #[serde(default = "default_test_url")]
     pub test_url: String,
     pub fallback: Url,
+    #[serde(default = "default_follow_redirects")]
+    pub follow_redirects: bool,
     #[serde(default)]
-    pub aliases: HashSet<String>,
+    pub allow_3xx: bool,
     #[serde(default)]
-    pub tags: HashSet<String>,
-    pub instances: HashSet<Url>,
+    pub allow_4xx: bool,
+    #[serde(default)]
+    pub allow_5xx: bool,
+    #[serde(default)]
+    pub search_string: Option<String>,
+    #[serde(default)]
+    pub regexes: Vec<RegexSearch>,
+    #[serde(default)]
+    pub aliases: Vec<String>,
+    pub instances: Vec<Instance>,
 }
 
-/// Type for `services.json` file.
-pub type ServicesData = Vec<Service>;
-/// Internal representation of `services.json` file.
-pub type Services = HashMap<String, Service>;
+pub type ServicesData = HashMap<String, Service>;
 
-pub fn load_services_file(path: &Path) -> Result<Services> {
-    let services_data: ServicesData = serde_json::from_str(&std::fs::read_to_string(path)?)?;
-    let services: Services = HashMap::from_iter(services_data.iter().map(|s| {
-        (s.name.clone(), {
-            let mut s = s.clone();
-            s.aliases.insert(s.name.clone());
-            s
-        })
-    }));
-    Ok(services)
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct ProxyAuth {
+    pub username: String,
+    pub password: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct Proxy {
+    pub url: String,
+    #[serde(default)]
+    pub auth: Option<ProxyAuth>,
+}
+
+pub type ProxyData = HashMap<String, Proxy>;
+
+#[derive(Deserialize, Serialize, Debug, Clone, Default, PartialEq)]
+pub enum SelectMethod {
+    #[default]
+    Random,
+    LowPing,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone, Default)]
+pub struct UserConfig {
+    #[serde(default)]
+    pub required_tags: Vec<String>,
+    #[serde(default)]
+    pub forbidden_tags: Vec<String>,
+    #[serde(default)]
+    pub select_method: SelectMethod,
+    #[serde(default)]
+    pub ignore_fallback_warning: bool,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct StoredData {
+    pub services: Vec<Service>,
+    pub proxies: ProxyData,
+    #[serde(default)]
+    pub default_settings: UserConfig,
+}
+
+#[derive(Debug)]
+pub struct LoadedData {
+    pub services: ServicesData,
+    pub proxies: ProxyData,
+    pub default_settings: UserConfig,
 }
