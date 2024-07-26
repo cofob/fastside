@@ -4,8 +4,7 @@ use actix_web::{
     cookie::Cookie,
     get,
     http::{header::LOCATION, StatusCode},
-    web::{self, Redirect},
-    HttpRequest, Responder, Scope,
+    web, HttpRequest, Responder, Scope,
 };
 use askama::Template;
 use base64::prelude::*;
@@ -132,7 +131,7 @@ async fn configure_save(req: HttpRequest) -> actix_web::Result<impl Responder> {
         serde_json::from_slice(&b64_decoded).map_err(RedirectError::Serialization)?;
     let json: String = serde_json::to_string(&user_config).map_err(RedirectError::Serialization)?;
     let data = BASE64_STANDARD.encode(json.as_bytes());
-    let cookie = Cookie::new("config", data);
+    let cookie = Cookie::build("config", data).path("/").finish();
     Ok(actix_web::HttpResponse::TemporaryRedirect()
         .cookie(cookie)
         .insert_header((LOCATION, "/configure?success"))
@@ -216,30 +215,36 @@ async fn cached_redirect(
 }
 
 #[derive(Template)]
-#[template(path = "history_redirect.html", escape = "none")]
+#[template(path = "history_redirect.html")]
 pub struct HistoryRedirectTemplate<'a> {
     pub path: &'a str,
 }
 
-#[get("/_/{service_name}/{path:.*}")]
+#[get("/_/{path:.*}")]
 async fn history_redirect(
     req: HttpRequest,
-    path: web::Path<(String, String)>,
+    path: web::Path<String>,
 ) -> actix_web::Result<impl Responder> {
-    let (service_name, mut path) = path.into_inner();
+    let mut path = path.into_inner();
     let query = req.query_string();
     if !query.is_empty() {
         path.push('?');
         path.push_str(query);
     }
 
-    let path = format!("/{service_name}/{path}");
+    let path = format!("/{path}");
     let template = HistoryRedirectTemplate { path: &path };
 
     Ok(actix_web::HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
         .append_header(("refresh", format!("1; url={path}")))
         .body(template.render().expect("failed to render error page")))
+}
+
+#[derive(Template)]
+#[template(path = "fallback_redirect.html", escape = "none")]
+pub struct FallbackRedirectTemplate<'a> {
+    pub fallback: &'a str,
 }
 
 #[get("/{path:.*}")]
@@ -281,8 +286,9 @@ async fn base_redirect(
 
     let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
 
-    let redirect_instance = get_redirect_instance(crawled_service, service, &user_config)
-        .map_err(RedirectError::from)?;
+    let (redirect_instance, is_fallback) =
+        get_redirect_instance(crawled_service, service, &user_config)
+            .map_err(RedirectError::from)?;
 
     let mut url = redirect_instance
         .url
@@ -296,7 +302,22 @@ async fn base_redirect(
         url.push_str(query);
     }
 
-    debug!("Redirecting to {url}");
+    debug!("Redirecting to {url}, is_fallback: {is_fallback}");
 
-    Ok(Redirect::to(url.to_string()).temporary())
+    match (is_fallback, user_config.ignore_fallback_warning) {
+        (true, false) => {
+            let template = FallbackRedirectTemplate { fallback: &url };
+            Ok(actix_web::HttpResponse::Ok()
+                .content_type("text/html; charset=utf-8")
+                .insert_header(("refresh", format!("15; url={url}")))
+                .body(
+                    template
+                        .render()
+                        .expect("failed to render fallback redirect page"),
+                ))
+        }
+        _ => Ok(actix_web::HttpResponse::TemporaryRedirect()
+            .insert_header((LOCATION, url.to_string()))
+            .finish()),
+    }
 }

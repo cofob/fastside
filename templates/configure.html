@@ -27,6 +27,11 @@
 </div>
 
 <div>
+  <h3>Ignore fallback warning</h3>
+  <input type="checkbox" id="ignore-fallback-warning" value="true">
+</div>
+
+<div>
   <h3>Generated JSON</h3>
   <textarea id="generated-json" readonly cols="80" rows="10"></textarea>
 </div>
@@ -39,6 +44,7 @@
     required: [],
     forbidden: []
   };
+  let ignoreFallbackWarning = false;
 
   document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -58,6 +64,8 @@
         document.querySelector('input[name="selector-method"]:checked').checked = false;
         document.querySelector(`input[name="selector-method"][value="${selectorMethod}"]`).checked = true;
       }
+      ignoreFallbackWarning = decodedConfig.ignore_fallback_warning || false;
+      document.getElementById('ignore-fallback-warning').checked = ignoreFallbackWarning;
       generateJSON();
     }
   });
@@ -98,7 +106,8 @@
     const json = JSON.stringify({
       required_tags: tags.required,
       forbidden_tags: tags.forbidden,
-      select_method: selectorMethod
+      select_method: selectorMethod,
+      ignore_fallback_warning: document.getElementById('ignore-fallback-warning').checked
     });
     const encoded = btoa(json);
     document.getElementById('generated-json').value = encoded;
@@ -111,6 +120,10 @@
 
   document.querySelectorAll('input[name="selector-method"]').forEach(radio => {
     radio.addEventListener('change', generateJSON);
+  });
+  document.getElementById('ignore-fallback-warning').addEventListener('change', generateJSON);
+  document.getElementById('ignore-fallback-warning').addEventListener('change', () => {
+    ignoreFallbackWarning = document.getElementById('ignore-fallback-warning').checked;
   });
 </script>
 {% endblock %}

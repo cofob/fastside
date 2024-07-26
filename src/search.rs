@@ -99,34 +99,39 @@ pub fn get_redirect_instance(
     crawled_service: &CrawledService,
     service: &Service,
     user_config: &UserConfig,
-) -> Result<CrawledInstance, SearchError> {
+) -> Result<(CrawledInstance, bool), SearchError> {
     let instances = get_redirect_instances(
         crawled_service,
         &user_config.required_tags,
         &user_config.forbidden_tags,
     );
-    let instance = match &instances {
-        None => CrawledInstance {
-            url: service.fallback.clone(),
-            status: CrawledInstanceStatus::Ok(MAX_DURATION),
-            tags: vec![],
-        },
-        Some(instances) => match &user_config.select_method {
-            SelectMethod::Random => instances
-                .choose(&mut rand::thread_rng())
-                .unwrap()
-                .to_owned()
-                .to_owned(),
-            SelectMethod::LowPing => instances
-                .iter()
-                .min_by_key(|i| match i.status {
-                    CrawledInstanceStatus::Ok(ping) => ping,
-                    _ => MAX_DURATION,
-                })
-                .unwrap()
-                .to_owned()
-                .to_owned(),
-        },
-    };
-    Ok(instance) // wtf is happening here
+    match &instances {
+        None => Ok((
+            CrawledInstance {
+                url: service.fallback.clone(),
+                status: CrawledInstanceStatus::Ok(MAX_DURATION),
+                tags: vec![],
+            },
+            true,
+        )),
+        Some(instances) => Ok((
+            match &user_config.select_method {
+                SelectMethod::Random => instances
+                    .choose(&mut rand::thread_rng())
+                    .unwrap()
+                    .to_owned()
+                    .to_owned(),
+                SelectMethod::LowPing => instances
+                    .iter()
+                    .min_by_key(|i| match i.status {
+                        CrawledInstanceStatus::Ok(ping) => ping,
+                        _ => MAX_DURATION,
+                    })
+                    .unwrap()
+                    .to_owned()
+                    .to_owned(),
+            },
+            false,
+        )),
+    }
 }

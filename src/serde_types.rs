@@ -91,6 +91,8 @@ pub struct UserConfig {
     pub forbidden_tags: Vec<String>,
     #[serde(default)]
     pub select_method: SelectMethod,
+    #[serde(default)]
+    pub ignore_fallback_warning: bool,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
