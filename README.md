@@ -7,6 +7,7 @@ Contents
 
 - [fastside](#fastside)
   - [About](#about)
+  - [Features](#features)
   - [Demo](#demo)
   - [Mirrors](#mirrors)
   - [How It Works](#how-it-works)
@@ -22,6 +23,15 @@ Libreddit, etc. This allows for users to have more reliable access to the
 available public instances for a particular service, while also helping to
 distribute traffic more evenly across all instances and avoid performance
 bottlenecks and rate-limiting.
+
+## Features
+
+- [x] Support for hidden networks (tor, i2p, etc).
+- [x] Redirect behaviour can be configured. (for example - you can exclude cloudflare)
+- [x] Regex redirects via `/{url}` routes.
+- [x] Anonymous and cached redirects via `/@cached/#{path}` routes.
+- [x] History redirects via `/_/{path}` routes.
+- [x] Fallback redirects.
 
 ## Demo
 
@@ -67,7 +77,7 @@ For example:
 
 ## Mirrors
 
-Fastside can be opened in [clearnet](https://fastside.link/), [tor]() or [i2p]().
+Fastside can be opened in [clearnet](https://fastside.link/), [clearnet cloudflare](https://cdn.fastside.link/), [tor]() or [i2p]().
 
 ## How It Works
 
