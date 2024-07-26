@@ -14,7 +14,8 @@
       {% for instance in instances %}
       <li>
         <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:
-          <code>{{ instance.status }}</code></span>
+          <code>{{ instance.status }}</code></span> <span>Tags: {% for tag in instance.tags %}{% if loop.index != 1 %}, {% endif %}
+          <code>{{ tag }}</code>{% endfor %}</span>
       </li>
       {% endfor %}
     </ul>
