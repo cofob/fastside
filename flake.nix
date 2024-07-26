@@ -63,7 +63,9 @@
           default = fastside;
           fastside = fastside;
           fastside-docker = fastside-docker;
-          services = ./services.json;
+          services = pkgs.runCommand "generate-services" {} ''
+            cat '${./services.json}' > $out
+          '';
         };
 
         devShells.default = pkgs.mkShell {
