@@ -8,13 +8,16 @@
   <ul>
     {% for (name, crawled_service) in crawled_services %}
     <li><a href="/{{ crawled_service.name }}/">{{ crawled_service.name }}</a> Aliases: [{% for alias in
-      services[name].aliases %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{% endfor %}]</li>
+      services[name].aliases %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{% endfor %}] Fallback:
+      <code>{{ services[name].fallback }}</code>
+    </li>
     <ul>
       {% let instances = crawled_service.instances|sort_list %}
       {% for instance in instances %}
       <li>
         <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:
-          <code>{{ instance.status }}</code></span> <span>Tags: {% for tag in instance.tags %}{% if loop.index != 1 %}, {% endif %}
+          <code>{{ instance.status }}</code></span> <span>Tags: {% for tag in instance.tags %}{% if loop.index != 1 %},
+          {% endif %}
           <code>{{ tag }}</code>{% endfor %}</span>
       </li>
       {% endfor %}
