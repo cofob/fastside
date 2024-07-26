@@ -32,7 +32,7 @@
 </div>
 
 <div>
-  <h3>Generated JSON</h3>
+  <h3>Generated config</h3>
   <textarea id="generated-json" readonly cols="80" rows="10"></textarea>
 </div>
 
@@ -110,12 +110,13 @@
       ignore_fallback_warning: document.getElementById('ignore-fallback-warning').checked
     });
     const encoded = btoa(json);
-    document.getElementById('generated-json').value = encoded;
+    document.getElementById('generated-json').value = `/configure/save?${encoded}`;
+    return encoded;
   }
 
   function saveConfiguration() {
-    const json = document.getElementById('generated-json').value;
-    window.location.href = `/configure/save?${json}`;
+    const encoded = generateJSON();
+    window.location.href = `/configure/save?${encoded}`;
   }
 
   document.querySelectorAll('input[name="selector-method"]').forEach(radio => {
