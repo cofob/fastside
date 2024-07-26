@@ -17,20 +17,15 @@ const fn default_follow_redirects() -> bool {
     true
 }
 
-const fn default_regex_group() -> usize {
-    1
-}
-
 pub struct CompiledRegexSearch {
     pub regex: regex::Regex,
-    pub group: usize,
+    pub url: String,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct RegexSearch {
     pub regex: String,
-    #[serde(default = "default_regex_group")]
-    pub group: usize,
+    pub url: String,
 }
 
 pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;

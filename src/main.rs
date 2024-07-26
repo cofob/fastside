@@ -121,7 +121,7 @@ async fn main() -> Result<()> {
                                 .ok()?;
                             Some(CompiledRegexSearch {
                                 regex: compiled,
-                                group: regex.group,
+                                url: regex.url.clone(),
                             })
                         })
                         .collect::<Option<Vec<CompiledRegexSearch>>>()?;

@@ -1,5 +1,6 @@
 use std::time::Duration;
 
+use regex::Captures;
 use tokio::sync::RwLockReadGuard;
 
 use crate::{
@@ -17,6 +18,8 @@ pub enum SearchError {
     ServiceNotFound,
     #[error("no instances found")]
     NoInstancesFound,
+    #[error("replace args error: `{0}`")]
+    ReplaceArgsError(#[from] ReplaceArgsError),
 }
 
 pub async fn find_redirect_service_by_name<'a>(
@@ -45,6 +48,84 @@ pub async fn find_redirect_service_by_name<'a>(
     Err(SearchError::ServiceNotFound)
 }
 
+#[derive(Error, Debug)]
+pub enum ReplaceArgsError {
+    #[error("invalid capture group number")]
+    InvalidCaptureGroup,
+    #[error("parse int error")]
+    ParseIntError(#[from] std::num::ParseIntError),
+}
+
+fn replace_args_in_url(url: &str, captures: Captures) -> Result<String, ReplaceArgsError> {
+    let mut out = String::new();
+    let mut is_encoded = false;
+    let mut is_arg = false;
+    let mut num = String::new();
+    for c in url.chars() {
+        match (c, is_arg, is_encoded) {
+            ('?', false, false) => {
+                debug!("Found '?' in URL");
+                is_encoded = true;
+            }
+            ('$', false, _) => {
+                debug!("Found '$' in URL");
+                is_arg = true;
+            }
+            ('0'..='9', true, _) => {
+                debug!("Found digit {c} in URL");
+                num.push(c);
+            }
+            (c, true, _) if num.is_empty() => {
+                debug!("Found non-digit {c} in URL while parsing arg");
+                is_arg = false;
+                is_encoded = false;
+                out.push('$');
+                out.push(c);
+            }
+            (c, false, true) => {
+                debug!("Found non-dollar {c} in URL while expecting arg");
+                is_encoded = false;
+                out.push('?');
+                out.push(c);
+            }
+            (_, true, _) => {
+                debug!("Found non-digit {c} in URL while parsing num, adding capture");
+                let arg = captures
+                    .get(num.parse()?)
+                    .ok_or(ReplaceArgsError::InvalidCaptureGroup)?
+                    .as_str();
+                let arg = if is_encoded {
+                    urlencoding::encode(arg).to_string()
+                } else {
+                    arg.to_string()
+                };
+                out.push_str(&arg);
+                is_arg = false;
+                is_encoded = false;
+                num.clear();
+            }
+            _ => {
+                debug!("Found non-dollar {c} in URL while not expecting arg");
+                out.push(c);
+            }
+        }
+    }
+    if is_arg {
+        debug!("Found EOF while parsing arg, adding capture");
+        let arg = captures
+            .get(num.parse()?)
+            .ok_or(ReplaceArgsError::InvalidCaptureGroup)?
+            .as_str();
+        let arg = if is_encoded {
+            urlencoding::encode(arg).to_string()
+        } else {
+            arg.to_string()
+        };
+        out.push_str(&arg);
+    }
+    Ok(out)
+}
+
 pub async fn find_redirect_service_by_url<'a>(
     guard: &'a RwLockReadGuard<'a, Option<CrawledServices>>,
     services: &'a ServicesData,
@@ -62,11 +143,9 @@ pub async fn find_redirect_service_by_url<'a>(
                 let regex = &service_regex.regex;
                 let captures = regex.captures(query);
                 if let Some(captures) = captures {
-                    let redir_path = match captures.get(service_regex.group) {
-                        Some(path) => path.as_str().to_string(),
-                        None => continue,
-                    };
-                    return Ok((&data.services[service_name], service, redir_path));
+                    let url = service_regex.url.clone();
+                    let url = replace_args_in_url(&url, captures)?;
+                    return Ok((&data.services[service_name], service, url));
                 }
             }
         }
