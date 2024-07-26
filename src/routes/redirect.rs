@@ -20,7 +20,7 @@ use crate::{
         find_redirect_service_by_name, find_redirect_service_by_url, get_redirect_instance,
         get_redirect_instances, SearchError,
     },
-    serde_types::{LoadedData, Regexes, SelectMethod, ServicesData, UserConfig},
+    serde_types::{LoadedData, Regexes, SelectMethod, Service, ServicesData, UserConfig},
 };
 
 pub fn scope(_config: &AppConfig) -> Scope {
@@ -189,7 +189,7 @@ async fn cached_redirect(
         &user_config.required_tags,
         &user_config.forbidden_tags,
     )
-    .map_err(RedirectError::from)?;
+    .ok_or(RedirectError::from(SearchError::NoInstancesFound))?;
     if user_config.select_method == SelectMethod::LowPing {
         instances.sort_by(|a, b| a.status.as_isize().cmp(&b.status.as_isize()));
     }
@@ -256,29 +256,30 @@ async fn base_redirect(
     };
 
     let guard = crawler.read().await;
-    let (redir_path, crawled_service): (String, &CrawledService) = match is_url_query {
-        true => {
-            let (crawled_service, _, redir_path) =
-                find_redirect_service_by_url(&guard, &loaded_data.services, &regexes, &path)
-                    .await
-                    .map_err(RedirectError::from)?;
-            (redir_path, crawled_service)
-        }
-        false => {
-            let service_name = path.split('/').next().unwrap();
-            let redir_path = path[service_name.len()..].to_string();
-            let (crawled_service, _) =
-                find_redirect_service_by_name(&guard, &loaded_data.services, service_name)
-                    .await
-                    .map_err(RedirectError::from)?;
-            (redir_path, crawled_service)
-        }
-    };
+    let (redir_path, crawled_service, service): (String, &CrawledService, &Service) =
+        match is_url_query {
+            true => {
+                let (crawled_service, service, redir_path) =
+                    find_redirect_service_by_url(&guard, &loaded_data.services, &regexes, &path)
+                        .await
+                        .map_err(RedirectError::from)?;
+                (redir_path, crawled_service, service)
+            }
+            false => {
+                let service_name = path.split('/').next().unwrap();
+                let redir_path = path[service_name.len()..].to_string();
+                let (crawled_service, service) =
+                    find_redirect_service_by_name(&guard, &loaded_data.services, service_name)
+                        .await
+                        .map_err(RedirectError::from)?;
+                (redir_path, crawled_service, service)
+            }
+        };
 
     let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
 
-    let redirect_instance =
-        get_redirect_instance(crawled_service, &user_config).map_err(RedirectError::from)?;
+    let redirect_instance = get_redirect_instance(crawled_service, service, &user_config)
+        .map_err(RedirectError::from)?;
 
     let mut url = redirect_instance
         .url

@@ -15,8 +15,8 @@ pub enum SearchError {
     CrawlerNotFetchedYet,
     #[error("service not found")]
     ServiceNotFound,
-    #[error("instance not found")]
-    InstanceNotFound,
+    #[error("no instances found")]
+    NoInstancesFound,
 }
 
 pub async fn find_redirect_service_by_name<'a>(
@@ -79,7 +79,7 @@ pub fn get_redirect_instances<'a>(
     crawled_service: &'a CrawledService,
     required_tags: &[String],
     forbidden_tags: &[String],
-) -> Result<Vec<&'a CrawledInstance>, SearchError> {
+) -> Option<Vec<&'a CrawledInstance>> {
     let alive_instances = crawled_service.get_alive_instances();
     let instances = alive_instances
         .iter()
@@ -88,31 +88,45 @@ pub fn get_redirect_instances<'a>(
         .cloned()
         .collect::<Vec<_>>();
     if instances.is_empty() {
-        return Err(SearchError::InstanceNotFound);
+        return None;
     }
-    Ok(instances)
+    Some(instances)
 }
 
 const MAX_DURATION: Duration = Duration::from_secs(std::u64::MAX);
 
 pub fn get_redirect_instance(
     crawled_service: &CrawledService,
+    service: &Service,
     user_config: &UserConfig,
 ) -> Result<CrawledInstance, SearchError> {
     let instances = get_redirect_instances(
         crawled_service,
         &user_config.required_tags,
         &user_config.forbidden_tags,
-    )?;
-    let instance = match &user_config.select_method {
-        SelectMethod::Random => instances.choose(&mut rand::thread_rng()).unwrap(),
-        SelectMethod::LowPing => instances
-            .iter()
-            .min_by_key(|i| match i.status {
-                CrawledInstanceStatus::Ok(ping) => ping,
-                _ => MAX_DURATION,
-            })
-            .unwrap(),
+    );
+    let instance = match &instances {
+        None => CrawledInstance {
+            url: service.fallback.clone(),
+            status: CrawledInstanceStatus::Ok(MAX_DURATION),
+            tags: vec![],
+        },
+        Some(instances) => match &user_config.select_method {
+            SelectMethod::Random => instances
+                .choose(&mut rand::thread_rng())
+                .unwrap()
+                .to_owned()
+                .to_owned(),
+            SelectMethod::LowPing => instances
+                .iter()
+                .min_by_key(|i| match i.status {
+                    CrawledInstanceStatus::Ok(ping) => ping,
+                    _ => MAX_DURATION,
+                })
+                .unwrap()
+                .to_owned()
+                .to_owned(),
+        },
     };
-    Ok(instance.to_owned().to_owned().to_owned()) // wtf is happening here
+    Ok(instance) // wtf is happening here
 }
