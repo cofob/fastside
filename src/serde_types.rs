@@ -17,10 +17,6 @@ const fn default_follow_redirects() -> bool {
     true
 }
 
-const fn default_allow_3xx() -> bool {
-    false
-}
-
 const fn default_regex_group() -> usize {
     1
 }
@@ -48,8 +44,12 @@ pub struct Service {
     pub fallback: Url,
     #[serde(default = "default_follow_redirects")]
     pub follow_redirects: bool,
-    #[serde(default = "default_allow_3xx")]
+    #[serde(default)]
     pub allow_3xx: bool,
+    #[serde(default)]
+    pub allow_4xx: bool,
+    #[serde(default)]
+    pub allow_5xx: bool,
     #[serde(default)]
     pub search_string: Option<String>,
     #[serde(default)]

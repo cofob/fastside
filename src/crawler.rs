@@ -158,6 +158,16 @@ impl Crawler {
                             status_valid = true;
                         }
                     }
+                    400..=499 => {
+                        if service.allow_4xx {
+                            status_valid = true;
+                        }
+                    }
+                    500..=599 => {
+                        if service.allow_5xx {
+                            status_valid = true;
+                        }
+                    }
                     _ => {}
                 }
                 if status_valid {
