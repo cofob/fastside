@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use actix_web::{
     cookie::Cookie,
     get,
-    http::{header::LOCATION, StatusCode},
+    http::{header::LOCATION, Method, StatusCode},
     web, HttpRequest, Responder, Scope,
 };
 use askama::Template;
@@ -29,7 +29,8 @@ pub fn scope(_config: &AppConfig) -> Scope {
         .service(configure_save)
         .service(history_redirect)
         .service(cached_redirect)
-        .service(base_redirect)
+        .route("/{path:.*}", web::get().to(base_redirect))
+        .route("/{path:.*}", web::post().to(base_redirect))
 }
 
 #[derive(Error, Debug)]
@@ -244,7 +245,6 @@ pub struct FallbackRedirectTemplate<'a> {
     pub fallback: &'a str,
 }
 
-#[get("/{path:.*}")]
 async fn base_redirect(
     req: HttpRequest,
     path: web::Path<String>,
@@ -301,8 +301,12 @@ async fn base_redirect(
 
     debug!("Redirecting to {url}, is_fallback: {is_fallback}");
 
-    match (is_fallback, user_config.ignore_fallback_warning) {
-        (true, false) => {
+    match (
+        is_fallback,
+        user_config.ignore_fallback_warning,
+        req.method(),
+    ) {
+        (true, false, &Method::GET) => {
             let template = FallbackRedirectTemplate { fallback: &url };
             Ok(actix_web::HttpResponse::Ok()
                 .content_type("text/html; charset=utf-8")
