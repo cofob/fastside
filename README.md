@@ -78,7 +78,7 @@ For example:
 
 ## Mirrors
 
-Fastside can be opened in [clearnet](https://fastside.link/), [clearnet cloudflare](https://cdn.fastside.link/), [tor](http://a7xvcthrhfcsox73brt5hgueapwosohmieg5wttvuuuz6mqur5s3rqyd.onion/), [i2p](http://fastside.i2p/) ([b32](http://i4autaipx7a4ro34cbwvni6bcph34eueocplwsxaqeeuyb6cavzq.b32.i2p)), [yggdrasil](http://ygg.fastside.link/) ([IPv6](http://[200:691d:578e:f10e:e935:f189:aab4:1d98]/)).
+Fastside can be opened in [clearnet](https://fastside.link/), [clearnet cloudflare](https://cdn.fastside.link/), [tor](http://a7xvcthrhfcsox73brt5hgueapwosohmieg5wttvuuuz6mqur5s3rqyd.onion/), [i2p](http://fastside.i2p/) ([b32](http://i4autaipx7a4ro34cbwvni6bcph34eueocplwsxaqeeuyb6cavzq.b32.i2p)), [yggdrasil](http://ygg.fastside.link/) ([Alfis](http://fastside.ygg/), [IPv6](http://[200:691d:578e:f10e:e935:f189:aab4:1d98]/)).
 
 ## How It Works
 
