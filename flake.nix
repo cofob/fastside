@@ -6,50 +6,20 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    import-cargo.url = "github:edolstra/import-cargo";
+    naersk.url = "github:nix-community/naersk";
+    naersk.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, flake-utils, rust-overlay, import-cargo, ... }:
+  outputs = { self, nixpkgs, flake-utils, naersk, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        overlays = [ (import rust-overlay) ];
-        pkgs = import nixpkgs { inherit system overlays; };
-        rustVersion = pkgs.rust-bin.stable.latest.default.override {
-          targets = [ "x86_64-unknown-linux-musl" ];
-        };
-        inherit (import-cargo.builders) importCargo;
+        pkgs = import nixpkgs { inherit system; };
+        naersk' = pkgs.callPackage naersk { };
 
-        nativeBuildInputs = with pkgs; [ pkg-config rustVersion ];
-
-        buildInputs = with pkgs; [ ];
-
-        fastside = pkgs.stdenv.mkDerivation {
-          pname = "fastside";
-          version = "0.2.0";
-
-          src = self;
-
-          inherit buildInputs;
-
-          nativeBuildInputs = [
-            (importCargo {
-              lockFile = ./Cargo.lock;
-              inherit pkgs;
-            }).cargoHome
-          ] ++ nativeBuildInputs;
-
-          buildPhase = ''
-            cargo build --release --offline --target x86_64-unknown-linux-musl
-          '';
-
-          installPhase = ''
-            install -Dm775 ./target/x86_64-unknown-linux-musl/release/fastside $out/bin/fastside
-          '';
+        fastside = naersk'.buildPackage {
+          src = ./.;
+          nativeBuildInputs = with pkgs; [ mold ];
+          NIX_CFLAGS_LINK = " -fuse-ld=mold";
         };
 
         fastside-docker = pkgs.dockerTools.buildLayeredImage {
@@ -63,14 +33,11 @@
           default = fastside;
           fastside = fastside;
           fastside-docker = fastside-docker;
-          services = pkgs.runCommand "generate-services" {} ''
+          services = pkgs.runCommand "generate-services" { } ''
             cat '${./services.json}' > $out
           '';
         };
 
-        devShells.default = pkgs.mkShell {
-          buildInputs = (with pkgs; [ nixfmt ]) ++ nativeBuildInputs
-            ++ buildInputs;
-        };
+        devShells.default = import ./shell.nix { inherit pkgs; };
       });
 }
