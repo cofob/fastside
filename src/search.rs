@@ -172,7 +172,7 @@ pub fn get_redirect_instances<'a>(
     Some(instances)
 }
 
-const MAX_DURATION: Duration = Duration::from_secs(std::u64::MAX);
+const MAX_DURATION: Duration = Duration::from_secs(u64::MAX);
 
 pub fn get_redirect_instance(
     crawled_service: &CrawledService,

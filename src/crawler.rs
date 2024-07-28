@@ -46,6 +46,7 @@ pub enum CrawlerError {
 #[derive(Clone, Debug)]
 pub enum CrawledInstanceStatus {
     Ok(Duration),
+    #[allow(dead_code)]
     InvalidStatusCode(StatusCode, Duration),
     StringNotFound,
     ConnectionError,
