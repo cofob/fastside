@@ -13,6 +13,8 @@ Contents
   - [How It Works](#how-it-works)
   - [Why does this fork exist?](#why-does-this-fork-exist)
     - [Migration from farside](#migration-from-farside)
+  - [Tips and tricks](#tips-and-tricks)
+    - [Use fastside to upload files to 0x0](#use-fastside-to-upload-files-to-0x0)
 
 ## About
 
@@ -105,3 +107,11 @@ supports http3, which saves us an additional 100-150 ms.
 ### Migration from farside
 
 Migrating from farside to fastside is very simple - just replace the redirects from `farside.link` to `fastside.link`.
+
+## Tips and tricks
+
+### Use fastside to upload files to 0x0
+
+```bash
+curl -LF'file=@fastside.txt' fastsi.de/0x0
+```
