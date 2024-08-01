@@ -2,10 +2,9 @@
   "services": [
     {
       "type": "akademik",
-      "pattern": "*academic.ru/*",
-      "test_url": "?word=кот",
-      "fallback": "https://akademik.bloat.cat/",
-      "rdrto": "",
+      "test_url": "/?word=кот",
+      "fallback": "https://academic.ru/",
+      "deprecated_message": "All instances are down.",
       "instances": [
         {
           "url": "https://akademik.bloat.cat/",
@@ -23,10 +22,16 @@
     },
     {
       "type": "simpleamazon",
-      "pattern": "*amazon.*/s*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "s$3&tld=$2",
+      "fallback": "https://www.amazon.com/",
+      "search_string": "SimpleAmazon",
+      "deprecated_message": "Repository is archived.",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?amazon\\.(\\w{2,3})\\/s\\?(.*)$",
+          "url": "/s?tld=?$3&$4"
+        }
+      ],
+      "source_link": "https://codeberg.org/SimpleWeb/SimpleAmazon",
       "instances": [
         {
           "url": "https://amazon.simple-web.org",
@@ -50,10 +55,9 @@
     },
     {
       "type": "tent",
-      "pattern": "*bandcamp.com/*",
-      "test_url": "/search.php?query=<%=query%>",
-      "fallback": "https://tent.sny.sh",
-      "rdrto": "/artist.php?name=$1",
+      "search_string": "Red Hot Chilli Peppers",
+      "test_url": "/search.php?query=Red+Hot+Chilli+Peppers",
+      "source_link": "https://forgejo.sny.sh/sun/Tent",
       "instances": [
         {
           "url": "https://tent.bloat.cat",
@@ -62,37 +66,13 @@
           ]
         },
         {
-          "url": "https://tent.bloatcat.tk",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://tent.deep-swarm.xyz",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://tent.deep-swarm.xyz",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://tent.sny.sh",
+          "url": "https://tent.deep-swarm.xyz/",
           "tags": [
             "clearnet"
           ]
         },
         {
           "url": "https://tent.sny.sh/",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://tn.vern.cc",
           "tags": [
             "clearnet"
           ]
@@ -119,10 +99,7 @@
     },
     {
       "type": "mikuinvidious",
-      "pattern": "*bilibili.com/video/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "deprecated_message": "All instances are down.",
       "instances": [
         {
           "url": "https://mikuinv-gs.vern.cc",
@@ -140,10 +117,14 @@
     },
     {
       "type": "skyview",
-      "pattern": "*bsky.app/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "regexes": [
+        {
+          "regex": "^((https?:\\/\\/)?bsky\\.app\\/profile\\/.+\\/post\\/.+)$",
+          "url": "/?url=?$1"
+        }
+      ],
+      "search_string": "skyview",
+      "source_link": "https://github.com/badlogic/skyview",
       "instances": [
         {
           "url": "https://skyview.social/",
@@ -155,10 +136,16 @@
     },
     {
       "type": "koub",
-      "pattern": "*coub.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?coub\\.com\\/(view\\/.+)$",
+          "url": "/$2"
+        }
+      ],
+      "test_url": "/view/26u3o6",
+      "search_string": "Sand through my fingers",
+      "fallback": "https://coub.com/",
+      "source_link": "https://git.bloat.cat/gospodin/koub",
       "instances": [
         {
           "url": "https://koub.bloat.cat",
@@ -176,10 +163,8 @@
     },
     {
       "type": "skunkyart",
-      "pattern": "*deviantart.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "fallback": "http://deviantart.com/",
+      "deprecated_message": "All instances are down.",
       "instances": [
         {
           "url": "https://skunky.bloat.cat/",
@@ -197,10 +182,15 @@
     },
     {
       "type": "breezewiki",
-      "pattern": "*.fandom.com/wiki/*",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?([\\w\\d-]+).fandom.com/(.*)",
+          "url": "/$2/$3"
+        }
+      ],
+      "search_string": "Hot Dog...?",
       "test_url": "/undertale/wiki/Hot_Dog...%3F",
-      "fallback": "https://breezewiki.com",
-      "rdrto": "",
+      "source_link": "https://gitdab.com/cadence/breezewiki",
       "instances": [
         {
           "url": "https://antifandom.com",
@@ -332,10 +322,16 @@
     },
     {
       "type": "dumb",
-      "pattern": "*genius.com/*",
-      "test_url": "/Naughty-boy-la-la-la-lyrics",
-      "fallback": "https://dumb.privacydev.net",
-      "rdrto": "",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?genius\\.com/(.*)",
+          "url": "/$2"
+        }
+      ],
+      "test_url": "/Red-hot-chili-peppers-cant-stop-lyrics",
+      "search_string": "Red Hot Chili Peppers",
+      "fallback": "https://genius.com/",
+      "source_link": "https://github.com/rramiachraf/dumb",
       "instances": [
         {
           "url": "https://dm.vern.cc",
@@ -407,10 +403,10 @@
     },
     {
       "type": "intellectual",
-      "pattern": "*genius.com/*",
-      "test_url": "/Naughty-boy-la-la-la-lyrics",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "test_url": "/Red-hot-chili-peppers-cant-stop-lyrics",
+      "search_string": "Red Hot Chili Peppers",
+      "fallback": "https://genius.com/",
+      "source_link": "https://github.com/Insprill/intellectual/",
       "instances": [
         {
           "url": "https://intellectual.insprill.net/",
@@ -446,10 +442,16 @@
     },
     {
       "type": "gothub",
-      "pattern": "*github.com/*",
-      "test_url": "/benbusby/farside",
-      "fallback": "https://gothub.projectsegfau.lt",
-      "rdrto": "",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?github\\.com/(.*)",
+          "url": "/$2"
+        }
+      ],
+      "test_url": "/cofob/fastside",
+      "fallback": "https://github.com/",
+      "search_string": "fastside",
+      "source_link": "https://codeberg.org/gothub/gothub",
       "instances": [
         {
           "url": "https://gh.bloatcat.tk",
@@ -533,10 +535,23 @@
     },
     {
       "type": "laboratory",
-      "pattern": "*gitlab.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?gitlab\\.com/(.*)",
+          "url": "/gitlab.com/$2"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?gitlab\\.freedesktop\\.org/(.*)",
+          "url": "/gitlab.freedesktop.org/$2"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?gitlab\\.archlinux\\.org/(.*)",
+          "url": "/gitlab.archlinux.org/$2"
+        }
+      ],
+      "test_url": "/gitlab.com/gitlab-org/gitlab",
+      "search_string": "GitLab",
+      "source_link": "https://git.vitali64.duckdns.org/utils/laboratory.git",
       "instances": [
         {
           "url": "https://lab.vern.cc",
@@ -555,9 +570,6 @@
     {
       "type": "biblioreads",
       "pattern": "*goodreads.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://biblioreads.ducks.party",
@@ -648,9 +660,6 @@
     {
       "type": "hckrnws",
       "pattern": "*news.ycombinator.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://hn.vern.cc/",
@@ -669,9 +678,6 @@
     {
       "type": "unfunny",
       "pattern": "*ifunny.co/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://uf.vern.cc/",
@@ -1134,9 +1140,6 @@
     {
       "type": "indetructables",
       "pattern": "*instructables.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://indestructables.private.coffee/",
@@ -1149,9 +1152,6 @@
     {
       "type": "destructables",
       "pattern": "*instructables.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://ds.vern.cc",
@@ -1245,9 +1245,6 @@
     {
       "type": "meme",
       "pattern": "*knowyourmeme.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://mm.vern.cc",
@@ -1272,9 +1269,6 @@
     {
       "type": "facilmap",
       "pattern": "*maps.google.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://facilmap.org",
@@ -1287,9 +1281,6 @@
     {
       "type": "osm",
       "pattern": "*maps.google.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://www.openstreetmap.org",
@@ -1302,9 +1293,6 @@
     {
       "type": "libmedium",
       "pattern": "*medium.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://libmedium.batsense.net",
@@ -1515,8 +1503,6 @@
     {
       "type": "binternet",
       "pattern": "*pinterest.*/search/pins/?*",
-      "test_url": "",
-      "fallback": "http://example.com/",
       "rdrto": "search.php?$3",
       "instances": [
         {
@@ -1578,9 +1564,6 @@
     {
       "type": "pxixvFE",
       "pattern": "*pixiv.net/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://pixivfe.exozy.me",
@@ -1617,9 +1600,6 @@
     {
       "type": "freexiv",
       "pattern": "*pixiv.net/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://freexiv.privacydev.net",
@@ -1644,9 +1624,6 @@
     {
       "type": "pixiv-novel",
       "pattern": "*pixiv.net/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://noouan.f5.si/",
@@ -1889,10 +1866,16 @@
     },
     {
       "type": "libreddit",
-      "pattern": "*reddit.com/*",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?reddit\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "test_url": "/r/popular",
-      "fallback": "https://redlib.freedit.eu",
-      "rdrto": "",
+      "fallback": "https://www.reddit.com",
+      "search_string": "popular",
+      "source_link": "https://github.com/redlib-org/redlib",
       "instances": [
         {
           "url": "https://discuss.whatever.social",
@@ -2176,8 +2159,6 @@
       "type": "redlib",
       "pattern": "*reddit.com/*",
       "test_url": "/r/popular",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://libreddit.bus-hit.me",
@@ -2608,8 +2589,6 @@
       "type": "eddrit",
       "pattern": "*reddit.com/*",
       "test_url": "/r/popular",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://eddrit.com",
@@ -2623,8 +2602,6 @@
       "type": "rdx",
       "pattern": "*reddit.com/*",
       "test_url": "/r/popular",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://rdx.overdevs.com",
@@ -2638,8 +2615,6 @@
       "type": "photon-reddit",
       "pattern": "*reddit.com/*",
       "test_url": "/r/popular",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://photon-reddit.com/",
@@ -2652,9 +2627,6 @@
     {
       "type": "neuters",
       "pattern": "*reuters.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://neuters.de",
@@ -2667,9 +2639,6 @@
     {
       "type": "suds",
       "pattern": "*snopes.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://sd.vern.cc",
@@ -2700,9 +2669,6 @@
     {
       "type": "tubo",
       "pattern": "*soundcloud.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://tubo.migalmoreno.com/",
@@ -2910,9 +2876,6 @@
     {
       "type": "soprano",
       "pattern": "*tenor.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://sp.vern.cc",
@@ -3078,9 +3041,6 @@
     {
       "type": "priviblur",
       "pattern": "*tumblr.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://pb.bloat.cat",
@@ -3110,10 +3070,15 @@
     },
     {
       "type": "safetwitch",
-      "pattern": "*twitch.tv/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?twitch\\.tv\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
+      "fallback": "https://twitch.tv/",
+      "search_string": "safetwitch",
+      "source_link": "https://codeberg.org/safetwitch/safetwitch",
       "instances": [
         {
           "url": "https://lunar.icu",
@@ -3234,9 +3199,6 @@
     {
       "type": "twineo",
       "pattern": "*twitch.tv/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://twineo.deno.dev",
@@ -3260,10 +3222,9 @@
     },
     {
       "type": "nitter",
-      "pattern": "*twitter.com/*",
       "test_url": "/jack/status/20",
-      "fallback": "https://nitter.net",
-      "rdrto": "",
+      "fallback": "https://x.com",
+      "deprecated_message": "Discontinued. Twitter has blocked all instances.",
       "instances": [
         {
           "url": "https://bird.habedieeh.re",
@@ -4065,9 +4026,6 @@
     {
       "type": "ruraldictionary",
       "pattern": "*urbandictionary.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://rd.vern.cc",
@@ -4110,9 +4068,6 @@
     {
       "type": "wayback-classic",
       "pattern": "*web.archive.org/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "http://wayback-classic.net/",
@@ -4338,9 +4293,6 @@
     {
       "type": "wolfreealpha",
       "pattern": "*wolfram.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://gqq.gitlab.io",
@@ -4377,9 +4329,6 @@
     {
       "type": "proxyraye",
       "pattern": "*xvideos.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://proxyraye.copyriot.xyz",
@@ -4675,8 +4624,6 @@
       "type": "piped",
       "pattern": "*youtube.com/*",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://efy.piped.pages.dev",
@@ -5116,8 +5063,6 @@
       "type": "pipedmaterial",
       "pattern": "*youtube.com/*",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://piped-material.xn--17b.net/",
@@ -5155,8 +5100,6 @@
       "type": "viewtube",
       "pattern": "*youtube.com/*",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://viewtube.io/",
@@ -5170,8 +5113,6 @@
       "type": "cloudtube",
       "pattern": "*youtube.com/*",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://tube.cadence.moe/",
@@ -5185,8 +5126,6 @@
       "type": "poke",
       "pattern": "*youtube.com/*",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://cal1.poke.ggtyler.dev",
@@ -5253,9 +5192,6 @@
     {
       "type": "hyperpipe",
       "pattern": "*music.youtube.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://hp.ggtyler.dev",
@@ -5352,9 +5288,6 @@
     {
       "type": "musicale",
       "pattern": "*music.youtube.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://musicale.tk/",
@@ -5367,9 +5300,6 @@
     {
       "type": "beatbump",
       "pattern": "*music.youtube.com/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://bb.ggtyler.dev/",
@@ -5418,9 +5348,6 @@
     {
       "type": "yiffest",
       "pattern": "*yiffer/*",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "http://yiffest.hackermare.gay",
@@ -5648,10 +5575,6 @@
     },
     {
       "type": "translite",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://tl.bloat.cat",
@@ -5669,10 +5592,6 @@
     },
     {
       "type": "mozhi",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://mozhi.aryak.me",
@@ -6434,10 +6353,16 @@
     },
     {
       "type": "whoogle",
-      "pattern": "",
-      "test_url": "/search?cookies_disabled=1&q=<%=query%>",
-      "fallback": "https://search.sethforprivacy.com",
-      "rdrto": "",
+      "test_url": "/search?q=Rick Astley",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?google\\.com\\/(search\\?.+)$",
+          "url": "/$3"
+        }
+      ],
+      "fallback": "https://google.com",
+      "source_link": "https://github.com/benbusby/whoogle-search",
+      "search_string": "Rick Astley",
       "instances": [
         {
           "url": "https://gowogle.voring.me",
@@ -7232,10 +7157,6 @@
     },
     {
       "type": "araa",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://araa.extravi.dev/",
@@ -7253,10 +7174,8 @@
     },
     {
       "type": "send",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "search_string": "Send requires JavaScript",
+      "source_link": "https://github.com/timvisee/send",
       "instances": [
         {
           "url": "https://drop.chapril.org",
@@ -7308,12 +7227,6 @@
         },
         {
           "url": "https://send.cyberjake.xyz",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://send.datahoarder.dev",
           "tags": [
             "clearnet"
           ]
@@ -7406,10 +7319,8 @@
     },
     {
       "type": "0x0",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "search_string": "THE NULL POINTER",
+      "source_link": "https://git.0x0.st/mia/0x0",
       "instances": [
         {
           "url": "https://0x0.st/",
@@ -7457,10 +7368,8 @@
     },
     {
       "type": "privatebin",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "search_string": "paste",
+      "source_link": "https://github.com/PrivateBin/PrivateBin",
       "instances": [
         {
           "url": "https://0.0g.gg",
@@ -8624,10 +8533,8 @@
     },
     {
       "type": "jitsi",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "search_string": "WebRTC",
+      "source_link": "https://github.com/jitsi/jitsi-meet",
       "instances": [
         {
           "url": "https://8x8.vc",
@@ -9401,10 +9308,6 @@
     },
     {
       "type": "mediathekviewweb",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://mediathekviewweb.de",
@@ -9416,10 +9319,6 @@
     },
     {
       "type": "txtdot",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
       "instances": [
         {
           "url": "https://txt.dc09.ru/",
@@ -9443,10 +9342,8 @@
     },
     {
       "type": "cobalt",
-      "pattern": "",
-      "test_url": "",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "source_link": "https://github.com/imputnet/cobalt",
+      "search_string": "cobalt",
       "instances": [
         {
           "url": "https://cobalt.tools/",
