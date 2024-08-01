@@ -20,6 +20,10 @@
       {% let fallback = service.fallback.as_ref().unwrap() %}
       Fallback: <code>{{ fallback }}</code>
       {% endif %}
+      {% if service.deprecated_message.is_some() %}
+      {% let deprecated_message = service.deprecated_message.as_ref().unwrap() %}
+      <span style="color: red;">Deprecated:</span> {{ deprecated_message }}
+      {% endif %}
     </li>
     <ul>
       {% let instances = crawled_service.instances|sort_crawled_instances %}
