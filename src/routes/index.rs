@@ -18,6 +18,7 @@ use super::{api, config, redirect};
 pub fn scope(app_config: &AppConfig) -> Scope {
     web::scope("")
         .service(index)
+        .service(favicon)
         .service(config::scope(app_config))
         .service(api::scope(app_config))
         .service(redirect::scope(app_config))
@@ -49,4 +50,13 @@ async fn index(
     Ok(actix_web::HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
         .body(template.render().expect("failed to render error page")))
+}
+
+const FAVICON: &[u8] = include_bytes!("../../static/favicon.ico");
+
+#[get("/favicon.ico")]
+async fn favicon() -> impl Responder {
+    actix_web::HttpResponse::Ok()
+        .content_type("image/x-icon")
+        .body(FAVICON)
 }
