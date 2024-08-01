@@ -4391,10 +4391,19 @@
     },
     {
       "type": "invidious",
-      "pattern": "*youtube.com/*",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": "http://example.com/",
-      "rdrto": "",
+      "fallback": "https://www.youtube.com/",
+      "search_string": "Never Gonna Give You Up",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.)?youtube\\.com)(/.+)$",
+          "url": "$4"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?youtu\\.be/(.+)$",
+          "url": "/watch?v=?$2"
+        }
+      ],
       "instances": [
         {
           "url": "https://invidious.drgns.space",
