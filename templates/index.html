@@ -9,7 +9,7 @@
     {% let sorted_crawled_services = crawled_services|sort_crawled_services %}
     {% for (name, crawled_service) in sorted_crawled_services %}
     {% let service = services[name] %}
-    <li><a href="/{{ crawled_service.name }}/">{{ crawled_service.name }}</a>
+    <li><a href="/{{ crawled_service.name }}/" id="{{ crawled_service.name }}">{{ crawled_service.name }}</a>
       Aliases: [{% for alias in service.aliases %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{%
       endfor %}].
       {% if service.source_link.is_some() %}
