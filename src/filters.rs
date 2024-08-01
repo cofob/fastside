@@ -8,7 +8,9 @@ pub fn sort_crawled_instances(l: &[CrawledInstance]) -> askama::Result<Vec<Crawl
     Ok(new)
 }
 
-pub fn sort_crawled_services(l: &HashMap<String, CrawledService>) -> askama::Result<Vec<(&String, &CrawledService)>> {
+pub fn sort_crawled_services(
+    l: &HashMap<String, CrawledService>,
+) -> askama::Result<Vec<(&String, &CrawledService)>> {
     let mut new = l.iter().collect::<Vec<_>>();
     new.sort_by(|a, b| a.1.name.cmp(&b.1.name));
     Ok(new.to_owned())
