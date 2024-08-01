@@ -170,6 +170,8 @@ pub struct Service {
     pub regexes: Vec<RegexSearch>,
     #[serde(default)]
     pub aliases: Vec<String>,
+    #[serde(default)]
+    pub source_link: Option<Url>,
     pub instances: Vec<Instance>,
 }
 
