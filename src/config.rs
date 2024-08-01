@@ -1,6 +1,6 @@
 //! Application configuration.
 
-use std::time::Duration;
+use std::{path::PathBuf, time::Duration};
 
 use anyhow::{Context, Result};
 use config::Config;
@@ -48,15 +48,25 @@ pub struct AppConfig {
 }
 
 /// Load application configuration.
-pub fn load_config() -> Result<AppConfig> {
-    let config = Config::builder()
-        .add_source(
-            config::Environment::with_prefix("FS")
-                .separator("__")
-                .list_separator(","),
-        )
-        .build()
-        .context("failed to load config")?;
+pub fn load_config(config_path: &Option<PathBuf>) -> Result<AppConfig> {
+    let mut config_builder = Config::builder().add_source(
+        config::Environment::with_prefix("FS")
+            .separator("__")
+            .list_separator(","),
+    );
+
+    match config_path {
+        Some(path) => {
+            config_builder =
+                config_builder.add_source(config::File::from(path.clone()).required(true));
+        }
+        None => {
+            config_builder =
+                config_builder.add_source(config::File::with_name("config").required(false));
+        }
+    }
+
+    let config = config_builder.build().context("failed to load config")?;
 
     debug!("Raw configuration: {:#?}", config);
 

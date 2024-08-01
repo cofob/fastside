@@ -43,6 +43,12 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 struct Cli {
     #[command(subcommand)]
     command: Option<Commands>,
+    /// Path to the configuration file.
+    #[arg(short, long, default_value = "None")]
+    config: Option<PathBuf>,
+    /// Log level. Takes precedence over the FS__LOG env variable. Default is INFO.
+    #[arg(long, default_value = "None")]
+    log_level: Option<String>,
 }
 #[derive(Subcommand)]
 enum Commands {
@@ -73,9 +79,9 @@ async fn crawler_loop(crawler: Arc<Crawler>) {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    configure_logging().ok();
-
     let cli = Cli::parse();
+
+    configure_logging(&cli.log_level).ok();
 
     match &cli.command {
         Some(Commands::Serve {
@@ -83,7 +89,7 @@ async fn main() -> Result<()> {
             listen,
             workers,
         }) => {
-            let config = load_config().context("failed to load config")?;
+            let config = load_config(&cli.config).context("failed to load config")?;
 
             let listen: SocketAddr = listen
                 .unwrap_or_else(|| SocketAddr::V4(SocketAddrV4::new([127, 0, 0, 1].into(), 8080)));

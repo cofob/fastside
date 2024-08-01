@@ -10,10 +10,12 @@ use std::env;
 /// # Panics
 ///
 /// Function should not panic. On error, logging is just disabled.
-pub fn configure_logging() -> Result<()> {
+pub fn configure_logging(log_level: &Option<String>) -> Result<()> {
     let mut builder = formatted_builder();
 
-    if let Ok(s) = env::var("FS__LOG") {
+    if let Some(s) = log_level {
+        builder.parse_filters(s);
+    } else if let Ok(s) = env::var("FS__LOG") {
         builder.parse_filters(&s);
     } else {
         builder.filter_level(LevelFilter::Info);
