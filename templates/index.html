@@ -5,6 +5,9 @@
 <hr>
 <h3>Last synced {{ time }}</h3>
 <div>
+  <a
+    href="https://github.com/cofob/fastside/issues/new?title=[service%20add%20request]%20SERVICE.NAME&body=Hello!%20Please%20add%20service%20SERVICE.NAME.%20List%20of%20available%20instances%20here%20-%3E%20.%20Service%20source%20code%20-%3E%20.">Add
+    service here.</a>
   <ul>
     {% let sorted_crawled_services = crawled_services|sort_crawled_services %}
     {% for (name, crawled_service) in sorted_crawled_services %}
