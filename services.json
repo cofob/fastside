@@ -4396,7 +4396,7 @@
       "search_string": "Never Gonna Give You Up",
       "regexes": [
         {
-          "regex": "^(https?:\\/\\/)?((www\\.)?youtube\\.com)(/.+)$",
+          "regex": "^(https?:\\/\\/)?((www\\.)?youtube\\.com)(\\/.+)$",
           "url": "$4"
         },
         {
