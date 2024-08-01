@@ -1,3 +1,4 @@
+mod api;
 mod config;
 mod index;
 mod redirect;

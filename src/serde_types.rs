@@ -6,6 +6,8 @@ use serde::{
 };
 use url::Url;
 
+use crate::errors::RedirectError;
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Instance {
     pub url: Url,
@@ -209,6 +211,21 @@ pub struct UserConfig {
     pub select_method: SelectMethod,
     #[serde(default)]
     pub ignore_fallback_warning: bool,
+}
+
+impl UserConfig {
+    pub fn to_config_string(&self) -> Result<String, RedirectError> {
+        use base64::prelude::*;
+        let json: String = serde_json::to_string(&self).map_err(RedirectError::Serialization)?;
+        Ok(BASE64_STANDARD.encode(json.as_bytes()))
+    }
+
+    pub fn from_config_string(data: &str) -> Result<Self, RedirectError> {
+        use base64::prelude::*;
+        let decoded = BASE64_STANDARD.decode(data.as_bytes())?;
+        let json = String::from_utf8(decoded).unwrap();
+        serde_json::from_str(&json).map_err(RedirectError::from)
+    }
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]

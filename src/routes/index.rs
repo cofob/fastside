@@ -13,12 +13,13 @@ use crate::{
     serde_types::{LoadedData, ServicesData},
 };
 
-use super::{config, redirect};
+use super::{api, config, redirect};
 
 pub fn scope(app_config: &AppConfig) -> Scope {
     web::scope("")
         .service(index)
         .service(config::scope(app_config))
+        .service(api::scope(app_config))
         .service(redirect::scope(app_config))
 }
 

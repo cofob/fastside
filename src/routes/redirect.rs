@@ -13,7 +13,7 @@ use crate::{
         find_redirect_service_by_name, find_redirect_service_by_url, get_redirect_instance,
         get_redirect_instances, SearchError,
     },
-    serde_types::{LoadedData, Regexes, SelectMethod, Service},
+    serde_types::{LoadedData, Regexes, SelectMethod, Service, UserConfig},
     utils::user_config::load_settings_cookie,
 };
 
@@ -110,15 +110,13 @@ pub struct FallbackRedirectTemplate<'a> {
     pub fallback: &'a str,
 }
 
-async fn base_redirect(
-    req: HttpRequest,
-    path: web::Path<String>,
-    crawler: web::Data<Crawler>,
-    loaded_data: web::Data<LoadedData>,
-    regexes: web::Data<Regexes>,
-) -> actix_web::Result<impl Responder> {
-    let path = path.into_inner();
-
+pub async fn find_redirect(
+    crawler: &Crawler,
+    loaded_data: &LoadedData,
+    regexes: &Regexes,
+    user_config: &UserConfig,
+    path: &str,
+) -> Result<(String, bool), RedirectError> {
     let is_url_query = if path.starts_with("http://") || path.starts_with("https://") {
         true
     } else {
@@ -130,7 +128,7 @@ async fn base_redirect(
         match is_url_query {
             true => {
                 let (crawled_service, service, redir_path) =
-                    find_redirect_service_by_url(&guard, &loaded_data.services, &regexes, &path)
+                    find_redirect_service_by_url(&guard, &loaded_data.services, regexes, path)
                         .await
                         .map_err(RedirectError::from)?;
                 (redir_path, crawled_service, service)
@@ -146,18 +144,40 @@ async fn base_redirect(
             }
         };
 
-    let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
-
     let (redirect_instance, is_fallback) =
-        get_redirect_instance(crawled_service, service, &user_config)
+        get_redirect_instance(crawled_service, service, user_config)
             .map_err(RedirectError::from)?;
 
-    let mut url = redirect_instance
+    let url = redirect_instance
         .url
         .clone()
         .join(&redir_path)
         .map_err(RedirectError::from)?
         .to_string();
+
+    Ok((url, is_fallback))
+}
+
+async fn base_redirect(
+    req: HttpRequest,
+    path: web::Path<String>,
+    crawler: web::Data<Crawler>,
+    loaded_data: web::Data<LoadedData>,
+    regexes: web::Data<Regexes>,
+) -> actix_web::Result<impl Responder> {
+    let path = path.into_inner();
+
+    let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
+
+    let (mut url, is_fallback) = find_redirect(
+        crawler.get_ref(),
+        loaded_data.get_ref(),
+        regexes.get_ref(),
+        &user_config,
+        &path,
+    )
+    .await?;
+
     let query = req.query_string();
     if !query.is_empty() {
         url.push('?');
