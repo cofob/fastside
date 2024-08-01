@@ -7,12 +7,13 @@ use std::{
 use chrono::{DateTime, Utc};
 use reqwest::{Client, StatusCode};
 use thiserror::Error;
-use tokio::{sync::RwLock, task::JoinSet, time::sleep};
+use tokio::{sync::RwLock, time::sleep};
 use url::Url;
 
 use crate::{
     config::CrawlerConfig,
     serde_types::{HttpCodeRanges, Instance, LoadedData, Service},
+    utils::parallel::Parallelise,
 };
 
 fn default_headers() -> reqwest::header::HeaderMap {
@@ -127,9 +128,9 @@ impl Crawler {
     async fn crawl_single_instance(
         config: Arc<CrawlerConfig>,
         loaded_data: Arc<LoadedData>,
-        service: &Service,
-        instance: &Instance,
-    ) -> Result<CrawledInstance, CrawlerError> {
+        service: Arc<Service>,
+        instance: Instance,
+    ) -> Result<(CrawledInstance, String), CrawlerError> {
         let redirect_policy = if service.follow_redirects {
             reqwest::redirect::Policy::default()
         } else {
@@ -207,78 +208,68 @@ impl Crawler {
                 }
             }
         };
-        Ok(CrawledInstance {
-            url: instance.url.clone(),
-            tags: instance.tags.clone(),
-            status,
-        })
-    }
 
-    async fn crawl_single_service(
-        config: Arc<CrawlerConfig>,
-        service: Service,
-        loaded_data: Arc<LoadedData>,
-    ) -> Result<CrawledService, CrawlerError> {
-        debug!("Crawling service {}", service.name);
-        let mut crawled_instances: Vec<CrawledInstance> =
-            Vec::with_capacity(service.instances.len());
-
-        for instance in &service.instances {
-            let crawled_instance = match Crawler::crawl_single_instance(
-                config.clone(),
-                loaded_data.clone(),
-                &service,
-                instance,
-            )
-            .await
-            {
-                Ok(c) => c,
-                Err(e) => {
-                    error!(
-                        "Failed to crawl instance {instance} of service {service_name} due to error {e}",
-                        service_name = service.name,
-                        instance = instance.url,
-                    );
-                    continue;
-                }
-            };
-            crawled_instances.push(crawled_instance);
-        }
-
-        Ok(CrawledService {
-            name: service.name.clone(),
-            instances: crawled_instances,
-        })
+        let ret = (
+            CrawledInstance {
+                url: instance.url.clone(),
+                tags: instance.tags.clone(),
+                status,
+            },
+            service.name.clone(),
+        );
+        debug!("Crawled instance: {ret:?}");
+        Ok(ret)
     }
 
     async fn crawl(&self) -> Result<(), CrawlerError> {
-        let mut crawled_services: HashMap<String, CrawledService> =
-            HashMap::with_capacity(self.loaded_data.services.len());
-        let mut crawl_tasks = JoinSet::<Result<CrawledService, CrawlerError>>::new();
+        let mut crawled_services: HashMap<String, CrawledService> = self
+            .loaded_data
+            .services
+            .keys()
+            .map(|name| {
+                (
+                    name.clone(),
+                    CrawledService {
+                        name: name.clone(),
+                        instances: Vec::new(),
+                    },
+                )
+            })
+            .collect();
+        let mut parallelise = Parallelise::with_capacity(self.config.max_concurrent_requests);
+
         for service in self.loaded_data.services.values() {
-            crawl_tasks.spawn(Crawler::crawl_single_service(
-                self.config.clone(),
-                service.clone(),
-                self.loaded_data.clone(),
-            ));
+            let service = Arc::new(service.clone());
+            for instance in &service.instances {
+                let loaded_data = self.loaded_data.clone();
+                let config = self.config.clone();
+                let instance = instance.clone();
+                parallelise
+                    .push(tokio::spawn(Self::crawl_single_instance(
+                        config,
+                        loaded_data,
+                        service.clone(),
+                        instance,
+                    )))
+                    .await;
+            }
         }
 
-        while let Some(crawled_service_result) = crawl_tasks.join_next().await {
-            let Ok(result) = crawled_service_result else {
-                debug!("failed to join handle");
-                continue;
-            };
-            let crawled_service = match result {
-                Ok(c) => {
-                    debug!("Crawled service {}", c.name);
-                    c
-                }
+        let results = parallelise.wait().await;
+
+        for result in results {
+            let (crawled_instance, name) = match result {
+                Ok(c) => c,
                 Err(e) => {
-                    error!("Failed to crawl service due to error {e}");
+                    error!("Error occured during crawling: {e}");
                     continue;
                 }
             };
-            crawled_services.insert(crawled_service.name.clone(), crawled_service);
+            crawled_services
+                .get_mut(&name)
+                .unwrap()
+                .instances
+                .push(crawled_instance.clone());
         }
 
         let mut data = self.data.write().await;

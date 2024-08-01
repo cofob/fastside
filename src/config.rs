@@ -6,10 +6,6 @@ use anyhow::{Context, Result};
 use config::Config;
 use serde::{Deserialize, Serialize};
 
-/// Crawler GeoDB settings.
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub enum CrawlerGeoDBConfig {}
-
 const fn default_ping_interval() -> Duration {
     // Every 5 minutes
     Duration::from_secs(60 * 5)
@@ -19,6 +15,10 @@ const fn default_request_timeout() -> Duration {
     Duration::from_secs(5)
 }
 
+const fn default_max_concurrent_requests() -> usize {
+    200
+}
+
 /// Crawler configuration.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct CrawlerConfig {
@@ -26,8 +26,8 @@ pub struct CrawlerConfig {
     pub ping_interval: Duration,
     #[serde(default = "default_request_timeout")]
     pub request_timeout: Duration,
-    #[serde(default)]
-    pub geodb_config: Option<CrawlerGeoDBConfig>,
+    #[serde(default = "default_max_concurrent_requests")]
+    pub max_concurrent_requests: usize,
 }
 
 impl Default for CrawlerConfig {
@@ -35,7 +35,7 @@ impl Default for CrawlerConfig {
         Self {
             ping_interval: default_ping_interval(),
             request_timeout: default_request_timeout(),
-            geodb_config: None,
+            max_concurrent_requests: default_max_concurrent_requests(),
         }
     }
 }
