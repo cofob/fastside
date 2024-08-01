@@ -12,7 +12,7 @@ use url::Url;
 
 use crate::{
     config::CrawlerConfig,
-    serde_types::{Instance, LoadedData, Service},
+    serde_types::{HttpCodeRanges, Instance, LoadedData, Service},
 };
 
 fn default_headers() -> reqwest::header::HeaderMap {
@@ -172,27 +172,7 @@ impl Crawler {
             Ok(response) => {
                 let end = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
                 let status_code = response.status().as_u16();
-                let mut status_valid = false;
-                match status_code {
-                    200 => status_valid = true,
-                    300..=399 => {
-                        if service.allow_3xx {
-                            status_valid = true;
-                        }
-                    }
-                    400..=499 => {
-                        if service.allow_4xx {
-                            status_valid = true;
-                        }
-                    }
-                    500..=599 => {
-                        if service.allow_5xx {
-                            status_valid = true;
-                        }
-                    }
-                    _ => {}
-                }
-                if status_valid {
+                if service.allowed_http_codes.is_allowed(status_code) {
                     if let Some(search_string) = &service.search_string {
                         let body = response.text().await?;
                         if !body.contains(search_string) {
