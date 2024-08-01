@@ -44,10 +44,10 @@ struct Cli {
     #[command(subcommand)]
     command: Option<Commands>,
     /// Path to the configuration file.
-    #[arg(short, long, default_value = "None")]
+    #[arg(short, long, default_value = None)]
     config: Option<PathBuf>,
     /// Log level. Takes precedence over the FS__LOG env variable. Default is INFO.
-    #[arg(long, default_value = "None")]
+    #[arg(long, default_value = None)]
     log_level: Option<String>,
 }
 #[derive(Subcommand)]
