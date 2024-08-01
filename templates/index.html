@@ -17,7 +17,7 @@
       Fallback: <code>{{ services[name].fallback }}</code>
     </li>
     <ul>
-      {% let instances = crawled_service.instances|sort_list %}
+      {% let instances = crawled_service.instances|sort_crawled_instances %}
       {% for instance in instances %}
       <li>
         <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:

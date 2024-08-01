@@ -1,5 +1,6 @@
 use actix_web::http::StatusCode;
 use askama::Template;
+use thiserror::Error;
 
 #[derive(Template)]
 #[template(path = "error.html")]
@@ -53,3 +54,29 @@ macro_rules! impl_api_error {
     };
 }
 pub(crate) use impl_api_error;
+
+use crate::search::SearchError;
+
+#[derive(Error, Debug)]
+pub enum RedirectError {
+    #[error("search error: `{0}`")]
+    Search(#[from] SearchError),
+    #[error("serialization error: `{0}`")]
+    Serialization(#[from] serde_json::Error),
+    #[error("urlencode error: `{0}`")]
+    Base64Decode(#[from] base64::DecodeError),
+    #[error("url parse error: `{0}`")]
+    UrlParse(#[from] url::ParseError),
+}
+
+impl_api_error!(RedirectError,
+    status => {
+        RedirectError::Search(_) => StatusCode::INTERNAL_SERVER_ERROR,
+        RedirectError::Serialization(_) => StatusCode::INTERNAL_SERVER_ERROR,
+        RedirectError::Base64Decode(_) => StatusCode::INTERNAL_SERVER_ERROR,
+        RedirectError::UrlParse(_) => StatusCode::INTERNAL_SERVER_ERROR,
+    },
+    data => {
+        _ => None,
+    }
+);

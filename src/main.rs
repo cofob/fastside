@@ -1,10 +1,12 @@
 mod config;
 mod crawler;
 mod errors;
+mod filters;
 mod log_setup;
 mod routes;
 mod search;
 mod serde_types;
+mod utils;
 
 use crate::crawler::Crawler;
 use crate::serde_types::ServicesData;

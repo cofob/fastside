@@ -1,9 +1,11 @@
+mod config;
+mod index;
 mod redirect;
 
-use actix_web::{web, Scope};
+use actix_web::Scope;
 
 use crate::config::AppConfig;
 
 pub fn main_scope(config: &AppConfig) -> Scope {
-    web::scope("").service(redirect::scope(config))
+    index::scope(config)
 }
