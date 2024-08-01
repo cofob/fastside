@@ -88,7 +88,7 @@ fn replace_args_in_url(url: &str, captures: Captures) -> Result<String, ReplaceA
                 out.push('?');
                 out.push(c);
             }
-            (_, true, _) => {
+            (c, true, _) => {
                 debug!("Found non-digit {c} in URL while parsing num, adding capture");
                 let arg = captures
                     .get(num.parse()?)
@@ -103,6 +103,7 @@ fn replace_args_in_url(url: &str, captures: Captures) -> Result<String, ReplaceA
                 is_arg = false;
                 is_encoded = false;
                 num.clear();
+                out.push(c);
             }
             _ => {
                 debug!("Found non-dollar {c} in URL while not expecting arg");
