@@ -18,10 +18,6 @@ fn default_test_url() -> String {
     "/".to_string()
 }
 
-const fn default_follow_redirects() -> bool {
-    true
-}
-
 pub struct CompiledRegexSearch {
     pub regex: regex::Regex,
     pub url: String,
@@ -163,7 +159,7 @@ pub struct Service {
     pub test_url: String,
     #[serde(default)]
     pub fallback: Option<Url>,
-    #[serde(default = "default_follow_redirects")]
+    #[serde(default)]
     pub follow_redirects: bool,
     #[serde(default = "default_allowed_http_codes")]
     pub allowed_http_codes: AllowedHttpCodes,
@@ -175,6 +171,8 @@ pub struct Service {
     pub aliases: Vec<String>,
     #[serde(default)]
     pub source_link: Option<Url>,
+    #[serde(default)]
+    pub deprecated_message: Option<String>,
     pub instances: Vec<Instance>,
 }
 
