@@ -19,6 +19,7 @@ pub fn scope(app_config: &AppConfig) -> Scope {
     web::scope("")
         .service(index)
         .service(favicon)
+        .service(robots_txt)
         .service(config::scope(app_config))
         .service(api::scope(app_config))
         .service(redirect::scope(app_config))
@@ -59,4 +60,13 @@ async fn favicon() -> impl Responder {
     actix_web::HttpResponse::Ok()
         .content_type("image/x-icon")
         .body(FAVICON)
+}
+
+const ROBOTS_TXT: &str = "User-agent: *\nDisallow: /\n";
+
+#[get("/robots.txt")]
+async fn robots_txt() -> impl Responder {
+    actix_web::HttpResponse::Ok()
+        .content_type("text/plain")
+        .body(ROBOTS_TXT)
 }
