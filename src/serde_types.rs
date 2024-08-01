@@ -161,7 +161,8 @@ pub struct Service {
     pub name: String,
     #[serde(default = "default_test_url")]
     pub test_url: String,
-    pub fallback: Url,
+    #[serde(default)]
+    pub fallback: Option<Url>,
     #[serde(default = "default_follow_redirects")]
     pub follow_redirects: bool,
     #[serde(default = "default_allowed_http_codes")]

@@ -185,14 +185,17 @@ pub fn get_redirect_instance(
         &user_config.forbidden_tags,
     );
     match &instances {
-        None => Ok((
-            CrawledInstance {
-                url: service.fallback.clone(),
-                status: CrawledInstanceStatus::Ok(MAX_DURATION),
-                tags: vec![],
-            },
-            true,
-        )),
+        None => match &service.fallback {
+            Some(fallback) => Ok((
+                CrawledInstance {
+                    url: fallback.clone(),
+                    status: CrawledInstanceStatus::Ok(MAX_DURATION),
+                    tags: vec![],
+                },
+                true,
+            )),
+            None => Err(SearchError::NoInstancesFound),
+        },
         Some(instances) => Ok((
             match &user_config.select_method {
                 SelectMethod::Random => instances

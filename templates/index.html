@@ -7,14 +7,18 @@
 <div>
   <ul>
     {% for (name, crawled_service) in crawled_services %}
+    {% let service = services[name] %}
     <li><a href="/{{ crawled_service.name }}/">{{ crawled_service.name }}</a>
-      Aliases: [{% for alias in services[name].aliases %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{%
+      Aliases: [{% for alias in service.aliases %}{% if loop.index != 1 %}, {% endif %}<code>{{ alias }}</code>{%
       endfor %}].
-      {% if services[name].source_link.is_some() %}
-      {% let source_link = services[name].source_link.as_ref().unwrap().as_str() %}
+      {% if service.source_link.is_some() %}
+      {% let source_link = service.source_link.as_ref().unwrap().as_str() %}
       <a href="{{ source_link }}" target="_blank">Source code</a>.
       {% endif %}
-      Fallback: <code>{{ services[name].fallback }}</code>
+      {% if service.fallback.is_some() %}
+      {% let fallback = service.fallback.as_ref().unwrap() %}
+      Fallback: <code>{{ fallback }}</code>
+      {% endif %}
     </li>
     <ul>
       {% let instances = crawled_service.instances|sort_crawled_instances %}
