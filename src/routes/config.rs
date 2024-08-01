@@ -41,6 +41,8 @@ async fn configure_save(req: HttpRequest) -> actix_web::Result<impl Responder> {
     let user_config = UserConfig::from_config_string(query_string)?;
     let cookie = Cookie::build("config", user_config.to_config_string()?)
         .path("/")
+        .expires(time::OffsetDateTime::now_utc() + time::Duration::days(9999))
+        .max_age(time::Duration::days(9999))
         .finish();
     Ok(actix_web::HttpResponse::TemporaryRedirect()
         .cookie(cookie)
