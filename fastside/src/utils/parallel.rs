@@ -85,7 +85,7 @@ impl<T> Parallelise<T> {
                     // Add result to the results
                     self.results.push(task.await.unwrap());
                     // Remove task from the set
-                    self.tasks.remove(j);
+                    self.tasks.swap_remove(j);
                     break;
                 }
             }
