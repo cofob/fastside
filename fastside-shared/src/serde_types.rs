@@ -4,10 +4,11 @@ use serde::{
     de::{self, Visitor},
     Deserialize, Deserializer, Serialize, Serializer,
 };
-use thiserror::Error;
 use url::Url;
 
-#[derive(Deserialize, Serialize, Debug, Clone)]
+use crate::errors::UserConfigError;
+
+#[derive(Deserialize, Serialize, Debug, Clone, Hash)]
 pub struct Instance {
     pub url: Url,
     pub tags: Vec<String>,
@@ -202,14 +203,6 @@ pub struct UserConfig {
     pub select_method: SelectMethod,
     #[serde(default)]
     pub ignore_fallback_warning: bool,
-}
-
-#[derive(Error, Debug)]
-pub enum UserConfigError {
-    #[error("serialization error: `{0}`")]
-    Serialization(#[from] serde_json::Error),
-    #[error("urlencode error: `{0}`")]
-    Base64Decode(#[from] base64::DecodeError),
 }
 
 impl UserConfig {
