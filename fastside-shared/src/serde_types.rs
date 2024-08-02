@@ -4,9 +4,8 @@ use serde::{
     de::{self, Visitor},
     Deserialize, Deserializer, Serialize, Serializer,
 };
+use thiserror::Error;
 use url::Url;
-
-use crate::errors::RedirectError;
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Instance {
@@ -18,18 +17,11 @@ fn default_test_url() -> String {
     "/".to_string()
 }
 
-pub struct CompiledRegexSearch {
-    pub regex: regex::Regex,
-    pub url: String,
-}
-
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct RegexSearch {
     pub regex: String,
     pub url: String,
 }
-
-pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;
 
 pub trait HttpCodeRanges {
     fn is_allowed(&self, code: u16) -> bool;
@@ -212,18 +204,26 @@ pub struct UserConfig {
     pub ignore_fallback_warning: bool,
 }
 
+#[derive(Error, Debug)]
+pub enum UserConfigError {
+    #[error("serialization error: `{0}`")]
+    Serialization(#[from] serde_json::Error),
+    #[error("urlencode error: `{0}`")]
+    Base64Decode(#[from] base64::DecodeError),
+}
+
 impl UserConfig {
-    pub fn to_config_string(&self) -> Result<String, RedirectError> {
+    pub fn to_config_string(&self) -> Result<String, UserConfigError> {
         use base64::prelude::*;
-        let json: String = serde_json::to_string(&self).map_err(RedirectError::Serialization)?;
+        let json: String = serde_json::to_string(&self).map_err(UserConfigError::Serialization)?;
         Ok(BASE64_STANDARD.encode(json.as_bytes()))
     }
 
-    pub fn from_config_string(data: &str) -> Result<Self, RedirectError> {
+    pub fn from_config_string(data: &str) -> Result<Self, UserConfigError> {
         use base64::prelude::*;
         let decoded = BASE64_STANDARD.decode(data.as_bytes())?;
         let json = String::from_utf8(decoded).unwrap();
-        serde_json::from_str(&json).map_err(RedirectError::from)
+        serde_json::from_str(&json).map_err(UserConfigError::from)
     }
 }
 
@@ -232,12 +232,5 @@ pub struct StoredData {
     pub services: Vec<Service>,
     pub proxies: ProxyData,
     #[serde(default)]
-    pub default_settings: UserConfig,
-}
-
-#[derive(Debug)]
-pub struct LoadedData {
-    pub services: ServicesData,
-    pub proxies: ProxyData,
     pub default_settings: UserConfig,
 }

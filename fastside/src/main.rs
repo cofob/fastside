@@ -1,3 +1,4 @@
+/// Fastside API server.
 mod config;
 mod crawler;
 mod errors;
@@ -5,20 +6,18 @@ mod filters;
 mod log_setup;
 mod routes;
 mod search;
-mod serde_types;
+mod types;
 mod utils;
-
-use crate::crawler::Crawler;
-use crate::serde_types::ServicesData;
 
 use actix_web::{middleware::Logger, web, App, HttpServer};
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use config::load_config;
+use crawler::Crawler;
+use fastside_shared::serde_types::{ServicesData, StoredData};
 use log_setup::configure_logging;
 use regex::Regex;
 use routes::main_scope;
-use serde_types::{CompiledRegexSearch, LoadedData, StoredData};
 use std::{
     collections::HashMap,
     net::{SocketAddr, SocketAddrV4},
@@ -27,6 +26,7 @@ use std::{
     sync::Arc,
 };
 use thiserror::Error;
+use types::{CompiledRegexSearch, LoadedData};
 
 #[deny(unused_imports)]
 #[deny(unused_variables)]

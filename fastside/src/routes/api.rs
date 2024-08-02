@@ -4,9 +4,10 @@ use serde::{Deserialize, Serialize};
 use crate::{
     config::AppConfig,
     crawler::Crawler,
-    errors::RedirectApiError,
-    serde_types::{LoadedData, Regexes, UserConfig},
+    errors::{RedirectApiError, RedirectError},
+    types::{LoadedData, Regexes},
 };
+use fastside_shared::serde_types::UserConfig;
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("/api/v1")
@@ -55,7 +56,10 @@ async fn make_user_config_string(
     user_config: web::Json<UserConfig>,
 ) -> actix_web::Result<impl Responder> {
     Ok(web::Json(
-        user_config.to_config_string().map_err(RedirectApiError)?,
+        user_config
+            .to_config_string()
+            .map_err(RedirectError::from)
+            .map_err(RedirectApiError)?,
     ))
 }
 
@@ -65,6 +69,8 @@ async fn parse_user_config_string(
     user_config_string: web::Json<String>,
 ) -> actix_web::Result<impl Responder> {
     Ok(web::Json(
-        UserConfig::from_config_string(&user_config_string).map_err(RedirectApiError)?,
+        UserConfig::from_config_string(&user_config_string)
+            .map_err(RedirectError::from)
+            .map_err(RedirectApiError)?,
     ))
 }

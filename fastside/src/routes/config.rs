@@ -2,10 +2,10 @@ use actix_web::{cookie::Cookie, get, http::header::LOCATION, web, HttpRequest, R
 use askama::Template;
 
 use crate::{
-    config::AppConfig,
-    serde_types::{LoadedData, UserConfig},
+    config::AppConfig, errors::RedirectError, types::LoadedData,
     utils::user_config::load_settings_cookie,
 };
+use fastside_shared::serde_types::UserConfig;
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("/configure")
@@ -27,7 +27,9 @@ async fn configure_page(
     let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
 
     let template = ConfigureTemplate {
-        current_config: &user_config.to_config_string()?,
+        current_config: &user_config
+            .to_config_string()
+            .map_err(RedirectError::from)?,
     };
 
     Ok(actix_web::HttpResponse::Ok()
@@ -38,12 +40,17 @@ async fn configure_page(
 #[get("/save")]
 async fn configure_save(req: HttpRequest) -> actix_web::Result<impl Responder> {
     let query_string = req.query_string();
-    let user_config = UserConfig::from_config_string(query_string)?;
-    let cookie = Cookie::build("config", user_config.to_config_string()?)
-        .path("/")
-        .expires(time::OffsetDateTime::now_utc() + time::Duration::days(9999))
-        .max_age(time::Duration::days(9999))
-        .finish();
+    let user_config = UserConfig::from_config_string(query_string).map_err(RedirectError::from)?;
+    let cookie = Cookie::build(
+        "config",
+        user_config
+            .to_config_string()
+            .map_err(RedirectError::from)?,
+    )
+    .path("/")
+    .expires(time::OffsetDateTime::now_utc() + time::Duration::days(9999))
+    .max_age(time::Duration::days(9999))
+    .finish();
     Ok(actix_web::HttpResponse::TemporaryRedirect()
         .cookie(cookie)
         .insert_header((LOCATION, "/configure?success"))

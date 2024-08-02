@@ -65,12 +65,10 @@ use crate::search::SearchError;
 pub enum RedirectError {
     #[error("search error: `{0}`")]
     Search(#[from] SearchError),
-    #[error("serialization error: `{0}`")]
-    Serialization(#[from] serde_json::Error),
-    #[error("urlencode error: `{0}`")]
-    Base64Decode(#[from] base64::DecodeError),
     #[error("url parse error: `{0}`")]
     UrlParse(#[from] url::ParseError),
+    #[error("user config error: `{0}`")]
+    UserConfig(#[from] fastside_shared::serde_types::UserConfigError),
 }
 
 impl_template_error!(RedirectError,
@@ -79,9 +77,8 @@ impl_template_error!(RedirectError,
             SearchError::ServiceNotFound => StatusCode::NOT_FOUND,
             _ => StatusCode::INTERNAL_SERVER_ERROR
         },
-        RedirectError::Serialization(_) => StatusCode::INTERNAL_SERVER_ERROR,
-        RedirectError::Base64Decode(_) => StatusCode::INTERNAL_SERVER_ERROR,
         RedirectError::UrlParse(_) => StatusCode::INTERNAL_SERVER_ERROR,
+        RedirectError::UserConfig(_) => StatusCode::INTERNAL_SERVER_ERROR,
     }
 );
 

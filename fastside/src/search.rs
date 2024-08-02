@@ -5,8 +5,9 @@ use tokio::sync::RwLockReadGuard;
 
 use crate::{
     crawler::{CrawledInstance, CrawledInstanceStatus, CrawledService, CrawledServices},
-    serde_types::{Regexes, SelectMethod, Service, ServicesData, UserConfig},
+    types::Regexes,
 };
+use fastside_shared::serde_types::{SelectMethod, Service, ServicesData, UserConfig};
 use rand::seq::SliceRandom;
 use thiserror::Error;
 

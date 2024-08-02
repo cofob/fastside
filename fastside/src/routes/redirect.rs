@@ -13,9 +13,10 @@ use crate::{
         find_redirect_service_by_name, find_redirect_service_by_url, get_redirect_instance,
         get_redirect_instances, SearchError,
     },
-    serde_types::{LoadedData, Regexes, SelectMethod, Service, UserConfig},
+    types::{LoadedData, Regexes},
     utils::user_config::load_settings_cookie,
 };
+use fastside_shared::serde_types::{SelectMethod, Service, UserConfig};
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("")

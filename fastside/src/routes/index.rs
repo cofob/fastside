@@ -10,8 +10,9 @@ use crate::{
     errors::RedirectError,
     filters,
     search::SearchError,
-    serde_types::{LoadedData, ServicesData},
+    types::LoadedData,
 };
+use fastside_shared::serde_types::ServicesData;
 
 use super::{api, config, redirect};
 

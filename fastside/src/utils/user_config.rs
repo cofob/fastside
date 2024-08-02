@@ -1,6 +1,6 @@
 use actix_web::HttpRequest;
 
-use crate::serde_types::UserConfig;
+use fastside_shared::serde_types::UserConfig;
 
 pub fn load_settings_cookie(req: &HttpRequest, default: &UserConfig) -> UserConfig {
     let cookie = match req.cookie("config") {

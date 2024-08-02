@@ -10,11 +10,8 @@ use thiserror::Error;
 use tokio::{sync::RwLock, time::sleep};
 use url::Url;
 
-use crate::{
-    config::CrawlerConfig,
-    serde_types::{HttpCodeRanges, Instance, LoadedData, Service},
-    utils::parallel::Parallelise,
-};
+use crate::{config::CrawlerConfig, types::LoadedData, utils::parallel::Parallelise};
+use fastside_shared::serde_types::{HttpCodeRanges, Instance, Service};
 
 fn default_headers() -> reqwest::header::HeaderMap {
     let mut headers = reqwest::header::HeaderMap::new();
