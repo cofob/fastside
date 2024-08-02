@@ -17,6 +17,7 @@
         naersk' = pkgs.callPackage naersk { };
 
         fastside = naersk'.buildPackage {
+          name = "fastside-0.2.0";
           src = pkgs.lib.cleanSourceWith {
             filter = (path: type: path != "services.json");
             src = pkgs.lib.cleanSource ./.;
