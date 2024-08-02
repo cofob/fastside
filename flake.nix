@@ -17,7 +17,10 @@
         naersk' = pkgs.callPackage naersk { };
 
         fastside = naersk'.buildPackage {
-          src = ./.;
+          src = pkgs.lib.cleanSourceWith {
+            filter = (path: type: path != "services.json");
+            src = pkgs.lib.cleanSource ./.;
+          };
           nativeBuildInputs = with pkgs; [ mold ];
           NIX_CFLAGS_LINK = " -fuse-ld=mold";
         };
