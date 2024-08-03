@@ -1866,6 +1866,7 @@
     },
     {
       "type": "libreddit",
+      "aliases": "redlib",
       "regexes": [
         {
           "regex": "^(https?:\\/\\/)?(www\\.)?reddit\\.com\\/(.*)$",
@@ -2152,138 +2153,11 @@
           "tags": [
             "i2p"
           ]
-        }
-      ]
-    },
-    {
-      "type": "redlib",
-      "pattern": "*reddit.com/*",
-      "test_url": "/r/popular",
-      "instances": [
-        {
-          "url": "https://libreddit.bus-hit.me",
-          "tags": [
-            "clearnet"
-          ]
         },
         {
-          "url": "https://libreddit.eu.org",
+          "url": "http://reddit3zsaiofhdpitkdn6yaurmxocc2sep4a7xsbss7ycec5f6q.b32.i2p",
           "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://libreddit.projectsegfau.lt",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://l.opnxng.com",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://lr.n8pjl.ca",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://r.darrennathanael.com",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://red.artemislena.eu",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://reddit.idevicehacked.com",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://reddit.owo.si",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.catsarch.com",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.dnfetheus.xyz",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.ducks.party",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.freedit.eu",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.kittywi.re",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.nohost.network",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.perennialte.ch",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.privacyredirect.com",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.seasi.dev",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://redlib.vimmer.dev",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://rl.bloat.cat",
-          "tags": [
-            "clearnet"
-          ]
-        },
-        {
-          "url": "https://safereddit.com",
-          "tags": [
-            "clearnet"
+            "i2p"
           ]
         },
         {
@@ -2867,6 +2741,12 @@
         },
         {
           "url": "http://ay7akchgdh76r4lc62hzd52z6xqoh67loototsetvqxo5o7ngo5q.b32.i2p",
+          "tags": [
+            "i2p"
+          ]
+        },
+        {
+          "url": "http://folsj6kjmqpjacwuph3txaroht2co3lqamobirtjgjnrra2r35pq.b32.i2p",
           "tags": [
             "i2p"
           ]
