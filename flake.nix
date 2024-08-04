@@ -26,20 +26,26 @@
           NIX_CFLAGS_LINK = " -fuse-ld=mold";
         };
 
+        fastside-baked-services = pkgs.writeShellScriptBin "fastside-baked-services" ''
+          ${fastside}/bin/fastside serve -s ${services}
+        '';
+
         fastside-docker = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
-          contents = [ fastside ];
-          config = { Cmd = [ "/bin/fastside" "serve" ]; };
+          contents = [ fastside fastside-baked-services ];
+          config = { Cmd = [ "/bin/fastside-baked-services" ]; };
         };
+
+        services = pkgs.runCommand "generate-services" { } ''
+          cat '${./services.json}' > $out
+        '';
       in {
         packages = {
           default = fastside;
           fastside = fastside;
           fastside-docker = fastside-docker;
-          services = pkgs.runCommand "generate-services" { } ''
-            cat '${./services.json}' > $out
-          '';
+          services = services;
         };
 
         devShells.default = import ./shell.nix { inherit pkgs; };
