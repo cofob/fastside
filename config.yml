@@ -5,4 +5,6 @@ proxies:
   i2p:
     url: http://127.0.0.1:4444
 crawler:
-  request_timeout: 10
+  request_timeout:
+    secs: 10
+    nanos: 0
