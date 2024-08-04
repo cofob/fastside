@@ -14,19 +14,17 @@ concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}
 
+env:
+  nix_path: nixpkgs=channel:nixos-24.05
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
-      - name: Install tor and i2p
-        run: |
-          sudo apt-get update
-          sudo apt-get install tor i2pd -y
-          sudo systemctl stop tor i2pd
-          nohup sudo tor &
-          nohup sudo i2pd &
-          echo "Wait for tor and i2pd to start"
-          sleep 120
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: "${{ env.nix_path }}"
 
       - name: Checkout the data branch
         uses: actions/checkout@v4
@@ -37,9 +35,13 @@ jobs:
       - name: Get services.json from master branch
         run: git fetch origin master && git checkout origin/master -- services.json
 
-      - name: Run Docker command
+      - name: Actualize data.json
         run: |
-          docker run --rm -e "FS__LOG=debug,reqwest=WARN,hyper_util=WARN,h2=WARN,rustls=WARN,hickory_proto=WARN,hickory_resolver=WARN" -v $(pwd):/data ghcr.io/cofob/fastside fastside-actualizer -c /data/config.yml actualize -d /data/data.json /data/services.json
+          nohup nix-shell -p tor --run tor &
+          nohup nix-shell -p i2pd --run i2pd &
+          echo "Wait for tor and i2pd to start"
+          sleep 120
+          docker run --net host --rm -e "FS__LOG=debug,reqwest=WARN,hyper_util=WARN,h2=WARN,rustls=WARN,hickory_proto=WARN,hickory_resolver=WARN" -v $(pwd):/data ghcr.io/cofob/fastside fastside-actualizer -c /data/config.yml actualize -d /data/data.json /data/services.json
 
       - name: Commit and push changes to data branch
         run: |
