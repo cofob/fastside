@@ -10,3 +10,17 @@ reqwest = { version = "0.12.4", default-features = false, features = [
   "rustls-tls",
   "http2",
 ] } # http client
+
+tokio = { version = "1.37.0", features = ["full"] }    # async
+async-std-resolver = "0.24.1"                          # async dns resolver
+clap = { version = "4.5.4", features = ["derive"] }    # cli
+anyhow = "1.0.83"                                      # error
+serde = { version = "1.0.201", features = ["derive"] } # serialization
+serde_yaml = "0.9.34"                                  # serialization
+url = { version = "2.5.0", features = ["serde"] }      # url
+serde_json = "1.0.117"                                 # serialization
+log = "0.4.21"                                         # logging
+async-trait = "0.1.81"                                 # async trait
+chrono = "0.4.38"                                      # datetime
+regex = "1.10.5"                                       # regex
+ipnet = "2.9.0"                                        # ip utils

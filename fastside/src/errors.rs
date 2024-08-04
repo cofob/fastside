@@ -68,7 +68,7 @@ pub enum RedirectError {
     #[error("url parse error: `{0}`")]
     UrlParse(#[from] url::ParseError),
     #[error("user config error: `{0}`")]
-    UserConfig(#[from] fastside_shared::serde_types::UserConfigError),
+    UserConfig(#[from] fastside_shared::errors::UserConfigError),
 }
 
 impl_template_error!(RedirectError,

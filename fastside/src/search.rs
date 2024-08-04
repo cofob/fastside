@@ -7,7 +7,10 @@ use crate::{
     crawler::{CrawledInstance, CrawledInstanceStatus, CrawledService, CrawledServices},
     types::Regexes,
 };
-use fastside_shared::serde_types::{SelectMethod, Service, ServicesData, UserConfig};
+use fastside_shared::{
+    config::{SelectMethod, UserConfig},
+    serde_types::{Service, ServicesData},
+};
 use rand::seq::SliceRandom;
 use thiserror::Error;
 

@@ -1,9 +1,7 @@
-/// Fastside API server.
-mod config;
+//! Fastside API server.
 mod crawler;
 mod errors;
 mod filters;
-mod log_setup;
 mod routes;
 mod search;
 mod types;
@@ -14,7 +12,12 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use config::load_config;
 use crawler::Crawler;
-use fastside_shared::serde_types::{ServicesData, StoredData};
+use fastside_shared::{
+    config,
+    errors::CliError,
+    log_setup,
+    serde_types::{ServicesData, StoredData},
+};
 use log_setup::configure_logging;
 use regex::Regex;
 use routes::main_scope;
@@ -25,7 +28,6 @@ use std::{
     str::FromStr,
     sync::Arc,
 };
-use thiserror::Error;
 use types::{CompiledRegexSearch, LoadedData};
 
 #[deny(unused_imports)]
@@ -64,12 +66,6 @@ enum Commands {
         #[arg(short, long)]
         workers: Option<usize>,
     },
-}
-
-#[derive(Error, Debug)]
-pub enum CliError {
-    #[error("no subcommand was used")]
-    NoSubcommand,
 }
 
 // This function is needed to take ownership over cloned reference to crawler.
@@ -115,8 +111,8 @@ async fn main() -> Result<()> {
                     .collect();
                 let data = LoadedData {
                     services: services_data,
-                    proxies: stored_data.proxies,
-                    default_settings: stored_data.default_settings,
+                    proxies: config.proxies.clone(),
+                    default_user_config: config.default_user_config.clone(),
                 };
 
                 Arc::new(data)

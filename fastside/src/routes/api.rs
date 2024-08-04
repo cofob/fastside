@@ -1,4 +1,5 @@
 use actix_web::{post, web, Responder, Scope};
+use fastside_shared::config::UserConfig;
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -7,7 +8,6 @@ use crate::{
     errors::{RedirectApiError, RedirectError},
     types::{LoadedData, Regexes},
 };
-use fastside_shared::serde_types::UserConfig;
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("/api/v1")

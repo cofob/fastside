@@ -1,6 +1,9 @@
 use std::collections::HashMap;
 
-use fastside_shared::serde_types::{ProxyData, ServicesData, UserConfig};
+use fastside_shared::{
+    config::{ProxyData, UserConfig},
+    serde_types::ServicesData,
+};
 
 pub struct CompiledRegexSearch {
     pub regex: regex::Regex,
@@ -13,5 +16,5 @@ pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;
 pub struct LoadedData {
     pub services: ServicesData,
     pub proxies: ProxyData,
-    pub default_settings: UserConfig,
+    pub default_user_config: UserConfig,
 }
