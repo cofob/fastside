@@ -22,11 +22,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install tor i2pd -y
-          nohup tor &
-          nohup i2pd &
+          sudo systemctl stop tor i2pd
+          nohup sudo tor &
+          nohup sudo i2pd &
           echo "Wait for tor and i2pd to start"
           sleep 120
-          cat nohup.out
 
       - name: Checkout the data branch
         uses: actions/checkout@v4
