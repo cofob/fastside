@@ -1866,7 +1866,7 @@
     },
     {
       "type": "libreddit",
-      "aliases": "redlib",
+      "aliases": ["redlib"],
       "regexes": [
         {
           "regex": "^(https?:\\/\\/)?(www\\.)?reddit\\.com\\/(.*)$",
