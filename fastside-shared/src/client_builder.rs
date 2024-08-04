@@ -1,8 +1,8 @@
 use reqwest::Client;
 
 use crate::{
-    config::CrawlerConfig,
-    serde_types::{Instance, ProxyData, Service},
+    config::{CrawlerConfig, ProxyData},
+    serde_types::{Instance, Service},
 };
 
 fn default_headers() -> reqwest::header::HeaderMap {

@@ -16,7 +16,10 @@ use crate::{
     types::{LoadedData, Regexes},
     utils::user_config::load_settings_cookie,
 };
-use fastside_shared::serde_types::{SelectMethod, Service, UserConfig};
+use fastside_shared::{
+    config::{SelectMethod, UserConfig},
+    serde_types::Service,
+};
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("")
@@ -43,7 +46,7 @@ async fn cached_redirect(
 ) -> actix_web::Result<impl Responder> {
     let (service_name, _) = path.into_inner();
 
-    let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
+    let user_config = load_settings_cookie(&req, &loaded_data.default_user_config);
 
     let guard = crawler.read().await;
     let (crawled_service, _) =
@@ -168,7 +171,7 @@ async fn base_redirect(
 ) -> actix_web::Result<impl Responder> {
     let path = path.into_inner();
 
-    let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
+    let user_config = load_settings_cookie(&req, &loaded_data.default_user_config);
 
     let (mut url, is_fallback) = find_redirect(
         crawler.get_ref(),

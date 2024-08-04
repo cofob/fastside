@@ -106,8 +106,8 @@ async fn main() -> Result<()> {
                     .collect();
                 let data = LoadedData {
                     services: services_data,
-                    proxies: stored_data.proxies,
-                    default_settings: stored_data.default_settings,
+                    proxies: config.proxies.clone(),
+                    default_user_config: config.default_user_config.clone(),
                 };
 
                 Arc::new(data)

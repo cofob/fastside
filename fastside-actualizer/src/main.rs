@@ -6,10 +6,10 @@ use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
 use fastside_shared::{
     client_builder::build_client,
-    config::{load_config, CrawlerConfig},
+    config::{load_config, CrawlerConfig, ProxyData},
     errors::CliError,
     log_setup::configure_logging,
-    serde_types::{ProxyData, Service, StoredData},
+    serde_types::{Service, StoredData},
 };
 use serde_types::ActualizerData;
 use utils::{log_err::LogErrResult, normalize::normalize_instances, tags::update_instance_tags};
@@ -180,7 +180,7 @@ async fn main() -> Result<()> {
                 update_service(service, update_service_client.clone()).await;
                 check_instances(
                     &mut actualizer_data,
-                    &stored_data.proxies,
+                    &config.proxies,
                     name,
                     service,
                     &config.crawler,
@@ -201,7 +201,6 @@ async fn main() -> Result<()> {
             std::fs::write(data, data_content).context("failed to write data file")?;
             let stored_data = StoredData {
                 services: services_data.into_values().collect(),
-                ..stored_data
             };
             let services_content = serde_json::to_string_pretty(&stored_data)
                 .context("failed to serialize services")?;

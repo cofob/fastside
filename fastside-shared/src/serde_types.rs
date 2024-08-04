@@ -6,8 +6,6 @@ use serde::{
 };
 use url::Url;
 
-use crate::errors::UserConfigError;
-
 #[derive(Deserialize, Serialize, Debug, Clone, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Instance {
     pub url: Url,
@@ -181,65 +179,6 @@ pub struct Service {
 pub type ServicesData = HashMap<String, Service>;
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
-pub struct ProxyAuth {
-    pub username: String,
-    pub password: String,
-}
-
-#[derive(Deserialize, Serialize, Debug, Clone)]
-pub struct Proxy {
-    pub url: String,
-    #[serde(default)]
-    pub auth: Option<ProxyAuth>,
-}
-
-pub type ProxyData = HashMap<String, Proxy>;
-
-#[derive(Deserialize, Serialize, Debug, Clone, Default, PartialEq)]
-pub enum SelectMethod {
-    #[default]
-    Random,
-    LowPing,
-}
-
-#[derive(Deserialize, Serialize, Debug, Clone)]
-pub struct UserConfig {
-    pub required_tags: Vec<String>,
-    pub forbidden_tags: Vec<String>,
-    pub select_method: SelectMethod,
-    pub ignore_fallback_warning: bool,
-}
-
-impl Default for UserConfig {
-    fn default() -> Self {
-        UserConfig {
-            required_tags: vec!["clearnet".to_string(), "https".to_string(), "ipv4".to_string()],
-            forbidden_tags: Vec::new(),
-            select_method: SelectMethod::Random,
-            ignore_fallback_warning: false,
-        }
-    }
-}
-
-impl UserConfig {
-    pub fn to_config_string(&self) -> Result<String, UserConfigError> {
-        use base64::prelude::*;
-        let json: String = serde_json::to_string(&self).map_err(UserConfigError::Serialization)?;
-        Ok(BASE64_STANDARD.encode(json.as_bytes()))
-    }
-
-    pub fn from_config_string(data: &str) -> Result<Self, UserConfigError> {
-        use base64::prelude::*;
-        let decoded = BASE64_STANDARD.decode(data.as_bytes())?;
-        let json = String::from_utf8(decoded).unwrap();
-        serde_json::from_str(&json).map_err(UserConfigError::from)
-    }
-}
-
-#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct StoredData {
     pub services: Vec<Service>,
-    pub proxies: ProxyData,
-    #[serde(default)]
-    pub default_settings: UserConfig,
 }

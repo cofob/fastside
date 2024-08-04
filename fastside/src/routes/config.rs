@@ -1,11 +1,11 @@
 use actix_web::{cookie::Cookie, get, http::header::LOCATION, web, HttpRequest, Responder, Scope};
 use askama::Template;
+use fastside_shared::config::UserConfig;
 
 use crate::{
     config::AppConfig, errors::RedirectError, types::LoadedData,
     utils::user_config::load_settings_cookie,
 };
-use fastside_shared::serde_types::UserConfig;
 
 pub fn scope(_config: &AppConfig) -> Scope {
     web::scope("/configure")
@@ -24,7 +24,7 @@ async fn configure_page(
     req: HttpRequest,
     loaded_data: web::Data<LoadedData>,
 ) -> actix_web::Result<impl Responder> {
-    let user_config = load_settings_cookie(&req, &loaded_data.default_settings);
+    let user_config = load_settings_cookie(&req, &loaded_data.default_user_config);
 
     let template = ConfigureTemplate {
         current_config: &user_config
