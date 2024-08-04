@@ -1,13 +1,22 @@
+mod default;
 mod searx;
-mod default_checker;
 
-use crate::types::FullServiceUpdater;
+use crate::types::ServiceUpdater;
 
-pub use default_checker::DefaultInstanceChecker;
+pub use default::DefaultInstanceChecker;
 
-pub fn get_service_updater(name: &str) -> Option<Box<dyn FullServiceUpdater>> {
+/// Get a service updater by name.
+pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
     match name {
-        "searx" => Some(Box::new(searx::SearxUpdater::default())),
+        "searx" => Some(Box::new(searx::SearxUpdater::new())),
         _ => None,
+    }
+}
+
+/// Get an instance checker by name.
+pub fn get_instance_checker(name: &str) -> Box<dyn crate::types::InstanceChecker> {
+    match name {
+        "searx" => Box::new(searx::SearxUpdater::new()),
+        _ => Box::new(DefaultInstanceChecker::new()),
     }
 }

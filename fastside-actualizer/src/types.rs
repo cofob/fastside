@@ -1,6 +1,7 @@
 use anyhow::Result;
 use async_trait::async_trait;
-use fastside_shared::serde_types::Instance;
+use fastside_shared::serde_types::{Instance, Service};
+use reqwest::Client;
 
 #[async_trait]
 pub trait ServiceUpdater {
@@ -15,16 +16,12 @@ pub trait ServiceUpdater {
     /// # Returns
     ///
     /// The updated list of instances.
-    async fn update(&self, current_instances: &[Instance]) -> Result<Vec<Instance>>;
+    async fn update(&self, client: Client, current_instances: &[Instance])
+        -> Result<Vec<Instance>>;
 }
 
 #[async_trait]
 pub trait InstanceChecker {
     /// Check single instance.
-    async fn check(&self, instance: &Instance) -> Result<bool>;
+    async fn check(&self, client: Client, service: &Service, instance: &Instance) -> Result<bool>;
 }
-
-pub trait FullServiceUpdater: ServiceUpdater + InstanceChecker {}
-
-// Implement FullServiceUpdater for all types that implement ServiceUpdater and InstanceChecker.
-impl<T: ServiceUpdater + InstanceChecker> FullServiceUpdater for T {}

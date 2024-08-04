@@ -13,7 +13,10 @@ use clap::{Parser, Subcommand};
 use config::load_config;
 use crawler::Crawler;
 use fastside_shared::{
-    config, errors::CliError, log_setup, serde_types::{ServicesData, StoredData}
+    config,
+    errors::CliError,
+    log_setup,
+    serde_types::{ServicesData, StoredData},
 };
 use log_setup::configure_logging;
 use regex::Regex;

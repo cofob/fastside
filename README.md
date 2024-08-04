@@ -36,6 +36,7 @@ bottlenecks and rate-limiting.
 - [x] Anonymous and cached redirects via `/@cached/#{path}` routes.
 - [x] History redirects via `/_/{path}` routes.
 - [x] Fallback redirects.
+- [x] Automatic update of services list.
 - [x] API.
 
 ## Demo

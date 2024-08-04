@@ -8,10 +8,19 @@ use url::Url;
 
 use crate::errors::UserConfigError;
 
-#[derive(Deserialize, Serialize, Debug, Clone, Hash)]
+#[derive(Deserialize, Serialize, Debug, Clone, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Instance {
     pub url: Url,
     pub tags: Vec<String>,
+}
+
+impl From<Url> for Instance {
+    fn from(url: Url) -> Self {
+        Instance {
+            url,
+            tags: Vec::new(),
+        }
+    }
 }
 
 fn default_test_url() -> String {
@@ -193,16 +202,23 @@ pub enum SelectMethod {
     LowPing,
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone, Default)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct UserConfig {
-    #[serde(default)]
     pub required_tags: Vec<String>,
-    #[serde(default)]
     pub forbidden_tags: Vec<String>,
-    #[serde(default)]
     pub select_method: SelectMethod,
-    #[serde(default)]
     pub ignore_fallback_warning: bool,
+}
+
+impl Default for UserConfig {
+    fn default() -> Self {
+        UserConfig {
+            required_tags: vec!["clearnet".to_string(), "https".to_string(), "ipv4".to_string()],
+            forbidden_tags: Vec::new(),
+            select_method: SelectMethod::Random,
+            ignore_fallback_warning: false,
+        }
+    }
 }
 
 impl UserConfig {

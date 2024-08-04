@@ -1,42 +1,51 @@
+use std::collections::HashMap;
+
 use crate::types::{InstanceChecker, ServiceUpdater};
 use async_trait::async_trait;
-use fastside_shared::serde_types::Instance;
+use fastside_shared::serde_types::{Instance, Service};
+use serde::Deserialize;
+use url::Url;
 
 pub struct SearxUpdater {
     pub instances_url: String,
-    pub client: reqwest::Client,
 }
 
 impl SearxUpdater {
-    pub fn new(instances_url: String) -> Self {
-        let client = reqwest::Client::new();
-        Self { instances_url, client }
+    pub fn new() -> Self {
+        Self {
+            instances_url: "https://raw.githubusercontent.com/searx/searx-instances/master/searxinstances/instances.yml".to_string(),
+        }
     }
 }
 
 impl Default for SearxUpdater {
     fn default() -> Self {
-        Self::new("https://raw.githubusercontent.com/searx/searx-instances/master/searxinstances/instances.yml".to_string())
+        Self::new()
     }
 }
+
+#[derive(Debug, Deserialize)]
+struct InstancesResponse(HashMap<Url, serde_yaml::Value>);
 
 #[async_trait]
 impl ServiceUpdater for SearxUpdater {
     async fn update(
         &self,
+        client: reqwest::Client,
         current_instances: &[Instance],
     ) -> anyhow::Result<Vec<Instance>> {
-        let mut instances = Vec::new();
+        let response = client.get(&self.instances_url).send().await?;
+        let response_str = response.text().await?;
+        let parsed: InstancesResponse = serde_yaml::from_str(&response_str)?;
 
-        let response = self.client.get(&self.url).send().await?;
-        let body = response.text().await?;
+        let mut instances = current_instances.to_vec();
 
-        let parsed: Vec<Instance> = serde_yaml::from_str(&body)?;
-
-        for instance in parsed {
-            if !current_instances.contains(&instance) {
-                instances.push(instance);
+        for url in parsed.0.keys() {
+            if current_instances.iter().any(|i| &i.url == url) {
+                continue;
             }
+
+            instances.push(Instance::from(url.clone()));
         }
 
         Ok(instances)
@@ -45,8 +54,13 @@ impl ServiceUpdater for SearxUpdater {
 
 #[async_trait]
 impl InstanceChecker for SearxUpdater {
-    async fn check(&self, instance: &Instance) -> anyhow::Result<bool> {
-        let response = self.client.get(&instance.url).send().await?;
+    async fn check(
+        &self,
+        client: reqwest::Client,
+        _service: &Service,
+        instance: &Instance,
+    ) -> anyhow::Result<bool> {
+        let response = client.get(instance.url.clone()).send().await?;
         Ok(response.status().is_success())
     }
 }

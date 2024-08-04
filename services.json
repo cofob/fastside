@@ -9388,7 +9388,9 @@
   },
   "default_settings": {
     "required_tags": [
-      "clearnet"
+      "clearnet",
+      "https",
+      "ipv4"
     ]
   }
 }
