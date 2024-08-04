@@ -10,6 +10,15 @@ jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
+      - name: Install tor and i2p
+        run: |
+          sudo apt-get update
+          sudo apt-get install tor i2pd -y
+          sudo systemctl start tor
+          sudo systemctl start i2pd
+          echo "Wait for tor and i2pd to start"
+          sleep 60
+
       - name: Checkout the data branch
         uses: actions/checkout@v4
         with:
