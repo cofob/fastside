@@ -12,7 +12,6 @@ use fastside_shared::{
     serde_types::{Service, StoredData},
 };
 use serde_types::ActualizerData;
-use tokio::task::JoinSet;
 use utils::{log_err::LogErrResult, normalize::normalize_instances, tags::update_instance_tags};
 
 mod serde_types;
@@ -89,42 +88,28 @@ async fn check_instances(
     service: &mut Service,
     config: &CrawlerConfig,
 ) -> Result<()> {
+    let checker = services::get_instance_checker(name);
     let service_history = actualizer_data
         .services
         .entry(name.to_string())
         .or_default();
     let service_clone = service.clone();
-    let mut tasks: JoinSet<Result<(usize, bool, Vec<String>)>> = JoinSet::new();
-    // Yes, this is not the most efficient way to do this, but it's the easiest way to shitcode it
-    // In this place it's not a big deal
-    // If you want to optimize it, feel free to do so
-    for (i, instance) in service.instances.iter().cloned().enumerate() {
-        let client = build_client(&service_clone, config, proxies, &instance)?;
-        let checker = services::get_instance_checker(name);
-        let service_clone = service.clone();
-        tasks.spawn(async move {
-            info!("Checking instance: {}", instance.url);
-            let is_alive = {
-                let res = checker
-                    .check(client.clone(), &service_clone, &instance)
-                    .await;
-                match res {
-                    Ok(is_alive) => is_alive,
-                    Err(e) => {
-                        error!("Failed to check instance {url}: {e}", url = instance.url);
-                        false
-                    }
+    for instance in service.instances.iter_mut() {
+        info!("Checking instance: {}", instance.url);
+        let client = build_client(&service_clone, config, proxies, instance)?;
+        let is_alive = {
+            let res = checker
+                .check(client.clone(), &service_clone, instance)
+                .await;
+            match res {
+                Ok(is_alive) => is_alive,
+                Err(e) => {
+                    error!("Failed to check instance {url}: {e}", url = instance.url);
+                    false
                 }
-            };
-            debug!("Instance is alive: {}", is_alive);
-            let tags = update_instance_tags(client, instance.url.clone(), &instance.tags).await;
-            Ok((i, is_alive, tags))
-        });
-    }
-
-    while let Some(res) = tasks.join_next().await {
-        let (i, is_alive, tags) = res??;
-        let instance = service.instances.get_mut(i).unwrap();
+            }
+        };
+        debug!("Instance is alive: {}", is_alive);
 
         let instance_history = match service_history.get_instance_mut(&instance.url) {
             Some(instance_history) => instance_history,
@@ -136,9 +121,8 @@ async fn check_instances(
         instance_history.ping_history.cleanup();
         instance_history.ping_history.push_ping(is_alive);
 
-        instance.tags = tags;
+        instance.tags = update_instance_tags(client, instance.url.clone(), &instance.tags).await;
     }
-
     Ok(())
 }
 
