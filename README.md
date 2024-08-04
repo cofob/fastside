@@ -88,7 +88,7 @@ Fastside can be opened in [clearnet](https://fastsi.de/), [clearnet cloudflare](
 
 The app runs with an internally scheduled cron task that queries all instances
 for services defined in [services.json](./services.json) every 5 minutes. For
-each instance, as long as the instance takes <2 seconds to respond and returns
+each instance, as long as the instance takes <5 seconds to respond and returns
 a successful response code, the instance is added to a list of available
 instances for that particular service. If not, it is discarded until the next
 update period.
