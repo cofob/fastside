@@ -99,6 +99,11 @@ async fn main() -> Result<()> {
                 let data_path = services
                     .clone()
                     .unwrap_or_else(|| PathBuf::from_str("services.json").unwrap());
+                if !data_path.is_file() {
+                    return Err(anyhow::anyhow!(
+                        "services file does not exist or is not a file"
+                    ));
+                }
                 let data_content =
                     std::fs::read_to_string(data_path).context("failed to read services file")?;
                 let stored_data: StoredData =
