@@ -57,50 +57,65 @@ pub enum ReplaceArgsError {
     ParseIntError(#[from] std::num::ParseIntError),
 }
 
+fn push_capture(
+    captures: &Captures,
+    num: usize,
+    is_encoded: bool,
+    out: &mut String,
+) -> Result<(), ReplaceArgsError> {
+    let arg = captures
+        .get(num)
+        .ok_or(ReplaceArgsError::InvalidCaptureGroup)?
+        .as_str();
+    let arg = if is_encoded {
+        urlencoding::encode(arg).to_string()
+    } else {
+        arg.to_string()
+    };
+    out.push_str(&arg);
+    Ok(())
+}
+
 fn replace_args_in_url(url: &str, captures: Captures) -> Result<String, ReplaceArgsError> {
-    let mut out = String::new();
+    let mut out = String::with_capacity(url.len());
     let mut is_encoded = false;
     let mut is_arg = false;
+    let mut escape = false;
     let mut num = String::new();
     for c in url.chars() {
-        match (c, is_arg, is_encoded) {
-            ('?', false, false) => {
+        match (c, is_arg, is_encoded, escape) {
+            ('\\', false, _, false) => {
+                debug!("Found '\\' in URL, escaping next character");
+                escape = true;
+            }
+            ('?', false, false, false) => {
                 debug!("Found '?' in URL");
                 is_encoded = true;
             }
-            ('$', false, _) => {
+            ('$', false, _, false) => {
                 debug!("Found '$' in URL");
                 is_arg = true;
             }
-            ('0'..='9', true, _) => {
+            ('0'..='9', true, _, false) => {
                 debug!("Found digit {c} in URL");
                 num.push(c);
             }
-            (c, true, _) if num.is_empty() => {
+            (c, true, _, false) if num.is_empty() => {
                 debug!("Found non-digit {c} in URL while parsing arg");
                 is_arg = false;
                 is_encoded = false;
                 out.push('$');
                 out.push(c);
             }
-            (c, false, true) => {
+            (c, false, true, false) => {
                 debug!("Found non-dollar {c} in URL while expecting arg");
                 is_encoded = false;
                 out.push('?');
                 out.push(c);
             }
-            (c, true, _) => {
+            (c, true, _, false) => {
                 debug!("Found non-digit {c} in URL while parsing num, adding capture");
-                let arg = captures
-                    .get(num.parse()?)
-                    .ok_or(ReplaceArgsError::InvalidCaptureGroup)?
-                    .as_str();
-                let arg = if is_encoded {
-                    urlencoding::encode(arg).to_string()
-                } else {
-                    arg.to_string()
-                };
-                out.push_str(&arg);
+                push_capture(&captures, num.parse()?, is_encoded, &mut out)?;
                 is_arg = false;
                 is_encoded = false;
                 num.clear();
@@ -109,21 +124,16 @@ fn replace_args_in_url(url: &str, captures: Captures) -> Result<String, ReplaceA
             _ => {
                 debug!("Found non-dollar {c} in URL while not expecting arg");
                 out.push(c);
+                if escape {
+                    debug!("Disabling escape");
+                    escape = false;
+                }
             }
         }
     }
     if is_arg {
         debug!("Found EOF while parsing arg, adding capture");
-        let arg = captures
-            .get(num.parse()?)
-            .ok_or(ReplaceArgsError::InvalidCaptureGroup)?
-            .as_str();
-        let arg = if is_encoded {
-            urlencoding::encode(arg).to_string()
-        } else {
-            arg.to_string()
-        };
-        out.push_str(&arg);
+        push_capture(&captures, num.parse()?, is_encoded, &mut out)?;
     }
     Ok(out)
 }
@@ -217,5 +227,72 @@ pub fn get_redirect_instance(
             },
             false,
         )),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use regex::{Captures, Regex};
+
+    fn setup_captures<'t>(text: &'t str, re: &'t str) -> Captures<'t> {
+        let regex = Regex::new(re).unwrap();
+        regex.captures(text).unwrap()
+    }
+
+    #[test]
+    fn test_no_placeholders() {
+        let url = "http://example.com/path";
+        let captures = setup_captures("input text", r"(input) (text)");
+        let result = replace_args_in_url(url, captures);
+        assert_eq!(result.unwrap(), "http://example.com/path");
+    }
+
+    #[test]
+    fn test_simple_replacement() {
+        let url = "http://example.com/$1";
+        let captures = setup_captures("value", r"(value)");
+        let result = replace_args_in_url(url, captures);
+        assert_eq!(result.unwrap(), "http://example.com/value");
+    }
+
+    #[test]
+    fn test_url_encoding() {
+        let url = r"http://example.com/\?param=?$1";
+        let captures = setup_captures("value space", r"(value space)");
+        let result = replace_args_in_url(url, captures);
+        assert_eq!(result.unwrap(), "http://example.com/?param=value%20space");
+    }
+
+    #[test]
+    fn test_multiple_replacements() {
+        let url = r"http://example.com/$1/page\?$2";
+        let captures = setup_captures("value1 value2", r"(value1) (value2)");
+        let result = replace_args_in_url(url, captures);
+        assert_eq!(result.unwrap(), "http://example.com/value1/page?value2");
+    }
+
+    #[test]
+    fn test_invalid_capture_group() {
+        let url = "http://example.com/$2";
+        let captures = setup_captures("value1", r"(value1)");
+        let result = replace_args_in_url(url, captures);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    fn test_escape() {
+        let url = r"http://example.com/\$1";
+        let captures = setup_captures("value", r"(value)");
+        let result = replace_args_in_url(url, captures);
+        assert_eq!(result.unwrap(), "http://example.com/$1");
+    }
+
+    #[test]
+    fn test_multiple_escape_characters() {
+        let url = r"http://example.com/\\\$1";
+        let captures = setup_captures("value", r"(value)");
+        let result = replace_args_in_url(url, captures);
+        assert_eq!(result.unwrap(), r"http://example.com/\$1");
     }
 }
