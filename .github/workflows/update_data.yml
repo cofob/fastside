@@ -6,6 +6,14 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
@@ -17,7 +25,7 @@ jobs:
           sudo systemctl start tor
           sudo systemctl start i2pd
           echo "Wait for tor and i2pd to start"
-          sleep 60
+          sleep 120
 
       - name: Checkout the data branch
         uses: actions/checkout@v4
@@ -29,15 +37,22 @@ jobs:
         run: git fetch origin master && git checkout origin/master -- services.json
 
       - name: Run Docker command
-        run: docker run --rm -it -e "FS__LOG=debug,reqwest=WARN,hyper_util=WARN,h2=WARN,rustls=WARN,hickory_proto=WARN,hickory_resolver=WARN" ghcr.io/cofob/fastside fastside-actualizer actualize services.json
+        run: |
+          docker run --rm -e "FS__LOG=debug,reqwest=WARN,hyper_util=WARN,h2=WARN,rustls=WARN,hickory_proto=WARN,hickory_resolver=WARN" -v $(pwd):/data ghcr.io/cofob/fastside fastside-actualizer -c /data/config.yml actualize -d /data/data.json /data/services.json
 
       - name: Commit and push changes to data branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json services.json
-          git commit -m "Update data.json and services.json"
-          git push origin data
+          git commit -m "Update data.json and services.json [no ci]" || true
+
+      - name: Push changes to data
+        uses: ad-m/github-push-action@master
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: data
 
       - name: Check current hour and commit to master if midnight
         run: |
@@ -47,6 +62,6 @@ jobs:
             git fetch origin data
             git checkout origin/data -- services.json
             git add services.json
-            git commit -m "Update services.json from data branch"
+            git commit -m "Update services.json from data branch" || true
             git push origin master
           fi
