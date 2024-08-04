@@ -29,7 +29,8 @@ impl InstanceChecker for DefaultInstanceChecker {
         service: &Service,
         instance: &Instance,
     ) -> anyhow::Result<bool> {
-        let response = client.get(instance.url.to_string()).send().await?;
+        let url = instance.url.join(&service.test_url)?;
+        let response = client.get(url).send().await?;
         let status_code = response.status().as_u16();
         if service.allowed_http_codes.is_allowed(status_code) {
             if let Some(search_string) = &service.search_string {
