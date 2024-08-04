@@ -1,0 +1,43 @@
+name: Update Data
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the data branch
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          fetch-depth: 1
+
+      - name: Get services.json from master branch
+        run: git fetch origin master && git checkout origin/master -- services.json
+
+      - name: Run Docker command
+        run: docker run --rm -it -e "FS__LOG=debug,reqwest=WARN,hyper_util=WARN,h2=WARN,rustls=WARN,hickory_proto=WARN,hickory_resolver=WARN" ghcr.io/cofob/fastside fastside-actualizer actualize services.json
+
+      - name: Commit and push changes to data branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json services.json
+          git commit -m "Update data.json and services.json"
+          git push origin data
+
+      - name: Check current hour and commit to master if midnight
+        run: |
+          CURRENT_HOUR=$(date +'%H')
+          if [ "$CURRENT_HOUR" -eq 0 ]; then
+            git checkout master
+            git fetch origin data
+            git checkout origin/data -- services.json
+            git add services.json
+            git commit -m "Update services.json from data branch"
+            git push origin master
+          fi
