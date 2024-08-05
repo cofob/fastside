@@ -1873,9 +1873,9 @@
           "url": "/$3"
         }
       ],
-      "test_url": "/r/popular",
+      "test_url": "/r/RickRoll",
       "fallback": "https://www.reddit.com",
-      "search_string": "popular",
+      "search_string": "/r/rickroll/search",
       "source_link": "https://github.com/redlib-org/redlib",
       "instances": [
         {
