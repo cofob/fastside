@@ -5151,7 +5151,7 @@
       "fallback": "https://twitch.tv/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": "safetwitch",
+      "search_string": "SafeTwitch",
       "regexes": [
         {
           "regex": "^(https?:\\/\\/)?(www\\.)?twitch\\.tv\\/(.*)$",
@@ -5174,16 +5174,6 @@
           "tags": [
             "http",
             "i2p"
-          ]
-        },
-        {
-          "url": "https://lunar.icu/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
