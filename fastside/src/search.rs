@@ -176,10 +176,8 @@ pub fn get_redirect_instances<'a>(
 ) -> Option<Vec<&'a CrawledInstance>> {
     let alive_instances = crawled_service.get_alive_instances();
     let instances = alive_instances
-        .iter()
         .filter(|i| required_tags.iter().all(|tag| i.tags.contains(tag)))
         .filter(|i| forbidden_tags.iter().all(|tag| !i.tags.contains(tag)))
-        .cloned()
         .collect::<Vec<_>>();
     if instances.is_empty() {
         return None;

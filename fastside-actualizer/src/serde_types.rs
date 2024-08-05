@@ -144,8 +144,9 @@ impl ActualizerData {
     }
 
     pub fn remove_removed_services(&mut self, services: &ServicesData) {
-        let service_names: Vec<String> = services.keys().cloned().collect();
-        self.services.retain(|name, _| service_names.contains(name));
+        let service_names: Vec<&String> = services.keys().collect();
+        self.services
+            .retain(|name, _| service_names.contains(&name));
     }
 
     pub fn remove_removed_instances(&mut self, services: &ServicesData) {

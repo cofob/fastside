@@ -70,11 +70,10 @@ pub struct CrawledService {
 }
 
 impl CrawledService {
-    pub fn get_alive_instances(&self) -> Vec<&CrawledInstance> {
+    pub fn get_alive_instances(&self) -> impl Iterator<Item = &CrawledInstance> {
         self.instances
             .iter()
             .filter(|s| matches!(&s.status, CrawledInstanceStatus::Ok(_)))
-            .collect()
     }
 }
 
