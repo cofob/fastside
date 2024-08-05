@@ -2206,14 +2206,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://ww25.yapi.vyper.me/?subid1=20240518-0825-3274-b51b-c8b57bb957c3",
-          "tags": [
-            "clearnet",
-            "http",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://api-piped.mha.fi/",
           "tags": [
             "clearnet",
