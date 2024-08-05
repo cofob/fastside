@@ -35,18 +35,19 @@ pub async fn find_redirect_service_by_name<'a>(
         Some(data) => data,
         None => return Err(SearchError::CrawlerNotFetchedYet),
     };
+
     // Search for the service by name.
     if data.services.contains_key(query) {
         return Ok((&data.services[query], &services[query]));
     };
+
     // Search for the service by aliases.
     let query_string = query.to_string();
-    for crawled_service in data.services.values() {
-        for service in services.values() {
-            if service.aliases.contains(&query_string) {
-                return Ok((crawled_service, service));
-            };
-        }
+    let found_service: Option<&Service> = services
+        .values()
+        .find(|service| service.aliases.contains(&query_string));
+    if let Some(service) = found_service {
+        return Ok((&data.services[&service.name], service));
     }
 
     Err(SearchError::ServiceNotFound)
