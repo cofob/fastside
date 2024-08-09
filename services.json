@@ -6118,7 +6118,7 @@
       "fallback": "https://code.whatever.social/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "How can I rename a local Git branch?",
       "regexes": [],
       "aliases": [],
       "source_link": null,
