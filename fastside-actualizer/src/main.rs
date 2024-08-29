@@ -1,6 +1,6 @@
 //! Fastside services.json actualizer.
 
-use std::{path::PathBuf, sync::Arc};
+use std::{collections::HashMap, path::PathBuf, sync::Arc};
 
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
@@ -13,6 +13,8 @@ use fastside_shared::{
     serde_types::{Instance, Service, StoredData},
 };
 use serde_types::ActualizerData;
+use tokio::sync::Mutex;
+use url::Url;
 use utils::{log_err::LogErrResult, normalize::normalize_instances, tags::update_instance_tags};
 
 mod serde_types;
@@ -35,6 +37,7 @@ struct Cli {
     #[arg(long, default_value = None)]
     log_level: Option<String>,
 }
+
 #[derive(Subcommand)]
 enum Commands {
     /// Actualize services.json.
@@ -48,17 +51,117 @@ enum Commands {
         /// Data file path.
         #[arg(short, long, default_value = "data.json")]
         data: PathBuf,
+        /// Amount of maximum parallel requests.
+        #[arg(long, default_value = None)]
+        max_parallel: Option<usize>,
     },
 }
 
+/// Changes summary inner.
+#[derive(Debug)]
+struct ChangesSummaryInner {
+    dead_instances_removed: Vec<Url>,
+    new_instances_added: HashMap<String, Vec<Url>>,
+}
+
+/// Changes summary.
+///
+/// This struct is used to store changes that happened during the actualization process.
+/// Clone is cheap because it only clones the Arc. Actions on the inner data are locked
+/// with a mutex.
+#[derive(Debug, Clone)]
+pub struct ChangesSummary {
+    inner: Arc<Mutex<ChangesSummaryInner>>,
+}
+
+impl ChangesSummary {
+    pub fn new() -> Self {
+        Self {
+            inner: Arc::new(Mutex::new(ChangesSummaryInner {
+                dead_instances_removed: Vec::new(),
+                new_instances_added: HashMap::new(),
+            })),
+        }
+    }
+
+    /// Get a summary of the changes.
+    pub async fn summary(&self) -> String {
+        let inner = self.inner.lock().await;
+
+        let mut out = String::new();
+
+        // Dead instances removed
+        out.push_str(
+            format!(
+                "Dead instances removed: (total: {})\n",
+                inner.dead_instances_removed.len()
+            )
+            .as_str(),
+        );
+        if inner.dead_instances_removed.is_empty() {
+            out.push_str("(empty)\n");
+        }
+        for instance in &inner.dead_instances_removed {
+            out.push_str(&format!("- {}\n", instance));
+        }
+        out.push('\n');
+
+        // New instances added
+        let total_new_instances: usize = inner.new_instances_added.values().map(|v| v.len()).sum();
+        out.push_str(format!("New instances added: (total: {})\n", total_new_instances).as_str());
+        if inner.new_instances_added.is_empty() {
+            out.push_str("(empty)\n");
+        }
+        for (service_name, instances) in &inner.new_instances_added {
+            out.push_str(&format!(
+                "- service: {} (total: {})\n",
+                service_name,
+                instances.len()
+            ));
+            for instance in instances {
+                out.push_str(&format!("  - {}\n", instance));
+            }
+        }
+
+        out
+    }
+
+    /// Extend dead instances removed.
+    pub async fn extend_dead_instances_removed(&self, instances: Vec<Url>) {
+        let mut inner = self.inner.lock().await;
+        inner.dead_instances_removed.extend(instances);
+    }
+
+    /// Set new instances added.
+    pub async fn set_new_instances_added(&self, service_name: &str, instances: Vec<Url>) {
+        if instances.is_empty() {
+            return;
+        }
+        let mut inner = self.inner.lock().await;
+        inner
+            .new_instances_added
+            .insert(service_name.to_string(), instances);
+    }
+}
+
+impl Default for ChangesSummary {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Update service instances by fetching new instances from the service update.
-async fn update_service(service: &mut Service, client: reqwest::Client) {
+async fn update_service(
+    service: &mut Service,
+    client: reqwest::Client,
+    changes_summary: ChangesSummary,
+) {
     let name = service.name.clone();
-    info!("Updating service: {}", name);
+    debug!("Updating service: {}", name);
     match services::get_service_updater(&name) {
         Some(updater) => {
             let updated_instances_result = updater
-                .update(client, &service.instances)
+                .update(client, &service.instances, changes_summary.clone())
                 .await
                 .context("failed to update service");
             match updated_instances_result {
@@ -80,17 +183,14 @@ async fn update_service(service: &mut Service, client: reqwest::Client) {
 }
 
 /// Check a single instance.
-///
-/// This function will check a single instance and update its ping history.
-/// Returns a tuple of the instance, the client used to check the instance, and whether the instance is alive.
 async fn check_single_instance(
     checker: Arc<dyn crate::types::InstanceChecker + Sync + Send>,
     client: reqwest::Client,
     service: Arc<Service>,
     instance: Instance,
-) -> Result<(Instance, reqwest::Client, bool)> {
+) -> Result<(Instance, Vec<String>, bool)> {
     let is_alive = {
-        info!("Checking instance: {url}", url = instance.url);
+        debug!("Checking instance: {url}", url = instance.url);
         let res = checker.check(client.clone(), &service, &instance).await;
         match res {
             Ok(is_alive) => is_alive,
@@ -100,12 +200,15 @@ async fn check_single_instance(
             }
         }
     };
-    info!(
+    debug!(
         "Instance {url} is alive: {is_alive}",
         url = instance.url,
         is_alive = is_alive
     );
-    Ok((instance, client, is_alive))
+
+    let tags = update_instance_tags(client, instance.url.clone(), &instance.tags).await;
+
+    Ok((instance, tags, is_alive))
 }
 
 /// Check instances for a service.
@@ -117,6 +220,7 @@ async fn check_instances(
     name: &str,
     service: &mut Service,
     config: &CrawlerConfig,
+    max_parallel: &Option<usize>,
 ) -> Result<()> {
     let checker: Arc<(dyn crate::types::InstanceChecker + Send + Sync + 'static)> =
         Arc::from(services::get_instance_checker(name));
@@ -127,7 +231,10 @@ async fn check_instances(
         .or_default();
     let service_arc = Arc::new(service.clone());
 
-    let mut tasks = Parallelise::with_cpus();
+    let mut tasks = match max_parallel {
+        Some(max_parallel) => Parallelise::with_capacity(*max_parallel),
+        None => Parallelise::with_cpus(),
+    };
 
     for instance in service.instances.iter() {
         let client = build_client(&service_arc, config, proxies, instance)?;
@@ -144,7 +251,7 @@ async fn check_instances(
     let results = tasks.wait().await;
 
     for result in results {
-        let (instance_clone, client, is_alive) = match result {
+        let (instance_clone, tags, is_alive) = match result {
             Ok(r) => r,
             Err(e) => {
                 error!("Error occured during checking instance: {e}");
@@ -169,8 +276,7 @@ async fn check_instances(
             .iter_mut()
             .find(|i| i.url == instance_clone.url)
             .unwrap();
-        instance_mut.tags =
-            update_instance_tags(client, instance_clone.url.clone(), &instance_mut.tags).await;
+        instance_mut.tags = tags;
     }
 
     Ok(())
@@ -187,6 +293,7 @@ async fn main() -> Result<()> {
             services,
             output,
             data,
+            max_parallel,
         }) => {
             let config = load_config(&cli.config).context("failed to load config")?;
 
@@ -220,30 +327,51 @@ async fn main() -> Result<()> {
                 .map(|service| (service.name.clone(), service))
                 .collect();
 
+            let changes_summary = ChangesSummary::new();
+
             let start = std::time::Instant::now();
 
             actualizer_data.remove_removed_services(&services_data);
             actualizer_data.remove_removed_instances(&services_data);
 
             let update_service_client = reqwest::Client::new();
-            for (name, service) in services_data.iter_mut() {
-                update_service(service, update_service_client.clone()).await;
+            let length = services_data.len();
+            for (i, (name, service)) in services_data.iter_mut().enumerate() {
+                info!(
+                    "Actualizing service {name} ({i}/{length})",
+                    name = name,
+                    i = i + 1,
+                    length = length
+                );
+                update_service(
+                    service,
+                    update_service_client.clone(),
+                    changes_summary.clone(),
+                )
+                .await;
                 check_instances(
                     &mut actualizer_data,
                     &config.proxies,
                     name,
                     service,
                     &config.crawler,
+                    max_parallel,
                 )
                 .await
                 .log_err(&format!("failed to check instances for service {name}"))
                 .ok();
             }
 
-            actualizer_data.remove_dead_instances(&mut services_data);
+            let dead_instances = actualizer_data.remove_dead_instances(&mut services_data);
+            changes_summary
+                .extend_dead_instances_removed(dead_instances)
+                .await;
 
             let elapsed = start.elapsed();
             info!("Elapsed time: {:?}", elapsed);
+
+            let summary = changes_summary.summary().await;
+            info!("Summary:\n{}", summary);
 
             // Write data back to file
             let data_content = serde_json::to_string_pretty(&actualizer_data)

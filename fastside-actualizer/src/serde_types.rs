@@ -116,7 +116,9 @@ impl ServiceHistory {
     }
 
     /// Remove instances with uptime lower than 30%
-    pub fn remove_dead_instances(&self, service: &mut Service) {
+    ///
+    /// Returns a list of removed instances.
+    pub fn remove_dead_instances(&self, service: &mut Service) -> Vec<Url> {
         let mut dead_instances = Vec::new();
         for instance in &self.instances {
             if instance.ping_history.is_ready() && instance.ping_history.uptime() < MIN_UPTIME {
@@ -127,6 +129,7 @@ impl ServiceHistory {
         service
             .instances
             .retain(|i| !dead_instances.contains(&i.url));
+        dead_instances
     }
 }
 
@@ -157,12 +160,14 @@ impl ActualizerData {
         }
     }
 
-    pub fn remove_dead_instances(&self, services: &mut ServicesData) {
+    pub fn remove_dead_instances(&self, services: &mut ServicesData) -> Vec<Url> {
+        let mut dead_instances = Vec::new();
         for (name, service) in services {
             if let Some(service_history) = self.services.get(name) {
-                service_history.remove_dead_instances(service);
+                dead_instances.extend(service_history.remove_dead_instances(service));
             }
         }
+        dead_instances
     }
 }
 

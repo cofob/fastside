@@ -3,6 +3,8 @@ use async_trait::async_trait;
 use fastside_shared::serde_types::{Instance, Service};
 use reqwest::Client;
 
+use crate::ChangesSummary;
+
 #[async_trait]
 pub trait ServiceUpdater {
     /// Update the list of instances.
@@ -16,8 +18,12 @@ pub trait ServiceUpdater {
     /// # Returns
     ///
     /// The updated list of instances.
-    async fn update(&self, client: Client, current_instances: &[Instance])
-        -> Result<Vec<Instance>>;
+    async fn update(
+        &self,
+        client: Client,
+        current_instances: &[Instance],
+        changes_summary: ChangesSummary,
+    ) -> Result<Vec<Instance>>;
 }
 
 #[async_trait]
