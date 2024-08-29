@@ -195,7 +195,7 @@ async fn check_single_instance(
         match res {
             Ok(is_alive) => is_alive,
             Err(e) => {
-                error!("Failed to check instance {url}: {e}", url = instance.url);
+                debug!("Failed to check instance {url}: {e}", url = instance.url);
                 false
             }
         }

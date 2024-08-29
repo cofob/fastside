@@ -172,13 +172,13 @@ pub async fn update_instance_tags(client: Client, url: Url, tags: &[String]) -> 
     tags.extend(
         get_network_tags(client, url.clone())
             .await
-            .log_err(module_path!(), "Failed to get network tags")
+            .log_err_debug(module_path!(), "Failed to get network tags")
             .unwrap_or_default(),
     );
     tags.extend(
         get_dns_tags(url)
             .await
-            .log_err(module_path!(), "Failed to get DNS tags")
+            .log_err_debug(module_path!(), "Failed to get DNS tags")
             .unwrap_or_default(),
     );
     // Remove duplicates and sort
