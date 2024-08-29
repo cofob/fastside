@@ -1,6 +1,9 @@
 use std::collections::HashMap;
 
-use crate::types::{InstanceChecker, ServiceUpdater};
+use crate::{
+    types::{InstanceChecker, ServiceUpdater},
+    ChangesSummary,
+};
 use async_trait::async_trait;
 use fastside_shared::serde_types::{Instance, Service};
 use serde::Deserialize;
@@ -33,20 +36,31 @@ impl ServiceUpdater for SearxUpdater {
         &self,
         client: reqwest::Client,
         current_instances: &[Instance],
+        changes_summary: ChangesSummary,
     ) -> anyhow::Result<Vec<Instance>> {
         let response = client.get(&self.instances_url).send().await?;
         let response_str = response.text().await?;
         let parsed: InstancesResponse = serde_yaml::from_str(&response_str)?;
 
         let mut instances = current_instances.to_vec();
+        let mut new_instances = Vec::new();
 
         for url in parsed.0.keys() {
             if current_instances.iter().any(|i| &i.url == url) {
                 continue;
             }
 
-            instances.push(Instance::from(url.clone()));
+            new_instances.push(Instance::from(url.clone()));
         }
+
+        changes_summary
+            .set_new_instances_added(
+                "searx",
+                new_instances.iter().map(|i| i.url.clone()).collect(),
+            )
+            .await;
+
+        instances.extend(new_instances);
 
         Ok(instances)
     }

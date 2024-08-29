@@ -10,9 +10,10 @@ use thiserror::Error;
 use tokio::{sync::RwLock, time::sleep};
 use url::Url;
 
-use crate::{config::CrawlerConfig, types::LoadedData, utils::parallel::Parallelise};
+use crate::{config::CrawlerConfig, types::LoadedData};
 use fastside_shared::{
     client_builder::build_client,
+    parallel::Parallelise,
     serde_types::{HttpCodeRanges, Instance, Service},
 };
 
@@ -139,18 +140,16 @@ impl Crawler {
                     CrawledInstanceStatus::InvalidStatusCode(response.status(), end - start)
                 }
             }
-            Err(e) => {
-                match e {
-                    _ if e.is_timeout() => CrawledInstanceStatus::TimedOut,
-                    _ if e.is_builder() => CrawledInstanceStatus::BuilderError,
-                    _ if e.is_redirect() => CrawledInstanceStatus::RedirectPolicyError,
-                    _ if e.is_request() => CrawledInstanceStatus::RequestError,
-                    _ if e.is_body() => CrawledInstanceStatus::BodyError,
-                    _ if e.is_decode() => CrawledInstanceStatus::DecodeError,
-                    _ if e.is_connect() => CrawledInstanceStatus::ConnectionError,
-                    _ => CrawledInstanceStatus::Unknown,
-                }
-            }
+            Err(e) => match e {
+                _ if e.is_timeout() => CrawledInstanceStatus::TimedOut,
+                _ if e.is_builder() => CrawledInstanceStatus::BuilderError,
+                _ if e.is_redirect() => CrawledInstanceStatus::RedirectPolicyError,
+                _ if e.is_request() => CrawledInstanceStatus::RequestError,
+                _ if e.is_body() => CrawledInstanceStatus::BodyError,
+                _ if e.is_decode() => CrawledInstanceStatus::DecodeError,
+                _ if e.is_connect() => CrawledInstanceStatus::ConnectionError,
+                _ => CrawledInstanceStatus::Unknown,
+            },
         };
 
         let ret = (

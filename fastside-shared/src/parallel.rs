@@ -16,7 +16,7 @@ use tokio::task::JoinHandle;
 ///
 /// ```
 /// use tokio::runtime::Runtime;
-/// use crate::utils::parallel::Parallelise;
+/// use fastside_shared::parallel::Parallelise;
 ///
 /// let rt = Runtime::new().unwrap();
 /// rt.block_on(async {

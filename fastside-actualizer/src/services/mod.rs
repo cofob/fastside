@@ -14,7 +14,9 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
 }
 
 /// Get an instance checker by name.
-pub fn get_instance_checker(name: &str) -> Box<dyn crate::types::InstanceChecker> {
+pub fn get_instance_checker(
+    name: &str,
+) -> Box<(dyn crate::types::InstanceChecker + Send + Sync + 'static)> {
     match name {
         "searx" => Box::new(searx::SearxUpdater::new()),
         _ => Box::new(DefaultInstanceChecker::new()),
