@@ -43,7 +43,6 @@ jobs:
       - name: Lint
         run: |
           nix develop --command cargo fmt --check
-          nix develop --command cargo check
           nix develop --command cargo clippy
 
       - name: Test
