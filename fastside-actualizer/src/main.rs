@@ -358,7 +358,10 @@ async fn main() -> Result<()> {
                     max_parallel,
                 )
                 .await
-                .log_err(&format!("failed to check instances for service {name}"))
+                .log_err(
+                    module_path!(),
+                    &format!("failed to check instances for service {name}"),
+                )
                 .ok();
             }
 
