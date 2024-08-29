@@ -107,7 +107,7 @@ async fn get_dns_tags(url: Url) -> Result<Vec<String>> {
         let ip = match rdata.ip_addr() {
             Some(ip) => ip,
             None => {
-                warn!("Get something other than IP: {:?}", rdata);
+                debug!("Get something other than IP: {:?}", rdata);
                 continue;
             }
         };
