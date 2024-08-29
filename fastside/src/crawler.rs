@@ -140,22 +140,15 @@ impl Crawler {
                 }
             }
             Err(e) => {
-                if e.is_timeout() {
-                    CrawledInstanceStatus::TimedOut
-                } else if e.is_builder() {
-                    CrawledInstanceStatus::BuilderError
-                } else if e.is_redirect() {
-                    CrawledInstanceStatus::RedirectPolicyError
-                } else if e.is_request() {
-                    CrawledInstanceStatus::RequestError
-                } else if e.is_body() {
-                    CrawledInstanceStatus::BodyError
-                } else if e.is_decode() {
-                    CrawledInstanceStatus::DecodeError
-                } else if e.is_connect() {
-                    CrawledInstanceStatus::ConnectionError
-                } else {
-                    CrawledInstanceStatus::Unknown
+                match e {
+                    _ if e.is_timeout() => CrawledInstanceStatus::TimedOut,
+                    _ if e.is_builder() => CrawledInstanceStatus::BuilderError,
+                    _ if e.is_redirect() => CrawledInstanceStatus::RedirectPolicyError,
+                    _ if e.is_request() => CrawledInstanceStatus::RequestError,
+                    _ if e.is_body() => CrawledInstanceStatus::BodyError,
+                    _ if e.is_decode() => CrawledInstanceStatus::DecodeError,
+                    _ if e.is_connect() => CrawledInstanceStatus::ConnectionError,
+                    _ => CrawledInstanceStatus::Unknown,
                 }
             }
         };
