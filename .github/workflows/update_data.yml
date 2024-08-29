@@ -62,15 +62,36 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: data
 
-      - name: Check current hour and commit to master if midnight
+      - name: Update master branch
         run: |
           CURRENT_HOUR=$(date +'%H')
           echo "Current hour: $CURRENT_HOUR"
           if [ "$CURRENT_HOUR" -eq 0 ]; then
+            echo "It's midnight, commit to master"
             git checkout master
             git fetch origin data
             git checkout origin/data -- services.json
             git add services.json
             git commit -m "Update services.json from data branch" || true
             git push origin master
+          fi
+
+      - name: Remove historical data
+        run: |
+          CURRENT_HOUR=$(date +'%H')
+          echo "Current hour: $CURRENT_HOUR"
+          if [ "$CURRENT_HOUR" -eq 0 ]; then
+            CURRENT_DAY=$(date +'%u')
+            echo "Current day: $CURRENT_DAY"
+            if [ "$CURRENT_DAY" -eq 1 ]; then
+              echo "It's Monday, remove historical data"
+              git checkout data
+              git reset --hard HEAD
+              git checkout --orphan cleared-data
+              git add -A
+              git commit -m "Remove historical data"
+              git branch -D data
+              git branch -m data
+              git push origin data --force
+            fi
           fi
