@@ -1,6 +1,6 @@
 //! Fastside services.json actualizer.
 
-use std::path::PathBuf;
+use std::{path::PathBuf, sync::Arc};
 
 use anyhow::{anyhow, Context, Result};
 use clap::{Parser, Subcommand};
@@ -9,7 +9,8 @@ use fastside_shared::{
     config::{load_config, CrawlerConfig, ProxyData},
     errors::CliError,
     log_setup::configure_logging,
-    serde_types::{Service, StoredData},
+    parallel::Parallelise,
+    serde_types::{Instance, Service, StoredData},
 };
 use serde_types::ActualizerData;
 use utils::{log_err::LogErrResult, normalize::normalize_instances, tags::update_instance_tags};
@@ -78,6 +79,35 @@ async fn update_service(service: &mut Service, client: reqwest::Client) {
     };
 }
 
+/// Check a single instance.
+///
+/// This function will check a single instance and update its ping history.
+/// Returns a tuple of the instance, the client used to check the instance, and whether the instance is alive.
+async fn check_single_instance(
+    checker: Arc<dyn crate::types::InstanceChecker + Sync + Send>,
+    client: reqwest::Client,
+    service: Arc<Service>,
+    instance: Instance,
+) -> Result<(Instance, reqwest::Client, bool)> {
+    let is_alive = {
+        info!("Checking instance: {url}", url = instance.url);
+        let res = checker.check(client.clone(), &service, &instance).await;
+        match res {
+            Ok(is_alive) => is_alive,
+            Err(e) => {
+                error!("Failed to check instance {url}: {e}", url = instance.url);
+                false
+            }
+        }
+    };
+    info!(
+        "Instance {url} is alive: {is_alive}",
+        url = instance.url,
+        is_alive = is_alive
+    );
+    Ok((instance, client, is_alive))
+}
+
 /// Check instances for a service.
 ///
 /// This function will check all instances of a service and update their ping history.
@@ -88,41 +118,61 @@ async fn check_instances(
     service: &mut Service,
     config: &CrawlerConfig,
 ) -> Result<()> {
-    let checker = services::get_instance_checker(name);
+    let checker: Arc<(dyn crate::types::InstanceChecker + Send + Sync + 'static)> =
+        Arc::from(services::get_instance_checker(name));
+
     let service_history = actualizer_data
         .services
         .entry(name.to_string())
         .or_default();
-    let service_clone = service.clone();
-    for instance in service.instances.iter_mut() {
-        info!("Checking instance: {}", instance.url);
-        let client = build_client(&service_clone, config, proxies, instance)?;
-        let is_alive = {
-            let res = checker
-                .check(client.clone(), &service_clone, instance)
-                .await;
-            match res {
-                Ok(is_alive) => is_alive,
-                Err(e) => {
-                    error!("Failed to check instance {url}: {e}", url = instance.url);
-                    false
-                }
+    let service_arc = Arc::new(service.clone());
+
+    let mut tasks = Parallelise::with_cpus();
+
+    for instance in service.instances.iter() {
+        let client = build_client(&service_arc, config, proxies, instance)?;
+        tasks
+            .push(tokio::spawn(check_single_instance(
+                checker.clone(),
+                client,
+                service_arc.clone(),
+                instance.clone(),
+            )))
+            .await;
+    }
+
+    let results = tasks.wait().await;
+
+    for result in results {
+        let (instance_clone, client, is_alive) = match result {
+            Ok(r) => r,
+            Err(e) => {
+                error!("Error occured during checking instance: {e}");
+                continue;
             }
         };
-        debug!("Instance is alive: {}", is_alive);
 
-        let instance_history = match service_history.get_instance_mut(&instance.url) {
+        let instance_history = match service_history.get_instance_mut(&instance_clone.url) {
             Some(instance_history) => instance_history,
             None => {
-                service_history.add_instance(&instance.clone());
-                service_history.get_instance_mut(&instance.url).unwrap()
+                service_history.add_instance(&instance_clone.clone());
+                service_history
+                    .get_instance_mut(&instance_clone.url)
+                    .unwrap()
             }
         };
         instance_history.ping_history.cleanup();
         instance_history.ping_history.push_ping(is_alive);
 
-        instance.tags = update_instance_tags(client, instance.url.clone(), &instance.tags).await;
+        let instance_mut = service
+            .instances
+            .iter_mut()
+            .find(|i| i.url == instance_clone.url)
+            .unwrap();
+        instance_mut.tags =
+            update_instance_tags(client, instance_clone.url.clone(), &instance_mut.tags).await;
     }
+
     Ok(())
 }
 

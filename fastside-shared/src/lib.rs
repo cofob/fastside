@@ -3,6 +3,7 @@ pub mod config;
 pub mod errors;
 pub mod log_setup;
 pub mod serde_types;
+pub mod parallel;
 
 #[macro_use]
 extern crate log;
