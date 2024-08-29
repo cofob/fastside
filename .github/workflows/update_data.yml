@@ -44,7 +44,6 @@ jobs:
       - name: Actualize data.json
         run: |
           docker run --net host --rm \
-            -e "FS__LOG=debug,reqwest=WARN,hyper_util=WARN,h2=WARN,rustls=WARN,hickory_proto=WARN,hickory_resolver=WARN" \
             -v $(pwd):/data ghcr.io/cofob/fastside \
             fastside-actualizer -c /data/config.yml actualize --max-parallel 25 -d /data/data.json /data/services.json
 
