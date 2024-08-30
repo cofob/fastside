@@ -41,6 +41,13 @@
         fastside-docker = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
+          contents = [ fastside ];
+          config = { Cmd = [ "/bin/fastside" "serve" "-l" "0.0.0.0:8080" ]; };
+        };
+
+        fastside-docker-baked-services = pkgs.dockerTools.buildLayeredImage {
+          name = "fastside";
+          tag = "latest";
           contents = [ fastside-baked-services ];
           config = { Cmd = [ "/bin/fastside-baked-services" "serve" "-l" "0.0.0.0:8080" ]; };
         };
@@ -52,8 +59,9 @@
         packages = {
           default = fastside;
           fastside = fastside;
-          fastside-docker = fastside-docker;
           fastside-baked-services = fastside-baked-services;
+          fastside-docker = fastside-docker;
+          fastside-docker-baked-services = fastside-docker-baked-services;
           services = services;
         };
 

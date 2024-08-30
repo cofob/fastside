@@ -120,7 +120,24 @@ jobs:
             type=sha
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
-      - name: Build
+      - name: Docker meta
+        id: meta2
+        uses: docker/metadata-action@v5
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ghcr.io/${{ steps.repo.outputs.lowercase }}/baked
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=schedule
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+
+      - name: Build remote
         run: |
           nix build .#fastside-docker
           docker load < result
@@ -128,6 +145,19 @@ jobs:
       - name: Push to registry
         run: |
           tags="${{ steps.meta.outputs.tags }}"
+          for tag in $tags; do
+            docker tag fastside $tag
+            docker push $tag
+          done
+
+      - name: Build baked
+        run: |
+          nix build .#fastside-docker-baked-services
+          docker load < result
+
+      - name: Push to registry
+        run: |
+          tags="${{ steps.meta2.outputs.tags }}"
           for tag in $tags; do
             docker tag fastside $tag
             docker push $tag
