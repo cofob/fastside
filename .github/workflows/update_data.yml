@@ -25,6 +25,11 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           nix_path: "${{ env.nix_path }}"
+      - name: Setup cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: cofob
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Start hidden services
         run: |
           nohup nix-shell -p tor --run tor &
