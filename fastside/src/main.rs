@@ -30,6 +30,7 @@ use std::{
 };
 use tokio::sync::RwLock;
 use types::{CompiledRegexSearch, LoadedData};
+use url::Url;
 
 #[deny(unused_imports)]
 #[deny(unused_variables)]
@@ -57,9 +58,9 @@ struct Cli {
 enum Commands {
     /// Run API server.
     Serve {
-        /// Services file path.
+        /// Services path.
         #[arg(short, long)]
-        services: Option<PathBuf>,
+        services: Option<String>,
         /// Listen socket address.
         #[arg(short, long)]
         listen: Option<SocketAddr>,
@@ -74,15 +75,48 @@ async fn crawler_loop(crawler: Arc<Crawler>) {
     crawler.crawler_loop().await
 }
 
-// This function loads services file
-fn load_services(data_path: &PathBuf, config: &AppConfig) -> Result<LoadedData> {
-    if !data_path.is_file() {
-        return Err(anyhow::anyhow!(
-            "services file does not exist or is not a file"
-        ));
+#[derive(Debug)]
+enum ServicesSource {
+    Filesystem(PathBuf),
+    Remote(Url),
+}
+
+impl FromStr for ServicesSource {
+    type Err = anyhow::Error;
+
+    fn from_str(s: &str) -> Result<Self> {
+        if let Ok(url) = Url::parse(s) {
+            Ok(ServicesSource::Remote(url))
+        } else {
+            Ok(ServicesSource::Filesystem(PathBuf::from(s)))
+        }
     }
-    let data_content =
-        std::fs::read_to_string(data_path).context("failed to read services file")?;
+}
+
+// This function loads services from file or remote source
+async fn load_services_data(source: &ServicesSource) -> Result<String> {
+    debug!("Loading services from {:?}", source);
+    Ok(match source {
+        ServicesSource::Filesystem(path) => {
+            if !path.is_file() {
+                return Err(anyhow::anyhow!(
+                    "services file does not exist or is not a file"
+                ));
+            }
+            std::fs::read_to_string(path).context("failed to read services file")?
+        }
+        ServicesSource::Remote(url) => reqwest::get(url.clone())
+            .await
+            .context("failed to fetch services file")?
+            .text()
+            .await
+            .context("failed to read services file")?,
+    })
+}
+
+// This function loads services file
+async fn load_services(source: &ServicesSource, config: &AppConfig) -> Result<LoadedData> {
+    let data_content = load_services_data(source).await?;
     let stored_data: StoredData =
         serde_json::from_str(&data_content).context("failed to parse services file")?;
     let services_data: ServicesData = stored_data
@@ -99,28 +133,77 @@ fn load_services(data_path: &PathBuf, config: &AppConfig) -> Result<LoadedData> 
 
 // This functions check every 5 seconds if services file has changed and reloads it if it has.
 async fn reload_services(
-    data_path: PathBuf,
+    source: ServicesSource,
     config: Arc<AppConfig>,
     crawler: Arc<Crawler>,
     data: Arc<RwLock<LoadedData>>,
 ) {
-    let mut file_stat = std::fs::metadata(&data_path).expect("failed to get file metadata");
-    loop {
-        tokio::time::sleep(std::time::Duration::from_secs(5)).await;
-        let new_file_stat = std::fs::metadata(&data_path).expect("failed to get file metadata");
-        if new_file_stat
-            .modified()
-            .expect("failed to get modified time")
-            != file_stat.modified().expect("failed to get modified time")
-        {
-            info!("Reloading services file");
-            let new_data = load_services(&data_path, &config).expect("failed to load services");
-            *data.write().await = new_data;
-            file_stat = new_file_stat;
-            crawler
-                .update_crawl()
+    if !config.auto_updater.enabled {
+        debug!("Auto updater is disabled");
+        return;
+    }
+    let reload_interval = config.auto_updater.interval.as_secs();
+    match &source {
+        ServicesSource::Filesystem(path) => {
+            let mut file_stat = std::fs::metadata(path).expect("failed to get file metadata");
+            loop {
+                tokio::time::sleep(std::time::Duration::from_secs(reload_interval)).await;
+                let new_file_stat = std::fs::metadata(path).expect("failed to get file metadata");
+                debug!("File modified: {:?}", new_file_stat.modified());
+                if new_file_stat
+                    .modified()
+                    .expect("failed to get modified time")
+                    != file_stat.modified().expect("failed to get modified time")
+                {
+                    info!("Reloading services file");
+                    let new_data = load_services(&source, &config)
+                        .await
+                        .expect("failed to load services");
+                    *data.write().await = new_data;
+                    file_stat = new_file_stat;
+                    crawler
+                        .update_crawl()
+                        .await
+                        .expect("failed to update crawl");
+                }
+            }
+        }
+        ServicesSource::Remote(url) => {
+            let client = reqwest::Client::new();
+            let mut etag = client
+                .head(url.clone())
+                .send()
                 .await
-                .expect("failed to update crawl");
+                .expect("failed to send HEAD request")
+                .headers()
+                .get("etag")
+                .map(|header| header.to_str().expect("failed to parse etag").to_string())
+                .expect("failed to get etag");
+            loop {
+                tokio::time::sleep(std::time::Duration::from_secs(reload_interval)).await;
+                let new_etag = client
+                    .head(url.clone())
+                    .send()
+                    .await
+                    .expect("failed to send HEAD request")
+                    .headers()
+                    .get("etag")
+                    .map(|header| header.to_str().expect("failed to parse etag").to_string())
+                    .expect("failed to get etag");
+                debug!("Etag: {}", etag);
+                if new_etag != etag {
+                    info!("Reloading services file");
+                    let new_data = load_services(&source, &config)
+                        .await
+                        .expect("failed to load services");
+                    *data.write().await = new_data;
+                    etag = new_etag;
+                    crawler
+                        .update_crawl()
+                        .await
+                        .expect("failed to update crawl");
+                }
+            }
         }
     }
 }
@@ -139,17 +222,20 @@ async fn main() -> Result<()> {
         }) => {
             let config = Arc::new(load_config(&cli.config).context("failed to load config")?);
 
-            let data_path = services
-                .clone()
-                .or(config.services_path.clone())
-                .unwrap_or_else(|| PathBuf::from_str("services.json").unwrap());
+            let services_source = ServicesSource::from_str(
+                &services
+                    .clone()
+                    .or(config.services.clone())
+                    .unwrap_or_else(|| String::from("services.json")),
+            )?;
+            debug!("Using services source: {:?}", services_source);
 
             let listen: SocketAddr = listen
                 .unwrap_or_else(|| SocketAddr::V4(SocketAddrV4::new([127, 0, 0, 1].into(), 8080)));
             let workers: usize = workers.unwrap_or_else(num_cpus::get);
 
             let data: Arc<RwLock<LoadedData>> = {
-                let data = load_services(&data_path, &config)?;
+                let data = load_services(&services_source, &config).await?;
                 Arc::new(RwLock::new(data))
             };
             let regexes: HashMap<String, Vec<CompiledRegexSearch>> = data
@@ -181,7 +267,7 @@ async fn main() -> Result<()> {
             let crawler_loop_handle = tokio::spawn(crawler_loop(cloned_crawler));
 
             let reload_services_handle = tokio::spawn(reload_services(
-                data_path.clone(),
+                services_source,
                 config.clone(),
                 crawler.clone(),
                 data.clone(),
