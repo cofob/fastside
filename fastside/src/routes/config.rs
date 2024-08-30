@@ -1,6 +1,7 @@
 use actix_web::{cookie::Cookie, get, http::header::LOCATION, web, HttpRequest, Responder, Scope};
 use askama::Template;
 use fastside_shared::config::UserConfig;
+use tokio::sync::RwLock;
 
 use crate::{
     config::AppConfig, errors::RedirectError, types::LoadedData,
@@ -22,9 +23,10 @@ pub struct ConfigureTemplate<'a> {
 #[get("")]
 async fn configure_page(
     req: HttpRequest,
-    loaded_data: web::Data<LoadedData>,
+    loaded_data: web::Data<RwLock<LoadedData>>,
 ) -> actix_web::Result<impl Responder> {
-    let user_config = load_settings_cookie(&req, &loaded_data.default_user_config);
+    let loaded_data_guard = loaded_data.read().await;
+    let user_config = load_settings_cookie(&req, &loaded_data_guard.default_user_config);
 
     let template = ConfigureTemplate {
         current_config: &user_config
