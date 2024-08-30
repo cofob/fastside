@@ -376,13 +376,26 @@ async fn main() -> Result<()> {
             let summary = changes_summary.summary().await;
             info!("Summary:\n{}", summary);
 
-            // Write data back to file
+            // Sort actualizer data service instances
+            for service_history in actualizer_data.services.values_mut() {
+                service_history.instances.sort_by(|a, b| a.url.cmp(&b.url));
+            }
+            // Write actualizer data back to file
             let data_content = serde_json::to_string_pretty(&actualizer_data)
                 .context("failed to serialize data")?;
             std::fs::write(data, data_content).context("failed to write data file")?;
+            // Sort services data
             let stored_data = StoredData {
-                services: services_data.into_values().collect(),
+                services: {
+                    let mut stored_services: Vec<Service> = services_data.into_values().collect();
+                    stored_services.sort_by(|a, b| a.name.cmp(&b.name));
+                    for service in stored_services.iter_mut() {
+                        service.instances.sort_by(|a, b| a.url.cmp(&b.url));
+                    }
+                    stored_services
+                },
             };
+            // Write services back to file
             let services_content = serde_json::to_string_pretty(&stored_data)
                 .context("failed to serialize services")?;
             std::fs::write(output, services_content).context("failed to write services file")?;

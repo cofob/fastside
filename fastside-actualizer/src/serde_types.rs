@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
 use fastside_shared::serde_types::{Instance, Service, ServicesData};
 use serde::{Deserialize, Serialize};
@@ -136,13 +136,13 @@ impl ServiceHistory {
 /// ActualizerData is a history of services availability.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct ActualizerData {
-    pub services: HashMap<String, ServiceHistory>,
+    pub services: BTreeMap<String, ServiceHistory>,
 }
 
 impl ActualizerData {
     pub fn new() -> Self {
         Self {
-            services: HashMap::new(),
+            services: BTreeMap::new(),
         }
     }
 
