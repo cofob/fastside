@@ -101,7 +101,6 @@ impl UserConfig {
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct AutoUpdaterConfig {
-    #[serde(default)]
     pub enabled: bool,
     pub interval: Duration,
 }
@@ -109,7 +108,7 @@ pub struct AutoUpdaterConfig {
 impl Default for AutoUpdaterConfig {
     fn default() -> Self {
         Self {
-            enabled: false,
+            enabled: true,
             interval: Duration::from_secs(60),
         }
     }
