@@ -62,6 +62,7 @@ enum Commands {
 struct ChangesSummaryInner {
     dead_instances_removed: Vec<Url>,
     new_instances_added: HashMap<String, Vec<Url>>,
+    empty_services: Vec<String>,
 }
 
 /// Changes summary.
@@ -80,6 +81,7 @@ impl ChangesSummary {
             inner: Arc::new(Mutex::new(ChangesSummaryInner {
                 dead_instances_removed: Vec::new(),
                 new_instances_added: HashMap::new(),
+                empty_services: Vec::new(),
             })),
         }
     }
@@ -122,6 +124,22 @@ impl ChangesSummary {
                 out.push_str(&format!("  - {}\n", instance));
             }
         }
+        out.push('\n');
+
+        // Empty services
+        out.push_str(
+            format!(
+                "Empty services without deprecation: (total: {})\n",
+                inner.empty_services.len()
+            )
+            .as_str(),
+        );
+        if inner.empty_services.is_empty() {
+            out.push_str("(empty)\n");
+        }
+        for service in &inner.empty_services {
+            out.push_str(&format!("- {}\n", service));
+        }
 
         out
     }
@@ -141,6 +159,15 @@ impl ChangesSummary {
         inner
             .new_instances_added
             .insert(service_name.to_string(), instances);
+    }
+
+    /// Set empty services.
+    pub async fn extend_empty_services(&self, services: Vec<String>) {
+        if services.is_empty() {
+            return;
+        }
+        let mut inner = self.inner.lock().await;
+        inner.empty_services.extend(services);
     }
 }
 
@@ -369,6 +396,19 @@ async fn main() -> Result<()> {
             changes_summary
                 .extend_dead_instances_removed(dead_instances)
                 .await;
+
+            // Find empty services
+            let empty_services: Vec<String> = services_data
+                .iter()
+                .filter_map(|(name, service)| {
+                    if service.instances.is_empty() && service.deprecated_message.is_none() {
+                        Some(name.clone())
+                    } else {
+                        None
+                    }
+                })
+                .collect();
+            changes_summary.extend_empty_services(empty_services).await;
 
             let elapsed = start.elapsed();
             info!("Elapsed time: {:?}", elapsed);
