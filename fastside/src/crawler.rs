@@ -8,7 +8,7 @@ use chrono::{DateTime, Utc};
 use reqwest::StatusCode;
 use thiserror::Error;
 use tokio::{
-    sync::{Mutex, RwLock},
+    sync::{Mutex, MutexGuard, RwLock},
     time::sleep,
 };
 use url::Url;
@@ -225,10 +225,19 @@ impl Crawler {
         Ok(ret)
     }
 
-    async fn crawl(&self) -> Result<(), CrawlerError> {
-        let Ok(crawler_guard) = self.crawler_lock.try_lock() else {
-            warn!("Crawler lock is already acquired, skipping crawl");
-            return Ok(());
+    async fn crawl<'a>(
+        &self,
+        crawler_guard: Option<MutexGuard<'a, ()>>,
+    ) -> Result<(), CrawlerError> {
+        let crawler_guard = match crawler_guard {
+            Some(guard) => guard,
+            None => {
+                let Ok(crawler_guard) = self.crawler_lock.try_lock() else {
+                    warn!("Crawler lock is already acquired, skipping crawl");
+                    return Ok(());
+                };
+                crawler_guard
+            }
         };
 
         let mut crawled_services: HashMap<String, CrawledService> = self
@@ -307,16 +316,17 @@ impl Crawler {
 
     /// Run crawler instantly in update loaded_data mode.
     pub async fn update_crawl(&self) -> Result<(), CrawlerError> {
+        let crawler_guard = self.crawler_lock.lock().await;
         let mut data = self.data.write().await;
         data.make_reloading();
         drop(data);
-        self.crawl().await
+        self.crawl(Some(crawler_guard)).await
     }
 
     pub async fn crawler_loop(&self) {
         loop {
             debug!("Starting crawl");
-            if let Err(e) = self.crawl().await {
+            if let Err(e) = self.crawl(None).await {
                 error!("Error occured during crawl loop: {e}");
             };
             debug!("Next crawl will start in {:?}", self.config.ping_interval);
