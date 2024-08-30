@@ -7,7 +7,10 @@ use std::{
 use chrono::{DateTime, Utc};
 use reqwest::StatusCode;
 use thiserror::Error;
-use tokio::{sync::RwLock, time::sleep};
+use tokio::{
+    sync::{Mutex, RwLock},
+    time::sleep,
+};
 use url::Url;
 
 use crate::{config::CrawlerConfig, types::LoadedData};
@@ -85,36 +88,94 @@ pub struct CrawledServices {
 }
 
 #[derive(Debug)]
+pub enum CrawledData {
+    CrawledServices(CrawledServices),
+    InitialLoading,
+    ReloadingServices {
+        current: CrawledServices,
+        new: Option<CrawledServices>,
+    },
+}
+
+impl CrawledData {
+    pub fn get_services(&self) -> Option<&CrawledServices> {
+        match self {
+            Self::CrawledServices(s) => Some(s),
+            Self::InitialLoading => None,
+            Self::ReloadingServices { current, .. } => Some(current),
+        }
+    }
+
+    pub fn is_fetched(&self) -> bool {
+        self.get_services().is_some()
+    }
+
+    pub fn is_reloading(&self) -> bool {
+        matches!(self, Self::ReloadingServices { .. })
+    }
+
+    pub fn replace(&mut self, new: CrawledData) {
+        *self = new;
+    }
+
+    pub fn make_reloading(&mut self) {
+        let current = match self {
+            Self::CrawledServices(s) => s.clone(),
+            _ => return,
+        };
+        *self = Self::ReloadingServices { current, new: None };
+    }
+
+    pub fn make_reloaded(&mut self) {
+        let new = match self {
+            Self::ReloadingServices { new, .. } => new.take(),
+            _ => return,
+        };
+        if let Some(new) = new {
+            *self = Self::CrawledServices(new);
+        }
+    }
+}
+
+impl AsRef<CrawledData> for CrawledData {
+    fn as_ref(&self) -> &CrawledData {
+        self
+    }
+}
+
+#[derive(Debug)]
 pub struct Crawler {
-    loaded_data: Arc<LoadedData>,
+    loaded_data: Arc<RwLock<LoadedData>>,
     config: Arc<CrawlerConfig>,
-    data: RwLock<Option<CrawledServices>>,
+    data: RwLock<CrawledData>,
+    crawler_lock: Mutex<()>,
 }
 
 impl Crawler {
-    pub fn new(loaded_data: Arc<LoadedData>, config: CrawlerConfig) -> Self {
+    pub fn new(loaded_data: Arc<RwLock<LoadedData>>, config: CrawlerConfig) -> Self {
         Self {
             loaded_data,
             config: Arc::new(config),
-            data: RwLock::new(None),
+            data: RwLock::new(CrawledData::InitialLoading),
+            crawler_lock: Mutex::new(()),
         }
     }
 
     #[inline]
-    pub async fn read(&self) -> tokio::sync::RwLockReadGuard<Option<CrawledServices>> {
+    pub async fn read(&self) -> tokio::sync::RwLockReadGuard<CrawledData> {
         self.data.read().await
     }
 
     async fn crawl_single_instance(
         config: Arc<CrawlerConfig>,
-        loaded_data: Arc<LoadedData>,
+        loaded_data: Arc<RwLock<LoadedData>>,
         service: Arc<Service>,
         instance: Instance,
     ) -> Result<(CrawledInstance, String), CrawlerError> {
         let client = build_client(
             service.as_ref(),
             config.as_ref(),
-            &loaded_data.proxies,
+            &loaded_data.read().await.proxies,
             &instance,
         )?;
 
@@ -165,8 +226,15 @@ impl Crawler {
     }
 
     async fn crawl(&self) -> Result<(), CrawlerError> {
+        let Ok(crawler_guard) = self.crawler_lock.try_lock() else {
+            warn!("Crawler lock is already acquired, skipping crawl");
+            return Ok(());
+        };
+
         let mut crawled_services: HashMap<String, CrawledService> = self
             .loaded_data
+            .read()
+            .await
             .services
             .keys()
             .map(|name| {
@@ -181,7 +249,7 @@ impl Crawler {
             .collect();
         let mut parallelise = Parallelise::with_capacity(self.config.max_concurrent_requests);
 
-        for service in self.loaded_data.services.values() {
+        for service in self.loaded_data.read().await.services.values() {
             let service = Arc::new(service.clone());
             for instance in &service.instances {
                 let loaded_data = self.loaded_data.clone();
@@ -190,7 +258,7 @@ impl Crawler {
                 parallelise
                     .push(tokio::spawn(Self::crawl_single_instance(
                         config,
-                        loaded_data,
+                        loaded_data.clone(),
                         service.clone(),
                         instance,
                     )))
@@ -216,15 +284,33 @@ impl Crawler {
         }
 
         let mut data = self.data.write().await;
-        if data.is_none() {
-            info!("Finished initial crawl, we are ready to serve requests");
-        }
-        data.replace(CrawledServices {
+        data.replace(CrawledData::CrawledServices(CrawledServices {
             services: crawled_services,
             time: Utc::now(),
-        });
+        }));
 
+        match data.as_ref() {
+            CrawledData::ReloadingServices { .. } => {
+                info!("Finished reloading services");
+            }
+            CrawledData::InitialLoading => {
+                info!("Finished initial crawl, we are ready to serve requests");
+            }
+            CrawledData::CrawledServices(_) => {
+                info!("Finished crawl");
+            }
+        }
+
+        drop(crawler_guard);
         Ok(())
+    }
+
+    /// Run crawler instantly in update loaded_data mode.
+    pub async fn update_crawl(&self) -> Result<(), CrawlerError> {
+        let mut data = self.data.write().await;
+        data.make_reloading();
+        drop(data);
+        self.crawl().await
     }
 
     pub async fn crawler_loop(&self) {

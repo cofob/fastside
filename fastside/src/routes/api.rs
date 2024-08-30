@@ -1,6 +1,7 @@
 use actix_web::{post, web, Responder, Scope};
 use fastside_shared::config::UserConfig;
 use serde::{Deserialize, Serialize};
+use tokio::sync::RwLock;
 
 use crate::{
     config::AppConfig,
@@ -33,13 +34,14 @@ struct RedirectResponse {
 #[post("/redirect")]
 async fn redirect(
     crawler: web::Data<Crawler>,
-    loaded_data: web::Data<LoadedData>,
+    loaded_data: web::Data<RwLock<LoadedData>>,
     regexes: web::Data<Regexes>,
     redirect_request: web::Json<RedirectRequest>,
 ) -> actix_web::Result<impl Responder> {
+    let loaded_data_guard = loaded_data.read().await;
     let (url, is_fallback) = super::redirect::find_redirect(
         crawler.as_ref(),
-        loaded_data.as_ref(),
+        &loaded_data_guard,
         regexes.as_ref(),
         &redirect_request.config,
         &redirect_request.url,

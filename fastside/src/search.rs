@@ -4,7 +4,7 @@ use regex::Captures;
 use tokio::sync::RwLockReadGuard;
 
 use crate::{
-    crawler::{CrawledInstance, CrawledInstanceStatus, CrawledService, CrawledServices},
+    crawler::{CrawledData, CrawledInstance, CrawledInstanceStatus, CrawledService},
     types::Regexes,
 };
 use fastside_shared::{
@@ -27,11 +27,11 @@ pub enum SearchError {
 }
 
 pub async fn find_redirect_service_by_name<'a>(
-    guard: &'a RwLockReadGuard<'a, Option<CrawledServices>>,
+    guard: &'a RwLockReadGuard<'a, CrawledData>,
     services: &'a ServicesData,
     query: &str,
 ) -> Result<(&'a CrawledService, &'a Service), SearchError> {
-    let data = match guard.as_ref() {
+    let data = match guard.get_services() {
         Some(data) => data,
         None => return Err(SearchError::CrawlerNotFetchedYet),
     };
@@ -143,12 +143,12 @@ fn replace_args_in_url(url: &str, captures: Captures) -> Result<String, ReplaceA
 }
 
 pub async fn find_redirect_service_by_url<'a>(
-    guard: &'a RwLockReadGuard<'a, Option<CrawledServices>>,
+    guard: &'a RwLockReadGuard<'a, CrawledData>,
     services: &'a ServicesData,
     regexes: &'a Regexes,
     query: &str,
 ) -> Result<(&'a CrawledService, &'a Service, String), SearchError> {
-    let data = match guard.as_ref() {
+    let data = match guard.get_services() {
         Some(data) => data,
         None => return Err(SearchError::CrawlerNotFetchedYet),
     };

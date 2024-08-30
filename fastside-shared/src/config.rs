@@ -99,17 +99,34 @@ impl UserConfig {
     }
 }
 
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct AutoUpdaterConfig {
+    pub enabled: bool,
+    pub interval: Duration,
+}
+
+impl Default for AutoUpdaterConfig {
+    fn default() -> Self {
+        Self {
+            enabled: true,
+            interval: Duration::from_secs(60),
+        }
+    }
+}
+
 /// Application configuration.
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AppConfig {
     #[serde(default)]
     pub crawler: CrawlerConfig,
     #[serde(default)]
+    pub auto_updater: AutoUpdaterConfig,
+    #[serde(default)]
     pub proxies: ProxyData,
     #[serde(default)]
     pub default_user_config: UserConfig,
     #[serde(default)]
-    pub services_path: Option<PathBuf>,
+    pub services: Option<String>,
 }
 
 /// Load application configuration.

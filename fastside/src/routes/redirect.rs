@@ -4,6 +4,7 @@ use actix_web::{
     web, HttpRequest, Responder, Scope,
 };
 use askama::Template;
+use tokio::sync::RwLock;
 
 use crate::{
     config::AppConfig,
@@ -42,15 +43,16 @@ async fn cached_redirect(
     path: web::Path<(String, String)>,
     config: web::Data<AppConfig>,
     crawler: web::Data<Crawler>,
-    loaded_data: web::Data<LoadedData>,
+    loaded_data: web::Data<RwLock<LoadedData>>,
 ) -> actix_web::Result<impl Responder> {
     let (service_name, _) = path.into_inner();
 
-    let user_config = load_settings_cookie(&req, &loaded_data.default_user_config);
+    let loaded_data_guard = loaded_data.read().await;
+    let user_config = load_settings_cookie(&req, &loaded_data_guard.default_user_config);
 
     let guard = crawler.read().await;
     let (crawled_service, _) =
-        find_redirect_service_by_name(&guard, &loaded_data.services, &service_name)
+        find_redirect_service_by_name(&guard, &loaded_data_guard.services, &service_name)
             .await
             .map_err(RedirectError::from)?;
     let mut instances = get_redirect_instances(
@@ -166,16 +168,17 @@ async fn base_redirect(
     req: HttpRequest,
     path: web::Path<String>,
     crawler: web::Data<Crawler>,
-    loaded_data: web::Data<LoadedData>,
+    loaded_data: web::Data<RwLock<LoadedData>>,
     regexes: web::Data<Regexes>,
 ) -> actix_web::Result<impl Responder> {
     let path = path.into_inner();
 
-    let user_config = load_settings_cookie(&req, &loaded_data.default_user_config);
+    let loaded_data_guard = loaded_data.read().await;
+    let user_config = load_settings_cookie(&req, &loaded_data_guard.default_user_config);
 
     let (mut url, is_fallback) = find_redirect(
         crawler.get_ref(),
-        loaded_data.get_ref(),
+        &loaded_data_guard,
         regexes.get_ref(),
         &user_config,
         &path,
