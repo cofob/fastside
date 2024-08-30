@@ -48,7 +48,7 @@
         fastside-docker-baked-services = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
-          contents = [ fastside-baked-services ];
+          contents = [ fastside fastside-baked-services ];
           config = { Cmd = [ "/bin/fastside-baked-services" "serve" "-l" "0.0.0.0:8080" ]; };
         };
 
