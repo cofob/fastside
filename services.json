@@ -484,7 +484,7 @@
     },
     {
       "type": "proxyraye",
-      "test_url": "/",
+      "test_url": "/en/video/xvideos/video.upktacd43e3%2Ftwinks_and_dady",
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
@@ -493,7 +493,16 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://proxyraye.copyriot.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        }
+      ]
     },
     {
       "type": "anonymousoverflow",
