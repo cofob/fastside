@@ -43,9 +43,10 @@ jobs:
 
       - name: Actualize data.json
         run: |
-          docker run --net host --rm \
-            -v $(pwd):/data ghcr.io/cofob/fastside \
-            fastside-actualizer -c /data/config.yml actualize --max-parallel 25 -d /data/data.json /data/services.json
+          nix run github:cofob/fastside#actualizer -- \
+            -c config.yml \
+            actualize \
+            --max-parallel 25 -d data.json services.json
 
       - name: Commit and push changes to data branch
         run: |

@@ -108,6 +108,8 @@ pub struct AppConfig {
     pub proxies: ProxyData,
     #[serde(default)]
     pub default_user_config: UserConfig,
+    #[serde(default)]
+    pub services_path: Option<PathBuf>,
 }
 
 /// Load application configuration.

@@ -94,6 +94,7 @@ async fn main() -> Result<()> {
             let data: Arc<LoadedData> = {
                 let data_path = services
                     .clone()
+                    .or(config.services_path.clone())
                     .unwrap_or_else(|| PathBuf::from_str("services.json").unwrap());
                 if !data_path.is_file() {
                     return Err(anyhow::anyhow!(
