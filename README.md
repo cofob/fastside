@@ -11,6 +11,8 @@ Contents
   - [Demo](#demo)
   - [Mirrors](#mirrors)
   - [How It Works](#how-it-works)
+  - [Self-Hosting](#self-hosting)
+  - [Compiling from Source](#compiling-from-source)
   - [Why does this fork exist?](#why-does-this-fork-exist)
     - [Migration from farside](#migration-from-farside)
   - [Tips and tricks](#tips-and-tricks)
@@ -97,6 +99,26 @@ update period.
 Fastside's routing is minimal, similar to [Farside](https://github.com/benbusby/farside), but includes
 an additional `/@cached/<service>#<path>` endpoint, which utilizes browser caching to achieve instant
 redirects without waiting for server responses.
+
+## Self-Hosting
+
+Setting up Fastside on your server is straightforward with Docker. Simply execute the following command:
+
+```bash
+docker run --restart unless-stopped --name fastside -d -p 8080:8080 ghcr.io/cofob/fastside
+```
+
+This will deploy Fastside, making it accessible on port 8080 of your server. The service will automatically use the default [services.json](https://raw.githubusercontent.com/cofob/fastside/master/services.json) as its configuration source.
+
+## Compiling from Source
+
+If you prefer to compile Fastside from source, ensure you have Rust's package manager, Cargo, installed. Then, navigate to the repository and run the following command:
+
+```bash
+cargo build --release
+```
+
+The compiled executables will be located in the `target/release` directory.
 
 ## Why does this fork exist?
 
