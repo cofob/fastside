@@ -297,7 +297,7 @@ impl Crawler {
                 info!("Finished initial crawl, we are ready to serve requests");
             }
             CrawledData::CrawledServices(_) => {
-                info!("Finished crawl");
+                debug!("Finished crawl");
             }
         }
 
