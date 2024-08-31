@@ -113,9 +113,6 @@ jobs:
   docker:
     name: Build Docker container
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        target: [x86_64, aarch64]
     needs: build-nix
     permissions:
       contents: read
@@ -150,20 +147,11 @@ jobs:
         with:
           string: ${{ github.repository }}
 
-      - name: Set Docker image name
-        id: set-image-name
-        run: |
-          if [[ "${{ matrix.target }}" == "x86_64" ]]; then
-            echo "image_name=ghcr.io/${{ steps.repo.outputs.lowercase }}" >> $GITHUB_ENV
-          elif [[ "${{ matrix.target }}" == "aarch64" ]]; then
-            echo "image_name=ghcr.io/${{ steps.repo.outputs.lowercase }}-aarch64" >> $GITHUB_ENV
-          fi
-
       - name: Docker meta (remote)
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.image_name }}
+          images: ghcr.io/${{ steps.repo.outputs.lowercase }}
           tags: |
             type=schedule
             type=ref,event=pr
@@ -173,44 +161,58 @@ jobs:
             type=sha
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
-      - name: Docker meta (baked)
-        id: meta2
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.image_name }}/baked
-          tags: |
-            type=schedule
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
-
-      - name: Build remote
+      - name: Build remote (x86_64)
         run: |
-          nix --system ${{ matrix.target }}-linux build .#fastside-docker
+          nix --system x86_64-linux build .#fastside-docker
           docker load < result
+          docker tag fastside x86_64
+
+      - name: Build remote (aarch64)
+        run: |
+          nix --system aarch64-linux build .#fastside-docker
+          docker load < result
+          docker tag fastside aarch64
+
+      - name: Build baked (x86_64)
+        run: |
+          nix --system x86_64-linux build .#fastside-docker-baked-services
+          docker load < result
+          docker tag fastside x86_64-baked
+
+      - name: Build baked (aarch64)
+        run: |
+          nix --system aarch64-linux build .#fastside-docker-baked-services
+          docker load < result
+          docker tag fastside aarch64-baked
+
+      - name: Construct remote
+        run: |
+          docker manifest create \
+            remote \
+            --amend x86_64
+            --amend aarch64
+
+      - name: Construct baked
+        run: |
+          docker manifest create \
+            baked \
+            --amend x86_64-baked
+            --amend aarch64-baked
 
       - name: Push to registry
         run: |
           tags="${{ steps.meta.outputs.tags }}"
           for tag in $tags; do
-            docker tag fastside $tag
+            echo "Pushing $tag"
+            docker tag remote $tag
             docker push $tag
           done
 
-      - name: Build baked
-        run: |
-          nix --system ${{ matrix.target }}-linux build .#fastside-docker-baked-services
-          docker load < result
-
-      - name: Push to registry
-        run: |
-          tags="${{ steps.meta2.outputs.tags }}"
           for tag in $tags; do
-            docker tag fastside $tag
-            docker push $tag
+            mod_tag="$tag-baked"
+            echo "Pushing $mod_tag"
+            docker tag baked $mod_tag
+            docker push $mod_tag
           done
 
   test-services:
