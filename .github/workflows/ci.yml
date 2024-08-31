@@ -163,7 +163,7 @@ jobs:
 
       - name: Docker manifest tag
         id: manifest-tag
-        run: echo "manifest_tag=ghcr.io/${{ steps.repo.outputs.lowercase }}:manifest-$(git rev-parse HEAD | cut -c1-15)" >> $GITHUB_ENV
+        run: echo "manifest_tag=ghcr.io/${{ steps.repo.outputs.lowercase }}:manifest-$(git rev-parse HEAD | cut -c1-20)" >> $GITHUB_ENV
 
       - name: Build remote (x86_64)
         run: |
