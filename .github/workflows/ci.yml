@@ -37,6 +37,9 @@ jobs:
   build-nix:
     name: Build Nix
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [x86_64, aarch64]
     needs: test
     steps:
       - name: Checkout
@@ -50,10 +53,14 @@ jobs:
         with:
           name: cofob
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: aarch64
 
-      - name: Build derivations
+      - name: Build derivation
         run: |
-          nix build .#fastside
+          nix --system ${{ matrix.target }}-linux build .#fastside
 
   build-linux:
     name: Build Linux
@@ -61,7 +68,7 @@ jobs:
     needs: test
     strategy:
       matrix:
-        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
+        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl, aarch64-unknown-linux-musl]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -78,8 +85,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y musl-tools
 
-      - name: Build ${{ matrix.target }}
-        run: cargo build --release --bins --target ${{ matrix.target }}
+      - name: Build
+        run: |
+          if [[ "${{ matrix.target }}" == "x86_64-unknown-linux-gnu" || "${{ matrix.target }}" == "x86_64-unknown-linux-musl" ]]; then
+            cargo build --release --bins --target ${{ matrix.target }}
+          elif [[ "${{ matrix.target }}" == "aarch64-unknown-linux-musl" ]]; then
+            docker run \
+              --rm \
+              -v "$(pwd)":/home/rust/src \
+              messense/rust-musl-cross:aarch64-musl \
+              cargo build --color always --release --bins --target aarch64-unknown-linux-musl
+          fi
 
       - name: Collect artifacts
         run: |
@@ -92,40 +108,112 @@ jobs:
         with:
           name: fastside-${{ matrix.target }}
           path: dist-${{ matrix.target }}
+          compression-level: 9
 
-  build-linux-aarch64:
-    name: Build Linux (aarch64-unknown-linux-musl)
+  docker:
+    name: Build Docker containers
     runs-on: ubuntu-latest
-    needs: test
+    needs: build-nix
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Pull Docker image
-        run: docker pull messense/rust-musl-cross:aarch64-musl
-      - name: Cache Rust
-        uses: Swatinem/rust-cache@v2
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v25
         with:
-          prefix-key: "v0-rust-aarch64-unknown-linux-musl"
-
-      - name: Build aarch64
-        run: |
-          docker run \
-            --rm \
-            -v "$(pwd)":/home/rust/src \
-            messense/rust-musl-cross:aarch64-musl \
-            cargo build --color always --release --bins --target aarch64-unknown-linux-musl
-
-      - name: Collect artifacts
-        run: |
-          mkdir dist-aarch64-unknown-linux-musl
-          cp target/aarch64-unknown-linux-musl/release/fastside dist-aarch64-unknown-linux-musl/
-          cp target/aarch64-unknown-linux-musl/release/fastside-actualizer dist-aarch64-unknown-linux-musl/
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+          nix_path: "${{ env.nix_path }}"
+      - name: Setup cachix
+        uses: cachix/cachix-action@v14
         with:
-          name: fastside-aarch64-unknown-linux-musl
-          path: dist-aarch64-unknown-linux-musl
+          name: cofob
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: aarch64
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lowercase repository name
+        id: repo
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ github.repository }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ steps.repo.outputs.lowercase }}
+          tags: |
+            type=schedule
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+
+      - name: Docker manifest tag
+        id: manifest-tag
+        run: echo "manifest_tag=ghcr.io/${{ steps.repo.outputs.lowercase }}:manifest-$(git rev-parse HEAD | cut -c1-20)" >> $GITHUB_ENV
+
+      - name: Build remote (x86_64)
+        run: |
+          nix --system x86_64-linux build .#fastside-docker
+          docker load < result
+          docker tag fastside ${{ env.manifest_tag }}-x86_64
+          docker push ${{ env.manifest_tag }}-x86_64
+
+      - name: Build remote (aarch64)
+        run: |
+          nix --system aarch64-linux build .#fastside-docker
+          docker load < result
+          docker tag fastside ${{ env.manifest_tag }}-aarch64
+          docker push ${{ env.manifest_tag }}-aarch64
+
+      - name: Build baked (x86_64)
+        run: |
+          nix --system x86_64-linux build .#fastside-docker-baked-services
+          docker load < result
+          docker tag fastside ${{ env.manifest_tag }}-x86_64-baked
+          docker push ${{ env.manifest_tag }}-x86_64-baked
+
+      - name: Build baked (aarch64)
+        run: |
+          nix --system aarch64-linux build .#fastside-docker-baked-services
+          docker load < result
+          docker tag fastside ${{ env.manifest_tag }}-aarch64-baked
+          docker push ${{ env.manifest_tag }}-aarch64-baked
+
+      - name: Push to registry
+        run: |
+          tags="${{ steps.meta.outputs.tags }}"
+          for tag in $tags; do
+            echo "Pushing $tag"
+            docker manifest create \
+              $tag \
+              --amend ${{ env.manifest_tag }}-x86_64 \
+              --amend ${{ env.manifest_tag }}-aarch64
+            docker manifest push $tag
+          done
+
+          for tag in $tags; do
+            mod_tag="$tag-baked"
+            echo "Pushing $mod_tag"
+            docker manifest create \
+              $mod_tag \
+              --amend ${{ env.manifest_tag }}-x86_64 \
+              --amend ${{ env.manifest_tag }}-aarch64
+            docker manifest push $mod_tag
+          done
 
   test-services:
     name: Test services
@@ -156,96 +244,3 @@ jobs:
       - name: Run tests
         if: steps.filter.outputs.services == 'true'
         run: nix run . -- validate
-
-  docker:
-    name: Build Docker container
-    runs-on: ubuntu-latest
-    needs: build-nix
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Nix
-        uses: cachix/install-nix-action@v25
-        with:
-          nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Lowercase repository name
-        id: repo
-        uses: ASzc/change-string-case-action@v6
-        with:
-          string: ${{ github.repository }}
-
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ghcr.io/${{ steps.repo.outputs.lowercase }}
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=schedule
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
-
-      - name: Docker meta
-        id: meta2
-        uses: docker/metadata-action@v5
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ghcr.io/${{ steps.repo.outputs.lowercase }}/baked
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=schedule
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=sha
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
-
-      - name: Build remote
-        run: |
-          nix build .#fastside-docker
-          docker load < result
-
-      - name: Push to registry
-        run: |
-          tags="${{ steps.meta.outputs.tags }}"
-          for tag in $tags; do
-            docker tag fastside $tag
-            docker push $tag
-          done
-
-      - name: Build baked
-        run: |
-          nix build .#fastside-docker-baked-services
-          docker load < result
-
-      - name: Push to registry
-        run: |
-          tags="${{ steps.meta2.outputs.tags }}"
-          for tag in $tags; do
-            docker tag fastside $tag
-            docker push $tag
-          done
