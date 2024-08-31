@@ -68,7 +68,7 @@ jobs:
     needs: test
     strategy:
       matrix:
-        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
+        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl, aarch64-unknown-linux-musl]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -85,8 +85,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y musl-tools
 
-      - name: Build ${{ matrix.target }}
+      - name: Build x86_64
+        if: matrix.target == 'x86_64-unknown-linux-gnu' || matrix.target == 'x86_64-unknown-linux-musl'
         run: cargo build --release --bins --target ${{ matrix.target }}
+
+      - name: Build aarch64
+        if: matrix.target == 'aarch64-unknown-linux-musl'
+        run: |
+          docker run \
+            --rm \
+            -v "$(pwd)":/home/rust/src \
+            messense/rust-musl-cross:aarch64-musl \
+            cargo build --color always --release --bins --target aarch64-unknown-linux-musl
 
       - name: Collect artifacts
         run: |
@@ -99,40 +109,6 @@ jobs:
         with:
           name: fastside-${{ matrix.target }}
           path: dist-${{ matrix.target }}
-
-  build-linux-aarch64:
-    name: Build Linux (aarch64-unknown-linux-musl)
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Pull Docker image
-        run: docker pull messense/rust-musl-cross:aarch64-musl
-      - name: Cache Rust
-        uses: Swatinem/rust-cache@v2
-        with:
-          prefix-key: "v0-rust-aarch64-unknown-linux-musl"
-
-      - name: Build aarch64
-        run: |
-          docker run \
-            --rm \
-            -v "$(pwd)":/home/rust/src \
-            messense/rust-musl-cross:aarch64-musl \
-            cargo build --color always --release --bins --target aarch64-unknown-linux-musl
-
-      - name: Collect artifacts
-        run: |
-          mkdir dist-aarch64-unknown-linux-musl
-          cp target/aarch64-unknown-linux-musl/release/fastside dist-aarch64-unknown-linux-musl/
-          cp target/aarch64-unknown-linux-musl/release/fastside-actualizer dist-aarch64-unknown-linux-musl/
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: fastside-aarch64-unknown-linux-musl
-          path: dist-aarch64-unknown-linux-musl
 
   test-services:
     name: Test services
