@@ -414,7 +414,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -931,7 +931,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -1032,7 +1032,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -1136,7 +1136,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -2150,7 +2150,7 @@
       ],
       "aliases": [],
       "source_link": "https://git.vitali64.duckdns.org/utils/laboratory.git",
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -3025,7 +3025,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -5149,7 +5149,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -5457,7 +5457,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -6640,7 +6640,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -6857,7 +6857,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -6940,7 +6940,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     },
     {
@@ -7300,7 +7300,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "No instances.",
       "instances": []
     }
   ]
