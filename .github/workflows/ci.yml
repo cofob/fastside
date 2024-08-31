@@ -85,18 +85,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y musl-tools
 
-      - name: Build x86_64
-        if: matrix.target == 'x86_64-unknown-linux-gnu' || matrix.target == 'x86_64-unknown-linux-musl'
-        run: cargo build --release --bins --target ${{ matrix.target }}
-
-      - name: Build aarch64
-        if: matrix.target == 'aarch64-unknown-linux-musl'
+      - name: Build
         run: |
-          docker run \
-            --rm \
-            -v "$(pwd)":/home/rust/src \
-            messense/rust-musl-cross:aarch64-musl \
-            cargo build --color always --release --bins --target aarch64-unknown-linux-musl
+          if [[ "${{ matrix.target }}" == "x86_64-unknown-linux-gnu" || "${{ matrix.target }}" == "x86_64-unknown-linux-musl" ]]; then
+            cargo build --release --bins --target ${{ matrix.target }}
+          elif [[ "${{ matrix.target }}" == "aarch64-unknown-linux-musl" ]]; then
+            docker run \
+              --rm \
+              -v "$(pwd)":/home/rust/src \
+              messense/rust-musl-cross:aarch64-musl \
+              cargo build --color always --release --bins --target aarch64-unknown-linux-musl
+          fi
 
       - name: Collect artifacts
         run: |
@@ -109,6 +108,7 @@ jobs:
         with:
           name: fastside-${{ matrix.target }}
           path: dist-${{ matrix.target }}
+          compression-level: 9
 
   test-services:
     name: Test services
@@ -180,14 +180,20 @@ jobs:
         with:
           string: ${{ github.repository }}
 
-      - name: Docker meta
+      - name: Set Docker image name
+        id: set-image-name
+        run: |
+          if [[ "${{ matrix.target }}" == "x86_64" ]]; then
+            echo "image_name=ghcr.io/${{ steps.repo.outputs.lowercase }}" >> $GITHUB_ENV
+          elif [[ "${{ matrix.target }}" == "aarch64" ]]; then
+            echo "image_name=ghcr.io/${{ steps.repo.outputs.lowercase }}-aarch64" >> $GITHUB_ENV
+          fi
+
+      - name: Docker meta (remote)
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ghcr.io/${{ steps.repo.outputs.lowercase }}
-          # generate Docker tags based on the following events/attributes
+          images: ${{ env.image_name }}
           tags: |
             type=schedule
             type=ref,event=pr
@@ -201,10 +207,7 @@ jobs:
         id: meta2
         uses: docker/metadata-action@v5
         with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ghcr.io/${{ steps.repo.outputs.lowercase }}/baked
-          # generate Docker tags based on the following events/attributes
+          images: ${{ env.image_name }}/baked
           tags: |
             type=schedule
             type=ref,event=pr
