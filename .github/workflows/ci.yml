@@ -70,7 +70,7 @@ jobs:
           nix build .#fastside
 
   build-linux:
-    name: Build {{ matrix.target }}
+    name: Build Linux
     runs-on: ubuntu-latest
     strategy:
       matrix:
