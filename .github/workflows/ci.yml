@@ -243,7 +243,7 @@ jobs:
             type=sha
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
-      - name: Docker meta
+      - name: Docker meta (baked)
         id: meta2
         uses: docker/metadata-action@v5
         with:
@@ -274,6 +274,99 @@ jobs:
           done
 
       - name: Build baked
+        run: |
+          nix build .#fastside-docker-baked-services
+          docker load < result
+
+      - name: Push to registry
+        run: |
+          tags="${{ steps.meta2.outputs.tags }}"
+          for tag in $tags; do
+            docker tag fastside $tag
+            docker push $tag
+          done
+
+  docker-aarch64:
+    name: Build Docker container (aarch64)
+    runs-on: ubuntu-latest
+    needs: build-nix-aarch64
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: aarch64
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: "${{ env.nix_path }}"
+      - name: Setup cachix
+        uses: cachix/cachix-action@v14
+        with:
+          name: cofob
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lowercase repository name
+        id: repo
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ github.repository }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/${{ steps.repo.outputs.lowercase }}-aarch64
+          tags: |
+            type=schedule
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+
+      - name: Docker meta (baked)
+        id: meta2
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/${{ steps.repo.outputs.lowercase }}-aarch64/baked
+          tags: |
+            type=schedule
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+
+      - name: Build remote (aarch64)
+        run: |
+          nix build .#fastside-docker
+          docker load < result
+
+      - name: Push to registry
+        run: |
+          tags="${{ steps.meta.outputs.tags }}"
+          for tag in $tags; do
+            docker tag fastside $tag
+            docker push $tag
+          done
+
+      - name: Build baked (aarch64)
         run: |
           nix build .#fastside-docker-baked-services
           docker load < result
