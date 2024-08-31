@@ -49,8 +49,8 @@ jobs:
         run: |
           nix develop --command cargo test
 
-  build:
-    name: Build
+  build-nix:
+    name: Build Nix
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -69,10 +69,43 @@ jobs:
         run: |
           nix build .#fastside
 
+  build-linux:
+    name: Build {{ matrix.target }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl, aarch64-unknown-linux-musl]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "v0-rust-{{ matrix.target }}"
+
+      - name: Build {{ matrix.target }}
+        run: cargo build --release --bins --target ${{ matrix.target }}
+
+      - name: Collect artifacts
+        run: |
+          mkdir dist-{{ matrix.target }}
+          cp target/${{ matrix.target }}/release/fastside dist-{{ matrix.target }}/
+          cp target/${{ matrix.target }}/release/fastside-actualizer dist-{{ matrix.target }}/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastside-${{ matrix.target }}
+          path: dist-{{ matrix.target }}
+
   test-services:
     name: Test services
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-nix
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -102,7 +135,7 @@ jobs:
   docker:
     name: Build Docker container
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-nix
     permissions:
       contents: read
       packages: write
