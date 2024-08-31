@@ -18,40 +18,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Nix
-        uses: cachix/install-nix-action@v25
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
         with:
-          nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Cache Rust target
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
+          prefix-key: "v0-rust-test"
 
-      - name: Lint
-        run: |
-          nix develop --command cargo fmt --check
-          nix develop --command cargo clippy
+      - name: Check formatting
+        run: cargo fmt --check
 
-      - name: Test
-        run: |
-          nix develop --command cargo test
+      - name: Clippy
+        run: cargo clippy
 
-  build:
-    name: Build
+      - name: Tests
+        run: cargo test
+
+  build-nix:
+    name: Build Nix
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -69,10 +55,82 @@ jobs:
         run: |
           nix build .#fastside
 
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      matrix:
+        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "v0-rust-${{ matrix.target }}"
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y musl-tools
+
+      - name: Build ${{ matrix.target }}
+        run: cargo build --release --bins --target ${{ matrix.target }}
+
+      - name: Collect artifacts
+        run: |
+          mkdir dist-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/fastside dist-${{ matrix.target }}/
+          cp target/${{ matrix.target }}/release/fastside-actualizer dist-${{ matrix.target }}/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastside-${{ matrix.target }}
+          path: dist-${{ matrix.target }}
+
+  build-linux-aarch64:
+    name: Build Linux (aarch64-unknown-linux-musl)
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Pull Docker image
+        run: docker pull messense/rust-musl-cross:aarch64-musl
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "v0-rust-aarch64-unknown-linux-musl"
+
+      - name: Build aarch64
+        run: |
+          docker run \
+            --rm \
+            -v "$(pwd)":/home/rust/src \
+            messense/rust-musl-cross:aarch64-musl \
+            cargo build --color always --release --bins --target aarch64-unknown-linux-musl
+
+      - name: Collect artifacts
+        run: |
+          mkdir dist-aarch64-unknown-linux-musl
+          cp target/aarch64-unknown-linux-musl/release/fastside dist-aarch64-unknown-linux-musl/
+          cp target/aarch64-unknown-linux-musl/release/fastside-actualizer dist-aarch64-unknown-linux-musl/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastside-aarch64-unknown-linux-musl
+          path: dist-aarch64-unknown-linux-musl
+
   test-services:
     name: Test services
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-nix
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -102,7 +160,7 @@ jobs:
   docker:
     name: Build Docker container
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-nix
     permissions:
       contents: read
       packages: write
