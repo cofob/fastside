@@ -74,8 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl, aarch64-unknown-linux-musl]
-      fail-fast: false
+        target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -106,6 +105,33 @@ jobs:
         with:
           name: fastside-${{ matrix.target }}
           path: dist-${{ matrix.target }}
+
+  build-linux-aarch64:
+    name: Build Linux (aarch64-unknown-linux-musl)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build aarch64
+        run: |
+          docker run \
+            --rm -it \
+            -v "$(pwd)":/home/rust/src \
+            messense/rust-musl-cross:aarch64-unknown-linux-musl \
+            cargo build --release --bins --target aarch64-unknown-linux-musl
+
+      - name: Collect artifacts
+        run: |
+          mkdir aarch64-unknown-linux-musl
+          cp target/aarch64-unknown-linux-musl/release/fastside aarch64-unknown-linux-musl/
+          cp target/aarch64-unknown-linux-musl/release/fastside-actualizer aarch64-unknown-linux-musl/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastside-aarch64-unknown-linux-musl
+          path: dist-aarch64-unknown-linux-musl
 
   test-services:
     name: Test services
