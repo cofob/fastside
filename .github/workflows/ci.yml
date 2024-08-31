@@ -110,36 +110,6 @@ jobs:
           path: dist-${{ matrix.target }}
           compression-level: 9
 
-  test-services:
-    name: Test services
-    runs-on: ubuntu-latest
-    needs: build-nix
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Path filter
-        uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            services:
-              - 'services.json'
-      - name: Setup Nix
-        if: steps.filter.outputs.services == 'true'
-        uses: cachix/install-nix-action@v25
-        with:
-          nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        if: steps.filter.outputs.services == 'true'
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-
-      - name: Run tests
-        if: steps.filter.outputs.services == 'true'
-        run: nix run . -- validate
-
   docker:
     name: Build Docker container
     runs-on: ubuntu-latest
@@ -242,3 +212,33 @@ jobs:
             docker tag fastside $tag
             docker push $tag
           done
+
+  test-services:
+    name: Test services
+    runs-on: ubuntu-latest
+    needs: build-nix
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Path filter
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            services:
+              - 'services.json'
+      - name: Setup Nix
+        if: steps.filter.outputs.services == 'true'
+        uses: cachix/install-nix-action@v25
+        with:
+          nix_path: "${{ env.nix_path }}"
+      - name: Setup cachix
+        if: steps.filter.outputs.services == 'true'
+        uses: cachix/cachix-action@v14
+        with:
+          name: cofob
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Run tests
+        if: steps.filter.outputs.services == 'true'
+        run: nix run . -- validate
