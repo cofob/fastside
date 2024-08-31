@@ -35,7 +35,7 @@ jobs:
         run: cargo test
 
   build-nix:
-    name: Build Nix (x86_64)
+    name: Build Nix
     runs-on: ubuntu-latest
     strategy:
       matrix:
