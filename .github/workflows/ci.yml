@@ -76,14 +76,8 @@ jobs:
           name: cofob
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: Get aarch64 nix
-        run: |
-          nix build --system aarch64-linux nixpkgs#nix
-          cp result/bin/nix nix
-
       - name: Build derivation
-        run: |
-          ./nix --system aarch64-linux build .#fastside
+        run: nix --system aarch64-linux build .#fastside
 
   build-linux:
     name: Build Linux
@@ -349,7 +343,7 @@ jobs:
 
       - name: Build remote (aarch64)
         run: |
-          nix build .#fastside-docker
+          nix --system aarch64-linux build .#fastside-docker
           docker load < result
 
       - name: Push to registry
@@ -362,7 +356,7 @@ jobs:
 
       - name: Build baked (aarch64)
         run: |
-          nix build .#fastside-docker-baked-services
+          nix --system aarch64-linux build .#fastside-docker-baked-services
           docker load < result
 
       - name: Push to registry
