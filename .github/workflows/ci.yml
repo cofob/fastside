@@ -38,9 +38,6 @@ jobs:
     name: Build Nix
     runs-on: ubuntu-latest
     needs: test
-    strategy:
-      matrix:
-        derivation: [fastside, fastside-static]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,17 +51,14 @@ jobs:
           name: cofob
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      - name: Build derivation ${{ matrix.derivation }}
+      - name: Build derivation
         run: |
-          nix build .#${{ matrix.derivation }}
+          nix build .#fastside
 
   build-nix-aarch64:
     name: Build Nix aarch64
     runs-on: ubuntu-latest
     needs: test
-    strategy:
-      matrix:
-        derivation: [fastside, fastside-static]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -87,9 +81,9 @@ jobs:
           nix build --system aarch64-linux nixpkgs#nix
           cp result/bin/nix nix
 
-      - name: Build derivation ${{ matrix.derivation }}
+      - name: Build derivation
         run: |
-          ./nix --system aarch64-linux build .#${{ matrix.derivation }}
+          ./nix --system aarch64-linux build .#fastside
 
   build-linux:
     name: Build Linux
