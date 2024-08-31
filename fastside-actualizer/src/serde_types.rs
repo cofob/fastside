@@ -94,7 +94,7 @@ pub struct ServiceHistory {
     pub instances: Vec<InstanceHistory>,
 }
 
-const MIN_UPTIME: u8 = 30;
+const MIN_UPTIME: u8 = 5;
 
 impl ServiceHistory {
     pub fn get_instance(&self, url: &Url) -> Option<&InstanceHistory> {
@@ -115,14 +115,18 @@ impl ServiceHistory {
             .retain(|i| instances.iter().any(|instance| i.url == instance.url));
     }
 
-    /// Remove instances with uptime lower than 30%
+    /// Remove instances with uptime lower than 5%
     ///
     /// Returns a list of removed instances.
     pub fn remove_dead_instances(&self, service: &mut Service) -> Vec<Url> {
         let mut dead_instances = Vec::new();
         for instance in &self.instances {
-            if instance.ping_history.is_ready() && instance.ping_history.uptime() < MIN_UPTIME {
-                debug!("Removing dead instance: {}", instance.url);
+            let uptime = instance.ping_history.uptime();
+            if instance.ping_history.is_ready() && uptime < MIN_UPTIME {
+                debug!(
+                    "Removing dead instance with uptime {}%: {}",
+                    uptime, instance.url
+                );
                 dead_instances.push(instance.url.clone());
             }
         }
