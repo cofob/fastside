@@ -182,3 +182,157 @@ pub type ServicesData = HashMap<String, Service>;
 pub struct StoredData {
     pub services: Vec<Service>,
 }
+
+pub struct ValidationResults {
+    pub errors: Vec<String>,
+    pub warnings: Vec<String>,
+    pub notices: Vec<String>,
+}
+
+impl ValidationResults {
+    pub fn new() -> Self {
+        Self {
+            errors: Vec::new(),
+            warnings: Vec::new(),
+            notices: Vec::new(),
+        }
+    }
+
+    pub fn add_error(&mut self, error: String) {
+        self.errors.push(error);
+    }
+
+    pub fn add_warning(&mut self, warning: String) {
+        self.warnings.push(warning);
+    }
+
+    pub fn add_notice(&mut self, notice: String) {
+        self.notices.push(notice);
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.errors.is_empty() && self.warnings.is_empty() && self.notices.is_empty()
+    }
+
+    pub fn has_errors(&self) -> bool {
+        !self.errors.is_empty()
+    }
+
+    pub fn format(&self) -> String {
+        let mut result = String::new();
+
+        for error in &self.errors {
+            result.push_str(&format!("Error: {}\n", error));
+        }
+
+        for warning in &self.warnings {
+            result.push_str(&format!("Warning: {}\n", warning));
+        }
+
+        for notice in &self.notices {
+            result.push_str(&format!("Notice: {}\n", notice));
+        }
+
+        result
+    }
+}
+
+impl Default for ValidationResults {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl StoredData {
+    pub fn validate(&self) -> ValidationResults {
+        let mut results = ValidationResults::new();
+
+        // Check if all regexes are valid
+        {
+            for service in &self.services {
+                for regex in &service.regexes {
+                    regex::Regex::new(&regex.regex)
+                        .map_err(|e| {
+                            results.add_error(format!(
+                                "Service {} has invalid regex {}: {}",
+                                service.name, regex.regex, e
+                            ));
+                            e
+                        })
+                        .ok();
+                }
+            }
+        }
+
+        // Check if service has no instances and no deprecation message
+        {
+            for service in &self.services {
+                if service.instances.is_empty() && service.deprecated_message.is_none() {
+                    results.add_warning(format!(
+                        "Service {} has no instances and no deprecation message",
+                        service.name
+                    ));
+                }
+            }
+        }
+
+        // Check if all instance URLs are unique
+        {
+            let mut instance_urls = HashMap::new();
+
+            for service in &self.services {
+                for instance in &service.instances {
+                    if instance_urls.contains_key(&instance.url) {
+                        results.add_warning(format!(
+                            "Service {} has duplicate instance URL {}",
+                            service.name, instance.url
+                        ));
+                    } else {
+                        instance_urls.insert(&instance.url, &service.name);
+                    }
+                }
+            }
+        }
+
+        // Check if all aliases are unique
+        {
+            let mut aliases = HashMap::new();
+
+            for service in &self.services {
+                for alias in &service.aliases {
+                    if aliases.contains_key(alias) {
+                        results.add_warning(format!(
+                            "Service {} has duplicate alias {}",
+                            service.name, alias
+                        ));
+                    } else {
+                        aliases.insert(alias, &service.name);
+                    }
+                }
+            }
+        }
+
+        // Check if all names and aliases in correct format
+        {
+            let name_regex = regex::Regex::new(r"^[a-z0-9-]+$").unwrap();
+
+            for service in &self.services {
+                if !name_regex.is_match(&service.name) {
+                    results
+                        .add_warning(format!("Service {} has invalid name format", service.name));
+                }
+
+                for alias in &service.aliases {
+                    if !name_regex.is_match(alias) {
+                        results.add_warning(format!(
+                            "Service {} has invalid alias format {}",
+                            service.name, alias
+                        ));
+                    }
+                }
+            }
+        }
+
+        results
+    }
+}

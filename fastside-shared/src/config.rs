@@ -115,7 +115,7 @@ impl Default for AutoUpdaterConfig {
 }
 
 /// Application configuration.
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct AppConfig {
     #[serde(default)]
     pub crawler: CrawlerConfig,

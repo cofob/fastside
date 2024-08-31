@@ -4,6 +4,8 @@ use thiserror::Error;
 pub enum CliError {
     #[error("no subcommand was used")]
     NoSubcommand,
+    #[error("invalid services file")]
+    InvalidServicesFile,
 }
 
 #[derive(Error, Debug)]

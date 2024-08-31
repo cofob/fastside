@@ -68,6 +68,12 @@ enum Commands {
         #[arg(short, long)]
         workers: Option<usize>,
     },
+    /// Validate services file.
+    Validate {
+        /// Services path.
+        #[arg(short, long)]
+        services: Option<String>,
+    },
 }
 
 // This function is needed to take ownership over cloned reference to crawler.
@@ -336,6 +342,31 @@ async fn main() -> Result<()> {
         None => {
             return Err(CliError::NoSubcommand)
                 .context("no subcommand was used. Pass --help to view available commands")?;
+        }
+        Some(Commands::Validate { services }) => {
+            let services_source = ServicesSource::from_str(
+                &services
+                    .clone()
+                    .unwrap_or_else(|| String::from("services.json")),
+            )?;
+            debug!("Using services source: {:?}", services_source);
+
+            let data_content = load_services_data(&services_source).await?;
+            let stored_data: StoredData =
+                serde_json::from_str(&data_content).context("failed to parse services file")?;
+
+            let validation_result = stored_data.validate();
+
+            if validation_result.has_errors() {
+                error!("Services file is invalid:");
+                error!("{}", validation_result.format());
+                return Err(CliError::InvalidServicesFile).context("services file is invalid.")?;
+            } else {
+                info!("Services file is valid");
+                info!("{}", validation_result.format());
+            }
+
+            return Ok(());
         }
     };
 
