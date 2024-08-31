@@ -8,8 +8,6 @@ use ipnet::Ipv6Net;
 use reqwest::Client;
 use url::Url;
 
-use super::log_err::LogErrResult;
-
 const AUTO_TAGS: [&str; 9] = [
     "ipv4",
     "ipv6",
@@ -165,22 +163,28 @@ fn get_url_tags(url: &Url) -> Vec<String> {
 /// This function updates instance tags based on URL, network and DNS information.
 pub async fn update_instance_tags(client: Client, url: Url, tags: &[String]) -> Vec<String> {
     let mut tags = tags.to_owned();
+    // Actualize auto tags
+    let url_tags = get_url_tags(&url);
+    let network_tags = match get_network_tags(client.clone(), url.clone()).await {
+        Ok(tags) => tags,
+        Err(e) => {
+            debug!("Failed to get network tags: {}", e);
+            return tags;
+        }
+    };
+    let dns_tags = match get_dns_tags(url.clone()).await {
+        Ok(tags) => tags,
+        Err(e) => {
+            debug!("Failed to get DNS tags: {}", e);
+            return tags;
+        }
+    };
     // Remove auto tags
     remove_auto_tags(&mut tags);
-    // Actualize auto tags
-    tags.extend(get_url_tags(&url));
-    tags.extend(
-        get_network_tags(client, url.clone())
-            .await
-            .log_err_debug(module_path!(), "Failed to get network tags")
-            .unwrap_or_default(),
-    );
-    tags.extend(
-        get_dns_tags(url)
-            .await
-            .log_err_debug(module_path!(), "Failed to get DNS tags")
-            .unwrap_or_default(),
-    );
+    // Combine all tags
+    tags.extend(url_tags);
+    tags.extend(network_tags);
+    tags.extend(dns_tags);
     // Remove duplicates and sort
     tags.sort();
     tags.dedup();
