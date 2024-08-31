@@ -147,7 +147,7 @@ jobs:
         with:
           string: ${{ github.repository }}
 
-      - name: Docker meta (remote)
+      - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -161,43 +161,51 @@ jobs:
             type=sha
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
+      - name: Docker manifest tag
+        id: manifest-tag
+        run: echo "manifest_tag=ghcr.io/${{ steps.repo.outputs.lowercase }}:manifest-${{ github.sha }}" >> $GITHUB_ENV
+
       - name: Build remote (x86_64)
         run: |
           nix --system x86_64-linux build .#fastside-docker
           docker load < result
-          docker tag fastside x86_64
+          docker tag fastside ${{ env.manifest_tag }}-x86_64
+          docker push ${{ env.manifest_tag }}-x86_64
 
       - name: Build remote (aarch64)
         run: |
           nix --system aarch64-linux build .#fastside-docker
           docker load < result
-          docker tag fastside aarch64
+          docker tag fastside ${{ env.manifest_tag }}-aarch64
+          docker push ${{ env.manifest_tag }}-aarch64
 
       - name: Build baked (x86_64)
         run: |
           nix --system x86_64-linux build .#fastside-docker-baked-services
           docker load < result
-          docker tag fastside x86_64-baked
+          docker tag fastside ${{ env.manifest_tag }}-x86_64-bakedd
+          docker push ${{ env.manifest_tag }}-x86_64-baked
 
       - name: Build baked (aarch64)
         run: |
           nix --system aarch64-linux build .#fastside-docker-baked-services
           docker load < result
-          docker tag fastside aarch64-baked
+          docker tag fastside ${{ env.manifest_tag }}-aarch64-baked
+          docker push ${{ env.manifest_tag }}-aarch64-baked
 
       - name: Construct remote
         run: |
           docker manifest create \
             remote \
-            --amend x86_64
-            --amend aarch64
+            --amend ${{ env.manifest_tag }}-x86_64
+            --amend ${{ env.manifest_tag }}-aarch64
 
       - name: Construct baked
         run: |
           docker manifest create \
             baked \
-            --amend x86_64-baked
-            --amend aarch64-baked
+            --amend ${{ env.manifest_tag }}-x86_64-baked
+            --amend ${{ env.manifest_tag }}-aarch64-baked
 
       - name: Push to registry
         run: |
