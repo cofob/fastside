@@ -52,6 +52,7 @@ jobs:
   build-nix:
     name: Build Nix
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -72,6 +73,7 @@ jobs:
   build-linux:
     name: Build Linux
     runs-on: ubuntu-latest
+    needs: test
     strategy:
       matrix:
         target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl]
@@ -109,6 +111,7 @@ jobs:
   build-linux-aarch64:
     name: Build Linux (aarch64-unknown-linux-musl)
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
