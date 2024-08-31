@@ -118,7 +118,7 @@ jobs:
           docker run \
             --rm \
             -v "$(pwd)":/home/rust/src \
-            messense/rust-musl-cross:aarch64-unknown-linux-musl \
+            messense/rust-musl-cross:aarch64-musl \
             cargo build --release --bins --target aarch64-unknown-linux-musl
 
       - name: Collect artifacts
