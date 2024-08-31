@@ -18,36 +18,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Nix
-        uses: cachix/install-nix-action@v25
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
         with:
-          nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - name: Cache Rust target
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
+          prefix-key: "v0-rust-test"
 
-      - name: Lint
-        run: |
-          nix develop --command cargo fmt --check
-          nix develop --command cargo clippy
+      - name: Check formatting
+        run: cargo fmt --check
 
-      - name: Test
-        run: |
-          nix develop --command cargo test
+      - name: Clippy
+        run: cargo clippy
+
+      - name: Tests
+        run: cargo test
 
   build-nix:
     name: Build Nix
