@@ -112,6 +112,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Pull Docker image
+        run: docker pull messense/rust-musl-cross:aarch64-musl
 
       - name: Build aarch64
         run: |
@@ -119,13 +121,13 @@ jobs:
             --rm \
             -v "$(pwd)":/home/rust/src \
             messense/rust-musl-cross:aarch64-musl \
-            cargo build --release --bins --target aarch64-unknown-linux-musl
+            cargo build --color always --release --bins --target aarch64-unknown-linux-musl
 
       - name: Collect artifacts
         run: |
-          mkdir aarch64-unknown-linux-musl
-          cp target/aarch64-unknown-linux-musl/release/fastside aarch64-unknown-linux-musl/
-          cp target/aarch64-unknown-linux-musl/release/fastside-actualizer aarch64-unknown-linux-musl/
+          mkdir dist-aarch64-unknown-linux-musl
+          cp target/aarch64-unknown-linux-musl/release/fastside dist-aarch64-unknown-linux-musl/
+          cp target/aarch64-unknown-linux-musl/release/fastside-actualizer dist-aarch64-unknown-linux-musl/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
