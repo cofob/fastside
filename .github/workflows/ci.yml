@@ -193,34 +193,26 @@ jobs:
           docker tag fastside ${{ env.manifest_tag }}-aarch64-baked
           docker push ${{ env.manifest_tag }}-aarch64-baked
 
-      - name: Construct remote
-        run: |
-          docker manifest create \
-            remote \
-            --amend ${{ env.manifest_tag }}-x86_64 \
-            --amend ${{ env.manifest_tag }}-aarch64
-
-      - name: Construct baked
-        run: |
-          docker manifest create \
-            baked \
-            --amend ${{ env.manifest_tag }}-x86_64-baked \
-            --amend ${{ env.manifest_tag }}-aarch64-baked
-
       - name: Push to registry
         run: |
           tags="${{ steps.meta.outputs.tags }}"
           for tag in $tags; do
             echo "Pushing $tag"
-            docker tag remote $tag
-            docker push $tag
+            docker manifest create \
+              $tag \
+              --amend ${{ env.manifest_tag }}-x86_64 \
+              --amend ${{ env.manifest_tag }}-aarch64
+            docker manifest push $tag
           done
 
           for tag in $tags; do
             mod_tag="$tag-baked"
             echo "Pushing $mod_tag"
-            docker tag baked $mod_tag
-            docker push $mod_tag
+            docker manifest create \
+              $mod_tag \
+              --amend ${{ env.manifest_tag }}-x86_64 \
+              --amend ${{ env.manifest_tag }}-aarch64
+            docker manifest push $mod_tag
           done
 
   test-services:
