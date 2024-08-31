@@ -89,7 +89,7 @@ jobs:
 
       - name: Build derivation ${{ matrix.derivation }}
         run: |
-          qemu-aarch64 ./nix --system aarch64-linux build .#${{ matrix.derivation }}
+          qemu-arm64 ./nix --system aarch64-linux build .#${{ matrix.derivation }}
 
   build-linux:
     name: Build Linux
