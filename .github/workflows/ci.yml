@@ -37,6 +37,9 @@ jobs:
   build-nix:
     name: Build Nix (x86_64)
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [x86_64, aarch64]
     needs: test
     steps:
       - name: Checkout
@@ -50,34 +53,14 @@ jobs:
         with:
           name: cofob
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-
-      - name: Build derivation
-        run: |
-          nix build .#fastside
-
-  build-nix-aarch64:
-    name: Build Nix (aarch64)
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
           platforms: aarch64
-      - name: Setup Nix
-        uses: cachix/install-nix-action@v25
-        with:
-          nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build derivation
-        run: nix --system aarch64-linux build .#fastside
+        run: |
+          nix --system ${{ matrix.target }}-linux build .#fastside
 
   build-linux:
     name: Build Linux
