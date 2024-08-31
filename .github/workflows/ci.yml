@@ -116,7 +116,7 @@ jobs:
       - name: Build aarch64
         run: |
           docker run \
-            --rm -it \
+            --rm \
             -v "$(pwd)":/home/rust/src \
             messense/rust-musl-cross:aarch64-unknown-linux-musl \
             cargo build --release --bins --target aarch64-unknown-linux-musl
