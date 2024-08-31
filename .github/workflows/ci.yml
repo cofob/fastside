@@ -111,7 +111,7 @@ jobs:
           compression-level: 9
 
   docker:
-    name: Build Docker container
+    name: Build Docker containers
     runs-on: ubuntu-latest
     needs: build-nix
     permissions:
@@ -197,14 +197,14 @@ jobs:
         run: |
           docker manifest create \
             remote \
-            --amend ${{ env.manifest_tag }}-x86_64
+            --amend ${{ env.manifest_tag }}-x86_64 \
             --amend ${{ env.manifest_tag }}-aarch64
 
       - name: Construct baked
         run: |
           docker manifest create \
             baked \
-            --amend ${{ env.manifest_tag }}-x86_64-baked
+            --amend ${{ env.manifest_tag }}-x86_64-baked \
             --amend ${{ env.manifest_tag }}-aarch64-baked
 
       - name: Push to registry
