@@ -85,26 +85,26 @@ jobs:
       - name: Cache Rust
         uses: Swatinem/rust-cache@v2
         with:
-          prefix-key: "v0-rust-{{ matrix.target }}"
+          prefix-key: "v0-rust-${{ matrix.target }}"
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y musl-tools
 
-      - name: Build {{ matrix.target }}
+      - name: Build ${{ matrix.target }}
         run: cargo build --release --bins --target ${{ matrix.target }}
 
       - name: Collect artifacts
         run: |
-          mkdir dist-{{ matrix.target }}
-          cp target/${{ matrix.target }}/release/fastside dist-{{ matrix.target }}/
-          cp target/${{ matrix.target }}/release/fastside-actualizer dist-{{ matrix.target }}/
+          mkdir dist-${{ matrix.target }}
+          cp target/${{ matrix.target }}/release/fastside dist-${{ matrix.target }}/
+          cp target/${{ matrix.target }}/release/fastside-actualizer dist-${{ matrix.target }}/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: fastside-${{ matrix.target }}
-          path: dist-{{ matrix.target }}
+          path: dist-${{ matrix.target }}
 
   test-services:
     name: Test services
