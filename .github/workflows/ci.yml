@@ -13,7 +13,7 @@ env:
 
 jobs:
   test:
-    name: Test
+    name: Test code
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,7 +52,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
