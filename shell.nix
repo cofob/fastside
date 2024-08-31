@@ -2,8 +2,8 @@
 let
   pkgs' = pkgs.extend (import (builtins.fetchTarball {
     url =
-      "https://github.com/oxalica/rust-overlay/archive/9803f6e04ca37a2c072783e8297d2080f8d0e739.tar.gz";
-    sha256 = "1b566msx04y4s0hvwsza9gcv4djmni4fa6ik7q2m33b6x4vrb92w";
+      "https://github.com/oxalica/rust-overlay/archive/87b6cffc276795b46ef544d7ed8d7fed6ad9c8e4.tar.gz";
+    sha256 = "01gf3m4a0ljzkxf65lkcvr5kwcjr3mbpjbpppf0djk82mm98qbh4";
   }));
 in pkgs'.mkShell {
   nativeBuildInputs = with pkgs'; [

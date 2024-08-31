@@ -97,10 +97,6 @@ pub struct ServiceHistory {
 const MIN_UPTIME: u8 = 5;
 
 impl ServiceHistory {
-    pub fn get_instance(&self, url: &Url) -> Option<&InstanceHistory> {
-        self.instances.iter().find(|i| &i.url == url)
-    }
-
     pub fn get_instance_mut(&mut self, url: &Url) -> Option<&mut InstanceHistory> {
         self.instances.iter_mut().find(|i| &i.url == url)
     }

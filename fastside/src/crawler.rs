@@ -91,10 +91,7 @@ pub struct CrawledServices {
 pub enum CrawledData {
     CrawledServices(CrawledServices),
     InitialLoading,
-    ReloadingServices {
-        current: CrawledServices,
-        new: Option<CrawledServices>,
-    },
+    ReloadingServices(CrawledServices),
 }
 
 impl CrawledData {
@@ -102,12 +99,8 @@ impl CrawledData {
         match self {
             Self::CrawledServices(s) => Some(s),
             Self::InitialLoading => None,
-            Self::ReloadingServices { current, .. } => Some(current),
+            Self::ReloadingServices(current) => Some(current),
         }
-    }
-
-    pub fn is_fetched(&self) -> bool {
-        self.get_services().is_some()
     }
 
     pub fn is_reloading(&self) -> bool {
@@ -123,17 +116,7 @@ impl CrawledData {
             Self::CrawledServices(s) => s.clone(),
             _ => return,
         };
-        *self = Self::ReloadingServices { current, new: None };
-    }
-
-    pub fn make_reloaded(&mut self) {
-        let new = match self {
-            Self::ReloadingServices { new, .. } => new.take(),
-            _ => return,
-        };
-        if let Some(new) = new {
-            *self = Self::CrawledServices(new);
-        }
+        *self = Self::ReloadingServices(current);
     }
 }
 
