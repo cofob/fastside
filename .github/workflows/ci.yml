@@ -102,6 +102,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Pull Docker image
         run: docker pull messense/rust-musl-cross:aarch64-musl
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          prefix-key: "v0-rust-aarch64-unknown-linux-musl"
 
       - name: Build aarch64
         run: |
