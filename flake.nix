@@ -15,6 +15,8 @@
       let
         pkgs = import nixpkgs { inherit system; };
         naersk' = pkgs.callPackage naersk { };
+        pkgsStatic = pkgs.pkgsStatic;
+        naersk'static = pkgsStatic.callPackage naersk { };
 
         # This needed to remove dependency on services.json file and avoid useless rebuilds
         constructed-source = pkgs.runCommand "constructed-source" { } ''
@@ -26,29 +28,38 @@
           cp ${./Cargo.lock} $out/Cargo.lock
         '';
 
-        fastside = naersk'.buildPackage {
+        fastside-attrs = {
           name = "fastside-0.2.0";
           src = constructed-source;
           nativeBuildInputs = with pkgs; [ mold ];
           NIX_CFLAGS_LINK = " -fuse-ld=mold";
         };
 
+        fastside = naersk'.buildPackage fastside-attrs;
+
+        fastside-static = naersk'static.buildPackage fastside-attrs;
+
         fastside-baked-services = pkgs.writeShellScriptBin "fastside-baked-services" ''
           export FS__SERVICES_PATH=${./services.json}
           ${fastside}/bin/fastside $@
         '';
 
+        fastside-baked-services-static = pkgs.writeShellScriptBin "fastside-baked-services" ''
+          export FS__SERVICES_PATH=${./services.json}
+          ${fastside-static}/bin/fastside $@
+        '';
+
         fastside-docker = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
-          contents = [ fastside ];
+          contents = [ fastside-static ];
           config = { Cmd = [ "/bin/fastside" "serve" "-l" "0.0.0.0:8080" ]; };
         };
 
         fastside-docker-baked-services = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
-          contents = [ fastside fastside-baked-services ];
+          contents = [ fastside-static fastside-baked-services-static ];
           config = { Cmd = [ "/bin/fastside-baked-services" "serve" "-l" "0.0.0.0:8080" ]; };
         };
 
@@ -59,6 +70,7 @@
         packages = {
           default = fastside;
           fastside = fastside;
+          fastside-static = fastside-static;
           fastside-baked-services = fastside-baked-services;
           fastside-docker = fastside-docker;
           fastside-docker-baked-services = fastside-docker-baked-services;
