@@ -36,9 +36,15 @@ pub fn build_client(
     } else {
         reqwest::redirect::Policy::none()
     };
+    let timeout = config.get_domain_timeout(
+        instance
+            .url
+            .host_str()
+            .expect("Failed to get host from instance URL"),
+    );
     let mut client_builder = Client::builder()
-        .connect_timeout(config.request_timeout)
-        .read_timeout(config.request_timeout)
+        .connect_timeout(timeout)
+        .read_timeout(timeout)
         .default_headers(default_headers())
         .redirect(redirect_policy);
 

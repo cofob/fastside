@@ -8,6 +8,12 @@ use serde::{Deserialize, Serialize};
 
 use crate::errors::UserConfigError;
 
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct DomainRequestTimeout {
+    domain: String,
+    timeout: Duration,
+}
+
 const fn default_ping_interval() -> Duration {
     // Every 5 minutes
     Duration::from_secs(60 * 5)
@@ -22,23 +28,25 @@ const fn default_max_concurrent_requests() -> usize {
 }
 
 /// Crawler configuration.
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct CrawlerConfig {
     #[serde(default = "default_ping_interval")]
     pub ping_interval: Duration,
     #[serde(default = "default_request_timeout")]
     pub request_timeout: Duration,
+    #[serde(default)]
+    pub domain_request_timeouts: Vec<DomainRequestTimeout>,
     #[serde(default = "default_max_concurrent_requests")]
     pub max_concurrent_requests: usize,
 }
 
-impl Default for CrawlerConfig {
-    fn default() -> Self {
-        Self {
-            ping_interval: default_ping_interval(),
-            request_timeout: default_request_timeout(),
-            max_concurrent_requests: default_max_concurrent_requests(),
-        }
+impl CrawlerConfig {
+    pub fn get_domain_timeout(&self, domain: &str) -> Duration {
+        self.domain_request_timeouts
+            .iter()
+            .find(|drt| domain.ends_with(&drt.domain))
+            .map(|drt| drt.timeout)
+            .unwrap_or_else(|| self.request_timeout)
     }
 }
 
