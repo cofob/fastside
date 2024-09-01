@@ -59,6 +59,7 @@ async fn cached_redirect(
         crawled_service,
         &user_config.required_tags,
         &user_config.forbidden_tags,
+        &user_config.preferred_instances,
     )
     .ok_or(RedirectError::from(SearchError::NoInstancesFound))?;
     if user_config.select_method == SelectMethod::LowPing {
