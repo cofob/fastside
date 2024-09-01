@@ -32,6 +32,13 @@
 </div>
 
 <div>
+  <h3>Preferred instances</h3>
+  <input type="text" id="preferred-instance-input" placeholder="Add preferred instance">
+  <button onclick="addPreferred()">Add</button>
+  <ul id="preferred-instances-list"></ul>
+</div>
+
+<div>
   <h3>Generated config</h3>
   <textarea id="generated-json" readonly cols="80" rows="10"></textarea>
 </div>
@@ -44,6 +51,7 @@
     required: [],
     forbidden: []
   };
+  let preferred = [];
   let ignoreFallbackWarning = false;
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -57,9 +65,11 @@
       tags.required = decodedConfig.required_tags || [];
       tags.forbidden = decodedConfig.forbidden_tags || [];
       const selectorMethod = decodedConfig.select_method || 'Random';
+      preferred = decodedConfig.preferred_instances || [];
 
       renderTags('required');
       renderTags('forbidden');
+      renderPreferred();
       if (selectorMethod) {
         document.querySelector('input[name="selector-method"]:checked').checked = false;
         document.querySelector(`input[name="selector-method"][value="${selectorMethod}"]`).checked = true;
@@ -101,13 +111,45 @@
     });
   }
 
+  function addPreferred() {
+    const input = document.getElementById('preferred-instance-input');
+    const instance = input.value.trim();
+    if (instance && !preferred.includes(instance)) {
+      preferred.push(instance);
+      input.value = '';
+      renderPreferred();
+      generateJSON();
+    }
+  }
+
+  function removePreferred(index) {
+    preferred.splice(index, 1);
+    renderPreferred();
+    generateJSON();
+  }
+
+  function renderPreferred() {
+    const list = document.getElementById('preferred-instances-list');
+    list.innerHTML = '';
+    preferred.forEach((instance, index) => {
+      const li = document.createElement('li');
+      li.textContent = instance;
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.onclick = () => removePreferred(index);
+      li.appendChild(removeButton);
+      list.appendChild(li);
+    });
+  }
+
   function generateJSON() {
     const selectorMethod = document.querySelector('input[name="selector-method"]:checked')?.value || '';
     const json = JSON.stringify({
       required_tags: tags.required,
       forbidden_tags: tags.forbidden,
       select_method: selectorMethod,
-      ignore_fallback_warning: document.getElementById('ignore-fallback-warning').checked
+      ignore_fallback_warning: document.getElementById('ignore-fallback-warning').checked,
+      preferred_instances: preferred
     });
     const encoded = btoa(json);
     document.getElementById('generated-json').value = `/configure/save?${encoded}`;

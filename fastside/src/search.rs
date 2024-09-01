@@ -174,6 +174,7 @@ pub fn get_redirect_instances<'a>(
     crawled_service: &'a CrawledService,
     required_tags: &[String],
     forbidden_tags: &[String],
+    preferred_instances: &[String],
 ) -> Option<Vec<&'a CrawledInstance>> {
     let alive_instances = crawled_service.get_alive_instances();
     let instances = alive_instances
@@ -183,6 +184,25 @@ pub fn get_redirect_instances<'a>(
     if instances.is_empty() {
         return None;
     }
+    let instances = if preferred_instances.is_empty() {
+        instances
+    } else {
+        // Filter out instances that are not in the preferred list.
+        let filtered_preferred_instances: Vec<_> = instances
+            .iter()
+            .filter(|i| {
+                let host = i.url.host_str().unwrap_or("");
+                preferred_instances.iter().any(|p| host == p)
+            })
+            .cloned()
+            .collect();
+        // If there are no preferred instances, return all instances.
+        if filtered_preferred_instances.is_empty() {
+            instances
+        } else {
+            filtered_preferred_instances
+        }
+    };
     Some(instances)
 }
 
@@ -197,6 +217,7 @@ pub fn get_redirect_instance(
         crawled_service,
         &user_config.required_tags,
         &user_config.forbidden_tags,
+        &user_config.preferred_instances,
     );
     match &instances {
         None => match &service.fallback {

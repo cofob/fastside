@@ -90,6 +90,8 @@ pub struct UserConfig {
     pub select_method: SelectMethod,
     #[serde(default)]
     pub ignore_fallback_warning: bool,
+    #[serde(default)]
+    pub preferred_instances: Vec<String>,
 }
 
 impl UserConfig {

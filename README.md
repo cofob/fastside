@@ -33,6 +33,7 @@ bottlenecks and rate-limiting.
 
 - [x] Support for hidden networks (tor, i2p, etc).
 - [x] Redirect behaviour can be configured. (for example - you can exclude cloudflare)
+- [x] User-preferred instances.
 - [x] POST redirects.
 - [x] Regex redirects via `/{url}` routes.
 - [x] Anonymous and cached redirects via `/@cached/#{path}` routes.
