@@ -193,8 +193,7 @@ async fn update_service(
         Some(updater) => {
             let updated_instances_result = updater
                 .update(client, &service.instances, changes_summary.clone())
-                .await
-                .context("failed to update service");
+                .await;
             match updated_instances_result {
                 Ok(updated_instances) => {
                     debug!("Updated instances: {:?}", updated_instances);
