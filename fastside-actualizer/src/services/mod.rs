@@ -1,3 +1,4 @@
+mod breezewiki;
 mod default;
 mod invidious;
 mod libreddit;
@@ -19,6 +20,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "invidious" => Some(Box::new(invidious::InvidiousUpdater::new())),
         "scribe" => Some(Box::new(scribe::ScribeUpdater::new())),
         "libreddit" => Some(Box::new(libreddit::LibredditUpdater::new())),
+        "breezewiki" => Some(Box::new(breezewiki::BreezewikiUpdater::new())),
         _ => None,
     }
 }
