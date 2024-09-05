@@ -1,11 +1,8 @@
 use std::collections::HashMap;
 
-use crate::{
-    types::{InstanceChecker, ServiceUpdater},
-    ChangesSummary,
-};
+use crate::{types::ServiceUpdater, ChangesSummary};
 use async_trait::async_trait;
-use fastside_shared::serde_types::{Instance, Service};
+use fastside_shared::serde_types::Instance;
 use serde::Deserialize;
 use url::Url;
 
@@ -63,18 +60,5 @@ impl ServiceUpdater for SearxUpdater {
         instances.extend(new_instances);
 
         Ok(instances)
-    }
-}
-
-#[async_trait]
-impl InstanceChecker for SearxUpdater {
-    async fn check(
-        &self,
-        client: reqwest::Client,
-        _service: &Service,
-        instance: &Instance,
-    ) -> anyhow::Result<bool> {
-        let response = client.get(instance.url.clone()).send().await?;
-        Ok(response.status().is_success())
     }
 }
