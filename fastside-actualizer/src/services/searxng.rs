@@ -54,7 +54,7 @@ impl ServiceUpdater for SearxngUpdater {
 
         changes_summary
             .set_new_instances_added(
-                "searx",
+                "searxng",
                 new_instances.iter().map(|i| i.url.clone()).collect(),
             )
             .await;
