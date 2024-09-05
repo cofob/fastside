@@ -54,6 +54,10 @@ enum Commands {
         /// Amount of maximum parallel requests.
         #[arg(long, default_value = None)]
         max_parallel: Option<usize>,
+        /// List of service names to actualize.
+        /// If not provided, all services will be actualized.
+        #[arg(short = 'u', long = "update", default_value = None)]
+        update_service_names: Option<Vec<String>>,
     },
 }
 
@@ -321,6 +325,7 @@ async fn main() -> Result<()> {
             output,
             data,
             max_parallel,
+            update_service_names,
         }) => {
             let config = load_config(&cli.config).context("failed to load config")?;
 
@@ -348,11 +353,20 @@ async fn main() -> Result<()> {
                     std::fs::read_to_string(services).context("failed to read services file")?;
                 serde_json::from_str(&data_content).context("failed to parse services file")?
             };
-            let mut services_data = stored_data
+            let mut services_data: HashMap<String, Service> = stored_data
                 .services
                 .into_iter()
                 .map(|service| (service.name.clone(), service))
                 .collect();
+
+            // Check if all services from update_service_names exist
+            if let Some(update_service_names) = update_service_names {
+                for name in update_service_names.iter() {
+                    if !services_data.contains_key(name) {
+                        return Err(anyhow!("service {name:?} does not exist"));
+                    }
+                }
+            }
 
             let changes_summary = ChangesSummary::new();
 
@@ -362,8 +376,21 @@ async fn main() -> Result<()> {
             actualizer_data.remove_removed_instances(&services_data);
 
             let update_service_client = reqwest::Client::new();
-            let length = services_data.len();
-            for (i, (name, service)) in services_data.iter_mut().enumerate() {
+
+            // Filter services data
+            let mut filtered_services_data = services_data
+                .iter_mut()
+                .filter(|(name, _)| {
+                    if let Some(update_service_names) = update_service_names {
+                        update_service_names.contains(name)
+                    } else {
+                        true
+                    }
+                })
+                .collect::<HashMap<_, _>>();
+            let length = filtered_services_data.len();
+
+            for (i, (name, service)) in filtered_services_data.iter_mut().enumerate() {
                 info!(
                     "Actualizing service {name} ({i}/{length})",
                     name = name,
