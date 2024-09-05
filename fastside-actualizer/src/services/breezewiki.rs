@@ -55,7 +55,7 @@ impl ServiceUpdater for BreezewikiUpdater {
 
         changes_summary
             .set_new_instances_added(
-                "Breezewiki",
+                "breezewiki",
                 new_instances.iter().map(|i| i.url.clone()).collect(),
             )
             .await;

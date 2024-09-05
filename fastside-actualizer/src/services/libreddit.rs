@@ -59,7 +59,7 @@ impl ServiceUpdater for LibredditUpdater {
 
         changes_summary
             .set_new_instances_added(
-                "Libreddit",
+                "libreddit",
                 new_instances.iter().map(|i| i.url.clone()).collect(),
             )
             .await;
