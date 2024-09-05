@@ -1,6 +1,7 @@
 mod default;
 mod searx;
 mod searxng;
+mod simplytranslate;
 
 use crate::types::ServiceUpdater;
 
@@ -11,6 +12,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
     match name {
         "searx" => Some(Box::new(searx::SearxUpdater::new())),
         "searxng" => Some(Box::new(searxng::SearxngUpdater::new())),
+        "simplytranslate" => Some(Box::new(simplytranslate::SimplyTranslateUpdater::new())),
         _ => None,
     }
 }
