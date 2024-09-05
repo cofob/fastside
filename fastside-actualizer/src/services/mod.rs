@@ -1,5 +1,6 @@
 mod default;
 mod invidious;
+mod scribe;
 mod searx;
 mod searxng;
 mod simplytranslate;
@@ -15,6 +16,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "searxng" => Some(Box::new(searxng::SearxngUpdater::new())),
         "simplytranslate" => Some(Box::new(simplytranslate::SimplyTranslateUpdater::new())),
         "invidious" => Some(Box::new(invidious::InvidiousUpdater::new())),
+        "scribe" => Some(Box::new(scribe::ScribeUpdater::new())),
         _ => None,
     }
 }
