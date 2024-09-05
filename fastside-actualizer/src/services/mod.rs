@@ -1,5 +1,6 @@
 mod default;
 mod invidious;
+mod libreddit;
 mod scribe;
 mod searx;
 mod searxng;
@@ -17,6 +18,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "simplytranslate" => Some(Box::new(simplytranslate::SimplyTranslateUpdater::new())),
         "invidious" => Some(Box::new(invidious::InvidiousUpdater::new())),
         "scribe" => Some(Box::new(scribe::ScribeUpdater::new())),
+        "libreddit" => Some(Box::new(libreddit::LibredditUpdater::new())),
         _ => None,
     }
 }
