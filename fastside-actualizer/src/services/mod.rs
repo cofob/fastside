@@ -6,6 +6,7 @@ mod scribe;
 mod searx;
 mod searxng;
 mod simplytranslate;
+mod librex;
 
 use crate::types::ServiceUpdater;
 
@@ -21,6 +22,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "scribe" => Some(Box::new(scribe::ScribeUpdater::new())),
         "libreddit" => Some(Box::new(libreddit::LibredditUpdater::new())),
         "breezewiki" => Some(Box::new(breezewiki::BreezewikiUpdater::new())),
+        "librex" => Some(Box::new(librex::LibrexUpdater::new())),
         _ => None,
     }
 }
