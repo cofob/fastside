@@ -8,6 +8,7 @@ mod scribe;
 mod searx;
 mod searxng;
 mod simplytranslate;
+mod tent;
 
 use crate::types::ServiceUpdater;
 
@@ -25,6 +26,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "breezewiki" => Some(Box::new(breezewiki::BreezewikiUpdater::new())),
         "librex" => Some(Box::new(librex::LibrexUpdater::new())),
         "gothub" => Some(Box::new(gothub::GothubUpdater::new())),
+        "tent" => Some(Box::new(tent::TentUpdater::new())),
         _ => None,
     }
 }
