@@ -1,34 +1,33 @@
-use std::collections::HashMap;
-
 use crate::{types::ServiceUpdater, ChangesSummary};
 use async_trait::async_trait;
 use fastside_shared::serde_types::Instance;
 use serde::Deserialize;
 use url::Url;
 
-pub struct SearxUpdater {
+pub struct ScribeUpdater {
     pub instances_url: String,
 }
 
-impl SearxUpdater {
+impl ScribeUpdater {
     pub fn new() -> Self {
         Self {
-            instances_url: "https://raw.githubusercontent.com/searx/searx-instances/master/searxinstances/instances.yml".to_string(),
+            instances_url: "https://git.sr.ht/~edwardloveall/scribe/blob/main/docs/instances.json"
+                .to_string(),
         }
     }
 }
 
-impl Default for SearxUpdater {
+impl Default for ScribeUpdater {
     fn default() -> Self {
         Self::new()
     }
 }
 
 #[derive(Debug, Deserialize)]
-struct InstancesResponse(HashMap<Url, serde_yaml::Value>);
+struct InstancesResponse(Vec<Url>);
 
 #[async_trait]
-impl ServiceUpdater for SearxUpdater {
+impl ServiceUpdater for ScribeUpdater {
     async fn update(
         &self,
         client: reqwest::Client,
@@ -37,22 +36,21 @@ impl ServiceUpdater for SearxUpdater {
     ) -> anyhow::Result<Vec<Instance>> {
         let response = client.get(&self.instances_url).send().await?;
         let response_str = response.text().await?;
-        let parsed: InstancesResponse = serde_yaml::from_str(&response_str)?;
+        let parsed: InstancesResponse = serde_json::from_str(&response_str)?;
 
         let mut instances = current_instances.to_vec();
         let mut new_instances = Vec::new();
 
-        for url in parsed.0.keys() {
-            if current_instances.iter().any(|i| &i.url == url) {
+        for url in parsed.0 {
+            if current_instances.iter().any(|i| i.url == url) {
                 continue;
             }
-
             new_instances.push(Instance::from(url.clone()));
         }
 
         changes_summary
             .set_new_instances_added(
-                "searx",
+                "scribe",
                 new_instances.iter().map(|i| i.url.clone()).collect(),
             )
             .await;

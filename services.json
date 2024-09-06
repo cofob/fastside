@@ -2666,7 +2666,7 @@
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
-      "aliases": [],
+      "aliases": ["librey"],
       "source_link": null,
       "deprecated_message": null,
       "instances": [
