@@ -347,9 +347,7 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -750,8 +748,14 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://fan.blitzw.in/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -1361,14 +1365,6 @@
           ]
         },
         {
-          "url": "https://inv.tux.pizza/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://inv.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -1676,8 +1672,7 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5942,15 +5937,6 @@
           ]
         },
         {
-          "url": "https://rimgo.totaldarkness.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -6089,6 +6075,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -6250,10 +6237,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://search.stinpriza.org/",
-          "tags": []
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -6311,13 +6294,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.zapashcanon.fr/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         }
       ]
@@ -6867,7 +6843,10 @@
         },
         {
           "url": "https://searx.mxchange.org/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://searx.namejeff.xyz/",
