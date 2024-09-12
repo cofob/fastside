@@ -1,5 +1,6 @@
 mod breezewiki;
 mod default;
+mod fastside;
 mod gothub;
 mod invidious;
 mod libreddit;
@@ -27,6 +28,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "librex" => Some(Box::new(librex::LibrexUpdater::new())),
         "gothub" => Some(Box::new(gothub::GothubUpdater::new())),
         "tent" => Some(Box::new(tent::TentUpdater::new())),
+        "fastside" => Some(Box::new(fastside::FastsideUpdater::new())),
         _ => None,
     }
 }

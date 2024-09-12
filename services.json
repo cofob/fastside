@@ -948,6 +948,19 @@
       ]
     },
     {
+      "type": "fastside",
+      "test_url": "/",
+      "fallback": "https://fastsi.de/",
+      "follow_redirects": false,
+      "allowed_http_codes": "200",
+      "search_string": "fastside",
+      "regexes": [],
+      "aliases": [],
+      "source_link": "https://github.com/cofob/fastside",
+      "deprecated_message": null,
+      "instances": []
+    },
+    {
       "type": "freexiv",
       "test_url": "/",
       "fallback": null,
