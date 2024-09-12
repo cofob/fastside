@@ -6949,14 +6949,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://transfer.acted.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
