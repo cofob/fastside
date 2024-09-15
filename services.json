@@ -1162,7 +1162,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1737,8 +1736,7 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2416,9 +2414,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6113,9 +6109,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6543,6 +6537,14 @@
           ]
         },
         {
+          "url": "https://search.canine.tools/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.charliewhiskey.net/",
           "tags": [
             "https",
@@ -6860,6 +6862,10 @@
           ]
         },
         {
+          "url": "https://searx.hu/",
+          "tags": []
+        },
+        {
           "url": "https://searx.juancord.xyz/",
           "tags": [
             "https",
@@ -7080,7 +7086,9 @@
           "url": "https://sx.thatxtreme.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7089,6 +7097,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://tritest.site/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
