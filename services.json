@@ -52,15 +52,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://ttm.sh/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -348,6 +339,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -749,6 +741,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1246,6 +1239,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1415,6 +1409,13 @@
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://inv.tux.pizza/",
+          "tags": [
             "https",
             "ipv4"
           ]
@@ -2407,6 +2408,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2581,6 +2583,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3117,15 +3120,6 @@
           ]
         },
         {
-          "url": "https://search.decentrala.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.funami.tech/",
           "tags": [
             "clearnet",
@@ -3150,6 +3144,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.seitan-ayoub.lol/",
+          "tags": []
         },
         {
           "url": "https://search.zeroish.xyz/",
@@ -5933,7 +5931,8 @@
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -6092,6 +6091,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -6253,6 +6253,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": []
+        },
+        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -6310,6 +6314,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -7058,14 +7069,6 @@
           "url": "https://sx.thatxtreme.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://sx.zorby.top/",
-          "tags": [
             "https",
             "ipv4",
             "ipv6"
