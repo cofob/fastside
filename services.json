@@ -1349,6 +1349,10 @@
           ]
         },
         {
+          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://ng27owmagn5amdm7l5s3rsqxwscl5ynppnis5dqcasogkyxcfqn7psid.onion/",
           "tags": [
             "http",
@@ -1471,7 +1475,10 @@
         },
         {
           "url": "https://invidious.yourdevice.ch/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://iv.ggtyler.dev/",
@@ -2293,7 +2300,8 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -3884,16 +3892,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://poke.blahai.gay/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "https://poke.ggtyler.dev/",
           "tags": [
@@ -5803,7 +5801,8 @@
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -6043,7 +6042,8 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6713,6 +6713,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://searx.hu/",
+          "tags": []
         },
         {
           "url": "https://searx.juancord.xyz/",
