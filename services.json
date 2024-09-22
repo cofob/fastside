@@ -436,8 +436,10 @@
           "url": "https://biblioreads.eu.org/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1375,13 +1377,6 @@
           ]
         },
         {
-          "url": "https://inv.tux.pizza/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://inv.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -2300,8 +2295,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2474,7 +2468,8 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -3036,10 +3031,6 @@
           ]
         },
         {
-          "url": "https://search.seitan-ayoub.lol/",
-          "tags": []
-        },
-        {
           "url": "https://search.zeroish.xyz/",
           "tags": []
         },
@@ -3352,7 +3343,8 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         }
       ]
@@ -5801,8 +5793,7 @@
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6121,10 +6112,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://search.stinpriza.org/",
-          "tags": []
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -6182,13 +6169,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.zapashcanon.fr/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         }
       ]
