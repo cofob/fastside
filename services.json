@@ -1625,8 +1625,7 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2468,8 +2467,7 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2617,13 +2615,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://redlib.nadeko.net/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -3031,6 +3022,10 @@
           ]
         },
         {
+          "url": "https://search.seitan-ayoub.lol/",
+          "tags": []
+        },
+        {
           "url": "https://search.zeroish.xyz/",
           "tags": []
         },
@@ -3343,8 +3338,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -6038,14 +6032,6 @@
           ]
         },
         {
-          "url": "https://scribe.manasiwibi.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://scribe.nixnet.services/",
           "tags": [
             "https",
@@ -6112,6 +6098,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": []
+        },
+        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -6169,6 +6159,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -6923,10 +6920,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://sx.zorby.top/",
-          "tags": []
         },
         {
           "url": "https://tritest.site/",
