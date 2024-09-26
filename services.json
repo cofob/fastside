@@ -75,13 +75,6 @@
           ]
         },
         {
-          "url": "http://46tj5gkbuowmxhe2lgrfoxoutayieb43gy6s4sceovd3thd4ehmsmrid.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion/",
           "tags": [
             "http",
@@ -329,7 +322,9 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -597,6 +592,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://breeze.hostux.net/",
+          "tags": []
         },
         {
           "url": "https://breeze.mint.lgbt/",
@@ -1132,7 +1131,8 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -1216,7 +1216,8 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -1345,10 +1346,6 @@
             "http",
             "tor"
           ]
-        },
-        {
-          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
-          "tags": []
         },
         {
           "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
@@ -2229,7 +2226,8 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -2341,16 +2339,6 @@
           ]
         },
         {
-          "url": "https://libreddit.eu.org/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://libreddit.kavin.rocks/",
           "tags": [
             "clearnet",
@@ -2388,7 +2376,9 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2846,14 +2836,6 @@
           ]
         },
         {
-          "url": "https://librey.nezumi.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://librey.nirn.quest/",
           "tags": []
         },
@@ -2991,14 +2973,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://librey.nezumi.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -3245,7 +3219,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -5678,7 +5654,9 @@
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5836,7 +5814,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6362,6 +6342,10 @@
           ]
         },
         {
+          "url": "https://search.incogniweb.net/",
+          "tags": []
+        },
+        {
           "url": "https://search.indst.eu/",
           "tags": [
             "https",
@@ -6588,10 +6572,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://searx.hu/",
-          "tags": []
         },
         {
           "url": "https://searx.juancord.xyz/",
