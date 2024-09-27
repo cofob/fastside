@@ -322,9 +322,7 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1131,8 +1129,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1216,8 +1213,7 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1346,6 +1342,10 @@
             "http",
             "tor"
           ]
+        },
+        {
+          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
+          "tags": []
         },
         {
           "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
@@ -2226,8 +2226,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2376,9 +2375,7 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2446,8 +2443,10 @@
           "url": "https://reddit.simo.sh/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3219,9 +3218,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -5654,9 +5651,7 @@
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5814,9 +5809,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6572,6 +6565,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://searx.hu/",
+          "tags": []
         },
         {
           "url": "https://searx.juancord.xyz/",
