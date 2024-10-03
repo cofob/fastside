@@ -323,6 +323,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1132,6 +1133,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1347,6 +1349,10 @@
             "http",
             "tor"
           ]
+        },
+        {
+          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
+          "tags": []
         },
         {
           "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
@@ -3196,8 +3202,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -6497,6 +6502,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://searx.hu/",
+          "tags": []
         },
         {
           "url": "https://searx.juancord.xyz/",
