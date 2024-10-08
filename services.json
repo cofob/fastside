@@ -723,7 +723,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1209,7 +1211,9 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2173,7 +2177,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2305,7 +2311,9 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3129,7 +3137,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -5871,6 +5881,10 @@
           "tags": []
         },
         {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
           "tags": [
             "http",
@@ -5955,6 +5969,14 @@
         },
         {
           "url": "https://fairsuch.net/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://kantan.cat/",
           "tags": [
             "https",
             "ipv4",
@@ -6110,6 +6132,14 @@
           "tags": [
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.getcobalt.org/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6367,10 +6397,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://searx.hu/",
-          "tags": []
         },
         {
           "url": "https://searx.juancord.xyz/",
