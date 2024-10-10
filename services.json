@@ -2181,7 +2181,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2320,13 +2319,6 @@
           ]
         },
         {
-          "url": "https://lr.ggtyler.dev/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://lr.n8pjl.ca/",
           "tags": [
             "https",
@@ -2436,13 +2428,6 @@
         {
           "url": "https://redlib.incogniweb.net/",
           "tags": []
-        },
-        {
-          "url": "https://redlib.nadeko.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
         },
         {
           "url": "https://redlib.nirn.quest/",
@@ -2840,6 +2825,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.seitan-ayoub.lol/",
+          "tags": []
         },
         {
           "url": "https://search.zeroish.xyz/",
@@ -5749,6 +5738,14 @@
           ]
         },
         {
+          "url": "https://scribe.r4fo.com/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
             "clearnet",
@@ -5782,6 +5779,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": []
+        },
+        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -5796,6 +5797,14 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://searx.mastodontech.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5830,6 +5839,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -6603,10 +6619,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://sx.zorby.top/",
-          "tags": []
         },
         {
           "url": "https://tritest.site/",
