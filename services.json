@@ -1137,9 +1137,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1377,15 +1375,6 @@
         {
           "url": "https://invidious.jing.rocks/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://invidious.nerdvpn.de/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -5619,6 +5608,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -6190,7 +6180,8 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
