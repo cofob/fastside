@@ -1207,6 +1207,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2285,9 +2286,7 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -3114,9 +3113,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -6128,8 +6125,7 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
