@@ -1202,9 +1202,7 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1364,14 +1362,6 @@
         },
         {
           "url": "https://invidious.jing.rocks/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://invidious.privacyredirect.com/",
           "tags": [
             "https",
             "ipv4",
@@ -2727,7 +2717,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3107,8 +3098,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -5574,7 +5564,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
