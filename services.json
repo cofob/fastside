@@ -5072,15 +5072,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://tok.habedieeh.re/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
