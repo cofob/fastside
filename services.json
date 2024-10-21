@@ -323,7 +323,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1128,7 +1127,9 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1204,9 +1205,7 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2374,10 +2373,8 @@
         {
           "url": "https://redlib.frontendfriendly.xyz/",
           "tags": [
-            "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
