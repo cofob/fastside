@@ -1426,8 +1426,7 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6102,6 +6101,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.technicalvoid.dev/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
