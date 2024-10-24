@@ -721,6 +721,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1485,8 +1486,7 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3421,9 +3421,7 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5830,10 +5828,7 @@
         },
         {
           "url": "https://darmarit.org/searx/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "tags": []
         },
         {
           "url": "https://etsi.me/",
