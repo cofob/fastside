@@ -721,8 +721,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1123,8 +1122,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1200,8 +1198,7 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1373,6 +1370,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://yt.drgnz.club/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -2266,16 +2270,7 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://lr.ggtyler.dev/",
-          "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2618,6 +2613,10 @@
           "tags": []
         },
         {
+          "url": "http://ezjfq3zz5mquiwdl4q7zg4v26u74e4sjsdyg3z67ozn3dxqslvb7pzyd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://jxhkfulu6wpdl4apuy4dyivuowmpprvsd7e3el2z73crq7fmyv7rjkyd.onion/",
           "tags": []
         },
@@ -2797,6 +2796,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.seitan-ayoub.lol/",
+          "tags": []
         },
         {
           "url": "https://search.technicalvoid.dev/",
@@ -3108,7 +3111,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
@@ -5035,18 +5037,7 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://tiktok.wpme.pl/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "proxyraye",
@@ -5660,6 +5651,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": []
+        },
+        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -5674,6 +5669,14 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://searx.mastodontech.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5708,6 +5711,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
