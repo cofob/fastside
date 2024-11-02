@@ -719,7 +719,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1331,6 +1330,14 @@
           ]
         },
         {
+          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
+          "tags": []
+        },
+        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -1342,14 +1349,6 @@
           "url": "https://invidious.flokinet.to/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://invidious.jing.rocks/",
-          "tags": [
             "https",
             "ipv4",
             "ipv6"
@@ -1480,8 +1479,7 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2143,6 +2141,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2268,7 +2267,8 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -5150,15 +5150,6 @@
           ]
         },
         {
-          "url": "https://ask.sudovanilla.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://q.opnxng.com/",
           "tags": [
             "clearnet",
@@ -5744,6 +5735,10 @@
       "instances": [
         {
           "url": "http://4n53nafyi77iplnbrpmxnp3x4exbswwxigujaxy3b37fvr7bvlopxeyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
           "tags": []
         },
         {
@@ -6945,16 +6940,6 @@
           ]
         },
         {
-          "url": "https://t.sneed.network/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://teddit.encrypted-data.xyz/",
           "tags": [
             "clearnet",
@@ -7274,16 +7259,6 @@
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "https://w.sneed.network/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
