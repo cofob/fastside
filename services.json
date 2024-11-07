@@ -861,13 +861,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://dumb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p/",
           "tags": [
             "http",
@@ -899,14 +892,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://dumb.privacydev.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         }
       ]
@@ -1198,8 +1183,7 @@
           "url": "https://hyperpipe.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1328,14 +1312,6 @@
             "http",
             "tor"
           ]
-        },
-        {
-          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
-          "tags": []
         },
         {
           "url": "https://inv.nadeko.net/",
@@ -2248,15 +2224,6 @@
           ]
         },
         {
-          "url": "https://libreddit.kavin.rocks/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://libreddit.oxymagnesium.com/",
           "tags": [
             "clearnet",
@@ -2340,15 +2307,6 @@
           ]
         },
         {
-          "url": "https://reddit.utsav2.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://redlib.baczek.me/",
           "tags": [
             "https",
@@ -2384,15 +2342,12 @@
           ]
         },
         {
-          "url": "https://redlib.incogniweb.net/",
+          "url": "https://redlib.frontendfriendly.xyz/",
           "tags": []
         },
         {
-          "url": "https://redlib.nadeko.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "url": "https://redlib.incogniweb.net/",
+          "tags": []
         },
         {
           "url": "https://redlib.nirn.quest/",
@@ -2478,15 +2433,6 @@
         {
           "url": "https://rl.rootdo.com/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://safereddit.com/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -5495,8 +5441,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5740,10 +5685,6 @@
       "instances": [
         {
           "url": "http://4n53nafyi77iplnbrpmxnp3x4exbswwxigujaxy3b37fvr7bvlopxeyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
           "tags": []
         },
         {
@@ -6731,14 +6672,6 @@
         },
         {
           "url": "https://st.odyssey346.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://st.privacydev.net/",
           "tags": [
             "clearnet",
             "https",
