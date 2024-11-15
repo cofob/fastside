@@ -765,7 +765,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -2810,105 +2810,6 @@
       ]
     },
     {
-      "type": "librey",
-      "test_url": "/search.php?q=<%=query%>",
-      "fallback": "https://search.ahwx.org/",
-      "follow_redirects": false,
-      "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
-      "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://librex.nohost.network/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://librey.baczek.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://librey.myroware.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://ly.owo.si/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.ahwx.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.davidovski.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.funami.tech/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.revvy.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://search2.ahwx.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search3.ahwx.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        }
-      ]
-    },
-    {
       "type": "lingva",
       "test_url": "/auto/en/hola",
       "fallback": "https://lingva.ml/",
@@ -3507,7 +3408,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -4958,7 +4859,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -4984,7 +4885,7 @@
       ]
     },
     {
-      "type": "pxixvFE",
+      "type": "pixivfe",
       "test_url": "/",
       "fallback": null,
       "follow_redirects": false,
@@ -5540,15 +5441,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://searx.dresden.network/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "https://searx.gnu.style/",
           "tags": [
@@ -6124,13 +6016,6 @@
           ]
         },
         {
-          "url": "https://searx.mxchange.org/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
@@ -6643,15 +6528,6 @@
           ]
         },
         {
-          "url": "https://translate.bus-hit.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://translate.josias.dev/",
           "tags": []
         },
@@ -7023,7 +6899,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
