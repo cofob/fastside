@@ -322,7 +322,9 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2246,14 +2248,8 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://lr.ggtyler.dev/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -2267,13 +2263,6 @@
           "url": "https://r.darrennathanael.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://red.arancia.click/",
-          "tags": [
             "https",
             "ipv4"
           ]
@@ -2368,6 +2357,7 @@
           "url": "https://redlib.nohost.network/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2575,6 +2565,10 @@
           "tags": []
         },
         {
+          "url": "http://ezjfq3zz5mquiwdl4q7zg4v26u74e4sjsdyg3z67ozn3dxqslvb7pzyd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://jxhkfulu6wpdl4apuy4dyivuowmpprvsd7e3el2z73crq7fmyv7rjkyd.onion/",
           "tags": []
         },
@@ -2764,6 +2758,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.seitan-ayoub.lol/",
+          "tags": []
         },
         {
           "url": "https://search.technicalvoid.dev/",
@@ -3410,6 +3408,46 @@
       "source_link": null,
       "deprecated_message": "All instances are down.",
       "instances": []
+    },
+    {
+      "type": "pixivfe",
+      "test_url": "/",
+      "fallback": null,
+      "follow_redirects": false,
+      "allowed_http_codes": "200",
+      "search_string": null,
+      "regexes": [],
+      "aliases": [],
+      "source_link": null,
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://pixiv.perennialte.ch/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://pixivfe.darkness.services/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://pixivfe.ducks.party/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "poke",
@@ -4885,46 +4923,6 @@
       ]
     },
     {
-      "type": "pixivfe",
-      "test_url": "/",
-      "fallback": null,
-      "follow_redirects": false,
-      "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
-      "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://pixiv.perennialte.ch/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://pixivfe.darkness.services/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://pixivfe.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
-    },
-    {
       "type": "quetre",
       "test_url": "/How-does-the-Z-boson-decay",
       "fallback": "https://quetre.iket.me/",
@@ -4936,13 +4934,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "http://quetre.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
         {
           "url": "http://quetre.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
           "tags": [
@@ -4959,15 +4950,6 @@
         },
         {
           "url": "https://q.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://quetre.catsarch.com/",
           "tags": [
             "clearnet",
             "https",
@@ -5409,6 +5391,14 @@
           ]
         },
         {
+          "url": "https://scribe.r4fo.com/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
             "clearnet",
@@ -5442,11 +5432,31 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": []
+        },
+        {
+          "url": "https://searx.dresden.network/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://searx.gnu.style/",
           "tags": [
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://searx.mastodontech.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5481,6 +5491,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -6016,6 +6033,13 @@
           ]
         },
         {
+          "url": "https://searx.mxchange.org/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
@@ -6528,6 +6552,14 @@
           ]
         },
         {
+          "url": "https://translate.bus-hit.me/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://translate.josias.dev/",
           "tags": []
         },
@@ -6871,7 +6903,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
