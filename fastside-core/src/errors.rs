@@ -1,8 +1,13 @@
-use actix_web::http::StatusCode;
+use axum::{
+    response::{Html, IntoResponse, Response},
+    http::StatusCode,
+    Json,
+};
 use askama::Template;
 use serde::Serialize;
 use thiserror::Error;
 
+// Error template struct for rendering HTML errors
 #[derive(Template)]
 #[template(path = "error.html")]
 pub struct ErrorTemplate<'a> {
@@ -10,19 +15,31 @@ pub struct ErrorTemplate<'a> {
     pub status_code: StatusCode,
 }
 
+// Helper macro for implementing IntoResponse for HTML errors
 macro_rules! impl_template_error {
     ($err:ty, status => {$($variant:pat => $code:expr),+ $(,)?}) => {
-        impl actix_web::ResponseError for $err where $err: std::error::Error + 'static {
-            fn error_response(&self) -> actix_web::HttpResponse {
-                use askama::Template;
-
+        impl IntoResponse for $err where $err: std::error::Error + 'static {
+            fn into_response(self) -> Response {
+                let status_code = self.status_code();
                 let detail = format!("{}", self);
-                let error_page = crate::errors::ErrorTemplate { detail: &detail, status_code: self.status_code() };
+                let error_page = crate::errors::ErrorTemplate {
+                    detail: &detail,
+                    status_code,
+                };
+                let body = match error_page.render() {
+                    Ok(rendered) => Html(rendered).into_response(),
+                    Err(_) => (
+                        StatusCode::INTERNAL_SERVER_ERROR,
+                        "Failed to render error page".to_string()
+                    ).into_response(),
+                };
 
-                actix_web::HttpResponse::build(self.status_code()).body(error_page.render().expect("failed to render error page"))
+                (status_code, body).into_response()
             }
+        }
 
-            fn status_code(&self) -> actix_web::http::StatusCode {
+        impl $err {
+            pub fn status_code(&self) -> StatusCode {
                 match self {
                     $(
                         $variant => $code,
@@ -34,20 +51,26 @@ macro_rules! impl_template_error {
 }
 pub(crate) use impl_template_error;
 
+// API error struct for JSON responses
 #[derive(Serialize)]
 pub struct ApiError {
     pub detail: String,
 }
 
+// Helper macro for implementing IntoResponse for JSON errors
 macro_rules! impl_api_error {
     ($err:ty, status => {$($variant:pat => $code:expr),+ $(,)?}) => {
-        impl actix_web::ResponseError for $err where $err: std::error::Error + 'static {
-            fn error_response(&self) -> actix_web::HttpResponse {
+        impl IntoResponse for $err where $err: std::error::Error + 'static {
+            fn into_response(self) -> Response {
+                let status_code = self.status_code();
                 let detail = format!("{}", self);
-                actix_web::HttpResponse::build(self.status_code()).json(crate::errors::ApiError { detail })
+                let error_response = Json(crate::errors::ApiError { detail });
+                (status_code, error_response).into_response()
             }
+        }
 
-            fn status_code(&self) -> actix_web::http::StatusCode {
+        impl $err {
+            pub fn status_code(&self) -> StatusCode {
                 match self {
                     $(
                         $variant => $code,
@@ -59,6 +82,7 @@ macro_rules! impl_api_error {
 }
 pub(crate) use impl_api_error;
 
+// RedirectError definition
 use crate::search::SearchError;
 
 #[derive(Error, Debug)]
@@ -82,6 +106,7 @@ impl_template_error!(RedirectError,
     }
 );
 
+// RedirectApiError definition
 #[derive(Error, Debug)]
 #[error(transparent)]
 pub struct RedirectApiError(#[from] pub RedirectError);

@@ -1,0 +1,35 @@
+[package]
+name = "fastside-core"
+description = "Core component of fastside. Used by standalone and cloudflare worker version."
+version = "0.2.0"
+edition = "2021"
+
+[dependencies]
+fastside-shared = { path = "../fastside-shared" }
+axum = { version = "0.7.9", default-features = false, features = [
+  "query",
+  "json",
+] } # web framework
+axum-extra = { version = "0.9.6", features = ["cookie", "typed-header"] }
+tracing = "0.1.40"
+askama = "0.12.1" # templating engine
+reqwest = { version = "0.12.4", default-features = false, features = [
+  "rustls-tls",
+  "http2",
+  "socks",
+] } # http client
+
+serde = { version = "1.0.201", features = ["derive"] }                        # serialization
+serde_json = "1.0.117"                                                        # serialization
+url = { version = "2.5.0", features = ["serde"] }                             # url
+log = "0.4.21"                                                                # logging
+anyhow = "1.0.83"                                                             # error
+thiserror = "1.0.60"                                                          # error
+tokio = { version = "1.37.0", default-features = false, features = ["sync"] }
+futures = "0.3.30"                                                            # async
+rand = "0.8.5"                                                                # random
+chrono = "0.4.38"                                                             # datetime
+time = "0.3.36"                                                               # time offsets
+regex = "1.10.5"                                                              # regex
+base64 = "0.22.1"                                                             # base64
+urlencoding = "2.1.3"                                                         # url encoding

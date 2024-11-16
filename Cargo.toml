@@ -1,5 +1,11 @@
 [workspace]
-members = ["fastside", "fastside-actualizer", "fastside-shared"]
+members = [
+  "fastside-shared",
+  "fastside-core",
+  "fastside",
+  "fastside-cloudflare",
+  "fastside-actualizer",
+]
 resolver = "2"
 
 [profile.release]

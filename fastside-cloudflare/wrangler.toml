@@ -1,0 +1,6 @@
+name = "fastside"
+main = "build/worker/shim.mjs"
+compatibility_date = "2023-03-22"
+
+[build]
+command = "cargo install worker-build --version 0.1.0 && worker-build --release"

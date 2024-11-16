@@ -13,12 +13,14 @@ use tokio::{
 };
 use url::Url;
 
-use crate::{config::CrawlerConfig, types::LoadedData};
+use fastside_shared::config::CrawlerConfig;
 use fastside_shared::{
     client_builder::build_client,
     parallel::Parallelise,
     serde_types::{HttpCodeRanges, Instance, Service},
 };
+
+use crate::types::LoadedData;
 
 #[derive(Error, Debug)]
 pub enum CrawlerError {
@@ -191,6 +193,7 @@ impl Crawler {
                 _ if e.is_request() => CrawledInstanceStatus::RequestError,
                 _ if e.is_body() => CrawledInstanceStatus::BodyError,
                 _ if e.is_decode() => CrawledInstanceStatus::DecodeError,
+                #[cfg(not(target_arch = "wasm32"))]
                 _ if e.is_connect() => CrawledInstanceStatus::ConnectionError,
                 _ => CrawledInstanceStatus::Unknown,
             },

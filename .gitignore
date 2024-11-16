@@ -4,3 +4,6 @@
 /debug/
 /target/
 /data.json
+
+/fastside-cloudflare/build/
+/fastside-cloudflare/.wrangler/
