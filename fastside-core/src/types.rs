@@ -4,6 +4,7 @@ use fastside_shared::{
     config::{AppConfig, ProxyData, UserConfig},
     serde_types::ServicesData,
 };
+use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
 
 use crate::crawler::Crawler;
@@ -15,7 +16,7 @@ pub struct CompiledRegexSearch {
 
 pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;
 
-#[derive(Debug)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct LoadedData {
     pub services: ServicesData,
     pub proxies: ProxyData,

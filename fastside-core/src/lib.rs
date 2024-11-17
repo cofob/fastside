@@ -1,9 +1,4 @@
-#[cfg(not(target_arch = "wasm32"))]
 pub mod crawler;
-#[cfg(target_arch = "wasm32")]
-pub mod stub_crawler;
-#[cfg(target_arch = "wasm32")]
-pub use stub_crawler as crawler;
 pub mod errors;
 pub mod filters;
 pub mod routes;

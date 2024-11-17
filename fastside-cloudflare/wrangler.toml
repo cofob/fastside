@@ -2,5 +2,16 @@ name = "fastside"
 main = "build/worker/shim.mjs"
 compatibility_date = "2023-03-22"
 
+kv_namespaces = [
+  { binding = "fastside", id = "989f6480799a4d7c8e2890ac01118fc7" }
+]
+
 [build]
 command = "cargo install worker-build --version 0.1.0 && worker-build --release"
+
+[vars]
+services_url = "https://raw.githubusercontent.com/cofob/fastside/refs/heads/master/services.json"
+config = '{"crawler":{"request_timeout":{"secs":1,"nanos":0},"max_concurrent_requests":200},"default_user_config":{"required_tags":["clearnet","https","ipv4"]}}'
+
+[observability]
+enabled = true

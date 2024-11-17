@@ -5,22 +5,37 @@ use std::{
 };
 
 use chrono::{DateTime, Utc};
-use reqwest::StatusCode;
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 use tokio::{
     sync::{Mutex, MutexGuard, RwLock},
-    time::sleep,
+    time::{sleep, timeout},
 };
 use url::Url;
 
 use fastside_shared::config::CrawlerConfig;
+#[cfg(not(target_arch = "wasm32"))]
+use fastside_shared::parallel::Parallelise;
 use fastside_shared::{
     client_builder::build_client,
-    parallel::Parallelise,
     serde_types::{HttpCodeRanges, Instance, Service},
 };
 
 use crate::types::LoadedData;
+
+fn utc_now() -> DateTime<Utc> {
+    #[cfg(not(target_arch = "wasm32"))]
+    return Utc::now();
+    #[cfg(target_arch = "wasm32")]
+    return DateTime::from_timestamp(0, 0).unwrap();
+}
+
+fn system_now() -> SystemTime {
+    #[cfg(not(target_arch = "wasm32"))]
+    return SystemTime::now();
+    #[cfg(target_arch = "wasm32")]
+    return UNIX_EPOCH;
+}
 
 #[derive(Error, Debug)]
 pub enum CrawlerError {
@@ -30,11 +45,11 @@ pub enum CrawlerError {
     RequestError(#[from] reqwest::Error),
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub enum CrawledInstanceStatus {
     Ok(Duration),
     #[allow(dead_code)]
-    InvalidStatusCode(StatusCode, Duration),
+    InvalidStatusCode(String, Duration),
     StringNotFound,
     ConnectionError,
     RedirectPolicyError,
@@ -62,14 +77,14 @@ impl std::fmt::Display for CrawledInstanceStatus {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct CrawledInstance {
     pub url: Url,
     pub status: CrawledInstanceStatus,
     pub tags: Vec<String>,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct CrawledService {
     pub name: String,
     pub instances: Vec<CrawledInstance>,
@@ -83,13 +98,13 @@ impl CrawledService {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct CrawledServices {
     pub services: HashMap<String, CrawledService>,
     pub time: DateTime<Utc>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Deserialize, Serialize)]
 pub enum CrawledData {
     CrawledServices(CrawledServices),
     InitialLoading,
@@ -141,7 +156,23 @@ impl Crawler {
         Self {
             loaded_data,
             config: Arc::new(config),
-            data: RwLock::new(CrawledData::InitialLoading),
+            data: RwLock::new(CrawledData::CrawledServices(CrawledServices {
+                services: HashMap::new(),
+                time: utc_now(),
+            })),
+            crawler_lock: Mutex::new(()),
+        }
+    }
+
+    pub fn with_data(
+        loaded_data: Arc<RwLock<LoadedData>>,
+        config: CrawlerConfig,
+        data: CrawledData,
+    ) -> Self {
+        Self {
+            loaded_data,
+            config: Arc::new(config),
+            data: RwLock::new(data),
             crawler_lock: Mutex::new(()),
         }
     }
@@ -165,11 +196,11 @@ impl Crawler {
         )?;
 
         let test_url = instance.url.join(&service.test_url)?;
-        let start = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
+        let start = system_now().duration_since(UNIX_EPOCH).unwrap();
         let response = client.get(test_url).send().await;
         let status = match response {
             Ok(response) => {
-                let end = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
+                let end = system_now().duration_since(UNIX_EPOCH).unwrap();
                 let status_code = response.status().as_u16();
                 if service.allowed_http_codes.is_allowed(status_code) {
                     if let Some(search_string) = &service.search_string {
@@ -183,7 +214,10 @@ impl Crawler {
                         CrawledInstanceStatus::Ok(end - start)
                     }
                 } else {
-                    CrawledInstanceStatus::InvalidStatusCode(response.status(), end - start)
+                    CrawledInstanceStatus::InvalidStatusCode(
+                        response.status().to_string(),
+                        end - start,
+                    )
                 }
             }
             Err(e) => match e {
@@ -211,7 +245,7 @@ impl Crawler {
         Ok(ret)
     }
 
-    async fn crawl<'a>(
+    pub async fn crawl<'a>(
         &self,
         crawler_guard: Option<MutexGuard<'a, ()>>,
     ) -> Result<(), CrawlerError> {
@@ -242,7 +276,63 @@ impl Crawler {
                 )
             })
             .collect();
-        let mut parallelise = Parallelise::with_capacity(self.config.max_concurrent_requests);
+
+        #[cfg(not(target_arch = "wasm32"))]
+        let mut results = {
+            let mut parallelise = Parallelise::with_capacity(self.config.max_concurrent_requests);
+
+            for service in self.loaded_data.read().await.services.values() {
+                let service = Arc::new(service.clone());
+                for instance in &service.instances {
+                    let loaded_data = self.loaded_data.clone();
+                    let config = self.config.clone();
+                    let instance = instance.clone();
+                    parallelise
+                        .push(tokio::spawn(Self::crawl_single_instance(
+                            config,
+                            loaded_data.clone(),
+                            service.clone(),
+                            instance,
+                        )))
+                        .await;
+                }
+            }
+
+            parallelise.wait().await
+        };
+
+        #[cfg(target_arch = "wasm32")]
+        let mut results = {
+            let mut out = Vec::new();
+
+            for service in self.loaded_data.read().await.services.values() {
+                let service = Arc::new(service.clone());
+                for instance in &service.instances {
+                    let loaded_data = self.loaded_data.clone();
+                    let config = self.config.clone();
+                    let instance = instance.clone();
+                    let inst = match timeout(
+                        Duration::from_secs(1),
+                        Self::crawl_single_instance(
+                            config,
+                            loaded_data.clone(),
+                            service.clone(),
+                            instance,
+                        ),
+                    )
+                    .await
+                    {
+                        Ok(r) => r,
+                        Err(_) => {
+                            continue;
+                        }
+                    };
+                    out.push(inst);
+                }
+            }
+
+            out
+        };
 
         for service in self.loaded_data.read().await.services.values() {
             let service = Arc::new(service.clone());
@@ -250,18 +340,17 @@ impl Crawler {
                 let loaded_data = self.loaded_data.clone();
                 let config = self.config.clone();
                 let instance = instance.clone();
-                parallelise
-                    .push(tokio::spawn(Self::crawl_single_instance(
+                results.push(
+                    Self::crawl_single_instance(
                         config,
                         loaded_data.clone(),
                         service.clone(),
                         instance,
-                    )))
-                    .await;
+                    )
+                    .await,
+                );
             }
         }
-
-        let results = parallelise.wait().await;
 
         for result in results {
             let (crawled_instance, name) = match result {
@@ -281,7 +370,7 @@ impl Crawler {
         let mut data = self.data.write().await;
         data.replace(CrawledData::CrawledServices(CrawledServices {
             services: crawled_services,
-            time: Utc::now(),
+            time: utc_now(),
         }));
 
         match data.as_ref() {
