@@ -1102,9 +1102,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2090,6 +2088,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2422,10 +2421,6 @@
           "tags": []
         },
         {
-          "url": "http://ezjfq3zz5mquiwdl4q7zg4v26u74e4sjsdyg3z67ozn3dxqslvb7pzyd.onion/",
-          "tags": []
-        },
-        {
           "url": "http://jxhkfulu6wpdl4apuy4dyivuowmpprvsd7e3el2z73crq7fmyv7rjkyd.onion/",
           "tags": []
         },
@@ -2618,13 +2613,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.seitan-ayoub.lol/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -5684,6 +5672,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
