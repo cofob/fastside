@@ -984,6 +984,14 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://fs.poridge.club/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -1350,8 +1358,7 @@
             "clearnet",
             "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
