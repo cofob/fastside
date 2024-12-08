@@ -714,8 +714,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1110,6 +1109,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2094,7 +2094,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2176,7 +2178,9 @@
         {
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5547,7 +5551,9 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
