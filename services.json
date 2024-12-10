@@ -315,7 +315,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1111,9 +1110,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2181,7 +2178,8 @@
         {
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -2735,7 +2733,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
@@ -5100,7 +5097,11 @@
         },
         {
           "url": "https://scribe.r4fo.com/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         },
         {
           "url": "https://scribe.rawbit.ninja/",
@@ -5567,7 +5568,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
