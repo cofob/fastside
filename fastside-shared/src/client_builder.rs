@@ -31,22 +31,27 @@ pub fn build_client(
     proxies: &ProxyData,
     instance: &Instance,
 ) -> Result<Client, reqwest::Error> {
-    let redirect_policy = if service.follow_redirects {
-        reqwest::redirect::Policy::default()
-    } else {
-        reqwest::redirect::Policy::none()
-    };
-    let timeout = config.get_domain_timeout(
-        instance
-            .url
-            .host_str()
-            .expect("Failed to get host from instance URL"),
-    );
-    let mut client_builder = Client::builder()
-        .connect_timeout(timeout)
-        .read_timeout(timeout)
-        .default_headers(default_headers())
-        .redirect(redirect_policy);
+    let mut client_builder = Client::builder().default_headers(default_headers());
+
+    #[cfg(not(target_arch = "wasm32"))]
+    {
+        let redirect_policy = if service.follow_redirects {
+            reqwest::redirect::Policy::default()
+        } else {
+            reqwest::redirect::Policy::none()
+        };
+        let timeout = config.get_domain_timeout(
+            instance
+                .url
+                .host_str()
+                .expect("Failed to get host from instance URL"),
+        );
+
+        client_builder = client_builder
+            .connect_timeout(timeout)
+            .read_timeout(timeout)
+            .redirect(redirect_policy);
+    }
 
     let proxy_name: Option<String> = {
         let mut val: Option<String> = None;
@@ -58,6 +63,8 @@ pub fn build_client(
         }
         val
     };
+
+    #[cfg(not(target_arch = "wasm32"))]
     if let Some(proxy_name) = proxy_name {
         let proxy_config = proxies.get(&proxy_name).unwrap();
         let proxy = {
