@@ -2516,10 +2516,7 @@
         },
         {
           "url": "https://search.seitan-ayoub.lol/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "tags": []
         },
         {
           "url": "https://search.technicalvoid.dev/",
@@ -4955,7 +4952,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5468,7 +5467,9 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
