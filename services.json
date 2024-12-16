@@ -489,14 +489,6 @@
           ]
         },
         {
-          "url": "https://binternet.ahwx.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://binternet.ducks.party/",
           "tags": [
             "clearnet",
@@ -1104,6 +1096,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2072,7 +2065,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2156,7 +2148,6 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2474,14 +2465,6 @@
           ]
         },
         {
-          "url": "https://search.ahwx.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.davidovski.xyz/",
           "tags": [
             "clearnet",
@@ -2703,7 +2686,8 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         }
       ]
@@ -2815,7 +2799,6 @@
           "url": "https://www.openstreetmap.org/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3267,16 +3250,6 @@
           "url": "https://bin.garbaye.fr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://bin.garudalinux.org/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4949,7 +4922,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5058,6 +5030,14 @@
           ]
         },
         {
+          "url": "https://scribe.r4fo.com/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
             "clearnet",
@@ -5091,6 +5071,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": []
+        },
+        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "https",
@@ -5104,6 +5088,14 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://searx.mastodontech.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5138,6 +5130,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -5491,6 +5490,13 @@
           ]
         },
         {
+          "url": "https://search.plogi.xyz/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.privacyredirect.com/",
           "tags": [
             "https",
@@ -5502,8 +5508,7 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5589,6 +5594,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.cespedes.fr/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
