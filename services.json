@@ -306,7 +306,8 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -2583,7 +2584,10 @@
         },
         {
           "url": "https://search.seitan-ayoub.lol/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://search.technicalvoid.dev/",
@@ -2786,7 +2790,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
