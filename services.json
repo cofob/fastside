@@ -307,6 +307,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -699,6 +700,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1285,6 +1287,10 @@
             "http",
             "tor"
           ]
+        },
+        {
+          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
+          "tags": []
         },
         {
           "url": "https://inv.nadeko.net/",
@@ -2049,7 +2055,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2132,7 +2140,6 @@
           "url": "https://libreddit.projectsegfau.lt/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2774,7 +2781,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
@@ -5008,9 +5014,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5243,6 +5247,10 @@
       "instances": [
         {
           "url": "http://4n53nafyi77iplnbrpmxnp3x4exbswwxigujaxy3b37fvr7bvlopxeyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
           "tags": []
         },
         {
