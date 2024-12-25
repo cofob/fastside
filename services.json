@@ -5940,6 +5940,15 @@
       "deprecated_message": null,
       "instances": [
         {
+
+          "url": "https://send.aezafiles.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://drop.chapril.org/",
           "tags": [
             "clearnet",
