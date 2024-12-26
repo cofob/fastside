@@ -1,17 +1,14 @@
 //! Fastside API server.
-mod crawler;
-mod errors;
-mod filters;
-mod routes;
-mod search;
-mod types;
-mod utils;
 
-use actix_web::{middleware::Logger, web, App, HttpServer};
 use anyhow::{Context, Result};
+use axum::Router;
 use clap::{Parser, Subcommand};
 use config::load_config;
-use crawler::Crawler;
+use fastside_core::{
+    crawler::Crawler,
+    routes::main_router,
+    types::{AppState, CompiledRegexSearch, LoadedData},
+};
 use fastside_shared::{
     config::{self, AppConfig},
     errors::CliError,
@@ -20,7 +17,6 @@ use fastside_shared::{
 };
 use log_setup::configure_logging;
 use regex::Regex;
-use routes::main_scope;
 use std::{
     collections::HashMap,
     net::{SocketAddr, SocketAddrV4},
@@ -29,7 +25,6 @@ use std::{
     sync::Arc,
 };
 use tokio::sync::RwLock;
-use types::{CompiledRegexSearch, LoadedData};
 use url::Url;
 
 #[deny(unused_imports)]
@@ -64,9 +59,6 @@ enum Commands {
         /// Listen socket address.
         #[arg(short, long)]
         listen: Option<SocketAddr>,
-        /// Worker count.
-        #[arg(short, long)]
-        workers: Option<usize>,
     },
     /// Validate services file.
     Validate {
@@ -244,11 +236,7 @@ async fn main() -> Result<()> {
     configure_logging(&cli.log_level).ok();
 
     match &cli.command {
-        Some(Commands::Serve {
-            services,
-            listen,
-            workers,
-        }) => {
+        Some(Commands::Serve { services, listen }) => {
             let config = Arc::new(load_config(&cli.config).context("failed to load config")?);
 
             let services_source = ServicesSource::from_str(
@@ -272,7 +260,6 @@ async fn main() -> Result<()> {
 
             let listen: SocketAddr = listen
                 .unwrap_or_else(|| SocketAddr::V4(SocketAddrV4::new([127, 0, 0, 1].into(), 8080)));
-            let workers: usize = workers.unwrap_or_else(num_cpus::get);
 
             let data: Arc<RwLock<LoadedData>> = {
                 let data = load_services(&services_source, &config).await?;
@@ -315,26 +302,19 @@ async fn main() -> Result<()> {
 
             info!("Listening on {}", listen);
 
-            let config_web_data = web::Data::from(config.clone());
-            let crawler_web_data = web::Data::from(crawler.clone());
-            let data_web_data = web::Data::from(data.clone());
-            let regexes_web_data = web::Data::new(regexes);
+            let shared_state = Arc::new(AppState {
+                config: config.clone(),
+                crawler: crawler.clone(),
+                loaded_data: data.clone(),
+                regexes,
+            });
 
-            HttpServer::new(move || {
-                let logger = Logger::default();
-                App::new()
-                    .wrap(logger)
-                    .app_data(config_web_data.clone())
-                    .app_data(crawler_web_data.clone())
-                    .app_data(data_web_data.clone())
-                    .app_data(regexes_web_data.clone())
-                    .service(main_scope(&config.clone()))
-            })
-            .bind(listen)?
-            .workers(workers)
-            .run()
-            .await
-            .context("failed to start api server")?;
+            let router = Router::new()
+                .nest("/", main_router())
+                .with_state(shared_state);
+
+            let listener = tokio::net::TcpListener::bind(listen).await.unwrap();
+            axum::serve(listener, router.into_make_service()).await?;
 
             reload_services_handle.abort();
             crawler_loop_handle.abort();
