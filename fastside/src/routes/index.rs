@@ -38,6 +38,7 @@ pub struct IndexTemplate<'a> {
 
 #[get("/")]
 async fn index(
+    req: web::HttpRequest,
     crawler: web::Data<Crawler>,
     loaded_data: web::Data<RwLock<LoadedData>>,
 ) -> actix_web::Result<impl Responder> {
@@ -46,6 +47,30 @@ async fn index(
         return Err(RedirectError::from(SearchError::CrawlerNotFetchedYet))?;
     };
     let loaded_data_guard = loaded_data.read().await;
+
+    let user_agent = req
+        .headers()
+        .get("User-Agent")
+        .and_then(|ua| ua.to_str().ok())
+        .unwrap_or("");
+
+    if user_agent.contains("curl") {
+        let mut plain_text_output = String::new();
+        for (service_name, service) in &crawled_services.services {
+            plain_text_output.push_str(&format!("Service: {}\n", service_name));
+            for instance in &service.instances {
+                plain_text_output.push_str(&format!(
+                    "  Instance: {}\n  Status: {:?}\n  Tags: {:?}\n",
+                    instance.url, instance.status, instance.tags
+                ));
+            }
+            plain_text_output.push('\n');
+        }
+        return Ok(actix_web::HttpResponse::Ok()
+            .content_type("text/plain; charset=utf-8")
+            .body(plain_text_output));
+    }
+
     let template = IndexTemplate {
         services: &loaded_data_guard.services,
         crawled_services: &crawled_services.services,
