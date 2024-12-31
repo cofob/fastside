@@ -1288,10 +1288,6 @@
           ]
         },
         {
-          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
-          "tags": []
-        },
-        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -2538,7 +2534,10 @@
         },
         {
           "url": "https://search.seitan-ayoub.lol/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://search.technicalvoid.dev/",
@@ -4187,16 +4186,6 @@
           ]
         },
         {
-          "url": "https://private.rmconsulting.com/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://privatebin.ar21.de/",
           "tags": [
             "clearnet",
@@ -5177,10 +5166,6 @@
           "tags": []
         },
         {
-          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
-          "tags": []
-        },
-        {
           "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
           "tags": [
             "http",
@@ -5369,6 +5354,13 @@
           ]
         },
         {
+          "url": "https://search.catboy.house/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.citw.lgbt/",
           "tags": [
             "https",
@@ -5407,6 +5399,14 @@
           "tags": [
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.getcobalt.org/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5837,6 +5837,13 @@
           ]
         },
         {
+          "url": "https://searxng.website/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://searxng.world/",
           "tags": [
             "https",
@@ -5879,6 +5886,14 @@
         },
         {
           "url": "https://sx.thatxtreme.dev/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://technewsheads.com/",
           "tags": [
             "https",
             "ipv4",
@@ -6416,6 +6431,13 @@
           "tags": [
             "http",
             "i2p"
+          ]
+        },
+        {
+          "url": "https://bandcamp.lurkmore.com/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
