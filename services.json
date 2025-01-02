@@ -2045,9 +2045,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5366,8 +5364,7 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
