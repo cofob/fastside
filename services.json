@@ -211,13 +211,6 @@
           ]
         },
         {
-          "url": "http://overflow.r4focoma7gu2zdwwcjjad47ysxt634lg73sxmdbkdozanwqslho5ohyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://vernmzgraj6aaoafmehupvtkkynpaa67rxcdj2kinwiy6konn6rq.b32.i2p/",
           "tags": [
             "http",
@@ -307,7 +300,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1041,13 +1033,6 @@
           ]
         },
         {
-          "url": "http://gothub.r4focoma7gu2zdwwcjjad47ysxt634lg73sxmdbkdozanwqslho5ohyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "https://g.opnxng.com/",
           "tags": [
             "clearnet",
@@ -1101,6 +1086,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2457,6 +2443,10 @@
           "tags": []
         },
         {
+          "url": "https://librey.myroware.net/",
+          "tags": []
+        },
+        {
           "url": "https://librey.nirn.quest/",
           "tags": []
         },
@@ -2557,10 +2547,6 @@
         },
         {
           "url": "https://search.zeroish.xyz/",
-          "tags": []
-        },
-        {
-          "url": "https://search2.ahwx.org/",
           "tags": []
         },
         {
@@ -2728,9 +2714,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -5084,10 +5068,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://search.stinpriza.org/",
-          "tags": []
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "https",
@@ -5101,14 +5081,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://searx.mastodontech.de/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -5143,13 +5115,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.zapashcanon.fr/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         }
       ]
