@@ -640,9 +640,7 @@
         {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -691,7 +689,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1088,7 +1085,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1408,7 +1404,8 @@
           "url": "https://jitsi.area.fi.cnr.it/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -2046,6 +2043,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2437,6 +2435,10 @@
           "tags": []
         },
         {
+          "url": "https://librey.myroware.net/",
+          "tags": []
+        },
+        {
           "url": "https://librey.nirn.quest/",
           "tags": []
         },
@@ -2534,10 +2536,6 @@
         },
         {
           "url": "https://search.zeroish.xyz/",
-          "tags": []
-        },
-        {
-          "url": "https://search2.ahwx.org/",
           "tags": []
         },
         {
@@ -2705,9 +2703,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -2989,9 +2985,7 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5048,10 +5042,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://search.stinpriza.org/",
-          "tags": []
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "https",
@@ -5065,14 +5055,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://searx.mastodontech.de/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -5103,13 +5085,6 @@
         {
           "url": "https://searx.ru/",
           "tags": []
-        },
-        {
-          "url": "https://searx.zapashcanon.fr/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
@@ -5456,7 +5431,8 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5670,14 +5646,6 @@
           ]
         },
         {
-          "url": "https://searx.nobulart.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.oakleycord.dev/",
           "tags": [
             "https",
@@ -5775,6 +5743,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://searxng.ch/",
+          "tags": []
         },
         {
           "url": "https://searxng.hweeren.com/",
