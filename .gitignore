@@ -7,4 +7,5 @@
 
 /fastside-cloudflare/build/
 /fastside-cloudflare/.wrangler/
+/fastside-cloudflare/.cache/
 /fastside-cloudflare/node_modules/
