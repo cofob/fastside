@@ -1271,6 +1271,10 @@
           ]
         },
         {
+          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
+          "tags": []
+        },
+        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -2424,10 +2428,6 @@
           "tags": []
         },
         {
-          "url": "https://librey.myroware.net/",
-          "tags": []
-        },
-        {
           "url": "https://librey.nirn.quest/",
           "tags": []
         },
@@ -2506,7 +2506,10 @@
         },
         {
           "url": "https://search.seitan-ayoub.lol/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://search.technicalvoid.dev/",
@@ -2771,15 +2774,6 @@
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "https://nitter.cz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -3130,8 +3124,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -5081,6 +5074,10 @@
           ]
         },
         {
+          "url": "https://searx.ru/",
+          "tags": []
+        },
+        {
           "url": "https://searx.zapashcanon.fr/",
           "tags": [
             "https",
@@ -5103,6 +5100,10 @@
       "instances": [
         {
           "url": "http://4n53nafyi77iplnbrpmxnp3x4exbswwxigujaxy3b37fvr7bvlopxeyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
           "tags": []
         },
         {
@@ -5201,6 +5202,14 @@
           "tags": [
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://nullstorm.com/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5731,10 +5740,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://searxng.ch/",
-          "tags": []
         },
         {
           "url": "https://searxng.hweeren.com/",
