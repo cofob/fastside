@@ -299,7 +299,8 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -3992,16 +3993,6 @@
           ]
         },
         {
-          "url": "https://pastebin.us/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://pastefg.hermietkreeft.site/",
           "tags": [
             "clearnet",
@@ -5350,7 +5341,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
