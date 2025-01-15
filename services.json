@@ -299,8 +299,7 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1028,7 +1027,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2395,10 +2393,7 @@
         },
         {
           "url": "https://librey.retro-hax.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "tags": []
         },
         {
           "url": "https://lx.benike.me/",
@@ -2652,6 +2647,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         }
@@ -5341,6 +5337,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
