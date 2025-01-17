@@ -1,8 +1,10 @@
+mod akademik;
 mod breezewiki;
 mod default;
 mod fastside;
 mod gothub;
 mod invidious;
+mod koub;
 mod libreddit;
 mod librex;
 mod scribe;
@@ -10,6 +12,7 @@ mod searx;
 mod searxng;
 mod simplytranslate;
 mod tent;
+mod translite;
 
 use crate::types::ServiceUpdater;
 
@@ -28,6 +31,9 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "librex" => Some(Box::new(librex::LibrexUpdater::new())),
         "gothub" => Some(Box::new(gothub::GothubUpdater::new())),
         "tent" => Some(Box::new(tent::TentUpdater::new())),
+        "akademik" => Some(Box::new(akademik::AkademikUpdater::new())),
+        "translite" => Some(Box::new(translite::TransLiteUpdater::new())),
+        "koub" => Some(Box::new(koub::KoubUpdater::new())),
         "fastside" => Some(Box::new(fastside::FastsideUpdater::new())),
         _ => None,
     }
