@@ -1158,14 +1158,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://hp.ngn.tf/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://hyperpipe.drgns.space/",
           "tags": [
             "clearnet",
@@ -2483,10 +2475,6 @@
           "tags": []
         },
         {
-          "url": "https://librey.myroware.net/",
-          "tags": []
-        },
-        {
           "url": "https://librey.nirn.quest/",
           "tags": []
         },
@@ -3030,15 +3018,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://piped.smnz.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -5799,15 +5778,6 @@
           ]
         },
         {
-          "url": "https://sexwebcams.watch/",
-          "tags": [
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://suche.dasnetzundich.de/",
           "tags": [
             "https",
@@ -6395,8 +6365,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
