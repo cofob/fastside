@@ -326,8 +326,7 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -693,7 +692,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1089,7 +1090,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1271,6 +1271,10 @@
             "http",
             "tor"
           ]
+        },
+        {
+          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
+          "tags": []
         },
         {
           "url": "https://inv.nadeko.net/",
@@ -2332,10 +2336,6 @@
           ]
         },
         {
-          "url": "https://librey.4o1x5.dev/",
-          "tags": []
-        },
-        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2818,14 +2818,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://piped.privacydev.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -4524,15 +4516,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://rimgo.vern.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -4645,7 +4628,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4871,6 +4853,10 @@
           "tags": []
         },
         {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
           "tags": [
             "http",
@@ -4891,10 +4877,6 @@
         },
         {
           "url": "http://searx3aolosaf3urwnhpynlhuokqsgz47si4pzz5hvb7uuzyjncl2tid.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
           "tags": []
         },
         {
