@@ -318,7 +318,9 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1081,7 +1083,9 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2546,7 +2550,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -4591,7 +4597,8 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -5831,13 +5838,6 @@
           "url": "https://translate.northboot.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://translate.priv.pw/",
-          "tags": [
             "https",
             "ipv4"
           ]
