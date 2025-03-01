@@ -9,9 +9,13 @@ in pkgs'.mkShell {
   nativeBuildInputs = with pkgs'; [
     nixfmt-classic
     # Rust
-    (if channel == "nightly" then
+    ((if channel == "nightly" then
       rust-bin.selectLatestNightlyWith (toolchain: toolchain.${profile})
     else
-      rust-bin.${channel}.latest.${profile})
+      rust-bin.${channel}.latest.${profile}).override {
+      targets = [ "wasm32-unknown-unknown" ];
+    })
+    wasm-pack
+    wasm-bindgen-cli
   ];
 }
