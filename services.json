@@ -313,8 +313,7 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -339,16 +338,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://araa.extravi.dev/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "https://tailsx.com/",
           "tags": [
@@ -642,6 +631,13 @@
           ]
         },
         {
+          "url": "https://breezewiki.woodland.cafe/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://bw.artemislena.eu/",
           "tags": [
             "clearnet",
@@ -662,9 +658,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1059,8 +1053,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1231,10 +1224,6 @@
             "http",
             "tor"
           ]
-        },
-        {
-          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
-          "tags": []
         },
         {
           "url": "https://inv.nadeko.net/",
@@ -2527,8 +2516,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -4537,9 +4525,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4592,6 +4578,10 @@
           ]
         },
         {
+          "url": "https://scribe.bus-hit.me/",
+          "tags": []
+        },
+        {
           "url": "https://scribe.citizen4.eu/",
           "tags": [
             "https",
@@ -4629,6 +4619,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://scribe.r4fo.com/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4750,10 +4747,6 @@
           "tags": []
         },
         {
-          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
-          "tags": []
-        },
-        {
           "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
           "tags": [
             "http",
@@ -4770,10 +4763,6 @@
         },
         {
           "url": "http://searx3aolosaf3urwnhpynlhuokqsgz47si4pzz5hvb7uuzyjncl2tid.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
           "tags": []
         },
         {
@@ -5107,9 +5096,7 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5799,6 +5786,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://translate.bus-hit.me/",
+          "tags": []
         },
         {
           "url": "https://translate.josias.dev/",
