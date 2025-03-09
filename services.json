@@ -313,7 +313,9 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1054,7 +1056,8 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -2273,6 +2276,10 @@
           ]
         },
         {
+          "url": "https://librey.4o1x5.dev/",
+          "tags": []
+        },
+        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2358,6 +2365,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.technicalvoid.dev/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -2511,7 +2525,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -4512,7 +4528,8 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -4761,6 +4778,10 @@
           "tags": []
         },
         {
+          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://searxwcao6avdvuaspdrjheiwrcey2zvxq3dj52gruo3oaqcr2ddlyqd.onion/",
           "tags": []
         },
@@ -4911,15 +4932,10 @@
         {
           "url": "https://search.4040940.xyz/",
           "tags": [
+            "cloudflare",
             "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.blitzw.in/",
-          "tags": [
-            "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5087,7 +5103,9 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5181,15 +5199,6 @@
           ]
         },
         {
-          "url": "https://searx.colbster937.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://searx.daetalytica.io/",
           "tags": [
             "clearnet",
@@ -5199,14 +5208,6 @@
         },
         {
           "url": "https://searx.dresden.network/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.electroncash.de/",
           "tags": [
             "https",
             "ipv4",
@@ -5979,13 +5980,6 @@
           "tags": [
             "http",
             "i2p"
-          ]
-        },
-        {
-          "url": "https://bandcamp.lurkmore.com/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         },
         {
