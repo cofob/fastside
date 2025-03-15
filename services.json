@@ -1037,7 +1037,9 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1947,7 +1949,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4476,7 +4477,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4844,15 +4847,6 @@
           "tags": [
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.4040940.xyz/",
-          "tags": [
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
