@@ -16,7 +16,7 @@ pub struct CompiledRegexSearch {
 
 pub type Regexes = HashMap<String, Vec<CompiledRegexSearch>>;
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct LoadedData {
     pub services: ServicesData,
     pub proxies: ProxyData,

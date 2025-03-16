@@ -10,6 +10,7 @@ use fastside_shared::{
     config::AppConfig,
     serde_types::{ServicesData, StoredData},
 };
+use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
 use tower_service::Service;
 use worker::*;
@@ -23,30 +24,26 @@ fn load_config(env: &Env) -> AppConfig {
     config
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+struct KvStoredData {
+    loaded_data: LoadedData,
+    crawled_data: CrawledData,
+}
+
 async fn router(env: &Env) -> Router {
     let config = Arc::new(load_config(&env));
-    let loaded_data: Arc<RwLock<LoadedData>> = Arc::new(RwLock::new(
-        serde_json::from_str(
-            &env.kv("fastside")
-                .expect("failed to get kv")
-                .get("loaded_data")
-                .text()
-                .await
-                .expect("failed to get loaded_data from kv")
-                .expect("loaded_data not found"),
-        )
-        .expect("failed to parse loaded_data"),
-    ));
-    let crawled_data: CrawledData = serde_json::from_str(
+    let stored_data: KvStoredData = serde_json::from_str(
         &env.kv("fastside")
             .expect("failed to get kv")
-            .get("crawled_data")
+            .get("stored_data")
             .text()
             .await
-            .expect("failed to get crawled_data from kv")
-            .expect("crawled_data not found"),
+            .expect("failed to get stored_data from kv")
+            .expect("stored_data not found"),
     )
-    .expect("failed to parse data");
+    .expect("failed to parse loaded_data");
+    let loaded_data = Arc::new(RwLock::new(stored_data.loaded_data));
+    let crawled_data = stored_data.crawled_data;
     let shared_state = Arc::new(AppState {
         config: config.clone(),
         crawler: Arc::new(Crawler::with_data(
@@ -92,39 +89,33 @@ async fn scheduled(_event: ScheduledEvent, env: Env, _ctx: ScheduleContext) {
     let stored_data: StoredData =
         serde_json::from_str(&services_str).expect("failed to parse services");
 
-    let loaded_data = {
-        let services_data: ServicesData = stored_data
-            .services
-            .into_iter()
-            .map(|service| (service.name.clone(), service))
-            .collect();
-        let loaded_data = LoadedData {
-            services: services_data,
-            proxies: config.proxies.clone(),
-            default_user_config: config.default_user_config.clone(),
-        };
-        env.kv("fastside")
-            .expect("failed to get kv")
-            .put(
-                "loaded_data",
-                serde_json::to_string(&loaded_data).expect("failed to serialize loaded_data"),
-            )
-            .expect("failed to put loaded_data to kv (builder)")
-            .execute()
-            .await
-            .expect("failed to put loaded_data to kv (request)");
-        Arc::new(RwLock::new(loaded_data))
+    let services_data: ServicesData = stored_data
+        .services
+        .into_iter()
+        .map(|service| (service.name.clone(), service))
+        .collect();
+    let loaded_data = LoadedData {
+        services: services_data,
+        proxies: config.proxies.clone(),
+        default_user_config: config.default_user_config.clone(),
     };
+    let loaded_data_clone = loaded_data.clone();
+    let loaded_data = Arc::new(RwLock::new(loaded_data));
 
     let crawler = Crawler::new(loaded_data, config.crawler.clone());
     crawler.crawl(None).await.expect("failed to crawl");
 
-    let data_str = serde_json::to_string(&*crawler.read().await).expect("failed to serialize data");
+    let stored_data = KvStoredData {
+        loaded_data: loaded_data_clone,
+        crawled_data: crawler.read().await.clone(),
+    };
+
+    let data_str = serde_json::to_string(&stored_data).expect("failed to serialize data");
     env.kv("fastside")
         .expect("failed to get kv")
-        .put("crawled_data", data_str)
-        .expect("failed to put crawled_data to kv (builder)")
+        .put("stored_data", data_str)
+        .expect("failed to put stored_data to kv (builder)")
         .execute()
         .await
-        .expect("failed to put crawled_data to kv (request)");
+        .expect("failed to put stored_data to kv (request)");
 }

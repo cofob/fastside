@@ -104,7 +104,7 @@ pub struct CrawledServices {
     pub time: DateTime<Utc>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub enum CrawledData {
     CrawledServices(CrawledServices),
     InitialLoading,
