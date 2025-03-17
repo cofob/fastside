@@ -1,0 +1,9 @@
+{
+  "name": "fastside-cloudflare",
+  "dependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "scripts": {
+    "deploy": "wrangler deploy"
+  }
+}

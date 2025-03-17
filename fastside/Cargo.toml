@@ -1,18 +1,15 @@
 [package]
 name = "fastside"
-description = "A smart redirecting gateway for various frontend services."
+description = "A smart redirecting gateway for various frontend services. Standalone version."
 version = "0.2.0"
 edition = "2021"
 default-run = "fastside"
 
 [dependencies]
 fastside-shared = { path = "../fastside-shared" }
+fastside-core = { path = "../fastside-core" }
 
-actix-web = { version = "4.5.1", features = [
-  "macros",
-  "cookies",
-], default-features = false } # web framework
-askama = "0.12.1" # templating engine
+axum = "0.7.9" # web framework
 reqwest = { version = "0.12.4", default-features = false, features = [
   "rustls-tls",
   "http2",
