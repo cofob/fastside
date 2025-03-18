@@ -652,7 +652,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2518,7 +2520,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
@@ -5334,6 +5335,14 @@
           "tags": [
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://searxng.biz/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
