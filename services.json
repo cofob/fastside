@@ -313,8 +313,7 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -643,7 +642,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1039,9 +1037,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1966,9 +1962,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2497,6 +2491,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         }
@@ -2651,16 +2646,14 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4346,15 +4339,6 @@
           ]
         },
         {
-          "url": "https://rimgo.nohost.network/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -5040,9 +5024,7 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
