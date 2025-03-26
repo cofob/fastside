@@ -1044,8 +1044,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5025,7 +5024,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5900,6 +5898,13 @@
           "tags": [
             "http",
             "i2p"
+          ]
+        },
+        {
+          "url": "https://bandcamp.lurkmore.com/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
