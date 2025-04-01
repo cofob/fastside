@@ -317,6 +317,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1051,6 +1052,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1222,6 +1224,10 @@
             "http",
             "tor"
           ]
+        },
+        {
+          "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
+          "tags": []
         },
         {
           "url": "https://id.420129.xyz/",
@@ -2266,10 +2272,6 @@
           ]
         },
         {
-          "url": "https://librey.4o1x5.dev/",
-          "tags": []
-        },
-        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2356,10 +2358,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://search.technicalvoid.dev/",
-          "tags": []
         },
         {
           "url": "https://search.uwabaki.party/",
@@ -4236,14 +4234,6 @@
           ]
         },
         {
-          "url": "https://quetre.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://quetre.nadeko.net/",
           "tags": [
             "clearnet",
@@ -4716,6 +4706,10 @@
           "tags": []
         },
         {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
           "tags": []
         },
@@ -4732,7 +4726,7 @@
           "tags": []
         },
         {
-          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
+          "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
           "tags": []
         },
         {
@@ -5710,6 +5704,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://st.tokhmi.xyz/",
+          "tags": []
         },
         {
           "url": "https://tl.vern.cc/",
