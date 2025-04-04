@@ -107,15 +107,6 @@
           ]
         },
         {
-          "url": "https://4get.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://4get.hbubli.cc/",
           "tags": [
             "clearnet",
@@ -2654,7 +2645,8 @@
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
