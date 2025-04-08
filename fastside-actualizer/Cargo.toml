@@ -11,7 +11,7 @@ reqwest = { version = "0.12.4", default-features = false, features = [
   "http2",
 ] } # http client
 
-tokio = { version = "1.37.0", features = ["full"] }    # async
+tokio = { version = "1.43.1", features = ["full"] }    # async
 async-std-resolver = "0.24.1"                          # async dns resolver
 clap = { version = "4.5.4", features = ["derive"] }    # cli
 anyhow = "1.0.83"                                      # error
