@@ -544,13 +544,6 @@
           "tags": []
         },
         {
-          "url": "https://breezewiki.4o1x5.dev/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.catsarch.com/",
           "tags": [
             "clearnet",
@@ -2613,7 +2606,8 @@
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
