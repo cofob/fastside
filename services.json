@@ -2605,8 +2605,7 @@
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4611,6 +4610,14 @@
           "tags": []
         },
         {
+          "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://search.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://search.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
           "tags": []
         },
@@ -4883,7 +4890,23 @@
           ]
         },
         {
+          "url": "https://search.librenode.com/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.mdosch.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.mrblake.cc/",
           "tags": [
             "https",
             "ipv4",
@@ -5193,6 +5216,13 @@
         },
         {
           "url": "https://searxng.brihx.fr/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://searxng.deliberate.world/",
           "tags": [
             "https",
             "ipv4"
