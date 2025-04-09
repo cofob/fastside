@@ -1156,6 +1156,14 @@
           "tags": []
         },
         {
+          "url": "https://id.420129.xyz/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "https",
@@ -2585,14 +2593,16 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5318,8 +5328,7 @@
           "url": "https://files.psu.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
