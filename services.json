@@ -1182,8 +1182,7 @@
           "url": "https://j00tube.com/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -5328,7 +5327,8 @@
           "url": "https://files.psu.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
