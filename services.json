@@ -185,10 +185,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://akademik.lumaeris.com/",
-          "tags": []
         }
       ]
     },
@@ -548,13 +544,6 @@
           "tags": []
         },
         {
-          "url": "https://breezewiki.4o1x5.dev/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.catsarch.com/",
           "tags": [
             "clearnet",
@@ -589,14 +578,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://breezewiki.private.coffee/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -644,6 +625,13 @@
           "tags": [
             "clearnet",
             "https"
+          ]
+        },
+        {
+          "url": "https://fan.blitzw.in/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -1197,6 +1185,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
           "tags": []
         },
@@ -1217,14 +1209,6 @@
         },
         {
           "url": "https://j00tube.com/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://yewtu.be/",
           "tags": [
             "https",
             "ipv4",
@@ -2185,31 +2169,11 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://2ceiaa37hsmmk3japczvc4b6wnralj64qpf7ywfheircq3ht3rwus6ad.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://librey.darknessrdor43qkl2ngwitj72zdavfz2cead4t5ed72bybgauww5lyd.onion/",
-          "tags": []
-        },
-        {
           "url": "http://lx.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
           "tags": [
             "http",
             "tor"
           ]
-        },
-        {
-          "url": "http://ly.pk47sgwhncn5cgidm7bofngmh7lc7ukjdpk5bjwfemmyp27ovl25ikyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://revekebotog64xrrammtsmjwtwlg3vqyzwdurzt2pu6botg4bejq.b32.i2p/",
-          "tags": []
-        },
-        {
-          "url": "http://search.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/",
-          "tags": []
         },
         {
           "url": "http://vernziqfqvweijfaacmwazohgpdo2bt2ib2jlupt2pwwu27bhgxq.b32.i2p/",
@@ -2634,16 +2598,14 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4134,17 +4096,7 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://ig.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "proxitok",
@@ -4539,10 +4491,6 @@
           ]
         },
         {
-          "url": "https://scribe.privacydev.net/",
-          "tags": []
-        },
-        {
           "url": "https://scribe.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -4591,10 +4539,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://search.stinpriza.org/",
-          "tags": []
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "https",
@@ -4608,14 +4552,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://searx.mastodontech.de/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -4644,11 +4580,8 @@
           ]
         },
         {
-          "url": "https://searx.zapashcanon.fr/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "url": "https://searx.ru/",
+          "tags": []
         }
       ]
     },
@@ -4673,11 +4606,15 @@
           "tags": []
         },
         {
-          "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
+          "url": "http://nerdvpn4iln4didgzcw7pgvjv4p3pwn3e3dq732oxwidfv6bacnyuvad.onion/",
           "tags": []
         },
         {
-          "url": "http://nerdvpn4iln4didgzcw7pgvjv4p3pwn3e3dq732oxwidfv6bacnyuvad.onion/",
+          "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://search.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/",
           "tags": []
         },
         {
@@ -4953,7 +4890,23 @@
           ]
         },
         {
+          "url": "https://search.librenode.com/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.mdosch.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.mrblake.cc/",
           "tags": [
             "https",
             "ipv4",
@@ -5263,6 +5216,13 @@
         },
         {
           "url": "https://searxng.brihx.fr/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://searxng.deliberate.world/",
           "tags": [
             "https",
             "ipv4"
@@ -5684,10 +5644,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://translate.priv.pw/",
-          "tags": []
         },
         {
           "url": "https://translate.riverside.rocks/",
