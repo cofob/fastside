@@ -1214,7 +1214,9 @@
         {
           "url": "https://id.420129.xyz/",
           "tags": [
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1228,8 +1230,10 @@
         {
           "url": "https://j00tube.com/",
           "tags": [
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
