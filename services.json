@@ -307,7 +307,9 @@
           "url": "https://overflow.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -644,15 +646,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://fan.blitzw.in/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -925,6 +919,14 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://fs.poridge.club/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -966,13 +968,6 @@
           ]
         },
         {
-          "url": "http://gothub.dev.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://gothub.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
           "tags": [
             "http",
@@ -1004,14 +999,6 @@
           ]
         },
         {
-          "url": "https://gothub.dev.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://gothub.ducks.party/",
           "tags": [
             "https",
@@ -1033,6 +1020,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1198,10 +1186,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
-          "tags": []
-        },
         {
           "url": "http://zzlsbhhfvwg3oh36tcvx4r7n6jrw7zibvyvfxqlodcwn3mfrvzuq.b32.i2p/",
           "tags": []
@@ -2242,6 +2226,10 @@
           ]
         },
         {
+          "url": "https://librey.4o1x5.dev/",
+          "tags": []
+        },
+        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2328,6 +2316,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.technicalvoid.dev/",
+          "tags": []
         },
         {
           "url": "https://search.uwabaki.party/",
@@ -3538,9 +3530,7 @@
           "url": "https://paste.rosset.net/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4426,9 +4416,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4616,10 +4604,6 @@
           ]
         },
         {
-          "url": "https://searx.ru/",
-          "tags": []
-        },
-        {
           "url": "https://searx.zapashcanon.fr/",
           "tags": [
             "https",
@@ -4657,14 +4641,6 @@
           "tags": []
         },
         {
-          "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://search.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/",
-          "tags": []
-        },
-        {
           "url": "http://search.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
           "tags": []
         },
@@ -4674,6 +4650,10 @@
         },
         {
           "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
           "tags": []
         },
         {
@@ -5697,7 +5677,8 @@
         {
           "url": "https://translate.slipfox.xyz/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
