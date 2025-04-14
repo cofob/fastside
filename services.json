@@ -5165,7 +5165,9 @@
         {
           "url": "https://searxng.biz/",
           "tags": [
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
