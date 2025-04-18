@@ -645,9 +645,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1027,7 +1025,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2468,9 +2465,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -4414,9 +4409,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5960,7 +5953,8 @@
         {
           "url": "https://tl.clovius.club/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
