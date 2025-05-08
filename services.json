@@ -188,7 +188,11 @@
         },
         {
           "url": "https://akademik.lumaeris.com/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -548,7 +552,10 @@
         },
         {
           "url": "https://breeze.whateveritworks.org/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://breezewiki.4o1x5.dev/",
@@ -650,13 +657,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://fan.blitzw.in/",
-          "tags": [
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -1037,7 +1037,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1203,14 +1202,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
-          "tags": []
-        },
         {
           "url": "https://id.420129.xyz/",
           "tags": [
@@ -2214,6 +2205,10 @@
           ]
         },
         {
+          "url": "https://librey.4o1x5.dev/",
+          "tags": []
+        },
+        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2300,6 +2295,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.technicalvoid.dev/",
+          "tags": []
         },
         {
           "url": "https://search.uwabaki.party/",
@@ -4238,15 +4237,6 @@
           ]
         },
         {
-          "url": "https://rimgo.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.pussthecat.org/",
           "tags": [
             "clearnet",
@@ -4521,10 +4511,6 @@
           ]
         },
         {
-          "url": "https://searx.ru/",
-          "tags": []
-        },
-        {
           "url": "https://searx.zapashcanon.fr/",
           "tags": [
             "https",
@@ -4562,14 +4548,6 @@
           "tags": []
         },
         {
-          "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://search.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/",
-          "tags": []
-        },
-        {
           "url": "http://search.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
           "tags": []
         },
@@ -4579,6 +4557,10 @@
         },
         {
           "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
           "tags": []
         },
         {
@@ -5772,10 +5754,6 @@
           "tags": []
         },
         {
-          "url": "http://tent.dswarmsikhttkg7jgsoyfiqpj3ighupfrvuz5ri3lu5q2dlqyrpgk7ad.onion/",
-          "tags": []
-        },
-        {
           "url": "http://tn.maidzonekwrk4xbbmynqnprq2lu7picruncfscfwmyzbmec6naurhyqd.onion/",
           "tags": []
         },
@@ -5804,14 +5782,6 @@
           "url": "https://tent.bloat.cat/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://tent.canine.tools/",
-          "tags": [
             "https",
             "ipv4",
             "ipv6"
@@ -5958,7 +5928,11 @@
         },
         {
           "url": "https://translite.lumaeris.com/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
