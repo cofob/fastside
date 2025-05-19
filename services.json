@@ -3804,6 +3804,7 @@
           "url": "https://textbin.quick-space.de/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4548,7 +4549,10 @@
         },
         {
           "url": "https://search.cloakpanda.com/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://search.einfachzocken.eu/",
@@ -4827,7 +4831,8 @@
         {
           "url": "https://searx.mv-software.de/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4919,7 +4924,8 @@
         {
           "url": "https://searx.thefloatinglab.world/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5065,6 +5071,7 @@
           "url": "https://www.jabber-germany.de/searx/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
