@@ -516,9 +516,7 @@
         {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2203,10 +2201,7 @@
         },
         {
           "url": "https://serp.catswords.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "tags": []
         }
       ]
     },
@@ -2492,7 +2487,8 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
