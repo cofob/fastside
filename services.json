@@ -4827,8 +4827,7 @@
         {
           "url": "https://searx.mv-software.de/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4920,8 +4919,7 @@
         {
           "url": "https://searx.thefloatinglab.world/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5067,7 +5065,6 @@
           "url": "https://www.jabber-germany.de/searx/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
