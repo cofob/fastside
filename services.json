@@ -447,6 +447,13 @@
           ]
         },
         {
+          "url": "https://breeze.mint.lgbt/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://breeze.nohost.network/",
           "tags": [
             "https",
