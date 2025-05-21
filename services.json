@@ -2388,14 +2388,16 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
