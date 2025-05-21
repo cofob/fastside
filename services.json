@@ -484,7 +484,11 @@
         },
         {
           "url": "https://breezewiki.private.coffee/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         },
         {
           "url": "https://breezewiki.pussthecat.org/",
@@ -2463,7 +2467,9 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4170,7 +4176,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
