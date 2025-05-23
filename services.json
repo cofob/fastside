@@ -4673,8 +4673,7 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5021,15 +5020,13 @@
           "url": "https://searxng.world/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
           "url": "https://seek.fyi/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5399,7 +5396,10 @@
         },
         {
           "url": "https://translate.slipfox.xyz/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://translate.tiekoetter.com/",
