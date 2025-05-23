@@ -512,7 +512,6 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2441,7 +2440,8 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5012,6 +5012,7 @@
           "url": "https://searxng.world/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5045,6 +5046,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5060,6 +5062,7 @@
           "url": "https://www.gruble.de/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5067,6 +5070,7 @@
           "url": "https://www.jabber-germany.de/searx/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
