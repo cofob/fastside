@@ -4757,14 +4757,6 @@
           ]
         },
         {
-          "url": "https://searx.ankha.ac/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://searx.baczek.me/",
           "tags": [
             "clearnet",
@@ -5020,13 +5012,15 @@
           "url": "https://searxng.world/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
           "url": "https://seek.fyi/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
