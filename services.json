@@ -1689,8 +1689,7 @@
           "url": "https://video.devloprog.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4523,6 +4522,13 @@
           ]
         },
         {
+          "url": "https://search.404.fo/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.canine.tools/",
           "tags": [
             "https",
@@ -4665,6 +4671,14 @@
           "tags": [
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.oh64.moe/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5067,14 +5081,6 @@
         },
         {
           "url": "https://www.jabber-germany.de/searx/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://xo.wtf/",
           "tags": [
             "https",
             "ipv4",
@@ -5729,7 +5735,8 @@
         {
           "url": "https://translite.deep-swarm.xyz/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
