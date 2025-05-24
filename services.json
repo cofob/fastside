@@ -4968,7 +4968,8 @@
           "url": "https://searxng.biz/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
