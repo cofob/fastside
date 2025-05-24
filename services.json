@@ -1689,7 +1689,8 @@
           "url": "https://video.devloprog.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4967,8 +4968,7 @@
           "url": "https://searxng.biz/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
