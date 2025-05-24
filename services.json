@@ -13,13 +13,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://0.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "https://0.vern.cc/",
           "tags": [
             "clearnet",
@@ -4890,6 +4883,7 @@
           "url": "https://searx.perennialte.ch/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5017,6 +5011,7 @@
           "url": "https://searxng.world/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5033,6 +5028,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5073,6 +5069,7 @@
           "url": "https://www.jabber-germany.de/searx/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
