@@ -20,13 +20,6 @@
           ]
         },
         {
-          "url": "http://vernkjqjz3qctifc3ovi7s77zzkej6qb6wbgly7yu46tgtffskla.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "https://0.vern.cc/",
           "tags": [
             "clearnet",
@@ -2441,14 +2434,16 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4895,7 +4890,6 @@
           "url": "https://searx.perennialte.ch/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5023,7 +5017,6 @@
           "url": "https://searxng.world/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5040,7 +5033,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5081,7 +5073,6 @@
           "url": "https://www.jabber-germany.de/searx/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
