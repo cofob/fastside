@@ -1666,8 +1666,7 @@
           "url": "https://smaug.lixper.it/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4673,7 +4672,8 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
