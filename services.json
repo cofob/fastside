@@ -856,6 +856,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1766,9 +1767,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4493,6 +4492,14 @@
           ]
         },
         {
+          "url": "https://search.in.projectsegfau.lt/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.indst.eu/",
           "tags": [
             "https",
@@ -4592,6 +4599,15 @@
           ]
         },
         {
+          "url": "https://search.projectsegfau.lt/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -4630,6 +4646,15 @@
           "tags": [
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.us.projectsegfau.lt/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
