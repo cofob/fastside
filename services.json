@@ -496,9 +496,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -855,8 +853,7 @@
         {
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1023,7 +1020,11 @@
         },
         {
           "url": "https://id.420129.xyz/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         },
         {
           "url": "https://inv.nadeko.net/",
@@ -1762,9 +1763,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2206,8 +2205,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -4082,7 +4080,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4481,7 +4481,6 @@
           "url": "https://search.im-in.space/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4722,8 +4721,7 @@
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -4752,9 +4750,7 @@
         {
           "url": "https://searx.party/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4845,8 +4841,7 @@
         {
           "url": "https://searxng.deliberate.world/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5258,8 +5253,7 @@
           "url": "https://skyview.social/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         }
       ]
