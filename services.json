@@ -470,7 +470,9 @@
         {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1807,7 +1809,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2039,7 +2043,8 @@
         {
           "url": "https://librey.org/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -2071,7 +2076,8 @@
           "url": "https://search.davidovski.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -2251,7 +2257,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -2395,7 +2403,8 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4125,7 +4134,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4356,7 +4367,8 @@
           "url": "https://copp.gg/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4546,7 +4558,9 @@
         {
           "url": "https://search.im-in.space/",
           "tags": [
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4660,7 +4674,9 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4810,6 +4826,7 @@
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4840,6 +4857,7 @@
           "url": "https://searx.party/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5287,7 +5305,8 @@
           "url": "https://simplytranslate.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
