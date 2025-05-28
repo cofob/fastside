@@ -520,7 +520,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -906,8 +905,7 @@
         {
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4812,8 +4810,7 @@
         {
           "url": "https://searx.mv-software.de/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4921,7 +4918,6 @@
           "url": "https://searx.tuxcloud.net/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4958,7 +4954,6 @@
           "url": "https://searxng.f24o.zip/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4979,8 +4974,7 @@
         {
           "url": "https://searxng.site/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5652,6 +5646,7 @@
           "url": "http://t.opnxng.com/",
           "tags": [
             "http",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5676,6 +5671,7 @@
           "url": "https://tl.dc09.ru/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5683,6 +5679,7 @@
           "url": "https://tl.maid.zone/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5713,6 +5710,7 @@
           "url": "https://translite.lumaeris.com/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         }
