@@ -470,9 +470,7 @@
         {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -519,7 +517,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2039,8 +2039,7 @@
         {
           "url": "https://librey.org/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2072,8 +2071,7 @@
           "url": "https://search.davidovski.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2397,8 +2395,7 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4359,8 +4356,7 @@
           "url": "https://copp.gg/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4550,9 +4546,7 @@
         {
           "url": "https://search.im-in.space/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4816,7 +4810,6 @@
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4847,7 +4840,6 @@
           "url": "https://searx.party/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5295,8 +5287,7 @@
           "url": "https://simplytranslate.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
