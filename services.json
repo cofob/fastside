@@ -393,8 +393,7 @@
           "url": "https://antifandom.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -584,8 +583,7 @@
           "url": "https://cobalt.astronima.bet/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -908,9 +906,7 @@
         {
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1820,9 +1816,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2264,9 +2258,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -4141,8 +4133,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4679,8 +4670,7 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5515,15 +5505,7 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://maidzong64yczoqm5wlg2hiodip6ktpldcfdvoxanqaxmonyim4q.b32.i2p/",
-          "tags": []
-        },
-        {
           "url": "http://tent.dswarmsikhttkg7jgsoyfiqpj3ighupfrvuz5ri3lu5q2dlqyrpgk7ad.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://tn.maidzonekwrk4xbbmynqnprq2lu7picruncfscfwmyzbmec6naurhyqd.onion/",
           "tags": []
         },
         {
@@ -5568,8 +5550,7 @@
           "url": "https://tent.deep-swarm.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5680,8 +5661,7 @@
         {
           "url": "https://translite.deep-swarm.xyz/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
