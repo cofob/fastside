@@ -527,7 +527,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3462,8 +3464,7 @@
           "url": "https://pastefg.hermietkreeft.site/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3596,7 +3597,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3631,16 +3631,14 @@
           "url": "https://privatebin.kosebamse.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://privatebin.limpidit.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3700,8 +3698,7 @@
           "url": "https://privatebin.wsmm.de/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3770,7 +3767,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4143,6 +4139,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4428,13 +4425,6 @@
           ]
         },
         {
-          "url": "https://northboot.xyz/.within.website/?redir=%2F/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://nyc1.sx.ggtyler.dev/",
           "tags": [
             "https",
@@ -4652,8 +4642,7 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
