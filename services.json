@@ -528,6 +528,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -907,6 +908,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1164,7 +1166,8 @@
           "url": "https://easyconference.uibk.ac.at/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -1189,6 +1192,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1222,6 +1226,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1248,6 +1253,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1263,7 +1269,8 @@
           "url": "https://jitsi.komuniki.fr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -1306,6 +1313,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1647,7 +1655,8 @@
           "url": "https://video.devloprog.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4664,7 +4673,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
