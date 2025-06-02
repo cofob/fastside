@@ -2354,7 +2354,8 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4438,13 +4439,6 @@
         },
         {
           "url": "https://search.citw.lgbt/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.cloakpanda.com/",
           "tags": [
             "https",
             "ipv4"
