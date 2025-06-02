@@ -1764,7 +1764,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2207,6 +2209,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         }
@@ -2351,8 +2354,7 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
