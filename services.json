@@ -45,13 +45,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://2cacklzoqtb3nhug4n3hizwxupqreekbeu5c2swachpmefvehvwz5nyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://4getwebfrq5zr4sxugk6htxvawqehxtdgjrbcn2oslllcol2vepa23yd.onion/",
           "tags": [
             "http",
@@ -907,6 +900,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2209,13 +2203,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://42i2bzogwkph3dvoo2bm6srskf7vvabsphw7uzftymbjjlzgfluhnmid.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "https://mozhi.aryak.me/",
           "tags": [
             "clearnet",
@@ -2253,9 +2240,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -3234,8 +3219,7 @@
           "url": "https://paste.momobako.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3681,8 +3665,7 @@
           "url": "https://privatebin.sequanux.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4673,7 +4656,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
