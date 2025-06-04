@@ -516,9 +516,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1798,9 +1796,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2246,9 +2242,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -2399,8 +2393,7 @@
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4123,8 +4116,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4664,9 +4656,7 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4839,7 +4829,6 @@
           "url": "https://searx.ox2.fr/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4910,7 +4899,6 @@
           "url": "https://searx.tuxcloud.net/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4925,7 +4913,6 @@
           "url": "https://searxng.biz/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4954,8 +4941,7 @@
         {
           "url": "https://searxng.hweeren.com/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5017,7 +5003,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
