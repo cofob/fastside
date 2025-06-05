@@ -2387,14 +2387,16 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4117,7 +4119,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4450,8 +4454,7 @@
         {
           "url": "https://s.datuan.dev/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4614,7 +4617,6 @@
           "url": "https://search.nerdvpn.de/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4637,7 +4639,6 @@
           "url": "https://search.ohaa.xyz/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4652,7 +4653,6 @@
           "url": "https://search.privacyredirect.com/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4661,7 +4661,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4678,7 +4677,6 @@
           "url": "https://search.rhscz.eu/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4695,7 +4693,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4744,8 +4741,7 @@
           "url": "https://searx.daetalytica.io/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4759,16 +4755,14 @@
         {
           "url": "https://searx.foobar.vip/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://searx.foss.family/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4812,7 +4806,6 @@
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4851,7 +4844,8 @@
           "url": "https://searx.perennialte.ch/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4905,6 +4899,7 @@
           "url": "https://searx.tuxcloud.net/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4969,7 +4964,8 @@
         {
           "url": "https://searxng.website/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5018,6 +5014,7 @@
           "url": "https://sx.thatxtreme.dev/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5033,7 +5030,8 @@
           "url": "https://www.jabber-germany.de/searx/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
