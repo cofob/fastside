@@ -517,9 +517,7 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -905,7 +903,6 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1411,7 +1408,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1470,8 +1466,7 @@
           "url": "https://meet.isf.es/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -1532,7 +1527,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4120,7 +4114,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4454,7 +4447,8 @@
         {
           "url": "https://s.datuan.dev/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4617,6 +4611,7 @@
           "url": "https://search.nerdvpn.de/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4639,6 +4634,7 @@
           "url": "https://search.ohaa.xyz/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4653,6 +4649,7 @@
           "url": "https://search.privacyredirect.com/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4661,6 +4658,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4677,6 +4675,7 @@
           "url": "https://search.rhscz.eu/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4693,6 +4692,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4741,7 +4741,8 @@
           "url": "https://searx.daetalytica.io/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4755,14 +4756,16 @@
         {
           "url": "https://searx.foobar.vip/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://searx.foss.family/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4806,6 +4809,7 @@
           "url": "https://searx.namejeff.xyz/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
