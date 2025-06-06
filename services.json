@@ -2372,16 +2372,14 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4104,6 +4102,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4426,7 +4425,8 @@
         {
           "url": "https://s.datuan.dev/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4596,7 +4596,8 @@
         {
           "url": "https://search.nordh.tech/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4611,6 +4612,7 @@
           "url": "https://search.ohaa.xyz/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4634,6 +4636,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4642,6 +4645,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4649,6 +4653,7 @@
           "url": "https://search.rhscz.eu/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4665,6 +4670,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4705,6 +4711,7 @@
           "url": "https://searx.be/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4720,13 +4727,15 @@
           "url": "https://searx.dresden.network/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
           "url": "https://searx.foobar.vip/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
