@@ -2013,6 +2013,10 @@
           ]
         },
         {
+          "url": "https://librey.4o1x5.dev/",
+          "tags": []
+        },
+        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2099,6 +2103,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.technicalvoid.dev/",
+          "tags": []
         },
         {
           "url": "https://search.uwabaki.party/",
@@ -2387,14 +2395,16 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://pa.il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4331,6 +4341,10 @@
           "tags": []
         },
         {
+          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://searxwcao6avdvuaspdrjheiwrcey2zvxq3dj52gruo3oaqcr2ddlyqd.onion/",
           "tags": []
         },
@@ -4662,7 +4676,8 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
