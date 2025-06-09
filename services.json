@@ -3661,8 +3661,7 @@
           "url": "https://privatebin.wsmm.de/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3679,7 +3678,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3738,8 +3736,7 @@
           "url": "https://vip.ci/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3766,8 +3763,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
