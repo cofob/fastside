@@ -245,13 +245,6 @@
           ]
         },
         {
-          "url": "http://vernapl3lpo3huqdx3pjzxqgdgavxjlmdskbvejh2gfqgmjuyvxq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "https://biblioreads.ducks.party/",
           "tags": [
             "clearnet",
@@ -618,13 +611,6 @@
           ]
         },
         {
-          "url": "http://vern543vpdnea54gxj4ra66ijciu4fff26emabkdz4w4rgnyx2eq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "https://ds.vern.cc/",
           "tags": [
             "clearnet",
@@ -652,13 +638,6 @@
       "source_link": "https://github.com/rramiachraf/dumb",
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "http://vernxpcpqi2y4uhu7to4rnjmyjjgzh3x3qxyzpmkhykefchkmleq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
         {
           "url": "https://dm.vern.cc/",
           "tags": [
@@ -5438,13 +5417,6 @@
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "http://vernrdigztvu3427stlditjofgkuoc3b7kbkxvlecaej5ufe4l5q.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
           ]
         },
         {
