@@ -238,13 +238,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://bl.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "https://biblioreads.ducks.party/",
           "tags": [
             "clearnet",
@@ -272,15 +265,6 @@
         },
         {
           "url": "https://biblioreads.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://bl.vern.cc/",
           "tags": [
             "clearnet",
             "https",
@@ -638,15 +622,6 @@
       "source_link": "https://github.com/rramiachraf/dumb",
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://dm.vern.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "https://dumb.ducks.party/",
           "tags": [
@@ -1721,13 +1696,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://md.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "https://libmedium.batsense.net/",
           "tags": [
             "clearnet",
@@ -1737,15 +1705,6 @@
         },
         {
           "url": "https://libmedium.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://md.vern.cc/",
           "tags": [
             "clearnet",
             "https",
@@ -4131,15 +4090,6 @@
           ]
         },
         {
-          "url": "https://sc.vern.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://scribe.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -5185,17 +5135,7 @@
       "aliases": [],
       "source_link": "https://codeberg.org/SimpleWeb/SimpleAmazon",
       "deprecated_message": "Repository is archived.",
-      "instances": [
-        {
-          "url": "https://az.vern.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "simplytranslate",
@@ -5224,13 +5164,6 @@
         {
           "url": "http://st.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
           "tags": []
-        },
-        {
-          "url": "http://tl.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
         },
         {
           "url": "http://translate.prnoid54e44a4bduq5due64jkk7wcnkxcp5kv3juncm7veptjcqudgyd.onion/",
@@ -5289,15 +5222,6 @@
           "tags": [
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://tl.vern.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -5411,24 +5335,7 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": null,
-      "instances": [
-        {
-          "url": "http://sd.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "https://sd.vern.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "teddit",
