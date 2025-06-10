@@ -1480,7 +1480,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1593,7 +1594,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1609,7 +1611,8 @@
           "url": "https://smaug.lixper.it/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4865,6 +4868,14 @@
           "url": "https://searx.si/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.stream/",
+          "tags": [
             "https",
             "ipv4",
             "ipv6"
