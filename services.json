@@ -4224,6 +4224,10 @@
           "tags": []
         },
         {
+          "url": "http://x5okencj67ew6xfma5wbbfhfcnajmpgb57d6kdvion5yajth666oggyd.onion/",
+          "tags": []
+        },
+        {
           "url": "https://baresearch.org/",
           "tags": [
             "clearnet",
@@ -4404,6 +4408,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.federicociro.com/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
