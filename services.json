@@ -1012,15 +1012,6 @@
           ]
         },
         {
-          "url": "https://invidious.f5.si/",
-          "tags": [
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://invidious.nerdvpn.de/",
           "tags": [
             "https",
