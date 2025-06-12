@@ -150,6 +150,10 @@
           ]
         },
         {
+          "url": "https://akademik.clovius.club/",
+          "tags": []
+        },
+        {
           "url": "https://akademik.lumaeris.com/",
           "tags": [
             "https",
@@ -1005,15 +1009,6 @@
           "tags": [
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://invidious.f5.si/",
-          "tags": [
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -1924,10 +1919,6 @@
           ]
         },
         {
-          "url": "https://librey.4o1x5.dev/",
-          "tags": []
-        },
-        {
           "url": "https://librey.baczek.me/",
           "tags": [
             "clearnet",
@@ -2015,11 +2006,11 @@
           ]
         },
         {
-          "url": "https://search.technicalvoid.dev/",
+          "url": "https://search.uwabaki.party/",
           "tags": []
         },
         {
-          "url": "https://search.uwabaki.party/",
+          "url": "https://serp.catswords.net/",
           "tags": []
         }
       ]
@@ -3659,7 +3650,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4184,6 +4176,10 @@
           "tags": []
         },
         {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://lbmegc3rjnekmdxuisynqdc7y3m2tgyq7gj257ooddaobxqjw36bdayd.onion/",
           "tags": []
         },
@@ -4208,7 +4204,7 @@
           "tags": []
         },
         {
-          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
+          "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
           "tags": []
         },
         {
@@ -4217,6 +4213,10 @@
         },
         {
           "url": "http://whereissky27lxfdrs7ct7a5ievor3tl67qi77rv5luga7wod5jf2mad.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://x5okencj67ew6xfma5wbbfhfcnajmpgb57d6kdvion5yajth666oggyd.onion/",
           "tags": []
         },
         {
@@ -4400,6 +4400,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.federicociro.com/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5132,6 +5139,10 @@
           "tags": []
         },
         {
+          "url": "http://tl.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://translate.prnoid54e44a4bduq5due64jkk7wcnkxcp5kv3juncm7veptjcqudgyd.onion/",
           "tags": []
         },
@@ -5191,7 +5202,26 @@
           ]
         },
         {
+          "url": "https://st.tokhmi.xyz/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://tl.vern.cc/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://translate.bus-hit.me/",
+          "tags": []
+        },
+        {
+          "url": "https://translate.josias.dev/",
           "tags": []
         },
         {
@@ -5474,6 +5504,18 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://t.opnxng.com/",
+          "tags": [
+            "http",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "http://translite.dswarmsikhttkg7jgsoyfiqpj3ighupfrvuz5ri3lu5q2dlqyrpgk7ad.onion/",
+          "tags": []
+        },
+        {
           "url": "https://tl.bloat.cat/",
           "tags": [
             "clearnet",
@@ -5481,6 +5523,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://tl.clovius.club/",
+          "tags": []
         },
         {
           "url": "https://tl.dc09.ru/",
