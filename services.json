@@ -376,7 +376,10 @@
         },
         {
           "url": "https://breezewiki.4o1x5.dev/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://breezewiki.catsarch.com/",
@@ -4280,13 +4283,6 @@
         },
         {
           "url": "https://search.080609.xyz/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.404.fo/",
           "tags": [
             "https",
             "ipv4"
