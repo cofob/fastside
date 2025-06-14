@@ -4811,7 +4811,6 @@
           "url": "https://suche.dasnetzundich.de/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4828,7 +4827,6 @@
           "url": "https://sx.thatxtreme.dev/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
