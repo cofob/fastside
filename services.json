@@ -4263,7 +4263,8 @@
           "url": "https://s.datuan.dev/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
