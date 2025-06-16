@@ -419,7 +419,8 @@
           "url": "https://breezewiki.nadeko.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -442,7 +443,8 @@
         {
           "url": "https://breezewiki.r4fo.com/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
