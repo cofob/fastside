@@ -416,19 +416,10 @@
           "tags": []
         },
         {
-          "url": "https://breezewiki.hyperreal.coffee/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.nadeko.net/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -451,8 +442,7 @@
         {
           "url": "https://breezewiki.r4fo.com/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
