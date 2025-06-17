@@ -486,7 +486,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -825,7 +827,6 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1703,7 +1704,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3350,6 +3353,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3401,6 +3405,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3409,7 +3414,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3452,14 +3458,16 @@
           "url": "https://privatebin.kosebamse.com/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://privatebin.limpidit.com/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -3468,6 +3476,7 @@
             "clearnet",
             "cloudflare",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3476,6 +3485,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3935,6 +3945,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5122,10 +5133,7 @@
         },
         {
           "url": "https://st.privacydev.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "tags": []
         },
         {
           "url": "https://st.tokhmi.xyz/",
