@@ -827,6 +827,7 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1314,7 +1315,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1357,8 +1357,7 @@
           "url": "https://meet.greenhost.net/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -1400,7 +1399,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5133,7 +5131,10 @@
         },
         {
           "url": "https://st.privacydev.net/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://st.tokhmi.xyz/",
