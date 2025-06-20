@@ -4265,13 +4265,6 @@
           ]
         },
         {
-          "url": "https://search.gcomm.ch/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.hbubli.cc/",
           "tags": [
             "https",
@@ -4464,8 +4457,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -4533,8 +4525,7 @@
         {
           "url": "https://searx.mv-software.de/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4563,16 +4554,14 @@
           "url": "https://searx.oloke.xyz/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
           "url": "https://searx.ox2.fr/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -4587,8 +4576,7 @@
           "url": "https://searx.perennialte.ch/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -4634,15 +4622,13 @@
         {
           "url": "https://searx.thefloatinglab.world/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://searx.tiekoetter.com/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4657,8 +4643,7 @@
         {
           "url": "https://searx.zhenyapav.com/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4687,7 +4672,6 @@
           "url": "https://searxng.f24o.zip/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4701,8 +4685,7 @@
         {
           "url": "https://searxng.shreven.org/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4715,16 +4698,14 @@
         {
           "url": "https://searxng.website/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://seek.fyi/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -4740,7 +4721,6 @@
           "url": "https://suche.dasnetzundich.de/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4749,7 +4729,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -4757,16 +4736,13 @@
           "url": "https://sx.thatxtreme.dev/",
           "tags": [
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
         {
           "url": "https://www.gruble.de/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
