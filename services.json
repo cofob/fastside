@@ -1692,6 +1692,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3303,15 +3304,6 @@
           ]
         },
         {
-          "url": "https://postit.hadoly.fr/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://private.opendoor.fr/",
           "tags": [
             "clearnet",
@@ -3889,6 +3881,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
