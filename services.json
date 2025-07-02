@@ -451,6 +451,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2054,7 +2055,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
@@ -3197,8 +3197,7 @@
           "url": "https://pastefg.hermietkreeft.site/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3287,8 +3286,7 @@
           "url": "https://privatebin.at/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3402,24 +3400,21 @@
             "clearnet",
             "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
           "url": "https://privatebin.seattlematrix.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://privatebin.sequanux.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3496,7 +3491,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3541,7 +3535,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
