@@ -4741,7 +4741,8 @@
           "url": "https://suche.dasnetzundich.de/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4765,6 +4766,7 @@
           "url": "https://www.gruble.de/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
