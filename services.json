@@ -4446,7 +4446,8 @@
           "url": "https://searx.foss.family/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4584,6 +4585,7 @@
           "url": "https://searx.tiekoetter.com/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4598,14 +4600,16 @@
         {
           "url": "https://searx.zhenyapav.com/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://searxng.biz/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4626,13 +4630,15 @@
           "url": "https://searxng.f24o.zip/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
         {
           "url": "https://searxng.hweeren.com/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4677,6 +4683,7 @@
           "url": "https://suche.dasnetzundich.de/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4685,6 +4692,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
