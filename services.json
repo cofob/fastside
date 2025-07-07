@@ -1150,14 +1150,6 @@
           ]
         },
         {
-          "url": "https://jitsi.komuniki.fr/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://jitsi.laas.fr/",
           "tags": [
             "clearnet",
@@ -3090,8 +3082,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -3133,8 +3124,7 @@
           "url": "https://paste.waays.fr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3142,7 +3132,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3292,8 +3281,7 @@
           "url": "https://privatebin.at/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3309,7 +3297,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3318,7 +3305,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3326,9 +3312,7 @@
           "url": "https://privatebin.freinetz.ch/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -3346,7 +3330,6 @@
             "clearnet",
             "cloudflare",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3362,16 +3345,14 @@
           "url": "https://privatebin.kosebamse.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://privatebin.limpidit.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3380,8 +3361,7 @@
             "clearnet",
             "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -3389,7 +3369,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3407,7 +3386,6 @@
             "clearnet",
             "cloudflare",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3423,16 +3401,14 @@
           "url": "https://privatebin.sequanux.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://privatebin.wsmm.de/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3449,7 +3425,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3457,8 +3432,7 @@
           "url": "https://secrets.l25.cloud/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3473,8 +3447,7 @@
           "url": "https://secrets.true.nl/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5202,14 +5175,6 @@
         },
         {
           "url": "https://tent.private.coffee/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://tent.qunn.link/",
           "tags": [
             "https",
             "ipv4",
