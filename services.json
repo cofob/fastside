@@ -4735,14 +4735,6 @@
           ]
         },
         {
-          "url": "https://send.aezafiles.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://send.artemislena.eu/",
           "tags": [
             "clearnet",
