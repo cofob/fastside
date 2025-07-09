@@ -1680,6 +1680,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3853,9 +3854,7 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4214,7 +4213,8 @@
         {
           "url": "https://search.080609.xyz/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4383,7 +4383,8 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -4399,7 +4400,8 @@
           "url": "https://search.rhscz.eu/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4439,7 +4441,8 @@
           "url": "https://searx.ankha.ac/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4447,6 +4450,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4477,7 +4481,8 @@
         {
           "url": "https://searx.foobar.vip/",
           "tags": [
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4500,6 +4505,7 @@
           "url": "https://searx.lunar.icu/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4575,6 +4581,7 @@
           "url": "https://searx.rhscz.eu/",
           "tags": [
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
