@@ -1690,7 +1690,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2075,9 +2074,7 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         }
       ]
@@ -3518,6 +3515,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -3581,7 +3579,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -3855,6 +3854,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4514,13 +4514,6 @@
         },
         {
           "url": "https://searx.mbuf.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://searx.mv-software.de/",
           "tags": [
             "https",
             "ipv4"
