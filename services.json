@@ -1748,15 +1748,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://snoo.habedieeh.re/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
