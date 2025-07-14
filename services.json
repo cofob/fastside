@@ -402,7 +402,9 @@
         {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -449,7 +451,8 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -3776,6 +3779,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4282,6 +4286,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4510,9 +4515,7 @@
         {
           "url": "https://searx.stream/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4533,9 +4536,7 @@
         {
           "url": "https://searx.tuxcloud.net/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4548,16 +4549,13 @@
         {
           "url": "https://searxng.biz/",
           "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
           "url": "https://searxng.brihx.fr/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4571,36 +4569,31 @@
           "url": "https://searxng.f24o.zip/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
           "url": "https://searxng.hweeren.com/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://searxng.shreven.org/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://searxng.site/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
           "url": "https://searxng.website/",
           "tags": [
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
