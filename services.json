@@ -473,7 +473,9 @@
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -813,7 +815,8 @@
         {
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -968,6 +971,13 @@
         {
           "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
           "tags": []
+        },
+        {
+          "url": "https://inv.nadeko.net/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://invidious.f5.si/",
@@ -1666,7 +1676,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2045,7 +2057,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -3815,7 +3829,8 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -4339,7 +4354,9 @@
           "url": "https://search.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
