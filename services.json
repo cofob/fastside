@@ -127,6 +127,10 @@
           ]
         },
         {
+          "url": "https://ak.dc09.ru/",
+          "tags": []
+        },
+        {
           "url": "https://ak2.bloat.cat/",
           "tags": [
             "https",
@@ -322,7 +326,23 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://breezewiki.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
+          "url": "http://breezewiki.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://breezewiki.coffee2m3bjsrrqqycx6ghkxrnejl2q6nl7pjw2j4clchjj6uk5zozad.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://breezewiki.nadekonfkhwlxwwk4ycbvq42zvcjmvo5iakl4tajojjwxd4a5dcetuyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://breezewiki.r4focoma7gu2zdwwcjjad47ysxt634lg73sxmdbkdozanwqslho5ohyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://bw.skunky7dhv7nohsoalpwe3sxfz3fbkad7r3wk632riye25vqm3meqead.onion/",
           "tags": []
         },
         {
@@ -331,14 +351,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://breeze.hostux.net/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -357,6 +369,13 @@
           ]
         },
         {
+          "url": "https://breeze.whateveritworks.org/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://breezewiki.4o1x5.dev/",
           "tags": []
         },
@@ -372,6 +391,13 @@
           "url": "https://breezewiki.com/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://breezewiki.frontendfriendly.xyz/",
+          "tags": [
             "https",
             "ipv4"
           ]
@@ -459,6 +485,10 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://nerd.whatever.social/",
+          "tags": []
         },
         {
           "url": "https://z.opnxng.com/",
@@ -633,20 +663,28 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://cdn.fastside.link/",
-          "tags": [
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
+          "url": "http://[200:691d:578e:f10e:e935:f189:aab4:1d98]/",
+          "tags": []
         },
         {
-          "url": "https://fastsi.de/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "url": "http://a7xvcthrhfcsox73brt5hgueapwosohmieg5wttvuuuz6mqur5s3rqyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://fastside.i2p/",
+          "tags": []
+        },
+        {
+          "url": "http://fastside.ygg/",
+          "tags": []
+        },
+        {
+          "url": "http://i4autaipx7a4ro34cbwvni6bcph34eueocplwsxaqeeuyb6cavzq.b32.i2p/",
+          "tags": []
+        },
+        {
+          "url": "http://ygg.fastside.link/",
+          "tags": []
         },
         {
           "url": "https://fs.bloat.cat/",
@@ -909,13 +947,6 @@
         {
           "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
           "tags": []
-        },
-        {
-          "url": "https://inv.nadeko.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
         },
         {
           "url": "https://invidious.f5.si/",
@@ -1859,6 +1890,10 @@
         },
         {
           "url": "https://search.technicalvoid.dev/",
+          "tags": []
+        },
+        {
+          "url": "https://search.uwabaki.party/",
           "tags": []
         },
         {
@@ -3926,6 +3961,10 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://4n53nafyi77iplnbrpmxnp3x4exbswwxigujaxy3b37fvr7bvlopxeyd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://ieqzkvy4bf3xi4bzsfzfax42t4iuqcbqn6oah4uwrm4ip354gavsviad.onion/",
           "tags": []
         },
@@ -3938,6 +3977,10 @@
           "tags": []
         },
         {
+          "url": "http://nerdvpn4iln4didgzcw7pgvjv4p3pwn3e3dq732oxwidfv6bacnyuvad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
           "tags": []
         },
@@ -3946,11 +3989,27 @@
           "tags": []
         },
         {
+          "url": "http://search.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://searx3aolosaf3urwnhpynlhuokqsgz47si4pzz5hvb7uuzyjncl2tid.onion/",
+          "tags": []
+        },
+        {
           "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
           "tags": []
         },
         {
           "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://searxwcao6avdvuaspdrjheiwrcey2zvxq3dj52gruo3oaqcr2ddlyqd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://whereissky27lxfdrs7ct7a5ievor3tl67qi77rv5luga7wod5jf2mad.onion/",
           "tags": []
         },
         {
@@ -3970,6 +4029,13 @@
           "url": "https://copp.gg/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://darmarit.org/searx/",
+          "tags": [
             "https",
             "ipv4"
           ]
@@ -4809,7 +4875,39 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://fyng2tsmzmvxmojzbbwmfnsn2lrcyftf4cw6rk5j2v2huliazud3fjid.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://kmnkkp4v4ublygtnyq46oacy3qw75nrxxniriuaersumw7bfsm2a.b32.i2p/",
+          "tags": []
+        },
+        {
+          "url": "http://simplytranslate.esmail5pdn24shtvieloeedh7ehz3nrwcdivnfhfcedl7gf4kwddhkqd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://st.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
+          "tags": []
+        },
+        {
           "url": "http://tl.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://translate.prnoid54e44a4bduq5due64jkk7wcnkxcp5kv3juncm7veptjcqudgyd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://verna7avzgd4qqal7k2onjzwxcceqby2gwvya2a2frdswb7z2k4q.b32.i2p/",
+          "tags": []
+        },
+        {
+          "url": "http://xxtbwyb5z5bdvy2f6l2yquu5qilgkjeewno4qfknvb3lkg3nmoklitid.onion/",
+          "tags": []
+        },
+        {
+          "url": "https://simplytranslate.esmailelbob.xyz/",
           "tags": []
         },
         {
@@ -4821,6 +4919,10 @@
           ]
         },
         {
+          "url": "https://simplytranslate.manerakai.com/",
+          "tags": []
+        },
+        {
           "url": "https://simplytranslate.org/",
           "tags": [
             "clearnet",
@@ -4829,16 +4931,17 @@
           ]
         },
         {
-          "url": "https://st.odyssey346.dev/",
+          "url": "https://simplytranslate.pussthecat.org/",
           "tags": [
-            "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
-          "url": "https://st.privacydev.net/",
+          "url": "https://st.odyssey346.dev/",
           "tags": [
+            "clearnet",
             "https",
             "ipv4"
           ]
@@ -4856,10 +4959,6 @@
           ]
         },
         {
-          "url": "https://translate.bus-hit.me/",
-          "tags": []
-        },
-        {
           "url": "https://translate.josias.dev/",
           "tags": []
         },
@@ -4874,6 +4973,17 @@
         {
           "url": "https://translate.priv.pw/",
           "tags": []
+        },
+        {
+          "url": "https://translate.riverside.rocks/",
+          "tags": []
+        },
+        {
+          "url": "https://translate.slipfox.xyz/",
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://translate.tiekoetter.com/",
