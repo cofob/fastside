@@ -709,7 +709,10 @@
         },
         {
           "url": "https://fastsi.de/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4"
+          ]
         },
         {
           "url": "https://fs.bloat.cat/",
