@@ -2079,15 +2079,7 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": "Discontinued. Twitter has blocked all instances.",
-      "instances": [
-        {
-          "url": "http://nitter.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "osm",
@@ -2163,8 +2155,7 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
