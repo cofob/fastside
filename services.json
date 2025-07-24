@@ -1061,7 +1061,8 @@
           "url": "https://hosttech.chat/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
