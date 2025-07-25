@@ -484,14 +484,6 @@
           ]
         },
         {
-          "url": "https://fan.blitzw.in/",
-          "tags": [
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://fandom.reallyaweso.me/",
           "tags": [
             "https",
@@ -969,14 +961,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
-          "tags": []
-        },
-        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "https",
@@ -984,8 +968,9 @@
           ]
         },
         {
-          "url": "https://invidious.nerdvpn.de/",
+          "url": "https://invidious.f5.si/",
           "tags": [
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -1816,16 +1801,16 @@
           ]
         },
         {
-          "url": "https://libre.blitzw.in/",
-          "tags": []
-        },
-        {
           "url": "https://librex.nohost.network/",
           "tags": [
             "https",
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://librey.4o1x5.dev/",
+          "tags": []
         },
         {
           "url": "https://librey.baczek.me/",
@@ -1856,10 +1841,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://librey.sny.sh/",
-          "tags": []
         },
         {
           "url": "https://lx.vern.cc/",
@@ -1909,6 +1890,10 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://search.technicalvoid.dev/",
+          "tags": []
         },
         {
           "url": "https://search.uwabaki.party/",
@@ -2094,15 +2079,7 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": "Discontinued. Twitter has blocked all instances.",
-      "instances": [
-        {
-          "url": "http://nitter.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "osm",
@@ -3965,19 +3942,19 @@
           "tags": []
         },
         {
+          "url": "http://ieqzkvy4bf3xi4bzsfzfax42t4iuqcbqn6oah4uwrm4ip354gavsviad.onion/",
+          "tags": []
+        },
+        {
           "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
           "tags": []
         },
         {
+          "url": "http://ls67zxncmcqgn2vg74ckcwxgu5p3e5mf2khues3egkumhcqtbsg4kqyd.onion/",
+          "tags": []
+        },
+        {
           "url": "http://nerdvpn4iln4didgzcw7pgvjv4p3pwn3e3dq732oxwidfv6bacnyuvad.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
-          "tags": []
-        },
-        {
-          "url": "http://search.gw3ennwsaonltfox7z3rhhof6mxcq2fnwhcj2qyp3kxsfldnxix5b4yd.onion/",
           "tags": []
         },
         {
@@ -3990,6 +3967,10 @@
         },
         {
           "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
+          "tags": []
+        },
+        {
+          "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
           "tags": []
         },
         {
@@ -4295,8 +4276,7 @@
           "url": "https://search.oh64.moe/",
           "tags": [
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -4654,10 +4634,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://suche.dasnetzundich.de/",
-          "tags": []
         },
         {
           "url": "https://sx.catgirl.cloud/",
