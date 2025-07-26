@@ -645,7 +645,16 @@
           "url": "https://fastsi.de/",
           "tags": [
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://fly.fastsi.de/",
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -662,6 +671,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://ge.fastsi.de/",
+          "tags": [
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -4571,7 +4587,11 @@
         },
         {
           "url": "https://suche.dasnetzundich.de/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         },
         {
           "url": "https://sx.catgirl.cloud/",
