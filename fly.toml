@@ -1,0 +1,78 @@
+# Define the application name. This must be unique on Fly.io.
+app = "fastside"
+primary_region = "fra"
+
+# Specify that we are deploying from a pre-built Docker image, not building from source.
+[build]
+  image = "ghcr.io/cofob/fastside"
+
+# Define the command to run when the machine starts.
+# This replaces the Dockerfile's CMD.
+[processes]
+  app = "/bin/fastside --log-level error --config /config/config.yml serve -l 0.0.0.0:8080"
+
+# This section creates files inside the container at runtime.
+# Here, we are creating the /config/config.yml file with your specified content.
+[[files]]
+  guest_path = "/config/config.yml"
+  raw_value = """
+default_user_config:
+  required_tags:
+    - "clearnet"
+    - "https"
+    - "ipv4"
+  forbidden_tags:
+    - "cloudflare"
+crawler:
+  request_timeout:
+    secs: 10
+    nanos: 0
+  domain_request_timeouts:
+    - domain: ".i2p"
+      timeout:
+        secs: 0
+        nanos: 0
+    - domain: ".onion"
+      timeout:
+        secs: 0
+        nanos: 0
+"""
+
+
+# Configure the machine size and memory.
+# 'shared-cpu-1x' is the smallest CPU size.
+[machines]
+  size = "shared-cpu-1x"
+  memory_mb = 256
+
+# Service configuration defines how the application is exposed to the internet.
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080 # The port your app listens on inside the container
+  processes = ["app"]  # This service runs the 'app' process defined above
+
+  # Ensure the machine never stops automatically.
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 3
+
+  # Define the external ports and handlers.
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true # Redirect HTTP requests to HTTPS
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+
+  # Health check to ensure the service is running correctly.
+  # Fly.io will restart the machine if these checks fail.
+  [services.http_checks]
+    interval = "15s"
+    timeout = "10s"
+    grace_period = "5s"
+    method = "get"
+    path = "/" # Assuming the root path returns a 2xx status code
+    protocol = "http"
+
