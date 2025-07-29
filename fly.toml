@@ -9,7 +9,11 @@ primary_region = "fra"
 # Define the command to run when the machine starts.
 # This replaces the Dockerfile's CMD.
 [processes]
-  app = "/bin/fastside --log-level error --config /config/config.yml serve --skip-wait -l 0.0.0.0:8080 --ping-data-file /ping_data.json --load-ping-data --save-ping-data"
+  app = "/bin/fastside --log-level error --config /config/config.yml serve --skip-wait -l 0.0.0.0:8080 --ping-data-file /ping_data/ping_data.json --load-ping-data --save-ping-data"
+
+[mounts]
+  source = "ping_data"
+  destination = "/ping_data"
 
 # This section creates files inside the container at runtime.
 # Here, we are creating the /config/config.yml file with your specified content.
@@ -38,7 +42,6 @@ crawler:
         nanos: 0
 """
 
-
 # Configure the machine size and memory.
 # 'shared-cpu-1x' is the smallest CPU size.
 [machines]
@@ -51,7 +54,7 @@ crawler:
   internal_port = 8080 # The port your app listens on inside the container
   processes = ["app"]  # This service runs the 'app' process defined above
 
-  # Ensure the machine never stops automatically.
+  # Machines can be stopped and started automatically because of the ping data file.
   auto_stop_machines = true
   auto_start_machines = true
   min_machines_running = 1
@@ -75,4 +78,3 @@ crawler:
     method = "get"
     path = "/" # Assuming the root path returns a 2xx status code
     protocol = "http"
-
