@@ -2088,9 +2088,18 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/HookedBehemoth/neuters",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://neuters.de/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        }
+      ]
     },
     {
       "type": "nitter",
@@ -2299,12 +2308,21 @@
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "piped-material",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/mmjee/Piped-Material",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://piped-material.১.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        }
+      ]
     },
     {
       "type": "pixiv-novel",
@@ -2352,16 +2370,25 @@
     },
     {
       "type": "poke",
-      "test_url": "/watch?v=dQw4w9WgXcQ",
+      "test_url": "/",
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "https://codeberg.org/ashley/poke",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/ashley/poke",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://poketube.fun/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        }
+      ]
     },
     {
       "type": "privatebin",
@@ -3543,15 +3570,24 @@
     {
       "type": "proxigram",
       "test_url": "/p/Ch2WRmiLMjj",
-      "fallback": "https://ig.opnxng.com/",
+      "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/dextouu/proxigram",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://proxigram.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        }
+      ]
     },
     {
       "type": "proxitok",
@@ -5495,8 +5531,8 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
+      "source_link": "https://codeberg.org/programmerpony/yiffest",
+      "deprecated_message": "Discontinued.",
       "instances": []
     },
     {
