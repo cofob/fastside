@@ -6,6 +6,7 @@ mod gothub;
 mod invidious;
 mod koub;
 mod libreddit;
+mod libredirect;
 mod librex;
 mod scribe;
 mod searx;
@@ -35,6 +36,9 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "translite" => Some(Box::new(translite::TransLiteUpdater::new())),
         "koub" => Some(Box::new(koub::KoubUpdater::new())),
         "fastside" => Some(Box::new(fastside::FastsideUpdater::new())),
+        _ if libredirect::LIBREDIRECT_SERVICES.contains(&name) => {
+            Some(Box::new(libredirect::LibredirectUpdater::new(name)))
+        }
         _ => None,
     }
 }
