@@ -5,7 +5,7 @@ use std::{
 };
 
 use chrono::{DateTime, Utc};
-use reqwest::StatusCode;
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 use tokio::{
     sync::{Mutex, MutexGuard, RwLock},
@@ -28,11 +28,11 @@ pub enum CrawlerError {
     RequestError(#[from] reqwest::Error),
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CrawledInstanceStatus {
     Ok(Duration),
     #[allow(dead_code)]
-    InvalidStatusCode(StatusCode, Duration),
+    InvalidStatusCode(u16, Duration),
     StringNotFound,
     ConnectionError,
     RedirectPolicyError,
@@ -60,14 +60,14 @@ impl std::fmt::Display for CrawledInstanceStatus {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CrawledInstance {
     pub url: Url,
     pub status: CrawledInstanceStatus,
     pub tags: Vec<String>,
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CrawledService {
     pub name: String,
     pub instances: Vec<CrawledInstance>,
@@ -81,7 +81,7 @@ impl CrawledService {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct CrawledServices {
     pub services: HashMap<String, CrawledService>,
     pub time: DateTime<Utc>,
@@ -149,6 +149,38 @@ impl Crawler {
             data: RwLock::new(CrawledData::InitialLoading),
             crawler_lock: Mutex::new(()),
         }
+    }
+
+    /// Save ping data to file
+    pub async fn save_ping_data_to_file(
+        &self,
+        file_path: &std::path::Path,
+    ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
+        let data = self.data.read().await;
+        if let Some(crawled_services) = data.get_services() {
+            let json = serde_json::to_string_pretty(crawled_services)?;
+            tokio::fs::write(file_path, json).await?;
+            debug!("Saved ping data to file: {:?}", file_path);
+        }
+        Ok(())
+    }
+
+    /// Load ping data from file
+    pub async fn load_ping_data_from_file(
+        &self,
+        file_path: &std::path::Path,
+    ) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
+        if !file_path.exists() {
+            return Ok(false);
+        }
+
+        let content = tokio::fs::read_to_string(file_path).await?;
+        let crawled_services: CrawledServices = serde_json::from_str(&content)?;
+
+        let mut data = self.data.write().await;
+        *data = CrawledData::InitializedFromDefaults(crawled_services);
+        info!("Loaded ping data from file: {:?}", file_path);
+        Ok(true)
     }
 
     /// Initialize crawler with default data from services.json without pinging
@@ -219,7 +251,10 @@ impl Crawler {
                         CrawledInstanceStatus::Ok(end - start)
                     }
                 } else {
-                    CrawledInstanceStatus::InvalidStatusCode(response.status(), end - start)
+                    CrawledInstanceStatus::InvalidStatusCode(
+                        response.status().as_u16(),
+                        end - start,
+                    )
                 }
             }
             Err(e) => match e {
@@ -249,6 +284,7 @@ impl Crawler {
     async fn crawl<'a>(
         &self,
         crawler_guard: Option<MutexGuard<'a, ()>>,
+        save_ping_data: Option<&std::path::Path>,
     ) -> Result<(), CrawlerError> {
         let crawler_guard = match crawler_guard {
             Some(guard) => guard,
@@ -334,23 +370,34 @@ impl Crawler {
             }
         }
 
+        // Save ping data to file if enabled
+        if let Some(file_path) = save_ping_data {
+            drop(data); // Release the lock before saving
+            if let Err(e) = self.save_ping_data_to_file(file_path).await {
+                error!("Failed to save ping data to file: {}", e);
+            }
+        }
+
         drop(crawler_guard);
         Ok(())
     }
 
     /// Run crawler instantly in update loaded_data mode.
-    pub async fn update_crawl(&self) -> Result<(), CrawlerError> {
+    pub async fn update_crawl(
+        &self,
+        save_ping_data: Option<&std::path::Path>,
+    ) -> Result<(), CrawlerError> {
         let crawler_guard = self.crawler_lock.lock().await;
         let mut data = self.data.write().await;
         data.make_reloading();
         drop(data);
-        self.crawl(Some(crawler_guard)).await
+        self.crawl(Some(crawler_guard), save_ping_data).await
     }
 
-    pub async fn crawler_loop(&self) {
+    pub async fn crawler_loop(&self, save_ping_data: Option<&std::path::Path>) {
         loop {
             debug!("Starting crawl");
-            if let Err(e) = self.crawl(None).await {
+            if let Err(e) = self.crawl(None, save_ping_data).await {
                 error!("Error occured during crawl loop: {e}");
             };
             debug!("Next crawl will start in {:?}", self.config.ping_interval);
