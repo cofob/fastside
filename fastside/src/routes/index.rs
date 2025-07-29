@@ -34,6 +34,7 @@ pub struct IndexTemplate<'a> {
     pub services: &'a ServicesData,
     pub time: &'a DateTime<Utc>,
     pub is_reloading: bool,
+    pub is_initialized_from_defaults: bool,
 }
 
 #[get("/")]
@@ -51,6 +52,7 @@ async fn index(
         crawled_services: &crawled_services.services,
         time: &crawled_services.time,
         is_reloading: data.is_reloading(),
+        is_initialized_from_defaults: data.is_initialized_from_defaults(),
     };
 
     Ok(actix_web::HttpResponse::Ok()

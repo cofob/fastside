@@ -3,6 +3,12 @@
 {% block content %}
 <h1>Fastside [<a href="https://github.com/cofob/fastside">GitHub</a>] [<a href="/configure">Configure</a>]</h1>
 <hr>
+{% if is_initialized_from_defaults %}
+<div class="warning-box" style="background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 10px; margin-bottom: 15px; border-radius: 4px;">
+  <strong>⚠️ Warning:</strong> Service status data was loaded from services.json without initial ping.
+  Initial pinging is running in the background. Service availability may not be accurate until first ping completes.
+</div>
+{% endif %}
 <h3>Last synced {{ time }}{% if is_reloading %} (config is reloading){% endif %}</h3>
 <div>
   <a

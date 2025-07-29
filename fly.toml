@@ -52,9 +52,9 @@ crawler:
   processes = ["app"]  # This service runs the 'app' process defined above
 
   # Ensure the machine never stops automatically.
-  auto_stop_machines = false
+  auto_stop_machines = true
   auto_start_machines = true
-  min_machines_running = 3
+  min_machines_running = 1
 
   # Define the external ports and handlers.
   [[services.ports]]

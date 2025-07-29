@@ -92,6 +92,7 @@ pub enum CrawledData {
     CrawledServices(CrawledServices),
     InitialLoading,
     ReloadingServices(CrawledServices),
+    InitializedFromDefaults(CrawledServices),
 }
 
 impl CrawledData {
@@ -100,11 +101,16 @@ impl CrawledData {
             Self::CrawledServices(s) => Some(s),
             Self::InitialLoading => None,
             Self::ReloadingServices(current) => Some(current),
+            Self::InitializedFromDefaults(current) => Some(current),
         }
     }
 
     pub fn is_reloading(&self) -> bool {
         matches!(self, Self::ReloadingServices { .. })
+    }
+
+    pub fn is_initialized_from_defaults(&self) -> bool {
+        matches!(self, Self::InitializedFromDefaults { .. })
     }
 
     pub fn replace(&mut self, new: CrawledData) {
@@ -114,6 +120,7 @@ impl CrawledData {
     pub fn make_reloading(&mut self) {
         let current = match self {
             Self::CrawledServices(s) => s.clone(),
+            Self::InitializedFromDefaults(s) => s.clone(),
             _ => return,
         };
         *self = Self::ReloadingServices(current);
@@ -142,6 +149,37 @@ impl Crawler {
             data: RwLock::new(CrawledData::InitialLoading),
             crawler_lock: Mutex::new(()),
         }
+    }
+
+    /// Initialize crawler with default data from services.json without pinging
+    pub async fn initialize_with_defaults(&self) {
+        let loaded_data = self.loaded_data.read().await;
+        let mut crawled_services: HashMap<String, CrawledService> = HashMap::new();
+
+        for (name, service) in &loaded_data.services {
+            let mut instances = Vec::new();
+            for instance in &service.instances {
+                instances.push(CrawledInstance {
+                    url: instance.url.clone(),
+                    status: CrawledInstanceStatus::Ok(Duration::from_millis(0)),
+                    tags: instance.tags.clone(),
+                });
+            }
+            crawled_services.insert(
+                name.clone(),
+                CrawledService {
+                    name: name.clone(),
+                    instances,
+                },
+            );
+        }
+
+        let mut data = self.data.write().await;
+        *data = CrawledData::InitializedFromDefaults(CrawledServices {
+            services: crawled_services,
+            time: Utc::now(),
+        });
+        info!("Initialized crawler with default data from services.json");
     }
 
     #[inline]
@@ -287,6 +325,9 @@ impl Crawler {
             }
             CrawledData::InitialLoading => {
                 info!("Finished initial crawl, we are ready to serve requests");
+            }
+            CrawledData::InitializedFromDefaults { .. } => {
+                info!("Finished initial crawl from defaults, we are ready to serve requests");
             }
             CrawledData::CrawledServices(_) => {
                 debug!("Finished crawl");

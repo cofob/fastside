@@ -67,6 +67,9 @@ enum Commands {
         /// Worker count.
         #[arg(short, long)]
         workers: Option<usize>,
+        /// Skip waiting for initial ping and start serving immediately.
+        #[arg(long)]
+        skip_wait: bool,
     },
     /// Validate services file.
     Validate {
@@ -248,8 +251,15 @@ async fn main() -> Result<()> {
             services,
             listen,
             workers,
+            skip_wait,
         }) => {
             let config = Arc::new(load_config(&cli.config).context("failed to load config")?);
+
+            // Check if we should skip waiting for initial ping
+            let should_skip_wait = *skip_wait
+                || std::env::var("FS__SKIP_WAIT")
+                    .map(|v| v.to_lowercase() == "true")
+                    .unwrap_or(false);
 
             let services_source = ServicesSource::from_str(
                 &services
@@ -302,6 +312,14 @@ async fn main() -> Result<()> {
                 .collect();
 
             let crawler = Arc::new(Crawler::new(data.clone(), config.crawler.clone()));
+
+            // Initialize crawler based on skip-wait setting
+            if should_skip_wait {
+                // Initialize with defaults and start crawler loop in background
+                crawler.initialize_with_defaults().await;
+                info!("Starting server immediately with default data from services.json");
+                info!("Initial ping will run in background");
+            }
 
             let cloned_crawler = crawler.clone();
             let crawler_loop_handle = tokio::spawn(crawler_loop(cloned_crawler));
