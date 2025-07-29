@@ -55,7 +55,7 @@ crawler:
   processes = ["app"]  # This service runs the 'app' process defined above
 
   # Machines can be stopped and started automatically because of the ping data file.
-  auto_stop_machines = true
+  auto_stop_machines = "suspend"
   auto_start_machines = true
   min_machines_running = 1
 
