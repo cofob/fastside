@@ -9,11 +9,7 @@ primary_region = "fra"
 # Define the command to run when the machine starts.
 # This replaces the Dockerfile's CMD.
 [processes]
-  app = "/bin/fastside --log-level error --config /config/config.yml serve --skip-wait -l 0.0.0.0:8080 --ping-data-file /ping_data/ping_data.json --load-ping-data --save-ping-data"
-
-[mounts]
-  source = "ping_data"
-  destination = "/ping_data"
+  app = "/bin/fastside --log-level error --config /config/config.yml serve --skip-wait -l 0.0.0.0:8080"
 
 # This section creates files inside the container at runtime.
 # Here, we are creating the /config/config.yml file with your specified content.
