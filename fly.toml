@@ -1,6 +1,6 @@
 # Define the application name. This must be unique on Fly.io.
 app = "fastside"
-primary_region = "fra"
+primary_region = "arn"
 
 # Specify that we are deploying from a pre-built Docker image, not building from source.
 [build]
