@@ -305,7 +305,11 @@
         },
         {
           "url": "https://o.iii.st/",
-          "tags": []
+          "tags": [
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         },
         {
           "url": "https://o.sudovanilla.org/",
@@ -2272,7 +2276,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2937,6 +2943,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         }
@@ -5340,10 +5347,7 @@
         },
         {
           "url": "https://ri.nadeko.net/",
-          "tags": [
-            "https",
-            "ipv4"
-          ]
+          "tags": []
         },
         {
           "url": "https://rim.odyssey346.dev/",
@@ -5501,7 +5505,8 @@
         {
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
