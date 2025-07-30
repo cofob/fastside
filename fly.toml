@@ -27,6 +27,11 @@ default_user_config:
     - "ipv4"
   forbidden_tags:
     - "cloudflare"
+proxies:
+  tor:
+    url: socks5h://hidden-services._peer.internal:9100
+  i2p:
+    url: http://hidden-services._peer.internal:4444
 crawler:
   request_timeout:
     secs: 10
@@ -34,11 +39,11 @@ crawler:
   domain_request_timeouts:
     - domain: ".i2p"
       timeout:
-        secs: 0
+        secs: 60
         nanos: 0
     - domain: ".onion"
       timeout:
-        secs: 0
+        secs: 60
         nanos: 0
 """
 
