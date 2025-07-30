@@ -48,11 +48,6 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
@@ -124,11 +119,6 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
@@ -234,12 +224,6 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           nix_path: "${{ env.nix_path }}"
-      - name: Setup cachix
-        if: steps.filter.outputs.services == 'true'
-        uses: cachix/cachix-action@v14
-        with:
-          name: cofob
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Run tests
         if: steps.filter.outputs.services == 'true'
