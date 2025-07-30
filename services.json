@@ -3569,8 +3569,7 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7498,7 +7497,8 @@
           "url": "https://files.psu.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -8102,6 +8102,13 @@
       "source_link": "https://forgejo.sny.sh/sun/Tent",
       "deprecated_message": null,
       "instances": [
+        {
+          "url": "http://maidzong64yczoqm5wlg2hiodip6ktpldcfdvoxanqaxmonyim4q.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
         {
           "url": "http://tn.maidzonekwrk4xbbmynqnprq2lu7picruncfscfwmyzbmec6naurhyqd.onion/",
           "tags": [
