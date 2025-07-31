@@ -3569,7 +3569,8 @@
           "url": "https://il.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -3872,6 +3873,14 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://0.0g.gg/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://0.jaegers.net/",
           "tags": [
             "clearnet",
@@ -3888,6 +3897,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://0g.gg/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4284,6 +4301,14 @@
           ]
         },
         {
+          "url": "https://p.darklab.sh/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://p.dousse.eu/",
           "tags": [
             "clearnet",
@@ -4642,6 +4667,14 @@
           ]
         },
         {
+          "url": "https://paste.skynetcloud.site/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://paste.stratum0.org/",
           "tags": [
             "clearnet",
@@ -4840,6 +4873,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://pb.flossboxin.org.in/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
