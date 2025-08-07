@@ -90,7 +90,6 @@
           "url": "https://4get.sijh.net/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -319,6 +318,13 @@
           ]
         },
         {
+          "url": "https://ao.ngn.tf/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://ao.owo.si/",
           "tags": [
             "clearnet",
@@ -476,6 +482,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -961,14 +968,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.4o1x5.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.catsarch.com/",
           "tags": [
             "clearnet",
@@ -1009,15 +1008,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.private.coffee/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://breezewiki.pussthecat.org/",
           "tags": [
             "clearnet",
@@ -1043,15 +1033,6 @@
           ]
         },
         {
-          "url": "https://bw.artemislena.eu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://bw.hamstro.dev/",
           "tags": [
             "clearnet",
@@ -1064,6 +1045,16 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://fan.blitzw.in/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1547,14 +1538,6 @@
           ]
         },
         {
-          "url": "https://gothub.dev.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://gothub.ducks.party/",
           "tags": [
             "clearnet",
@@ -1576,7 +1559,8 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -1685,6 +1669,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1798,6 +1783,20 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -1816,7 +1815,7 @@
           ]
         },
         {
-          "url": "https://yewtu.be/",
+          "url": "https://invidious.nerdvpn.de/",
           "tags": [
             "clearnet",
             "https",
@@ -2529,8 +2528,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -2932,6 +2930,13 @@
           ]
         },
         {
+          "url": "https://libre.blitzw.in/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://librex.nohost.network/",
           "tags": [
             "clearnet",
@@ -3013,6 +3018,15 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.funami.tech/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3320,7 +3334,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
@@ -5650,6 +5663,14 @@
           ]
         },
         {
+          "url": "https://quetre.blackdrgn.nl/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://quetre.canine.tools/",
           "tags": [
             "clearnet",
@@ -6130,6 +6151,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -6381,7 +6403,9 @@
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6400,6 +6424,13 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://st.ngn.tf/",
+          "tags": [
+            "clearnet",
+            "https"
           ]
         },
         {
@@ -6478,7 +6509,6 @@
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6506,15 +6536,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://search.stinpriza.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "https://searx.dresden.network/",
           "tags": [
@@ -6573,14 +6594,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.zapashcanon.fr/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         }
       ]
@@ -6841,6 +6854,14 @@
           ]
         },
         {
+          "url": "https://s.mble.dk/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
@@ -6857,20 +6878,20 @@
           ]
         },
         {
-          "url": "https://search.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.catboy.house/",
           "tags": [
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.charliewhiskey.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7407,6 +7428,15 @@
           ]
         },
         {
+          "url": "https://suche.dasnetzundich.de/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://sx.catgirl.cloud/",
           "tags": [
             "clearnet",
@@ -7880,13 +7910,6 @@
           ]
         },
         {
-          "url": "https://translate.priv.pw/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://translate.riverside.rocks/",
           "tags": [
             "clearnet",
@@ -8150,6 +8173,15 @@
           ]
         },
         {
+          "url": "https://tent.canine.tools/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://tent.deep-swarm.xyz/",
           "tags": [
             "clearnet",
@@ -8181,6 +8213,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://tent.qunn.link/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -8689,7 +8729,6 @@
           "url": "https://wikiless.rawbit.ninja/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
