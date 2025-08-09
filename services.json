@@ -1063,6 +1063,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2552,9 +2553,7 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6057,14 +6056,6 @@
           ]
         },
         {
-          "url": "https://rimgo.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://rimgo.ducks.party/",
           "tags": [
             "clearnet",
@@ -6168,15 +6159,6 @@
         },
         {
           "url": "https://rimgo.pussthecat.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rimgo.quantenzitrone.eu/",
           "tags": [
             "clearnet",
             "https",
@@ -7943,7 +7925,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
