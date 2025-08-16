@@ -256,7 +256,9 @@
           "url": "https://anonoverflow.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -711,8 +713,7 @@
           "url": "https://read.whateveritworks.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -954,8 +955,7 @@
           "url": "https://breeze.whateveritworks.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -987,7 +987,9 @@
           "url": "https://breezewiki.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1054,6 +1056,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -1568,7 +1571,9 @@
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1660,7 +1665,9 @@
           "url": "https://hyperpipe.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1677,7 +1684,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -2545,7 +2551,9 @@
           "url": "https://lbry.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2684,8 +2692,7 @@
           "url": "https://binge.whateveritworks.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2778,7 +2785,9 @@
           "url": "https://libremdb.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3147,7 +3156,9 @@
           "url": "https://translate.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -3333,6 +3344,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         }
@@ -6076,7 +6088,9 @@
           "url": "https://rimgo.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6141,7 +6155,9 @@
           "url": "https://rimgo.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6350,7 +6366,9 @@
           "url": "https://safetwitch.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6417,8 +6435,7 @@
           "url": "https://stream.whateveritworks.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
