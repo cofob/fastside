@@ -1001,14 +1001,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.nadeko.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
@@ -1056,7 +1048,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -1684,6 +1675,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -2552,7 +2544,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -5894,15 +5885,6 @@
           ]
         },
         {
-          "url": "https://i.datuan.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://imgur.010032.xyz/",
           "tags": [
             "clearnet",
@@ -6587,13 +6569,6 @@
           ]
         },
         {
-          "url": "https://searx.roflcopter.fr/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
@@ -7121,7 +7096,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -8441,14 +8415,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://twineo.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
         {
           "url": "https://twineo.exozy.me/",
           "tags": [
