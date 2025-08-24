@@ -3548,7 +3548,7 @@
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "An alternative privacy-friendly YouTube frontend",
       "regexes": [],
       "aliases": [],
       "source_link": null,
@@ -3562,22 +3562,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://il.ax/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://pa.il.ax/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
