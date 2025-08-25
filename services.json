@@ -302,14 +302,6 @@
           ]
         },
         {
-          "url": "https://ao.owo.si/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://ao.rootdo.com/",
           "tags": [
             "clearnet",
@@ -390,15 +382,6 @@
           ]
         },
         {
-          "url": "https://overflow.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://overflow.einfachzocken.eu/",
           "tags": [
             "clearnet",
@@ -429,15 +412,6 @@
         },
         {
           "url": "https://overflow.hostux.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://overflow.lunar.icu/",
           "tags": [
             "clearnet",
             "https",
@@ -6930,15 +6904,6 @@
         },
         {
           "url": "https://search.oh64.moe/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.ohaa.xyz/",
           "tags": [
             "clearnet",
             "https",
