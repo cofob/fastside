@@ -667,8 +667,7 @@
           "url": "https://reads.nezumi.party/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         }
       ]
@@ -2471,7 +2470,6 @@
           "url": "https://redlib.perennialte.ch/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5339,8 +5337,7 @@
           "url": "https://proxitok.privacy.com.de/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
