@@ -4100,9 +4100,7 @@
           "url": "https://private.opendoor.fr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
