@@ -2608,7 +2608,28 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://5j37qusybvyhecljn4hr5i4chifdlfqfkfveythzpzyfxiibt7cq.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
+          "url": "http://ld.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://libremdb.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://libremdb.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
           "tags": [
             "http",
             "tor"
@@ -2622,6 +2643,13 @@
           ]
         },
         {
+          "url": "http://q3hetdcyyy572xznqmsledzlbv77moycoqs6ptehpp5vsmx4dtcuqeqd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://qjlgasoy3nxepgzntucmcnb6pryqxakwdu7sxvqzi7spdfootryq.b32.i2p/",
           "tags": [
             "http",
@@ -2629,7 +2657,65 @@
           ]
         },
         {
+          "url": "http://vernz3ubrntql4wrgyrssd6u3qzi36zrhz2agbo6vibzbs5olk2q.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
+          "url": "https://binge.whatever.social/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://d.opnxng.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://imdb.nerdvpn.de/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://ld.ca.zorby.top/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "https://ld.vern.cc/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://libremdb-fly.fly.dev/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://libremdb.canine.tools/",
           "tags": [
             "clearnet",
             "https",
@@ -2664,6 +2750,30 @@
           ]
         },
         {
+          "url": "https://libremdb.franklyflawless.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://libremdb.frontendfriendly.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://libremdb.hyperreal.coffee/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://libremdb.iket.me/",
           "tags": [
             "clearnet",
@@ -2692,6 +2802,23 @@
           ]
         },
         {
+          "url": "https://libremdb.nerdyfam.tech/",
+          "tags": [
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://libremdb.privacydev.net/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://libremdb.pussthecat.org/",
           "tags": [
             "clearnet",
@@ -2709,12 +2836,34 @@
           ]
         },
         {
+          "url": "https://libremdb.tux.pizza/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://lmdb.bloat.cat/",
           "tags": [
             "clearnet",
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://lmdb.hostux.net/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "https://lmdb.ngn.tf/",
+          "tags": [
+            "clearnet",
+            "https"
           ]
         }
       ]
