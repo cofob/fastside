@@ -1042,6 +1042,14 @@
           ]
         },
         {
+          "url": "https://bw.hamstro.dev/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://bw.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -7074,6 +7082,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
