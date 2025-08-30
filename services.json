@@ -7198,14 +7198,6 @@
           ]
         },
         {
-          "url": "https://searx.daetalytica.io/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -8948,7 +8940,6 @@
           "url": "https://wikiless.rawbit.ninja/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
