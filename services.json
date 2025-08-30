@@ -4133,6 +4133,15 @@
           ]
         },
         {
+          "url": "https://cryptostorm.is/paste",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://encryp.ch/note",
           "tags": [
             "clearnet",
@@ -7082,8 +7091,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -7888,6 +7896,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
