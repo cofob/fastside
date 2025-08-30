@@ -1445,15 +1445,6 @@
           ]
         },
         {
-          "url": "https://fs.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://fs.poridge.club/",
           "tags": [
             "clearnet",
@@ -1733,15 +1724,6 @@
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "https://in.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -3047,10 +3029,7 @@
           "url": "https://search.technicalvoid.dev/",
           "tags": [
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -7338,14 +7317,6 @@
           ]
         },
         {
-          "url": "https://searx.ppeb.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.rhscz.eu/",
           "tags": [
             "clearnet",
@@ -7915,7 +7886,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
