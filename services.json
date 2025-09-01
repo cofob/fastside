@@ -1009,7 +1009,9 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
