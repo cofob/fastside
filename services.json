@@ -2241,15 +2241,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://lmdb.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -4432,15 +4423,6 @@
       "deprecated_message": "No instances.",
       "instances": [
         {
-          "url": "https://pb.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://pb.proxik.cloud/",
           "tags": [
             "clearnet",
@@ -5777,7 +5759,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6822,7 +6805,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
