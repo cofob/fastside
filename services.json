@@ -1374,7 +1374,6 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2836,7 +2835,6 @@
           "url": "https://piped.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5768,7 +5766,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
