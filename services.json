@@ -251,6 +251,14 @@
           ]
         },
         {
+          "url": "https://code.whatever.social/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://o.iii.st/",
           "tags": [
             "clearnet",
@@ -5760,6 +5768,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
