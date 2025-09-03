@@ -3688,14 +3688,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://pixiv.perennialte.ch/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://pixivfe.darkness.services/",
           "tags": [
             "clearnet",
