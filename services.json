@@ -1003,6 +1003,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5947,14 +5948,6 @@
           ]
         },
         {
-          "url": "https://rimgo.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://rimgo.ducks.party/",
           "tags": [
             "clearnet",
@@ -7022,6 +7015,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
