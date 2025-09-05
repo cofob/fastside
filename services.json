@@ -1452,14 +1452,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://ge.fastsi.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
