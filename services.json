@@ -1554,8 +1554,7 @@
           "url": "https://hyperpipe.surge.sh/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6468,6 +6467,13 @@
           ]
         },
         {
+          "url": "http://psxngvx3edy7lvaaeurdpfccketrmpwknm6sah2qz53qcskxd272tiqd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://qmha5d7v5lpck2xcwiwmpejw6wf5l5uump7tqisfk5ddzseng47eshyd.onion/",
           "tags": [
             "http",
@@ -6856,6 +6862,14 @@
         },
         {
           "url": "https://search.ononoki.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.perditum.com/",
           "tags": [
             "clearnet",
             "https",
