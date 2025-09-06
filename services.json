@@ -311,14 +311,6 @@
           ]
         },
         {
-          "url": "https://code.whatever.social/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://code.xbdm.fun/",
           "tags": [
             "clearnet",
@@ -4100,13 +4092,6 @@
           ]
         },
         {
-          "url": "https://ots.kocsar.at/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://ots.kocsar.com/",
           "tags": [
             "clearnet",
@@ -5482,14 +5467,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://quetre.blackdrgn.nl/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
