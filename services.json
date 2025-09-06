@@ -8537,13 +8537,6 @@
           ]
         },
         {
-          "url": "http://tdx37ew3oke5rxn3yi5r5665ka7ozvehnd4xmnjxxdvqorias2nyl4qd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://vernesciy2defjsputrjrv6pa5ll6qzrckfffi5lgkumstdojyga.b32.i2p/",
           "tags": [
             "http",
@@ -8646,15 +8639,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://wikiless.rawbit.ninja/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
