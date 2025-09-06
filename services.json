@@ -342,6 +342,14 @@
           ]
         },
         {
+          "url": "https://code.whatever.social/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://code.xbdm.fun/",
           "tags": [
             "clearnet",
@@ -3043,15 +3051,6 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://lingva.lunar.icu/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
