@@ -2250,6 +2250,15 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://lmdb.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -5775,6 +5784,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
