@@ -1756,7 +1756,9 @@
           "url": "https://meet.jit.si/",
           "tags": [
             "clearnet",
-            "https"
+            "cloudflare",
+            "https",
+            "ipv4"
           ]
         },
         {
