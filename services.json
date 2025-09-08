@@ -5653,6 +5653,14 @@
           ]
         },
         {
+          "url": "https://search.ethibox.fr/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.goober.cloud/",
           "tags": [
             "clearnet",
