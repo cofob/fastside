@@ -134,15 +134,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://akademik.lumaeris.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -204,8 +195,7 @@
           "url": "https://anonoverflow.hyperreal.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5792,6 +5782,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -6655,15 +6646,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://skunkyart.lumaeris.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -6963,15 +6945,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://translite.lumaeris.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         }
       ]
