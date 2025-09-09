@@ -7506,14 +7506,6 @@
           ]
         },
         {
-          "url": "https://files.psu.ru/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://fileupload.ggc-project.de/",
           "tags": [
             "clearnet",
