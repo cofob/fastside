@@ -3577,7 +3577,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -6885,6 +6884,14 @@
           ]
         },
         {
+          "url": "https://search.iguru.gr/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.im-in.space/",
           "tags": [
             "clearnet",
@@ -8345,7 +8352,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
