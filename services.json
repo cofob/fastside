@@ -3774,35 +3774,12 @@
           ]
         },
         {
-          "url": "https://poke.blahai.gay/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://poketube.fun/",
           "tags": [
             "clearnet",
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://pol1.ggtyler.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://pt.sudovanilla.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         }
       ]
