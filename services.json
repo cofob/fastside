@@ -1763,6 +1763,20 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -1775,6 +1789,15 @@
           "tags": [
             "clearnet",
             "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://invidious.nerdvpn.de/",
+          "tags": [
+            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -8337,7 +8360,9 @@
           "url": "https://tent.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
