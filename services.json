@@ -3467,9 +3467,7 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6401,13 +6399,6 @@
           ]
         },
         {
-          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://ls67zxncmcqgn2vg74ckcwxgu5p3e5mf2khues3egkumhcqtbsg4kqyd.onion/",
           "tags": [
             "http",
@@ -6666,15 +6657,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
