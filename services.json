@@ -925,6 +925,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5143,8 +5144,7 @@
           "url": "https://priviblur.thebunny.zone/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7795,14 +7795,6 @@
           ]
         },
         {
-          "url": "https://st.privacydev.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://st.tokhmi.xyz/",
           "tags": [
             "clearnet",
@@ -7830,7 +7822,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
