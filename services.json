@@ -918,7 +918,8 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -3466,9 +3467,7 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5680,15 +5679,6 @@
         },
         {
           "url": "https://r.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rg.kuuro.net/",
           "tags": [
             "clearnet",
             "https",
