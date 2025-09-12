@@ -925,7 +925,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -3466,6 +3465,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5529,7 +5529,9 @@
           "url": "https://quetre.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6556,6 +6558,14 @@
         },
         {
           "url": "https://nyc1.sx.ggtyler.dev/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://o5.gg/",
           "tags": [
             "clearnet",
             "https",
@@ -7820,8 +7830,7 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -8117,7 +8126,9 @@
           "url": "https://tent.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
