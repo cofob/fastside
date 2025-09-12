@@ -164,6 +164,13 @@
           ]
         },
         {
+          "url": "http://ao.pk47sgwhncn5cgidm7bofngmh7lc7ukjdpk5bjwfemmyp27ovl25ikyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://ao.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
           "tags": [
             "http",
@@ -292,6 +299,14 @@
           "tags": [
             "clearnet",
             "https"
+          ]
+        },
+        {
+          "url": "https://ao.owo.si/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -910,6 +925,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
