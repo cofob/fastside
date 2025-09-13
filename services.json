@@ -1019,9 +1019,7 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5599,7 +5597,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7908,6 +7907,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -8464,9 +8464,7 @@
           "url": "https://tent.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
