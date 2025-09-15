@@ -2789,14 +2789,6 @@
           ]
         },
         {
-          "url": "https://libremdb.r4fo.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://libremdb.tux.pizza/",
           "tags": [
             "clearnet",
@@ -3566,7 +3558,8 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -4974,6 +4967,7 @@
           "url": "https://privatebin.rinuploads.org/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7766,7 +7760,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -8808,14 +8801,6 @@
         },
         {
           "url": "https://wikiless.northboot.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://wikiless.r4fo.com/",
           "tags": [
             "clearnet",
             "https",
