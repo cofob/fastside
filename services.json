@@ -1011,7 +1011,9 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1132,14 +1134,6 @@
       "source_link": "https://github.com/imputnet/cobalt",
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://cobalt.astronima.bet/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
         {
           "url": "https://cobalt.tools/",
           "tags": [
@@ -6818,14 +6812,6 @@
           ]
         },
         {
-          "url": "https://search.080609.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.2b9t.xyz/",
           "tags": [
             "clearnet",
@@ -7821,7 +7807,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
