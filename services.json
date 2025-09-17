@@ -5650,6 +5650,14 @@
           ]
         },
         {
+          "url": "https://quetre.r4fo.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
@@ -6779,14 +6787,6 @@
           ]
         },
         {
-          "url": "https://search.080609.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.2b9t.xyz/",
           "tags": [
             "clearnet",
@@ -7416,14 +7416,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://www.ggtyler.dev/other/frontends/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -8340,7 +8332,9 @@
           "url": "https://tent.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
