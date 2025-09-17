@@ -1003,9 +1003,7 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1755,20 +1753,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://inv.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -1781,15 +1765,6 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://invidious.nerdvpn.de/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -3579,7 +3554,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         },
@@ -6604,6 +6578,13 @@
           ]
         },
         {
+          "url": "http://searxng.f24ozipdw2v3qudr5udqhz5sme2im4ytyufb25liyaba7zjx7ui6kxqd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://searxokthnxmo7ndis35jpts2tawcwvbovuy47qtavwo7oq4jgcm5gqd.onion/",
           "tags": [
             "http",
@@ -6769,6 +6750,14 @@
         },
         {
           "url": "https://s.trung.fun/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.080609.xyz/",
           "tags": [
             "clearnet",
             "https",
@@ -7405,6 +7394,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://www.ggtyler.dev/other/frontends/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
