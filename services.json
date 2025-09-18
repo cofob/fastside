@@ -615,7 +615,6 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3461,7 +3460,9 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7862,8 +7863,7 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -8160,6 +8160,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
