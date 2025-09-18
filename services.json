@@ -642,6 +642,7 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5633,8 +5634,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -6260,6 +6260,13 @@
           ]
         },
         {
+          "url": "https://safetwitch.nowhere.moe/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://safetwitch.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -6321,6 +6328,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://twitch.blitzw.in/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
