@@ -1512,27 +1512,12 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://gh.pk47sgwhncn5cgidm7bofngmh7lc7ukjdpk5bjwfemmyp27ovl25ikyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "https://g.opnxng.com/",
           "tags": [
             "clearnet",
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://gh.owo.si/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -7815,6 +7800,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
