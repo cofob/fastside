@@ -4181,7 +4181,8 @@
           "url": "https://oldpb.purplebored.pl/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -8047,7 +8048,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
