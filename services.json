@@ -6078,6 +6078,14 @@
           ]
         },
         {
+          "url": "https://searxng.mcgee.red/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://searxng.shreven.org/",
           "tags": [
             "clearnet",
