@@ -5230,8 +5230,7 @@
           "url": "https://priviblur.privadency.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5917,14 +5916,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://rimgo.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -8809,7 +8800,6 @@
           "url": "https://wikiless.rawbit.ninja/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
