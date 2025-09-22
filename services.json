@@ -6951,6 +6951,14 @@
           ]
         },
         {
+          "url": "https://search.mycotrip.tech/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.nerdvpn.de/",
           "tags": [
             "clearnet",
