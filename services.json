@@ -2967,7 +2967,8 @@
           "url": "https://librey.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6793,14 +6794,6 @@
         },
         {
           "url": "https://search.anoni.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.ashisgreat.xyz/",
           "tags": [
             "clearnet",
             "https",
