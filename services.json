@@ -3271,14 +3271,6 @@
           ]
         },
         {
-          "url": "https://nyc1.mz.ggtyler.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://translate.nerdvpn.de/",
           "tags": [
             "clearnet",
@@ -3761,14 +3753,6 @@
           ]
         },
         {
-          "url": "https://nyc1.poke.ggtyler.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://poketube.fun/",
           "tags": [
             "clearnet",
@@ -4057,6 +4041,7 @@
           "url": "https://bonus01.hwb0307.com/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6715,14 +6700,6 @@
           ]
         },
         {
-          "url": "https://nyc1.sx.ggtyler.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://o5.gg/",
           "tags": [
             "clearnet",
@@ -7766,6 +7743,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
