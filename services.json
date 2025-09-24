@@ -4667,6 +4667,16 @@
           ]
         },
         {
+          "url": "https://paste.worf.win/",
+          "tags": [
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://paste.ztn.sh/",
           "tags": [
             "clearnet",
