@@ -6951,15 +6951,6 @@
           ]
         },
         {
-          "url": "https://search.us.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://searx.ankha.ac/",
           "tags": [
             "clearnet",
@@ -7632,7 +7623,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
