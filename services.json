@@ -2968,7 +2968,8 @@
           "url": "https://librey.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
