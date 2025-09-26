@@ -309,14 +309,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://overflow.seasi.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
