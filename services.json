@@ -4897,15 +4897,6 @@
             "https",
             "ipv4"
           ]
-        },
-        {
-          "url": "https://rimgo.us.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
