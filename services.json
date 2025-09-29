@@ -2959,7 +2959,8 @@
           "url": "https://librey.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7752,7 +7753,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
