@@ -4033,7 +4033,6 @@
           "url": "https://bonus01.hwb0307.com/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6998,6 +6997,14 @@
         },
         {
           "url": "https://search.perditum.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.pollorebozado.com/",
           "tags": [
             "clearnet",
             "https",
