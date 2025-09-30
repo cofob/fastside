@@ -5490,15 +5490,6 @@
           ]
         },
         {
-          "url": "https://ask.habedieeh.re/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://ask.sudovanilla.org/",
           "tags": [
             "clearnet",
@@ -7753,7 +7744,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
