@@ -5994,15 +5994,6 @@
           ]
         },
         {
-          "url": "https://rd.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rd.cmc.pub/",
           "tags": [
             "clearnet",
@@ -7655,6 +7646,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
