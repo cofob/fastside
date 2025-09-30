@@ -1776,7 +1776,8 @@
           "url": "https://jitsi.cedrc.cnr.it/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
