@@ -2331,7 +2331,8 @@
           "url": "https://librey.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4905,6 +4906,15 @@
           ]
         },
         {
+          "url": "https://rimgo.quantenzitrone.eu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://rimgo.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -5487,7 +5497,8 @@
           "url": "https://o5.gg/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6303,7 +6314,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6313,7 +6323,8 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6531,7 +6542,8 @@
           "url": "https://translate.slipfox.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
