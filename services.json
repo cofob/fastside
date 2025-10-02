@@ -6229,6 +6229,15 @@
           ]
         },
         {
+          "url": "https://safetwitch.canine.tools/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://safetwitch.darkness.services/",
           "tags": [
             "clearnet",
@@ -6294,6 +6303,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://safetwitch.privadency.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
