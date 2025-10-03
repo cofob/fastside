@@ -8006,7 +8006,8 @@
           "url": "https://translate.slipfox.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
