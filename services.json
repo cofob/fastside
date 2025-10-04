@@ -4059,6 +4059,15 @@
           ]
         },
         {
+          "url": "https://cryptostorm.is/paste",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://enjoys.rocks/",
           "tags": [
             "clearnet",
@@ -4526,9 +4535,7 @@
           "url": "https://paste.rosset.net/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
