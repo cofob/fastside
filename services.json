@@ -992,13 +992,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.hyperreal.coffee/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://breezewiki.nadeko.net/",
           "tags": [
             "clearnet",
@@ -7984,8 +7977,7 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
