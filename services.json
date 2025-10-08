@@ -210,15 +210,6 @@
           ]
         },
         {
-          "url": "https://ao.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://ao.ngn.tf/",
           "tags": [
             "clearnet",
@@ -272,15 +263,6 @@
         },
         {
           "url": "https://overflow.einfachzocken.eu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://overflow.hostux.net/",
           "tags": [
             "clearnet",
             "https",
