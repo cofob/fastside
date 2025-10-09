@@ -1562,7 +1562,8 @@
           "url": "https://jitsi.unp.edu.ar/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6503,8 +6504,7 @@
           "url": "https://translate.slipfox.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
