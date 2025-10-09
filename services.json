@@ -5580,15 +5580,6 @@
           ]
         },
         {
-          "url": "https://quetre.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://quetre.private.coffee/",
           "tags": [
             "clearnet",
