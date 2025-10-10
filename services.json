@@ -7973,7 +7973,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
