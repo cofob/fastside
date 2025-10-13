@@ -7255,6 +7255,15 @@
           ]
         },
         {
+          "url": "https://searxng.canine.tools/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://searxng.deliberate.world/",
           "tags": [
             "clearnet",
