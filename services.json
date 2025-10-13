@@ -7021,6 +7021,14 @@
           ]
         },
         {
+          "url": "https://search2.ipsys.bf/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://searx.ankha.ac/",
           "tags": [
             "clearnet",
