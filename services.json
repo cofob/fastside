@@ -203,6 +203,15 @@
           ]
         },
         {
+          "url": "https://ao.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://ao.ngn.tf/",
           "tags": [
             "clearnet",
