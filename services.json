@@ -2004,13 +2004,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://lbry.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://lbry.ramondia.net/",
           "tags": [
             "clearnet",
