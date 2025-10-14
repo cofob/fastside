@@ -6258,6 +6258,14 @@
           ]
         },
         {
+          "url": "https://safetwitch.privadency.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://safetwitch.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -7014,14 +7022,6 @@
           ]
         },
         {
-          "url": "https://search2.ipsys.bf/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.ankha.ac/",
           "tags": [
             "clearnet",
@@ -7693,7 +7693,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
