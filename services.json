@@ -344,14 +344,6 @@
           ]
         },
         {
-          "url": "https://code.whatever.social/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://code.xbdm.fun/",
           "tags": [
             "clearnet",
@@ -7661,6 +7653,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
