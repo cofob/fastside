@@ -336,6 +336,15 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://biblioreads.canine.tools/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://biblioreads.ducks.party/",
           "tags": [
             "clearnet",
