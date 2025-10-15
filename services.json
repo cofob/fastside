@@ -1671,8 +1671,7 @@
           "url": "https://hyperpipe.surge.sh/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
