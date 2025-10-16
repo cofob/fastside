@@ -4879,7 +4879,9 @@
           "url": "https://privatebin.imagisphe.re/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5017,6 +5019,7 @@
           "url": "https://secret.hummel-web.at/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
