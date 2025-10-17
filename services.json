@@ -6249,13 +6249,6 @@
           ]
         },
         {
-          "url": "https://safetwitch.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://ttv.vern.cc/",
           "tags": [
             "clearnet",
@@ -7717,6 +7710,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
