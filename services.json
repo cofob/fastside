@@ -6714,14 +6714,6 @@
           ]
         },
         {
-          "url": "https://search.ipsys.bf/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.ipv6s.net/",
           "tags": [
             "clearnet",
