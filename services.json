@@ -4764,15 +4764,6 @@
           ]
         },
         {
-          "url": "https://rimgo.eu.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
@@ -6203,6 +6194,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6376,7 +6368,8 @@
           "url": "https://simplytranslate.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
