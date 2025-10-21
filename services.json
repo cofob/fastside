@@ -7921,15 +7921,6 @@
       "deprecated_message": "All instances are down.",
       "instances": [
         {
-          "url": "https://art.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://da.opnxng.com/",
           "tags": [
             "clearnet",
@@ -7961,15 +7952,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://skunky.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
