@@ -1761,27 +1761,10 @@
           ]
         },
         {
-          "url": "https://inv.perditum.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://invidious.f5.si/",
           "tags": [
             "clearnet",
             "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://invidious.nerdvpn.de/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -6002,7 +5985,6 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
