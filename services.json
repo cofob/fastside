@@ -5958,15 +5958,6 @@
           ]
         },
         {
-          "url": "https://rimgo.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.nohost.network/",
           "tags": [
             "clearnet",
@@ -7648,7 +7639,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
