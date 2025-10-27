@@ -6741,13 +6741,6 @@
           ]
         },
         {
-          "url": "https://search.iguru.gr/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://search.im-in.space/",
           "tags": [
             "clearnet",
@@ -7618,7 +7611,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
