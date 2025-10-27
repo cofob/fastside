@@ -5854,9 +5854,7 @@
           "url": "https://rimgo.eu.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5898,8 +5896,7 @@
           "url": "https://rimgo.in.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5999,9 +5996,7 @@
           "url": "https://rimgo.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6758,8 +6753,7 @@
           "url": "https://search.iguru.gr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6775,8 +6769,7 @@
           "url": "https://search.in.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
