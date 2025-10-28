@@ -5706,13 +5706,6 @@
           ]
         },
         {
-          "url": "http://rimgo.bunny5exbgbp4sqe2h2rfq2brgrx3dhohdweonepzwfgumfyygb35wyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://rimgo.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
           "tags": [
             "http",
@@ -6040,14 +6033,6 @@
         },
         {
           "url": "https://rimgo.reallyaweso.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://rimgo.thebunny.zone/",
           "tags": [
             "clearnet",
             "https",
@@ -7705,7 +7690,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7943,7 +7927,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
