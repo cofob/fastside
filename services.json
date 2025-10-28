@@ -2753,7 +2753,6 @@
           "url": "https://libremdb.jeikobu.net/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7036,15 +7035,6 @@
           ]
         },
         {
-          "url": "https://search.undertale.uk/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.url4irl.com/",
           "tags": [
             "clearnet",
@@ -7952,8 +7942,7 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
