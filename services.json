@@ -6786,6 +6786,15 @@
           ]
         },
         {
+          "url": "https://search.darkness.services/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.einfachzocken.eu/",
           "tags": [
             "clearnet",
@@ -6825,13 +6834,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.iguru.gr/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
@@ -6936,6 +6938,14 @@
         },
         {
           "url": "https://search.nordh.tech/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.notsparkable.org/",
           "tags": [
             "clearnet",
             "https",
