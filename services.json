@@ -7110,15 +7110,6 @@
           ]
         },
         {
-          "url": "https://searx.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://searx.perennialte.ch/",
           "tags": [
             "clearnet",
