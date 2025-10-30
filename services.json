@@ -663,14 +663,6 @@
           ]
         },
         {
-          "url": "https://read.seitan-ayoub.lol/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://read.whateveritworks.org/",
           "tags": [
             "clearnet",
@@ -7541,6 +7533,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
