@@ -648,6 +648,14 @@
           ]
         },
         {
+          "url": "https://read.seitan-ayoub.lol/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://read.whateveritworks.org/",
           "tags": [
             "clearnet",
@@ -906,7 +914,9 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
