@@ -1763,6 +1763,7 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7641,7 +7642,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7879,8 +7879,7 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
