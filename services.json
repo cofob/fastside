@@ -356,7 +356,8 @@
           "url": "https://exchange.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -635,7 +636,6 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -681,7 +681,8 @@
           "url": "https://read.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7640,6 +7641,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -8591,7 +8593,8 @@
           "url": "https://wiki.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
