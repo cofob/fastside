@@ -4391,6 +4391,14 @@
           ]
         },
         {
+          "url": "https://paste.helkor.eu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://paste.hostify.cz/",
           "tags": [
             "clearnet",
