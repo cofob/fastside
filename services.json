@@ -646,14 +646,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.frontendfriendly.xyz/",
           "tags": [
             "clearnet",
