@@ -7348,6 +7348,14 @@
           ]
         },
         {
+          "url": "https://icons.duckduckgo.com/ip3/send.hostnetwork.xyz.ico%22%20height=%2216%22%3E%20https://send.hostnetwork.xyz",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://icons.duckduckgo.com/ip3/send.jeugdhulp.be.ico%22%20height=%2216%22%3E%20https://send.jeugdhulp.be",
           "tags": [
             "clearnet",
@@ -7482,7 +7490,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
