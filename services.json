@@ -6114,7 +6114,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6311,14 +6310,6 @@
         },
         {
           "url": "https://st.privacydev.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://translate.northboot.xyz/",
           "tags": [
             "clearnet",
             "https",
