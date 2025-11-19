@@ -4765,15 +4765,6 @@
           ]
         },
         {
-          "url": "https://rimgo.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.nohost.network/",
           "tags": [
             "clearnet",
