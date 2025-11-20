@@ -6558,6 +6558,14 @@
           ]
         },
         {
+          "url": "https://search.a14r.be/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.abohiccups.com/",
           "tags": [
             "clearnet",
@@ -6688,14 +6696,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://search.internetsucks.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -7057,6 +7057,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searxng.cups.moe/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
