@@ -6695,7 +6695,9 @@
           "url": "https://search.inetol.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
