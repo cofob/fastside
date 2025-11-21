@@ -4662,7 +4662,8 @@
           "url": "https://pastefg.hermietkreeft.site/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
