@@ -3965,7 +3965,8 @@
           "url": "https://coller.vulpecula.fr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
