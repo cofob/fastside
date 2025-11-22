@@ -5621,7 +5621,8 @@
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7528,14 +7529,6 @@
         },
         {
           "url": "https://icons.duckduckgo.com/ip3/upload.nolog.cz.ico%22%20height=%2216%22%3E%20https://upload.nolog.cz",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://secureshar.ing/",
           "tags": [
             "clearnet",
             "https",
