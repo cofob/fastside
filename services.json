@@ -3562,7 +3562,8 @@
           "url": "https://piped.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5731,13 +5732,6 @@
           ]
         },
         {
-          "url": "http://rimgo.bunny5exbgbp4sqe2h2rfq2brgrx3dhohdweonepzwfgumfyygb35wyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://rimgo.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
           "tags": [
             "http",
@@ -6084,15 +6078,6 @@
         },
         {
           "url": "https://rimgo.totaldarkness.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rimgo.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
             "https",
@@ -7890,7 +7875,8 @@
           "url": "https://st.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
