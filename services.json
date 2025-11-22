@@ -1736,7 +1736,6 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3531,8 +3530,7 @@
           "url": "https://piped.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3677,14 +3675,6 @@
       "source_link": "https://codeberg.org/ashley/poke",
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "https://cal1.poke.ggtyler.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
         {
           "url": "https://poketube.fun/",
           "tags": [
@@ -3858,7 +3848,8 @@
           "url": "https://bin.infini.fr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
