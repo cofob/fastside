@@ -7122,15 +7122,6 @@
           ]
         },
         {
-          "url": "https://suche.dasnetzundich.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://sx.catgirl.cloud/",
           "tags": [
             "clearnet",
@@ -7461,7 +7452,8 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
