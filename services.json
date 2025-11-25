@@ -1254,6 +1254,15 @@
           ]
         },
         {
+          "url": "https://vartube.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://yewtu.be/",
           "tags": [
             "clearnet",
