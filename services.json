@@ -1733,6 +1733,14 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://vartube.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
         }
       ]
     },
