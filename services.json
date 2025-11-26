@@ -1238,6 +1238,7 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
