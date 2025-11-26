@@ -2674,6 +2674,7 @@
           "url": "https://libremdb.jeikobu.net/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5443,15 +5444,6 @@
         },
         {
           "url": "https://quetre.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://quetre.ducks.party/",
           "tags": [
             "clearnet",
             "https",
