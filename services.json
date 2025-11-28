@@ -1471,6 +1471,13 @@
           ]
         },
         {
+          "url": "https://gothub.projectsegfau.lt/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://gothub.r4fo.com/",
           "tags": [
             "clearnet",
@@ -4218,15 +4225,6 @@
         },
         {
           "url": "https://paste.biocrafting.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://paste.ceppo.xyz/",
           "tags": [
             "clearnet",
             "https",
@@ -8352,15 +8350,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://whoogle.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
