@@ -1437,14 +1437,6 @@
           ]
         },
         {
-          "url": "https://gh.phreedom.club/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://gothub.dev.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -2707,15 +2699,6 @@
           ]
         },
         {
-          "url": "https://libremdb.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://libremdb.nerdyfam.tech/",
           "tags": [
             "clearnet",
@@ -3524,14 +3507,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://piped.tokhmi.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -5849,15 +5824,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://rimgo.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
