@@ -3983,7 +3983,8 @@
           "url": "https://cles.le-filament.com/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5605,7 +5606,8 @@
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6541,14 +6543,6 @@
         },
         {
           "url": "https://kantan.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://metacat.online/",
           "tags": [
             "clearnet",
             "https",
