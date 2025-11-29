@@ -6709,15 +6709,6 @@
           ]
         },
         {
-          "url": "https://search.nerdvpn.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.nordh.tech/",
           "tags": [
             "clearnet",
