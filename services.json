@@ -2077,14 +2077,6 @@
           ]
         },
         {
-          "url": "https://meet.isf.es/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://meet.jit.si/",
           "tags": [
             "clearnet",
