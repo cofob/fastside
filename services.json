@@ -5496,6 +5496,14 @@
           ]
         },
         {
+          "url": "https://search.freestater.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.goober.cloud/",
           "tags": [
             "clearnet",
