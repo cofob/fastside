@@ -1062,8 +1062,7 @@
           "url": "https://gothub.dev.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4718,9 +4717,7 @@
           "url": "https://rimgo.eu.projectsegfau.lt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4804,14 +4801,6 @@
           ]
         },
         {
-          "url": "https://rimgo.reallyaweso.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://rimgo.thebunny.zone/",
           "tags": [
             "clearnet",
@@ -4833,7 +4822,6 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
             "ipv6"
           ]
         }
