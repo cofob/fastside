@@ -6430,7 +6430,7 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=Uu3gY62C91jJRJAhzYZm-QjI9ehQhTAL5u1BijHQ85k%3A%2F/",
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=G7O4UCMPFkLf8ryfe6H2MvEeOfH7HSRizh8uUeP0y7o%3A%2F/",
           "tags": [
             "clearnet",
             "https",
@@ -6438,7 +6438,7 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=jp_wA760FRQFQhNX9TBTBZW8Vgst8kI50TPwRPxKRBc%3A%2F/",
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=Uu3gY62C91jJRJAhzYZm-QjI9ehQhTAL5u1BijHQ85k%3A%2F/",
           "tags": [
             "clearnet",
             "https",
