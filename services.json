@@ -2739,20 +2739,6 @@
           ]
         },
         {
-          "url": "http://revekebotog64xrrammtsmjwtwlg3vqyzwdurzt2pu6botg4bejq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
-          "url": "http://search.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://vernziqfqvweijfaacmwazohgpdo2bt2ib2jlupt2pwwu27bhgxq.b32.i2p/",
           "tags": [
             "http",
@@ -2866,13 +2852,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.revvy.de/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
@@ -6376,7 +6355,7 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=AE-XG9PM9_gQGnSbKqk-nBSYAWxOiVqyFuo4NWiK9pw%3A%2F/",
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=GYKP0cUUHnsnLSM-EYgR199j1cKXgUxOECMP8ROMNpc%3A%2F/",
           "tags": [
             "clearnet",
             "https",
