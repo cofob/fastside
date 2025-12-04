@@ -742,20 +742,6 @@
           ]
         },
         {
-          "url": "http://binternet.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://revznkqdwy7nmlzql66x226g3qnapiooss3rg2uajbj4rypxjnba.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "https://binternet.4o1x5.dev/",
           "tags": [
             "clearnet",
@@ -1451,13 +1437,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://gothub.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
@@ -6397,7 +6376,7 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=TP7DohV3NcZn7QXXGgxSzxEnGuvVF6nH3-F-zJ2Tw9U%3A%2F/",
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=AE-XG9PM9_gQGnSbKqk-nBSYAWxOiVqyFuo4NWiK9pw%3A%2F/",
           "tags": [
             "clearnet",
             "https",
