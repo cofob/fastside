@@ -2523,13 +2523,6 @@
           ]
         },
         {
-          "url": "http://qjlgasoy3nxepgzntucmcnb6pryqxakwdu7sxvqzi7spdfootryq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "http://vernz3ubrntql4wrgyrssd6u3qzi36zrhz2agbo6vibzbs5olk2q.b32.i2p/",
           "tags": [
             "http",
@@ -2917,14 +2910,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://search.uwabaki.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -6437,7 +6422,7 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=4oPx0kGZ1ZTiBRHT9wuavxbm8vLeQKXNVAesdh7UFLA%3A%2F/",
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=0SY5jO3w9wHVG-K_pTaXnIOhcUH-OpUqn-Ibr1qzxdA%3A%2F/",
           "tags": [
             "clearnet",
             "https",
@@ -6445,7 +6430,7 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=DDK-TbMtG22DV72rfhZ34MENJrTRBZO1us5eq6LJKC4%3A%2F/",
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=4oPx0kGZ1ZTiBRHT9wuavxbm8vLeQKXNVAesdh7UFLA%3A%2F/",
           "tags": [
             "clearnet",
             "https",
