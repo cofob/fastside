@@ -702,7 +702,8 @@
           "url": "https://read.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6347,14 +6348,6 @@
           ]
         },
         {
-          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=GsAfBJQjrZ9BqpkhEU5qyf9wreaYWslWhltPp4t3ZNQ%3A%2F/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=Uu3gY62C91jJRJAhzYZm-QjI9ehQhTAL5u1BijHQ85k%3A%2F/",
           "tags": [
             "clearnet",
@@ -6364,6 +6357,14 @@
         },
         {
           "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=jKlgVSWm9hRx3DYDuyvjrgFL8VAKnhEd1fId2eoeheM%3A%2F/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://id.fairkom.net/auth/realms/fairlogin/protocol/openid-connect/auth?approval_prompt=force&client_id=fairlogin-proxy&redirect_uri=https%3A%2F%2Ffairsuch.net%2Foauth2%2Fcallback&response_type=code&scope=openid+email+profile&state=uYNq88QRI0HPyZhWYbgxttkO25kd46qmW57B_5j1_ag%3A%2F/",
           "tags": [
             "clearnet",
             "https",
@@ -7551,8 +7552,7 @@
           "url": "https://st.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
