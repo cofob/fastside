@@ -741,15 +741,6 @@
           ]
         },
         {
-          "url": "https://binternet.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://binternet.lunar.icu/",
           "tags": [
             "clearnet",
@@ -5780,7 +5771,6 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
