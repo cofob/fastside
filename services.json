@@ -932,15 +932,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.private.coffee/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://breezewiki.pussthecat.org/",
           "tags": [
             "clearnet",
@@ -1554,7 +1545,8 @@
           "url": "https://hyperpipe.surge.sh/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
