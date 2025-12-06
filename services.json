@@ -185,13 +185,6 @@
           ]
         },
         {
-          "url": "http://o.zx56doutynmbgezxtpccduajwcblzx7fgio2yuy57a3jingco2c6fvqd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://ocp7zhdsbl2mjabv5ma5jvbzg2dqzglieayjvyj4j2r7qvsqlboa.b32.i2p/",
           "tags": [
             "http",
@@ -353,15 +346,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://o.iii.st/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -1570,8 +1554,7 @@
           "url": "https://hyperpipe.surge.sh/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
