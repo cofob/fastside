@@ -6987,14 +6987,6 @@
           ]
         },
         {
-          "url": "https://searxng.deliberate.world/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searxng.f24o.zip/",
           "tags": [
             "clearnet",
