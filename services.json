@@ -1691,6 +1691,15 @@
           ]
         },
         {
+          "url": "https://inv.nadeko.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://inv.perditum.com/",
           "tags": [
             "clearnet",
