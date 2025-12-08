@@ -284,15 +284,6 @@
           ]
         },
         {
-          "url": "https://ao.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://ao.bunk.lol/",
           "tags": [
             "clearnet",
@@ -7524,7 +7515,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
