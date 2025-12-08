@@ -909,13 +909,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.hyperreal.coffee/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://breezewiki.nadeko.net/",
           "tags": [
             "clearnet",
@@ -4604,8 +4597,7 @@
           "url": "https://pb.skifab.se/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
