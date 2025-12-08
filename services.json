@@ -7856,6 +7856,15 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://t.opnxng.com/",
+          "tags": [
+            "clearnet",
+            "http",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "http://translate.s3agyzjznitshmuousvbxg7246hokooypkmncycbfroih542egnwkhad.onion/",
           "tags": [
             "http",
