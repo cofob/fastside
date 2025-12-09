@@ -6221,14 +6221,6 @@
           ]
         },
         {
-          "url": "https://searx.gnu.style/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.mastodontech.de/",
           "tags": [
             "clearnet",
