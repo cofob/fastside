@@ -1140,13 +1140,6 @@
           ]
         },
         {
-          "url": "https://dumb.hyperreal.coffee/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://dumb.jeikobu.net/",
           "tags": [
             "clearnet",
@@ -5766,6 +5759,7 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
