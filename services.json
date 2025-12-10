@@ -4162,6 +4162,7 @@
           "url": "https://paste.fizi.ca/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
