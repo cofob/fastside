@@ -4162,7 +4162,6 @@
           "url": "https://paste.fizi.ca/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5759,7 +5758,6 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6562,7 +6560,8 @@
           "url": "https://search.ipsys.bf/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
