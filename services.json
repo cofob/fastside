@@ -734,15 +734,6 @@
           ]
         },
         {
-          "url": "https://binternet.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://binternet.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -1119,15 +1110,6 @@
           ]
         },
         {
-          "url": "https://dumb.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://dumb.privacydev.net/",
           "tags": [
             "clearnet",
@@ -1337,15 +1319,6 @@
         },
         {
           "url": "https://gothub.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://gothub.lunar.icu/",
           "tags": [
             "clearnet",
             "https",
@@ -5714,15 +5687,6 @@
           ]
         },
         {
-          "url": "https://rimgo.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.nohost.network/",
           "tags": [
             "clearnet",
@@ -5800,15 +5764,6 @@
         },
         {
           "url": "https://rimgo.totaldarkness.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rimgo.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
             "https",
