@@ -570,15 +570,6 @@
           ]
         },
         {
-          "url": "https://biblioreads.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://biblioreads.mooo.com/",
           "tags": [
             "clearnet",
@@ -726,6 +717,15 @@
         },
         {
           "url": "https://binternet.darkness.services/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://binternet.ducks.party/",
           "tags": [
             "clearnet",
             "https",
@@ -2817,15 +2817,6 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://lingva.lunar.icu/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -5910,15 +5901,6 @@
           ]
         },
         {
-          "url": "https://safetwitch.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://safetwitch.nogafam.fr/",
           "tags": [
             "clearnet",
@@ -6682,15 +6664,6 @@
         },
         {
           "url": "https://searx.dresden.network/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.lunar.icu/",
           "tags": [
             "clearnet",
             "https",
