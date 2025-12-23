@@ -1624,8 +1624,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -3532,15 +3531,6 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://bin.0xfc.de/",
-          "tags": [
-            "clearnet",
             "https",
             "ipv4",
             "ipv6"
@@ -5462,14 +5452,6 @@
           ]
         },
         {
-          "url": "https://imgur.sudovanilla.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://r.opnxng.com/",
           "tags": [
             "clearnet",
@@ -7113,7 +7095,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
