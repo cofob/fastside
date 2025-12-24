@@ -6802,14 +6802,6 @@
           ]
         },
         {
-          "url": "https://searxng.hweeren.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searxng.shreven.org/",
           "tags": [
             "clearnet",
@@ -7155,7 +7147,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
