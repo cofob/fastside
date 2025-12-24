@@ -6023,7 +6023,8 @@
           "url": "https://scribe.rip/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -7374,7 +7375,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
