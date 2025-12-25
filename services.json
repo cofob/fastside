@@ -791,6 +791,7 @@
           "url": "https://dumb.jeikobu.net/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4689,6 +4690,15 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://rmgur.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -5361,7 +5371,8 @@
           "url": "https://search.internetsucks.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5812,6 +5823,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
