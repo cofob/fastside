@@ -5494,6 +5494,14 @@
           ]
         },
         {
+          "url": "https://search.wdpserver.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://searx.ankha.ac/",
           "tags": [
             "clearnet",
