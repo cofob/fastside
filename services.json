@@ -2116,7 +2116,8 @@
           "url": "https://vc.autistici.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
