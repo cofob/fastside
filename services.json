@@ -916,15 +916,6 @@
           ]
         },
         {
-          "url": "https://breezewiki.nadeko.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
