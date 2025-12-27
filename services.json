@@ -1488,8 +1488,7 @@
           "url": "https://hyperpipe.surge.sh/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4546,6 +4545,15 @@
         },
         {
           "url": "https://privatebin.devol.it/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://privatebin.diyarciftci.xyz/",
           "tags": [
             "clearnet",
             "https",
