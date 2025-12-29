@@ -2608,13 +2608,6 @@
           ]
         },
         {
-          "url": "http://librey.darknessrdor43qkl2ngwitj72zdavfz2cead4t5ed72bybgauww5lyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://lx.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
           "tags": [
             "http",
@@ -4689,15 +4682,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://privatebin.xi.ht/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
