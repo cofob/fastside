@@ -92,14 +92,6 @@
           ]
         },
         {
-          "url": "https://ak.dc09.ru/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://ak2.bloat.cat/",
           "tags": [
             "clearnet",
@@ -189,13 +181,6 @@
         },
         {
           "url": "http://overflow.daturab6drmkhyeia4ch5gvfc2f3wgo6bhjrv3pz6n7kxmvoznlkq4yd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://overflow.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
           "tags": [
             "http",
             "tor"
@@ -389,15 +374,6 @@
           ]
         },
         {
-          "url": "https://overflow.ducks.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://overflow.einfachzocken.eu/",
           "tags": [
             "clearnet",
@@ -440,23 +416,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://overflow.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://overflow.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -711,10 +670,17 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://binternet.darknessrdor43qkl2ngwitj72zdavfz2cead4t5ed72bybgauww5lyd.onion/",
+          "url": "http://binternet.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/",
           "tags": [
             "http",
             "tor"
+          ]
+        },
+        {
+          "url": "http://revznkqdwy7nmlzql66x226g3qnapiooss3rg2uajbj4rypxjnba.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
           ]
         },
         {
@@ -779,16 +745,15 @@
           ]
         },
         {
-          "url": "https://bn.bloat.cat/",
+          "url": "https://binternet.revvy.de/",
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
-          "url": "https://bn.kuuro.net/",
+          "url": "https://bn.bloat.cat/",
           "tags": [
             "clearnet",
             "https",
@@ -832,7 +797,7 @@
           ]
         },
         {
-          "url": "http://breezewiki.nadekonfkhwlxwwk4ycbvq42zvcjmvo5iakl4tajojjwxd4a5dcetuyd.onion/",
+          "url": "http://breezewiki.coffee2m3bjsrrqqycx6ghkxrnejl2q6nl7pjw2j4clchjj6uk5zozad.onion/",
           "tags": [
             "http",
             "tor"
@@ -936,6 +901,15 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://bw.artemislena.eu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1078,15 +1052,6 @@
           ]
         },
         {
-          "url": "https://db.kuuro.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://dm.vern.cc/",
           "tags": [
             "clearnet",
@@ -1123,6 +1088,13 @@
           ]
         },
         {
+          "url": "https://dumb.hyperreal.coffee/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://dumb.jeikobu.net/",
           "tags": [
             "clearnet",
@@ -1153,14 +1125,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://lyr.dc09.ru/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -1232,49 +1196,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://[200:691d:578e:f10e:e935:f189:aab4:1d98]/",
-          "tags": [
-            "http"
-          ]
-        },
-        {
-          "url": "http://a7xvcthrhfcsox73brt5hgueapwosohmieg5wttvuuuz6mqur5s3rqyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://fastside.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
-          "url": "http://fastside.ygg/",
-          "tags": [
-            "alfis",
-            "http",
-            "ygg"
-          ]
-        },
-        {
-          "url": "http://i4autaipx7a4ro34cbwvni6bcph34eueocplwsxaqeeuyb6cavzq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
-          "url": "http://ygg.fastside.link/",
-          "tags": [
-            "http",
-            "ipv6",
-            "ygg"
-          ]
-        },
-        {
           "url": "https://cdn.fastside.link/",
           "tags": [
             "clearnet",
@@ -1318,6 +1239,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://ge.fastsi.de/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -1366,6 +1295,14 @@
           "tags": [
             "clearnet",
             "https"
+          ]
+        },
+        {
+          "url": "https://gh.phreedom.club/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -1646,15 +1583,6 @@
         },
         {
           "url": "https://invidious.nerdvpn.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://yewtu.be/",
           "tags": [
             "clearnet",
             "https",
@@ -2575,6 +2503,15 @@
           ]
         },
         {
+          "url": "https://libremdb.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://libremdb.nerdyfam.tech/",
           "tags": [
             "clearnet",
@@ -2664,13 +2601,6 @@
           ]
         },
         {
-          "url": "http://librey.darknessrdor43qkl2ngwitj72zdavfz2cead4t5ed72bybgauww5lyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://lx.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
           "tags": [
             "http",
@@ -2679,6 +2609,20 @@
         },
         {
           "url": "http://ly.pk47sgwhncn5cgidm7bofngmh7lc7ukjdpk5bjwfemmyp27ovl25ikyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://revekebotog64xrrammtsmjwtwlg3vqyzwdurzt2pu6botg4bejq.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
+          "url": "http://search.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/",
           "tags": [
             "http",
             "tor"
@@ -2742,6 +2686,14 @@
           ]
         },
         {
+          "url": "https://librey.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://librey.sny.sh/",
           "tags": [
             "clearnet",
@@ -2790,6 +2742,28 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.revvy.de/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.technicalvoid.dev/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "https://search.uwabaki.party/",
+          "tags": [
+            "clearnet",
+            "https"
           ]
         },
         {
@@ -3023,14 +2997,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://mzh.dc09.ru/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -3474,7 +3440,17 @@
       "aliases": [],
       "source_link": "https://codeberg.org/ashley/poke",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://poketube.fun/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "privatebin",
@@ -4702,15 +4678,6 @@
           ]
         },
         {
-          "url": "https://privatebin.xi.ht/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://privbin.harizalan.hu/",
           "tags": [
             "clearnet",
@@ -5141,7 +5108,24 @@
           ]
         },
         {
+          "url": "https://ask.habedieeh.re/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://ask.sudovanilla.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://q.307200.xyz/",
           "tags": [
             "clearnet",
             "https",
@@ -5173,14 +5157,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://quetre.blackdrgn.nl/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -5362,6 +5338,13 @@
           ]
         },
         {
+          "url": "http://rimgo.bunny5exbgbp4sqe2h2rfq2brgrx3dhohdweonepzwfgumfyygb35wyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://rimgo.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
           "tags": [
             "http",
@@ -5370,20 +5353,6 @@
         },
         {
           "url": "http://rimgo.micohauwkjbyw5meacrb4ipicwvwg4xtzl7y7viv53kig2mdcsvwkyyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://rimgo.nadekonw7plitnjuawu6ytjsl7jlglk2t6pyq6eftptmiv3dvqndwvyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://rimgo.pjsfkvpxlinjamtawaksbnnaqs2fc2mtvmozrzckxh7f3kis6yea25ad.onion/",
           "tags": [
             "http",
             "tor"
@@ -5441,24 +5410,7 @@
           ]
         },
         {
-          "url": "https://imgur.sudovanilla.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://r.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rg.kuuro.net/",
           "tags": [
             "clearnet",
             "https",
@@ -5524,15 +5476,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://rimgo.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -5664,15 +5607,6 @@
           ]
         },
         {
-          "url": "https://rimgo.proxik.cloud/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.pussthecat.org/",
           "tags": [
             "clearnet",
@@ -5708,15 +5642,6 @@
         },
         {
           "url": "https://rimgo.totaldarkness.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rimgo.us.projectsegfau.lt/",
           "tags": [
             "clearnet",
             "https",
@@ -5986,6 +5911,15 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://search.stinpriza.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
@@ -6044,6 +5978,14 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://searx.zapashcanon.fr/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
         }
       ]
     },
@@ -6061,6 +6003,13 @@
       "instances": [
         {
           "url": "http://ieqzkvy4bf3xi4bzsfzfax42t4iuqcbqn6oah4uwrm4ip354gavsviad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://kantanrucloofzrfn7vqlsxbhipkqv55qygn4oxogbnjpfex54bw4gad.onion/",
           "tags": [
             "http",
             "tor"
@@ -6444,15 +6393,6 @@
           ]
         },
         {
-          "url": "https://search.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -6713,15 +6653,6 @@
           ]
         },
         {
-          "url": "https://searxng.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://searxng.cups.moe/",
           "tags": [
             "clearnet",
@@ -6934,14 +6865,6 @@
         },
         {
           "url": "https://icons.duckduckgo.com/ip3/send.cyberjake.xyz.ico%22%20height=%2216%22%3E%20https://send.cyberjake.xyz",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://icons.duckduckgo.com/ip3/send.hostnetwork.xyz.ico%22%20height=%2216%22%3E%20https://send.hostnetwork.xyz",
           "tags": [
             "clearnet",
             "https",
@@ -7175,27 +7098,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://fyng2tsmzmvxmojzbbwmfnsn2lrcyftf4cw6rk5j2v2huliazud3fjid.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://kmnkkp4v4ublygtnyq46oacy3qw75nrxxniriuaersumw7bfsm2a.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
-          "url": "http://simplytranslate.esmail5pdn24shtvieloeedh7ehz3nrwcdivnfhfcedl7gf4kwddhkqd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://st.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
           "tags": [
             "http",
@@ -7210,31 +7112,10 @@
           ]
         },
         {
-          "url": "http://translate.prnoid54e44a4bduq5due64jkk7wcnkxcp5kv3juncm7veptjcqudgyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://verna7avzgd4qqal7k2onjzwxcceqby2gwvya2a2frdswb7z2k4q.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "http://xxtbwyb5z5bdvy2f6l2yquu5qilgkjeewno4qfknvb3lkg3nmoklitid.onion/",
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "https://simplytranslate.esmailelbob.xyz/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
@@ -7246,27 +7127,11 @@
           ]
         },
         {
-          "url": "https://simplytranslate.manerakai.com/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://simplytranslate.org/",
           "tags": [
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://simplytranslate.pussthecat.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -7326,18 +7191,10 @@
           ]
         },
         {
-          "url": "https://translate.riverside.rocks/",
+          "url": "https://translate.priv.pw/",
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://translate.slipfox.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -7365,6 +7222,15 @@
       "instances": [
         {
           "url": "https://art.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://da.opnxng.com/",
           "tags": [
             "clearnet",
             "https",
@@ -7519,13 +7385,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://maidzong64yczoqm5wlg2hiodip6ktpldcfdvoxanqaxmonyim4q.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "http://tent.dswarmsikhttkg7jgsoyfiqpj3ighupfrvuz5ri3lu5q2dlqyrpgk7ad.onion/",
           "tags": [
             "http",
@@ -7562,24 +7421,6 @@
           ]
         },
         {
-          "url": "https://tent.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://tent.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://tent.deep-swarm.xyz/",
           "tags": [
             "clearnet",
@@ -7602,15 +7443,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://tent.private.coffee/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -7888,6 +7720,15 @@
           ]
         },
         {
+          "url": "https://whoogle.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://whoogle.privacydev.net/",
           "tags": [
             "clearnet",
@@ -7913,13 +7754,6 @@
           "tags": [
             "http",
             "i2p"
-          ]
-        },
-        {
-          "url": "http://tdx37ew3oke5rxn3yi5r5665ka7ozvehnd4xmnjxxdvqorias2nyl4qd.onion/",
-          "tags": [
-            "http",
-            "tor"
           ]
         },
         {
@@ -7962,6 +7796,15 @@
         },
         {
           "url": "https://wiki.adminforge.de/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://wiki.froth.zone/",
           "tags": [
             "clearnet",
             "https",
