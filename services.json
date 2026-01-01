@@ -2835,16 +2835,6 @@
           ]
         },
         {
-          "url": "https://lingva.ml/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://translate.dr460nf1r3.org/",
           "tags": [
             "clearnet",
@@ -5598,15 +5588,6 @@
           ]
         },
         {
-          "url": "https://rimgo.quantenzitrone.eu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://rimgo.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -7008,7 +6989,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
