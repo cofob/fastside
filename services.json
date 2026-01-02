@@ -2513,9 +2513,7 @@
           "url": "https://libremdb-fly.fly.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4471,9 +4469,7 @@
           "url": "https://pb.fly.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6636,14 +6632,6 @@
           ]
         },
         {
-          "url": "https://searx.ppeb.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searx.rhscz.eu/",
           "tags": [
             "clearnet",
@@ -7093,6 +7081,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
