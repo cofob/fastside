@@ -7042,7 +7042,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7661,6 +7660,14 @@
         },
         {
           "url": "https://tl.dc09.ru/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://tl.dc09.xyz/",
           "tags": [
             "clearnet",
             "https",
