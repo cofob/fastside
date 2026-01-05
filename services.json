@@ -2789,9 +2789,7 @@
           "url": "https://librey.sny.sh/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -7074,8 +7072,7 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
