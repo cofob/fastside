@@ -2812,6 +2812,14 @@
           ]
         },
         {
+          "url": "https://search.blitzw.in/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.davidovski.xyz/",
           "tags": [
             "clearnet",
