@@ -3090,14 +3090,6 @@
           ]
         },
         {
-          "url": "https://gitgd.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://logs.notifiarr.com/",
           "tags": [
             "clearnet",
@@ -4043,13 +4035,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://www.gitgd.com/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
@@ -5780,8 +5765,7 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
