@@ -856,8 +856,7 @@
           "url": "https://breeze.mint.lgbt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3994,8 +3993,7 @@
           "url": "https://paste.cracktek.eu/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4306,8 +4304,7 @@
           "url": "https://paste.trove.cz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4502,8 +4499,7 @@
           "url": "https://privatebin.cz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6625,14 +6621,6 @@
           ]
         },
         {
-          "url": "https://searxng.blockblitz.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://searxng.canine.tools/",
           "tags": [
             "clearnet",
@@ -6995,7 +6983,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
