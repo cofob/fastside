@@ -7760,7 +7760,8 @@
           "url": "https://tent.nbh.ax/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
