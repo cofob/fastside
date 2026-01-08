@@ -1501,14 +1501,6 @@
           ]
         },
         {
-          "url": "https://hyperpipe.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://hyperpipe.ducks.party/",
           "tags": [
             "clearnet",
@@ -3440,14 +3432,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://pixivfe.drgns.space/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -6353,14 +6337,6 @@
           ]
         },
         {
-          "url": "https://search.ipsys.bf/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.ipv6s.net/",
           "tags": [
             "clearnet",
@@ -7139,7 +7115,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
