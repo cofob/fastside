@@ -6758,14 +6758,20 @@
           "url": "https://ch.skysend.ch/",
           "tags": [
             "clearnet",
-            "https"
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
           "url": "https://de.skysend.ch/",
           "tags": [
             "clearnet",
-            "https"
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
