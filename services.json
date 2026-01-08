@@ -2214,26 +2214,7 @@
       "aliases": [],
       "source_link": "https://git.bloat.cat/gospodin/koub",
       "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://koub.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://koub2.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "laboratory",
@@ -7554,15 +7535,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://skunky.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
