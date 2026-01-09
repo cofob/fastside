@@ -1680,8 +1680,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -5242,13 +5241,6 @@
           ]
         },
         {
-          "url": "https://quetre.tokhmi.xyz/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://quora.nerdvpn.de/",
           "tags": [
             "clearnet",
@@ -6326,7 +6318,8 @@
           "url": "https://search.ipsys.bf/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7108,7 +7101,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
