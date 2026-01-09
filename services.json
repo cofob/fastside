@@ -2307,14 +2307,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://r.sudovanilla.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
@@ -7711,9 +7703,7 @@
           "url": "https://tent.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
