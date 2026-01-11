@@ -2959,6 +2959,15 @@
           ]
         },
         {
+          "url": "https://mozhi.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://mozhi.canine.tools/",
           "tags": [
             "clearnet",
@@ -2983,6 +2992,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://mzh.dc09.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4703,6 +4720,15 @@
         },
         {
           "url": "https://snip.dssr.ch/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://t25b.com/",
           "tags": [
             "clearnet",
             "https",
@@ -7281,7 +7307,8 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
