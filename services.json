@@ -1446,15 +1446,6 @@
           ]
         },
         {
-          "url": "https://hyperpipe.darkness.services/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://hyperpipe.drgns.space/",
           "tags": [
             "clearnet",
@@ -3888,13 +3879,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://p.vinci-concessions.com/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
