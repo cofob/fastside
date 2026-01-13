@@ -3690,6 +3690,15 @@
           ]
         },
         {
+          "url": "https://pb.fbin.in/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://pb.flossboxin.org.in/",
           "tags": [
             "clearnet",
@@ -4339,6 +4348,13 @@
           ]
         },
         {
+          "url": "http://rg.kuu7oukh73yy4pn5iahfnm3k6vppyseqtt6xn3xs33big5cnlv2fr5yd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://rg.kuuro5abqix6tfku77wj32srkicgqh3f7ro77ctpda7ub7a7mlv4jsid.onion/",
           "tags": [
             "http",
@@ -4621,14 +4637,6 @@
         },
         {
           "url": "https://rimgo.reallyaweso.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://rimgo.thebunny.zone/",
           "tags": [
             "clearnet",
             "https",
