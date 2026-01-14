@@ -4212,6 +4212,14 @@
           ]
         },
         {
+          "url": "https://paste.skynetcloud.site/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://paste.stratum0.org/",
           "tags": [
             "clearnet",
@@ -6101,8 +6109,7 @@
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7271,8 +7278,7 @@
           "url": "https://tent.nbh.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
