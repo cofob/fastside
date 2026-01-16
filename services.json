@@ -1678,7 +1678,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4734,6 +4735,14 @@
           ]
         },
         {
+          "url": "https://zbin.io/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://zerobin-legacy.dssr.ch/",
           "tags": [
             "clearnet",
@@ -6778,6 +6787,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7732,8 +7742,7 @@
           "url": "https://wiki.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
