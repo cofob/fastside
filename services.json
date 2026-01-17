@@ -2460,15 +2460,6 @@
           ]
         },
         {
-          "url": "https://d.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://imdb.nerdvpn.de/",
           "tags": [
             "clearnet",
@@ -5574,6 +5565,7 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6780,6 +6772,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
