@@ -919,9 +919,7 @@
           "url": "https://breezewiki.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -1422,15 +1420,6 @@
         },
         {
           "url": "https://gothub.lunar.icu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://gothub.r4fo.com/",
           "tags": [
             "clearnet",
             "https",
@@ -3333,9 +3322,7 @@
           "url": "https://piped.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
