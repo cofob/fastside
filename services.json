@@ -588,8 +588,7 @@
           "url": "https://biblioreads.franklyflawless.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5137,8 +5136,7 @@
           "url": "https://quetre.franklyflawless.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7319,13 +7317,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://tent.nbh.ax/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
