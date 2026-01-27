@@ -3025,6 +3025,7 @@
           "url": "https://musicale.tk/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3701,6 +3702,7 @@
           "url": "https://bonus01.hwb0307.com/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4352,6 +4354,7 @@
           "url": "https://pb.blackvoid.club/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4397,6 +4400,7 @@
           "url": "https://pb.greep.fr/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5502,6 +5506,7 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5766,6 +5771,7 @@
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5847,6 +5853,7 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6626,6 +6633,7 @@
           "url": "https://de.skysend.ch/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6750,6 +6758,7 @@
           "url": "https://send.hostnetwork.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6775,6 +6784,7 @@
           "url": "https://send.majoenell.com/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
