@@ -4443,6 +4443,15 @@
           ]
         },
         {
+          "url": "https://privatebin.a38.fr/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://privatebin.app/",
           "tags": [
             "clearnet",
