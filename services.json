@@ -606,7 +606,6 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
