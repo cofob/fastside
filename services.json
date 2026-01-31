@@ -107,22 +107,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://akademik.clovius.club/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
-          "url": "https://akademik.lumaeris.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -7231,15 +7215,6 @@
       "source_link": null,
       "deprecated_message": null,
       "instances": [
-        {
-          "url": "http://t.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "http",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "http://translite.dswarmsikhttkg7jgsoyfiqpj3ighupfrvuz5ri3lu5q2dlqyrpgk7ad.onion/",
           "tags": [
