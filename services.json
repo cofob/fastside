@@ -1277,15 +1277,6 @@
           ]
         },
         {
-          "url": "https://fs.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://fs.poridge.club/",
           "tags": [
             "clearnet",
@@ -5207,9 +5198,7 @@
           "url": "https://quetre.private.coffee/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6646,15 +6635,6 @@
         },
         {
           "url": "https://send.artemislena.eu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://send.codespace.cz/",
           "tags": [
             "clearnet",
             "https",
