@@ -292,7 +292,6 @@
           "url": "https://ao.owo.si/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -419,7 +418,6 @@
           "url": "https://overflow.floppa.cloud/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -480,7 +478,6 @@
           "url": "https://overflow.snine.nl/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -631,6 +628,7 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -1448,6 +1446,7 @@
           "url": "https://hp.iqbalrifai.eu.org/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2770,7 +2769,6 @@
           "url": "https://lingva.garudalinux.org/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2789,7 +2787,6 @@
           "url": "https://lingva.ml/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3099,7 +3096,6 @@
           "url": "https://lightbrd.com/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3471,6 +3467,7 @@
           "url": "https://03c.de/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3770,6 +3767,7 @@
           "url": "https://n0t.io/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3888,6 +3886,7 @@
           "url": "https://paste.3server.de/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4018,7 +4017,6 @@
           "url": "https://paste.fizi.ca/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4088,6 +4086,7 @@
           "url": "https://paste.loryy.dev/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4339,6 +4338,7 @@
           "url": "https://pb.blackvoid.club/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4584,6 +4584,7 @@
           "url": "https://privatebin.rinuploads.org/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6595,6 +6596,7 @@
           "url": "https://de.skysend.ch/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6663,7 +6665,6 @@
           "url": "https://send.aslaets.be/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6709,6 +6710,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6718,6 +6720,7 @@
           "url": "https://send.hostnetwork.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6743,7 +6746,6 @@
           "url": "https://send.majoenell.com/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7624,6 +7626,7 @@
           "url": "https://w.sneed.network/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
