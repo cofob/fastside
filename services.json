@@ -3701,7 +3701,6 @@
           "url": "https://bonus01.hwb0307.com/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4591,7 +4590,6 @@
           "url": "https://privatebin.rinuploads.org/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7290,13 +7288,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://tent.nbh.ax/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
