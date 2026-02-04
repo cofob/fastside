@@ -5408,6 +5408,14 @@
           ]
         },
         {
+          "url": "https://rimgo.astrial.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
             "clearnet",
@@ -6726,7 +6734,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
