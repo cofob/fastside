@@ -480,6 +480,7 @@
           "url": "https://overflow.snine.nl/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -621,6 +622,7 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -656,6 +658,7 @@
           "url": "https://read.freedit.eu/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2801,6 +2804,7 @@
           "url": "https://lingva.ml/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2831,6 +2835,7 @@
           "url": "https://translate.plausibility.cloud/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3144,6 +3149,7 @@
           "url": "https://nitter.space/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4598,6 +4604,7 @@
           "url": "https://privatebin.rinuploads.org/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5158,6 +5165,7 @@
           "url": "https://quetre.jeikobu.net/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6676,7 +6684,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7508,6 +7515,7 @@
           "url": "https://w.sneed.network/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
