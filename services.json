@@ -1472,8 +1472,7 @@
           "url": "https://hyperpipe.surge.sh/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3758,7 +3757,6 @@
           "url": "https://n0t.io/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
