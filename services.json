@@ -5174,14 +5174,6 @@
           ]
         },
         {
-          "url": "https://quetre.odyssey346.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://quetre.privacydev.net/",
           "tags": [
             "clearnet",
@@ -5338,14 +5330,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://rim.odyssey346.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
