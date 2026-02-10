@@ -6739,7 +6739,8 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
