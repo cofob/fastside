@@ -438,7 +438,6 @@
           "url": "https://overflow.snine.nl/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -589,7 +588,6 @@
           "url": "https://biblioreads.snine.nl/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3834,14 +3832,6 @@
           ]
         },
         {
-          "url": "https://pastbin.cc/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://paste.07f.de/",
           "tags": [
             "clearnet",
@@ -5686,7 +5676,8 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
