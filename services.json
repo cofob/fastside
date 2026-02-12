@@ -377,7 +377,6 @@
           "url": "https://overflow.fascinated.cc/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2377,8 +2376,7 @@
           "url": "https://imdb.nerdvpn.de/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5688,8 +5686,7 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6623,6 +6620,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7530,7 +7528,8 @@
           "url": "https://wiki.froth.zone/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
