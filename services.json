@@ -887,8 +887,7 @@
           "url": "https://breeze.mint.lgbt/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5614,9 +5613,7 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
