@@ -1804,15 +1804,6 @@
           ]
         },
         {
-          "url": "https://jitsi.milkywan.fr/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://jitsi.nextmap.io/",
           "tags": [
             "clearnet",
@@ -6424,8 +6415,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
