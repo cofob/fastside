@@ -1654,7 +1654,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6655,7 +6656,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7004,15 +7004,6 @@
       "source_link": null,
       "deprecated_message": "All instances are down.",
       "instances": [
-        {
-          "url": "https://art.bloat.cat/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
         {
           "url": "https://da.opnxng.com/",
           "tags": [
