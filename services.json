@@ -5625,8 +5625,7 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6657,7 +6656,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7577,7 +7575,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
