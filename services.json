@@ -2268,14 +2268,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://r.sudovanilla.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
@@ -5708,7 +5700,8 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
