@@ -5708,8 +5708,7 @@
           "url": "https://scribe.froth.zone/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -7088,8 +7087,7 @@
           "url": "https://lost-skunk.cc/skunkyart",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
