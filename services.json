@@ -980,14 +980,6 @@
       "deprecated_message": "All instances are down.",
       "instances": [
         {
-          "url": "https://tube.boritsch.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://tube.cadence.moe/",
           "tags": [
             "clearnet",
@@ -2705,14 +2697,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://search.liv.town/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
