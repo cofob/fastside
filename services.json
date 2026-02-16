@@ -6154,20 +6154,20 @@
           ]
         },
         {
+          "url": "https://search.pereira.is/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.pi.vps.pw/",
           "tags": [
             "clearnet",
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.pollorebozado.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
