@@ -12,6 +12,7 @@ mod scribe;
 mod searx;
 mod searxng;
 mod simplytranslate;
+mod soprano;
 mod tent;
 mod translite;
 
@@ -25,6 +26,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "searx" => Some(Box::new(searx::SearxUpdater::new())),
         "searxng" => Some(Box::new(searxng::SearxngUpdater::new())),
         "simplytranslate" => Some(Box::new(simplytranslate::SimplyTranslateUpdater::new())),
+        "soprano" => Some(Box::new(soprano::SopranoUpdater::new())),
         "invidious" => Some(Box::new(invidious::InvidiousUpdater::new())),
         "scribe" => Some(Box::new(scribe::ScribeUpdater::new())),
         "libreddit" => Some(Box::new(libreddit::LibredditUpdater::new())),
