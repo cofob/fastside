@@ -2383,6 +2383,7 @@
           "url": "https://musicale.tk/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3657,7 +3658,6 @@
           "url": "https://pb.greep.fr/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5233,13 +5233,6 @@
           ]
         },
         {
-          "url": "https://search.ipv6s.net/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://search.mdosch.de/",
           "tags": [
             "clearnet",
@@ -5762,7 +5755,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
