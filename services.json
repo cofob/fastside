@@ -1378,6 +1378,15 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://g.opnxng.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://gh.owo.si/",
           "tags": [
             "clearnet",
