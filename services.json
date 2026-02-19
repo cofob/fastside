@@ -1102,7 +1102,8 @@
           "url": "https://db.kuuro.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5273,7 +5274,8 @@
           "url": "https://rg.kuuro.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
