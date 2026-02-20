@@ -3903,14 +3903,6 @@
           ]
         },
         {
-          "url": "https://paste.devsite.pl/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://paste.dismail.de/",
           "tags": [
             "clearnet",
@@ -6993,8 +6985,7 @@
           "url": "https://translate.josias.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
