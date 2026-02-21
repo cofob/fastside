@@ -3403,17 +3403,7 @@
       "aliases": [],
       "source_link": "https://codeberg.org/ashley/poke",
       "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://poketube.fun/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "privatebin",
@@ -6692,6 +6682,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
