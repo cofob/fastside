@@ -1950,15 +1950,6 @@
           ]
         },
         {
-          "url": "https://libremdb.catsarch.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://libremdb.darkness.services/",
           "tags": [
             "clearnet",
@@ -4386,15 +4377,6 @@
         },
         {
           "url": "https://rimgo.canine.tools/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://rimgo.catsarch.com/",
           "tags": [
             "clearnet",
             "https",
