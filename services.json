@@ -6357,15 +6357,6 @@
           ]
         },
         {
-          "url": "https://searx.stream/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://searx.thefloatinglab.world/",
           "tags": [
             "clearnet",
@@ -6627,6 +6618,7 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
