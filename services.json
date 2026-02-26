@@ -7034,9 +7034,66 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
-      "instances": []
+      "source_link": "https://codeberg.org/cobra/Soprano",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://sp.vern.cc/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "http://sp.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://vernusqvmcnvmbewuec5d3vvnh3xpejcn74pkkjhj2qzfvgpogkq.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
+          "url": "https://soprano.catsarch.com/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "http://soprano.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://eidq3irhlc235szbka6nn3odru3aovrxplhf4tggbz7ffam2jjiq.b32.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
+          "url": "https://tenor.fsky.io/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "http://tenorxfrvzsgjde6k3f64jen7fqr5mouk7qr7c3tptab5b5ohnwpniyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        }
+      ]
     },
     {
       "type": "suds",

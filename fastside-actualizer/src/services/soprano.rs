@@ -28,24 +28,21 @@ impl Default for SopranoUpdater {
 
 #[derive(Debug, Deserialize)]
 struct SopranoInstance {
-    url: Url,
+    #[serde(default)]
+    clearnet: String,
+    #[serde(default)]
+    tor: String,
+    #[serde(default)]
+    i2p: String,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(untagged)]
-enum InstancesResponse {
-    Urls(Vec<Url>),
-    Objects(Vec<SopranoInstance>),
-}
-
-impl InstancesResponse {
+impl SopranoInstance {
     fn into_urls(self) -> Vec<Url> {
-        match self {
-            Self::Urls(urls) => urls,
-            Self::Objects(instances) => {
-                instances.into_iter().map(|instance| instance.url).collect()
-            }
-        }
+        [self.clearnet, self.tor, self.i2p]
+            .into_iter()
+            .filter(|s| !s.is_empty())
+            .filter_map(|s| Url::parse(&s).ok())
+            .collect()
     }
 }
 
@@ -90,9 +87,9 @@ impl ServiceUpdater for SopranoUpdater {
                 }
             };
 
-            match serde_json::from_str::<InstancesResponse>(&response_text) {
-                Ok(response) => {
-                    parsed = Some(response.into_urls());
+            match serde_json::from_str::<Vec<SopranoInstance>>(&response_text) {
+                Ok(instances) => {
+                    parsed = Some(instances);
                     break;
                 }
                 Err(error) => {
@@ -113,11 +110,13 @@ impl ServiceUpdater for SopranoUpdater {
         let mut instances = current_instances.to_vec();
         let mut new_instances = Vec::new();
 
-        for url in parsed {
-            if current_instances.iter().any(|instance| instance.url == url) {
-                continue;
+        for soprano_instance in parsed {
+            for url in soprano_instance.into_urls() {
+                if current_instances.iter().any(|instance| instance.url == url) {
+                    continue;
+                }
+                new_instances.push(Instance::from(url));
             }
-            new_instances.push(Instance::from(url.clone()));
         }
 
         changes_summary
