@@ -11,7 +11,7 @@ use fastside_shared::{
     config::{SelectMethod, UserConfig},
     serde_types::{Service, ServicesData},
 };
-use rand::prelude::IndexedRandom;
+use rand::seq::SliceRandom;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -234,7 +234,7 @@ pub fn get_redirect_instance(
         Some(instances) => Ok((
             match &user_config.select_method {
                 SelectMethod::Random => instances
-                    .choose(&mut rand::rng())
+                    .choose(&mut rand::thread_rng())
                     .unwrap()
                     .to_owned()
                     .to_owned(),
