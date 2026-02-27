@@ -1,4 +1,4 @@
-use actix_web::{post, web, Responder, Scope};
+use actix_web::{Responder, Scope, post, web};
 use fastside_shared::config::UserConfig;
 use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;

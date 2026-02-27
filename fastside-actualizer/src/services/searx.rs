@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::{types::ServiceUpdater, ChangesSummary};
+use crate::{ChangesSummary, types::ServiceUpdater};
 use async_trait::async_trait;
 use fastside_shared::serde_types::Instance;
 use serde::Deserialize;

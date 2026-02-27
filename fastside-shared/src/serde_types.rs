@@ -1,8 +1,8 @@
 use std::{collections::HashMap, fmt, vec};
 
 use serde::{
-    de::{self, Visitor},
     Deserialize, Deserializer, Serialize, Serializer,
+    de::{self, Visitor},
 };
 use url::Url;
 
