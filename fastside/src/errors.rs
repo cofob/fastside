@@ -32,7 +32,6 @@ macro_rules! impl_template_error {
         }
     };
 }
-pub(crate) use impl_template_error;
 
 #[derive(Serialize)]
 pub struct ApiError {
@@ -57,7 +56,6 @@ macro_rules! impl_api_error {
         }
     };
 }
-pub(crate) use impl_api_error;
 
 use crate::search::SearchError;
 

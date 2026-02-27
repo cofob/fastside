@@ -336,13 +336,13 @@ impl StoredData {
         // Check if all URLs have host
         {
             for service in &self.services {
-                if let Some(fallback) = &service.fallback {
-                    if fallback.host_str().is_none() {
-                        results.add_warning(format!(
-                            "Service {} has fallback URL without host",
-                            service.name
-                        ));
-                    }
+                if let Some(fallback) = &service.fallback
+                    && fallback.host_str().is_none()
+                {
+                    results.add_warning(format!(
+                        "Service {} has fallback URL without host",
+                        service.name
+                    ));
                 }
 
                 for instance in &service.instances {

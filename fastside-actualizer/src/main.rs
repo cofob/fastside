@@ -252,7 +252,7 @@ async fn check_instances(
     config: &CrawlerConfig,
     max_parallel: &Option<usize>,
 ) -> Result<()> {
-    let checker: Arc<(dyn crate::types::InstanceChecker + Send + Sync + 'static)> =
+    let checker: Arc<dyn crate::types::InstanceChecker + Send + Sync + 'static> =
         Arc::from(services::get_instance_checker(name));
 
     let service_history = actualizer_data

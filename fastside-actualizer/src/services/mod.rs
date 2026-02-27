@@ -47,7 +47,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
 #[allow(clippy::match_single_binding)]
 pub fn get_instance_checker(
     name: &str,
-) -> Box<(dyn crate::types::InstanceChecker + Send + Sync + 'static)> {
+) -> Box<dyn crate::types::InstanceChecker + Send + Sync + 'static> {
     match name {
         _ => Box::new(DefaultInstanceChecker::new()),
     }
