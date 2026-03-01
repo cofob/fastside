@@ -147,16 +147,16 @@ fn get_url_tags(url: &Url) -> Vec<String> {
             is_special_network = true;
         }
 
-        if url.domain().is_none() {
-            if let Ok(ip) = host.parse::<std::net::IpAddr>() {
-                match ip {
-                    std::net::IpAddr::V4(_) => tags.push("ipv4".to_string()),
-                    std::net::IpAddr::V6(ip) => {
-                        tags.push("ipv6".to_string());
-                        if is_ygg(&ip) {
-                            tags.push("ygg".to_string());
-                            is_special_network = true;
-                        }
+        if url.domain().is_none()
+            && let Ok(ip) = host.parse::<std::net::IpAddr>()
+        {
+            match ip {
+                std::net::IpAddr::V4(_) => tags.push("ipv4".to_string()),
+                std::net::IpAddr::V6(ip) => {
+                    tags.push("ipv6".to_string());
+                    if is_ygg(&ip) {
+                        tags.push("ygg".to_string());
+                        is_special_network = true;
                     }
                 }
             }

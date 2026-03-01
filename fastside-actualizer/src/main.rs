@@ -2,11 +2,11 @@
 
 use std::{collections::HashMap, path::PathBuf, sync::Arc};
 
-use anyhow::{anyhow, Context, Result};
+use anyhow::{Context, Result, anyhow};
 use clap::{Parser, Subcommand};
 use fastside_shared::{
     client_builder::build_client,
-    config::{load_config, CrawlerConfig, ProxyData},
+    config::{CrawlerConfig, ProxyData, load_config},
     errors::CliError,
     log_setup::configure_logging,
     parallel::Parallelise,
@@ -252,7 +252,7 @@ async fn check_instances(
     config: &CrawlerConfig,
     max_parallel: &Option<usize>,
 ) -> Result<()> {
-    let checker: Arc<(dyn crate::types::InstanceChecker + Send + Sync + 'static)> =
+    let checker: Arc<dyn crate::types::InstanceChecker + Send + Sync + 'static> =
         Arc::from(services::get_instance_checker(name));
 
     let service_history = actualizer_data
