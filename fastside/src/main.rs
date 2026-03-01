@@ -7,7 +7,7 @@ mod search;
 mod types;
 mod utils;
 
-use actix_web::{middleware::Logger, web, App, HttpServer};
+use actix_web::{App, HttpServer, middleware::Logger, web};
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use config::load_config;

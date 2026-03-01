@@ -1,4 +1,4 @@
-use actix_web::{cookie::Cookie, get, http::header::LOCATION, web, HttpRequest, Responder, Scope};
+use actix_web::{HttpRequest, Responder, Scope, cookie::Cookie, get, http::header::LOCATION, web};
 use askama::Template;
 use fastside_shared::config::UserConfig;
 use tokio::sync::RwLock;

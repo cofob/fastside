@@ -215,7 +215,7 @@ impl Crawler {
     }
 
     #[inline]
-    pub async fn read(&self) -> tokio::sync::RwLockReadGuard<CrawledData> {
+    pub async fn read(&self) -> tokio::sync::RwLockReadGuard<'_, CrawledData> {
         self.data.read().await
     }
 

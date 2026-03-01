@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use actix_web::{get, web, Responder, Scope};
+use actix_web::{Responder, Scope, get, web};
 use askama::Template;
 use chrono::{DateTime, Utc};
 use tokio::sync::RwLock;

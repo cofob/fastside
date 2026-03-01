@@ -1,4 +1,4 @@
-use crate::{types::ServiceUpdater, utils::url::default_domain_scheme, ChangesSummary};
+use crate::{ChangesSummary, types::ServiceUpdater, utils::url::default_domain_scheme};
 use async_trait::async_trait;
 use fastside_shared::serde_types::Instance;
 use serde::Deserialize;

@@ -1,7 +1,7 @@
 use actix_web::{
-    get,
-    http::{header::LOCATION, Method},
-    web, HttpRequest, Responder, Scope,
+    HttpRequest, Responder, Scope, get,
+    http::{Method, header::LOCATION},
+    web,
 };
 use askama::Template;
 use tokio::sync::RwLock;
@@ -11,8 +11,8 @@ use crate::{
     crawler::{CrawledService, Crawler},
     errors::RedirectError,
     search::{
-        find_redirect_service_by_name, find_redirect_service_by_url, get_redirect_instance,
-        get_redirect_instances, SearchError,
+        SearchError, find_redirect_service_by_name, find_redirect_service_by_url,
+        get_redirect_instance, get_redirect_instances,
     },
     types::{LoadedData, Regexes},
     utils::user_config::load_settings_cookie,
