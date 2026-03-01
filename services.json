@@ -1658,7 +1658,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3419,6 +3420,14 @@
       "instances": [
         {
           "url": "https://0.0g.gg/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://0.harizalan.hu/",
           "tags": [
             "clearnet",
             "https",
@@ -6050,7 +6059,8 @@
           "url": "https://search.ipsys.bf/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
