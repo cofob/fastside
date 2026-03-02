@@ -3975,14 +3975,6 @@
           ]
         },
         {
-          "url": "https://paste.inthemansion.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://paste.linxx.net/",
           "tags": [
             "clearnet",
@@ -6557,7 +6549,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
