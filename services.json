@@ -325,7 +325,8 @@
           "url": "https://exchange.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -669,7 +670,8 @@
           "url": "https://read.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4347,15 +4349,6 @@
           ]
         },
         {
-          "url": "https://privatebin.a38.fr/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://privatebin.app/",
           "tags": [
             "clearnet",
@@ -4785,7 +4778,8 @@
           "url": "https://cringe.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6586,7 +6580,6 @@
           "url": "https://send.cyberjake.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7612,7 +7605,8 @@
           "url": "https://wiki.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
