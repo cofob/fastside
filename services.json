@@ -5135,7 +5135,8 @@
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6876,8 +6877,7 @@
           "url": "https://st.odyssey346.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6947,8 +6947,7 @@
           "url": "https://translate.slipfox.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
