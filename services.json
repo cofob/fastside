@@ -834,14 +834,6 @@
           ]
         },
         {
-          "url": "https://breeze.mint.lgbt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://breezewiki.catsarch.com/",
           "tags": [
             "clearnet",
@@ -1304,6 +1296,14 @@
           ]
         },
         {
+          "url": "https://gh.phreedom.club/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://gothub.dev.projectsegfau.lt/",
           "tags": [
             "clearnet",
@@ -1322,6 +1322,23 @@
         },
         {
           "url": "https://gothub.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://gothub.projectsegfau.lt/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://gothub.r4fo.com/",
           "tags": [
             "clearnet",
             "https",
