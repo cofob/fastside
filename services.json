@@ -507,16 +507,7 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": null,
-      "instances": [
-        {
-          "url": "https://tailsx.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        }
-      ]
+      "instances": []
     },
     {
       "type": "beatbump",
