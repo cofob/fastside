@@ -6149,6 +6149,7 @@
           "url": "https://search.url4irl.com/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4"
           ]
