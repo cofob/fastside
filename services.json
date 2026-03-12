@@ -3405,13 +3405,6 @@
           ]
         },
         {
-          "url": "https://0.harizalan.hu/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://0.jaegers.net/",
           "tags": [
             "clearnet",
@@ -7108,15 +7101,6 @@
         },
         {
           "url": "https://tent.private.coffee/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://tent.sny.sh/",
           "tags": [
             "clearnet",
             "https",
