@@ -3775,7 +3775,9 @@
           "url": "https://p.kapsi.fi/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
