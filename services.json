@@ -5492,14 +5492,6 @@
           ]
         },
         {
-          "url": "https://safetwitch.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://safetwitch.privadency.com/",
           "tags": [
             "clearnet",
@@ -6586,10 +6578,7 @@
           "url": "https://send.majoenell.com/",
           "tags": [
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
