@@ -1189,6 +1189,13 @@
           ]
         },
         {
+          "url": "http://invidious-nerdvpn.i2p/",
+          "tags": [
+            "http",
+            "i2p"
+          ]
+        },
+        {
           "url": "http://nadekoohummkxncchcsylr3eku36ze4waq4kdrhcqupckc3pe5qq.b32.i2p/",
           "tags": [
             "http",
