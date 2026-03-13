@@ -5032,15 +5032,6 @@
           ]
         },
         {
-          "url": "https://search.darkness.services/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.einfachzocken.eu/",
           "tags": [
             "clearnet",
@@ -5441,15 +5432,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://searxng.deggo.fyi/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
