@@ -3244,6 +3244,14 @@
           ]
         },
         {
+          "url": "https://paste.hackliberty.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://paste.helkor.eu/",
           "tags": [
             "clearnet",
