@@ -5163,7 +5163,8 @@
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6909,8 +6910,7 @@
           "url": "https://st.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
