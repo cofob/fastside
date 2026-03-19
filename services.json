@@ -2089,6 +2089,62 @@
       ]
     },
     {
+      "type": "kittygram",
+      "test_url": "/p/DSjn9gtkRjq",
+      "fallback": null,
+      "follow_redirects": false,
+      "allowed_http_codes": "200",
+      "search_string": "Wing",
+      "regexes": [
+        {
+          "regex": "^(?:https?:\\/\\/)?(?:www\\.)?(?:instagram\\.com|instagr\\.am)\\/(?:p|reel|[^\\/]+\\/(?:p|reel))\\/([A-Za-z0-9_-]+)\\/?(?:\\?.*)?$",
+          "url": "/p/$1"
+        },
+        {
+          "regex": "^(?:https?:\\/\\/)?(?:www\\.)?(?:instagram\\.com|instagr\\.am)\\/([A-Za-z0-9._]+)\\/?(?:\\?.*)?$",
+          "url": "/$1"
+        }
+      ],
+      "aliases": [],
+      "source_link": "https://codeberg.org/irelephant/kittygram",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "http://instab6cpzrbczpkrvjj3gutly5qx3o2xzpyhlmtwthtzjmjw4tppvad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://ygg.kittygr.am/",
+          "tags": [
+            "http",
+            "ipv6",
+            "ygg"
+          ]
+        },
+        {
+          "url": "https://kittygr.am/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://kittygram.irelephant.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
+    },
+    {
       "type": "koub",
       "test_url": "/view/26u3o6",
       "fallback": "https://coub.com/",
