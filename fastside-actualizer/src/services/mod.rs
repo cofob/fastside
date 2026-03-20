@@ -4,6 +4,7 @@ mod default;
 mod fastside;
 mod gothub;
 mod invidious;
+mod kittygram;
 mod koub;
 mod libreddit;
 mod libredirect;
@@ -36,6 +37,7 @@ pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
         "tent" => Some(Box::new(tent::TentUpdater::new())),
         "akademik" => Some(Box::new(akademik::AkademikUpdater::new())),
         "translite" => Some(Box::new(translite::TransLiteUpdater::new())),
+        "kittygram" => Some(Box::new(kittygram::KittygramUpdater::new())),
         "koub" => Some(Box::new(koub::KoubUpdater::new())),
         "fastside" => Some(Box::new(fastside::FastsideUpdater::new())),
         _ if libredirect::LIBREDIRECT_SERVICES.contains(&name) => {
