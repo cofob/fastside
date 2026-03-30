@@ -323,8 +323,7 @@
           "url": "https://exchange.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -641,8 +640,7 @@
           "url": "https://read.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -2710,8 +2708,7 @@
           "url": "https://search.uwabaki.party/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4209,7 +4206,9 @@
           "url": "https://pastebin.linqhost.nl/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4725,8 +4724,7 @@
           "url": "https://cringe.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7474,8 +7472,7 @@
           "url": "https://wiki.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
