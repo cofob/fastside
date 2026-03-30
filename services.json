@@ -4683,15 +4683,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://tumblr.nerdvpn.de/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
@@ -5162,15 +5153,6 @@
         },
         {
           "url": "https://imgur.fsky.io/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://imgur.nerdvpn.de/",
           "tags": [
             "clearnet",
             "https",
@@ -5903,15 +5885,6 @@
         },
         {
           "url": "https://search.charliewhiskey.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.darkness.services/",
           "tags": [
             "clearnet",
             "https",
