@@ -1615,7 +1615,9 @@
           "url": "https://meet.systemli.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3441,7 +3443,9 @@
           "url": "https://paste.systemli.org/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
