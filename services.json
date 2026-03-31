@@ -1271,8 +1271,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -1761,15 +1760,6 @@
         },
         {
           "url": "https://kittygr.am/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://kittygram.irelephant.net/",
           "tags": [
             "clearnet",
             "https",
@@ -3573,8 +3563,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -5811,16 +5800,6 @@
         },
         {
           "url": "https://send.sdad.pro/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://send.skylerszijjarto.com/",
           "tags": [
             "clearnet",
             "cloudflare",
