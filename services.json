@@ -1383,15 +1383,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "https://g.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://gh.owo.si/",
           "tags": [
             "clearnet",
@@ -1690,7 +1681,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2436,13 +2428,6 @@
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "http://qjlgasoy3nxepgzntucmcnb6pryqxakwdu7sxvqzi7spdfootryq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
           ]
         },
         {
@@ -4286,7 +4271,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4614,9 +4600,7 @@
           "url": "https://t25b.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
