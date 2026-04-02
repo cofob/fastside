@@ -220,7 +220,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -410,7 +412,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1335,7 +1339,8 @@
           "url": "https://ge.fastsi.de/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -1916,7 +1921,8 @@
           "url": "https://meet.greenmini.host/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -2107,7 +2113,9 @@
           "url": "https://virtual.chaosdorf.space/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2546,7 +2554,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3168,6 +3178,7 @@
             "clearnet",
             "cloudflare",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -4663,8 +4674,10 @@
           "url": "https://pb.cleberg.net/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4672,7 +4685,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5012,7 +5027,8 @@
           "url": "https://quetre.drgns.space/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5243,7 +5259,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5346,7 +5364,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5878,7 +5898,8 @@
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5919,7 +5940,8 @@
           "url": "https://search.bladerunn.in/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5994,7 +6016,9 @@
           "url": "https://search.im-in.space/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6068,7 +6092,9 @@
           "url": "https://search.pi.vps.pw/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6368,14 +6394,16 @@
           "url": "https://searxng.site/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
           "url": "https://searxng.website/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6391,7 +6419,9 @@
           "url": "https://sx.catgirl.cloud/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6591,7 +6621,8 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
