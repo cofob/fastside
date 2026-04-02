@@ -4286,8 +4286,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -5831,6 +5830,15 @@
         },
         {
           "url": "https://etsi.me/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://failsearx.culturanerd.it/",
           "tags": [
             "clearnet",
             "https",
