@@ -3284,15 +3284,6 @@
           ]
         },
         {
-          "url": "https://piped.dedyn.io/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://piped.kavin.rocks/",
           "tags": [
             "clearnet",
