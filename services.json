@@ -6053,15 +6053,6 @@
           ]
         },
         {
-          "url": "https://search.darkness.services/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.datenkrake.ch/",
           "tags": [
             "clearnet",
