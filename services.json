@@ -4883,15 +4883,6 @@
           ]
         },
         {
-          "url": "https://q.opnxng.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://qr.vern.cc/",
           "tags": [
             "clearnet",
@@ -6742,21 +6733,6 @@
         },
         {
           "url": "https://translate.bus-hit.me/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
-          "url": "https://translate.josias.dev/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://translate.priv.pw/",
           "tags": [
             "clearnet",
             "https"
