@@ -107,6 +107,22 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://akademik.clovius.club/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "https://akademik.lumaeris.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -1644,8 +1660,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         }
       ]
@@ -3513,7 +3528,6 @@
           "url": "https://anonpaste.org/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
