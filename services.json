@@ -3638,14 +3638,6 @@
           ]
         },
         {
-          "url": "https://bin.mha.fi/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://bin.mycozy.space/",
           "tags": [
             "clearnet",
@@ -4337,6 +4329,7 @@
           "url": "https://pb.greep.fr/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
