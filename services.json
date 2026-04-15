@@ -4149,6 +4149,7 @@
           "url": "https://paste.ononoki.org/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
