@@ -3561,13 +3561,6 @@
           ]
         },
         {
-          "url": "https://aaa.bb.cd/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://anonpaste.org/",
           "tags": [
             "clearnet",
