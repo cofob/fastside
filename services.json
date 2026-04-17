@@ -1564,12 +1564,28 @@
           ]
         },
         {
+          "url": "https://inv-ygg.nadeko.net/",
+          "tags": [
+            "https",
+            "ipv6",
+            "ygg"
+          ]
+        },
+        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://inv.nadeko.ygg/",
+          "tags": [
+            "alfis",
+            "https",
+            "ygg"
           ]
         },
         {
@@ -1628,7 +1644,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
