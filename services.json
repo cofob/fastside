@@ -558,6 +558,15 @@
           ]
         },
         {
+          "url": "https://biblioreads.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://biblioreads.mooo.com/",
           "tags": [
             "clearnet",
@@ -714,6 +723,15 @@
         },
         {
           "url": "https://binternet.ducks.party/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://binternet.lunar.icu/",
           "tags": [
             "clearnet",
             "https",
@@ -1089,6 +1107,15 @@
           "tags": [
             "clearnet",
             "https"
+          ]
+        },
+        {
+          "url": "https://dumb.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -2745,6 +2772,15 @@
           ]
         },
         {
+          "url": "https://lingva.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://lingva.ml/",
           "tags": [
             "clearnet",
@@ -3052,6 +3088,16 @@
         },
         {
           "url": "https://lightbrd.com/",
+          "tags": [
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.kareem.one/",
           "tags": [
             "clearnet",
             "cloudflare",
@@ -5236,6 +5282,16 @@
           "url": "https://rimgo.eu.projectsegfau.lt/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://rimgo.floppa.cloud/",
+          "tags": [
+            "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
