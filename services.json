@@ -92,6 +92,14 @@
           ]
         },
         {
+          "url": "https://ak.dc09.ru/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://ak2.bloat.cat/",
           "tags": [
             "clearnet",
@@ -1797,7 +1805,26 @@
       "aliases": [],
       "source_link": "https://git.bloat.cat/gospodin/koub",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://koub.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://koub2.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "laboratory",
@@ -5020,14 +5047,6 @@
         },
         {
           "url": "https://search.catboy.house/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.charliewhiskey.net/",
           "tags": [
             "clearnet",
             "https",
