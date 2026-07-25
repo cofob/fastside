@@ -1648,6 +1648,13 @@
           ]
         },
         {
+          "url": "http://nerdvpneaggggfdiurknszkbmhvjndks5z5k3g5yp4nhphflh3n3boad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "https://inv-ygg.nadeko.net/",
           "tags": [
             "https",
@@ -2500,6 +2507,13 @@
           ]
         },
         {
+          "url": "http://libremdb.r4focoma7gu2zdwwcjjad47ysxt634lg73sxmdbkdozanwqslho5ohyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://q3hetdcyyy572xznqmsledzlbv77moycoqs6ptehpp5vsmx4dtcuqeqd.onion/",
           "tags": [
             "http",
@@ -2657,15 +2671,6 @@
         },
         {
           "url": "https://libremdb.pussthecat.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://libremdb.r4fo.com/",
           "tags": [
             "clearnet",
             "https",
@@ -2878,14 +2883,6 @@
           "tags": [
             "clearnet",
             "https"
-          ]
-        },
-        {
-          "url": "https://search.uwabaki.party/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -5157,15 +5154,6 @@
           ]
         },
         {
-          "url": "https://quetre.r4fo.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
@@ -5426,6 +5414,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://rimgo.privacyredirect.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5707,15 +5703,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://scribe.r4fo.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         },
         {
@@ -6830,6 +6817,14 @@
         },
         {
           "url": "https://send.jeugdhulp.be/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
             "https",
