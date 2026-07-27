@@ -1203,8 +1203,7 @@
           "url": "https://sing.whatever.social/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         }
       ]
@@ -2531,8 +2530,7 @@
           "url": "https://binge.whatever.social/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3316,14 +3314,6 @@
         },
         {
           "url": "https://nitter.poast.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://nitter.privacyredirect.com/",
           "tags": [
             "clearnet",
             "https",
@@ -4837,8 +4827,7 @@
           "url": "https://cringe.whatever.social/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6260,13 +6249,6 @@
           ]
         },
         {
-          "url": "https://search.root.hr/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://search.rowie.at/",
           "tags": [
             "clearnet",
@@ -7012,6 +6994,13 @@
           ]
         },
         {
+          "url": "http://st.g4c3eya4clenolymqbpgwz3q3tawoxw56yhzk4vugqrl6dtu3ejvhjid.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://tl.vernccvbvyi5qhfzyqengccj7lkove6bjot2xhh5kajhwvidqafczrad.onion/",
           "tags": [
             "http",
@@ -7152,8 +7141,7 @@
           "url": "https://translate.slipfox.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
