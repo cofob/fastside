@@ -2293,6 +2293,15 @@
             "ipv4",
             "ipv6"
           ]
+        },
+        {
+          "url": "https://kittygram.pussthecat.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
@@ -3314,6 +3323,14 @@
         },
         {
           "url": "https://nitter.poast.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://nitter.privacyredirect.com/",
           "tags": [
             "clearnet",
             "https",
@@ -6091,8 +6108,7 @@
           "url": "https://search.drayko.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6249,6 +6265,13 @@
           ]
         },
         {
+          "url": "https://search.root.hr/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://search.rowie.at/",
           "tags": [
             "clearnet",
@@ -6263,14 +6286,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://search.seddens.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
@@ -6292,14 +6307,6 @@
         },
         {
           "url": "https://search.unredacted.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.url4irl.com/",
           "tags": [
             "clearnet",
             "https",
@@ -7141,7 +7148,8 @@
           "url": "https://translate.slipfox.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
