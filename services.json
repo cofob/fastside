@@ -2865,14 +2865,6 @@
           ]
         },
         {
-          "url": "https://privatebin.fedov.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://privatebin.freinetz.ch/",
           "tags": [
             "clearnet",
