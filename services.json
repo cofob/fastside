@@ -130,9 +130,7 @@
           "url": "https://anonoverflow.moonshadow.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -386,9 +384,7 @@
           "url": "https://breezewiki.moonshadow.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -3936,14 +3932,6 @@
           ]
         },
         {
-          "url": "https://search.seddens.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.serpensin.com/",
           "tags": [
             "clearnet",
@@ -4219,9 +4207,7 @@
           "url": "https://searxng.moonshadow.dev/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
