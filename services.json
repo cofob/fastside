@@ -2863,14 +2863,6 @@
           ]
         },
         {
-          "url": "https://search.davidovski.xyz/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.funami.tech/",
           "tags": [
             "clearnet",
@@ -6231,15 +6223,6 @@
           ]
         },
         {
-          "url": "https://search.pi.vps.pw/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -6362,6 +6345,7 @@
           "url": "https://searx.drayko.xyz/",
           "tags": [
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
