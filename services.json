@@ -232,13 +232,6 @@
           ]
         },
         {
-          "url": "https://anonoverflow.moonshadow.dev/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://anonymousoverflow.catsarch.com/",
           "tags": [
             "clearnet",
@@ -6224,6 +6217,15 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.pi.vps.pw/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
