@@ -1507,8 +1507,7 @@
           "url": "https://hyperpipe.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3572,8 +3571,7 @@
           "url": "https://pixivfe.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -4602,6 +4600,14 @@
           ]
         },
         {
+          "url": "https://secret.timeweb.ru/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://secrets.l25.cloud/",
           "tags": [
             "clearnet",
@@ -5081,8 +5087,7 @@
           "url": "https://quetre.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5609,8 +5614,7 @@
           "url": "https://safetwitch.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6262,6 +6266,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.seddens.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7591,8 +7603,7 @@
           "url": "https://twineo.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
