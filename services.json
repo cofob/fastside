@@ -6220,15 +6220,6 @@
           ]
         },
         {
-          "url": "https://search.pi.vps.pw/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -6567,9 +6558,7 @@
           "url": "https://searxng.gr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
