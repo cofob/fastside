@@ -248,14 +248,6 @@
           ]
         },
         {
-          "url": "https://anonymousoverflow.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://ao.bloat.cat/",
           "tags": [
             "clearnet",
@@ -361,15 +353,6 @@
           ]
         },
         {
-          "url": "https://overflow.darkness.services/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://overflow.datura.network/",
           "tags": [
             "clearnet",
@@ -386,26 +369,7 @@
           ]
         },
         {
-          "url": "https://overflow.einfachzocken.eu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://overflow.fascinated.cc/",
-          "tags": [
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://overflow.floppa.cloud/",
           "tags": [
             "clearnet",
             "cloudflare",
@@ -6583,7 +6547,9 @@
           "url": "https://searxng.gr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
