@@ -6583,9 +6583,7 @@
           "url": "https://searxng.gr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
