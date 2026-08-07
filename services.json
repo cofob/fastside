@@ -232,6 +232,13 @@
           ]
         },
         {
+          "url": "https://anonoverflow.moonshadow.dev/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://anonymousoverflow.catsarch.com/",
           "tags": [
             "clearnet",
@@ -2855,6 +2862,14 @@
           ]
         },
         {
+          "url": "https://search.davidovski.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.funami.tech/",
           "tags": [
             "clearnet",
@@ -5343,6 +5358,14 @@
           ]
         },
         {
+          "url": "https://rimgo.astrial.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
             "clearnet",
@@ -6220,6 +6243,15 @@
           ]
         },
         {
+          "url": "https://search.pi.vps.pw/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -6259,6 +6291,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.seddens.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6558,7 +6598,9 @@
           "url": "https://searxng.gr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
