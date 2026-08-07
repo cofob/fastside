@@ -4735,15 +4735,6 @@
           ]
         },
         {
-          "url": "https://priviblur.pussthecat.org/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://priviblur.thebunny.zone/",
           "tags": [
             "clearnet",
@@ -5883,14 +5874,6 @@
           ]
         },
         {
-          "url": "https://auth.seddens.net/?rd=https://search.seddens.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://baresearch.org/",
           "tags": [
             "clearnet",
@@ -6813,14 +6796,6 @@
         },
         {
           "url": "https://send.jeugdhulp.be/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
             "https",
