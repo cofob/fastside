@@ -6230,14 +6230,6 @@
           ]
         },
         {
-          "url": "https://search.seddens.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://search.serpensin.com/",
           "tags": [
             "clearnet",
@@ -6319,7 +6311,6 @@
           "url": "https://searx.drayko.xyz/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
