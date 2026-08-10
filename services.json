@@ -843,7 +843,9 @@
           "url": "https://breezewiki.nadeko.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1612,7 +1614,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -2225,7 +2227,8 @@
           "url": "https://kittygram.nadeko.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv6"
           ]
         },
         {
@@ -4350,6 +4353,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
@@ -5207,6 +5211,7 @@
           "tags": [
             "clearnet",
             "https",
+            "ipv4",
             "ipv6"
           ]
         },
