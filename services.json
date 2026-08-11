@@ -207,6 +207,15 @@
           ]
         },
         {
+          "url": "https://a.opnxng.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://anonflow.aketawi.space/",
           "tags": [
             "clearnet",
