@@ -4374,7 +4374,17 @@
       "aliases": [],
       "source_link": null,
       "deprecated_message": "All instances are down.",
-      "instances": []
+      "instances": [
+        {
+          "url": "https://art.bloat.cat/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "skyview",
