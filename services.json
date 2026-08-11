@@ -3361,14 +3361,6 @@
           ]
         },
         {
-          "url": "https://scribe.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
             "clearnet",
