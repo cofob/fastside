@@ -1326,15 +1326,6 @@
             "ipv4",
             "ipv6"
           ]
-        },
-        {
-          "url": "https://medium.hostux.net/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
         }
       ]
     },
