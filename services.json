@@ -3587,8 +3587,7 @@
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3969,15 +3968,6 @@
         },
         {
           "url": "https://searx.sev.monster/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://searx.si/",
           "tags": [
             "clearnet",
             "https",
