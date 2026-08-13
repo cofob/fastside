@@ -1798,7 +1798,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1816,7 +1818,9 @@
           "tags": [
             "clearnet",
             "cloudflare",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
