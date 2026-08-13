@@ -716,14 +716,6 @@
             "http",
             "tor"
           ]
-        },
-        {
-          "url": "https://inv.zoomerville.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
         }
       ]
     },
