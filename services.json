@@ -708,6 +708,15 @@
             "http",
             "tor"
           ]
+        },
+        {
+          "url": "https://invidious.tiekoetter.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
         }
       ]
     },
