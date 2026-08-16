@@ -41,15 +41,21 @@
         fastside-docker = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
-          contents = [ fastside ];
-          config = { Cmd = [ "/bin/fastside" "serve" "-l" "0.0.0.0:8080" ]; };
+          contents = [ fastside pkgs.cacert ];
+          config = {
+            Cmd = [ "/bin/fastside" "serve" "-l" "0.0.0.0:8080" ];
+            Env = [ "SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
+          };
         };
 
         fastside-docker-baked-services = pkgs.dockerTools.buildLayeredImage {
           name = "fastside";
           tag = "latest";
-          contents = [ fastside fastside-baked-services ];
-          config = { Cmd = [ "/bin/fastside-baked-services" "serve" "-l" "0.0.0.0:8080" ]; };
+          contents = [ fastside fastside-baked-services pkgs.cacert ];
+          config = {
+            Cmd = [ "/bin/fastside-baked-services" "serve" "-l" "0.0.0.0:8080" ];
+            Env = [ "SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt" ];
+          };
         };
 
         services = pkgs.runCommand "generate-services" { } ''
