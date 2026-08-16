@@ -205,6 +205,7 @@
         {
           "url": "https://biblioreads.eu.org/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -215,6 +216,7 @@
         {
           "url": "https://biblioreads.mooo.com/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -282,6 +284,8 @@
         {
           "url": "https://binternet.privadency.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -394,6 +398,7 @@
         {
           "url": "https://cobalt.tools/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -529,7 +534,6 @@
           "url": "https://cdn.fastside.link/",
           "tags": [
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -735,6 +739,7 @@
         {
           "url": "https://8x8.vc/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1010,6 +1015,7 @@
         {
           "url": "https://meet.jit.si/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1395,6 +1401,8 @@
         {
           "url": "https://libremdb.jeikobu.net/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -1475,6 +1483,7 @@
         {
           "url": "https://lingva.ml/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1485,6 +1494,7 @@
         {
           "url": "https://translate.plausibility.cloud/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1666,6 +1676,7 @@
         {
           "url": "https://musicale.tk/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1695,7 +1706,16 @@
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.|mobile\\.)?twitter\\.com)(\\/.*|)$",
+          "url": "$4"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.)?x\\.com)(\\/.*|)$",
+          "url": "$4"
+        }
+      ],
       "aliases": [],
       "source_link": null,
       "deprecated_message": "Discontinued. Twitter has blocked all instances.",
@@ -1710,6 +1730,8 @@
         {
           "url": "https://nitter.privacyredirect.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -1773,6 +1795,7 @@
         {
           "url": "https://photon-reddit.com/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1797,6 +1820,7 @@
         {
           "url": "https://efy.piped.pages.dev/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1807,6 +1831,7 @@
         {
           "url": "https://piped.kavin.rocks/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1817,6 +1842,7 @@
         {
           "url": "https://piped.mha.fi/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1836,6 +1862,7 @@
         {
           "url": "https://piped.video/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1920,6 +1947,7 @@
         {
           "url": "https://03c.de/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -1938,6 +1966,7 @@
         {
           "url": "https://anonpaste.org/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2098,6 +2127,7 @@
         {
           "url": "https://bonus01.hwb0307.com/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2143,6 +2173,7 @@
         {
           "url": "https://logs.notifiarr.com/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2263,6 +2294,7 @@
         {
           "url": "https://paste.blazar.observer/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2376,6 +2408,7 @@
         {
           "url": "https://paste.hostify.cz/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2412,6 +2445,7 @@
         {
           "url": "https://paste.loryy.dev/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2457,6 +2491,7 @@
         {
           "url": "https://paste.notadjacent.net/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2685,6 +2720,7 @@
         {
           "url": "https://pb.greep.fr/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2808,6 +2844,7 @@
         {
           "url": "https://privatebin.rinuploads.org/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -2892,6 +2929,7 @@
         {
           "url": "https://secure.4it.com.au/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -3004,6 +3042,8 @@
         {
           "url": "https://priviblur.privadency.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -3012,6 +3052,8 @@
         {
           "url": "https://tb.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3074,6 +3116,8 @@
         {
           "url": "https://quetre.jeikobu.net/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -3134,6 +3178,8 @@
         {
           "url": "https://imgur.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3152,6 +3198,8 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3170,6 +3218,7 @@
         {
           "url": "https://rimgo.aketawi.space/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -3356,6 +3405,7 @@
         {
           "url": "https://scribe.rawbit.ninja/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -3876,6 +3926,7 @@
         {
           "url": "https://searx.drayko.xyz/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -4198,6 +4249,7 @@
         {
           "url": "https://send.aslaets.be/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -4217,6 +4269,7 @@
         {
           "url": "https://send.cyberjake.xyz/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
@@ -4227,6 +4280,7 @@
         {
           "url": "https://send.hostnetwork.xyz/",
           "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
