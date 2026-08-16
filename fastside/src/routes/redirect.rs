@@ -127,7 +127,7 @@ pub async fn find_redirect(
     let is_url_query = if path.starts_with("http://") || path.starts_with("https://") {
         true
     } else {
-        path[0..path.find('/').unwrap_or(0)].contains('.')
+        path.split('/').next().unwrap_or_default().contains('.')
     };
 
     let guard = crawler.read().await;

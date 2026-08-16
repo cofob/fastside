@@ -3263,7 +3263,16 @@
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.|mobile\\.)?twitter\\.com)(\\/.*|)$",
+          "url": "$4"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.)?x\\.com)(\\/.*|)$",
+          "url": "$4"
+        }
+      ],
       "aliases": [],
       "source_link": null,
       "deprecated_message": "Discontinued. Twitter has blocked all instances.",
