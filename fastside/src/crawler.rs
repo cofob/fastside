@@ -238,8 +238,16 @@ impl Crawler {
         let status = match response {
             Ok(response) => {
                 let end = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
-                let status_code = response.status().as_u16();
-                if service.allowed_http_codes.is_allowed(status_code) {
+                if instance.tags.iter().any(|tag| tag == "antibot") {
+                    debug!(
+                        "Skipping response checks for antibot instance: {}",
+                        instance.url
+                    );
+                    CrawledInstanceStatus::Ok(end - start)
+                } else if service
+                    .allowed_http_codes
+                    .is_allowed(response.status().as_u16())
+                {
                     if let Some(search_string) = &service.search_string {
                         let body = response.text().await?;
                         if !body.contains(search_string) {

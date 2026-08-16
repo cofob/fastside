@@ -5,10 +5,13 @@ use async_std_resolver::{
     resolver,
 };
 use ipnet::Ipv6Net;
-use reqwest::Client;
+use reqwest::{
+    Client,
+    header::{HeaderMap, SERVER, SET_COOKIE},
+};
 use url::Url;
 
-const AUTO_TAGS: [&str; 10] = [
+const AUTO_TAGS: [&str; 12] = [
     "ipv4",
     "ipv6",
     "https",
@@ -18,12 +21,42 @@ const AUTO_TAGS: [&str; 10] = [
     "ygg",
     "alfis",
     "cloudflare",
+    "anubis",
+    "antibot",
     "clearnet",
 ];
 const HIDDEN_DOMAINS: [&str; 2] = [".onion", ".i2p"];
 
 fn remove_auto_tags(tags: &mut Vec<String>) {
     tags.retain(|tag| !AUTO_TAGS.contains(&tag.as_str()));
+}
+
+fn get_response_tags(headers: &HeaderMap, is_hidden: bool) -> Result<Vec<String>> {
+    let mut tags = Vec::new();
+
+    if let Some(header) = headers.get(SERVER) {
+        let header_str = header.to_str()?;
+        if !is_hidden && header_str.contains("cloudflare") {
+            tags.push("cloudflare".to_string());
+        }
+    }
+
+    let is_anubis = headers.get_all(SET_COOKIE).iter().any(|header| {
+        header
+            .to_str()
+            .ok()
+            .and_then(|value| value.split_once('='))
+            .is_some_and(|(name, _)| name.contains("-cookie-verification-"))
+    });
+    if is_anubis {
+        tags.push("anubis".to_string());
+    }
+
+    if !tags.is_empty() {
+        tags.push("antibot".to_string());
+    }
+
+    Ok(tags)
 }
 
 async fn get_network_tags(client: Client, url: Url) -> Result<Vec<String>> {
@@ -33,16 +66,8 @@ async fn get_network_tags(client: Client, url: Url) -> Result<Vec<String>> {
         false
     };
 
-    let mut tags = Vec::new();
     let response = client.get(url).send().await?;
-    let headers = response.headers();
-    if let Some(header) = headers.get("Server") {
-        let header_str = header.to_str()?;
-        if !is_hidden && header_str.contains("cloudflare") {
-            tags.push("cloudflare".to_string());
-        }
-    }
-    Ok(tags)
+    get_response_tags(response.headers(), is_hidden)
 }
 
 fn is_ygg(ip: &std::net::Ipv6Addr) -> bool {
@@ -212,4 +237,38 @@ pub async fn update_instance_tags(client: Client, url: Url, tags: &[String]) -> 
     tags.sort();
     tags.dedup();
     tags
+}
+
+#[cfg(test)]
+mod tests {
+    use reqwest::header::{HeaderMap, HeaderValue, SERVER, SET_COOKIE};
+
+    use super::get_response_tags;
+
+    #[test]
+    fn response_tags() {
+        let cases = [
+            (
+                "anubis",
+                SET_COOKIE,
+                "custom-cookie-verification-deadbeef=challenge; Path=/",
+                vec!["anubis", "antibot"],
+            ),
+            (
+                "cloudflare",
+                SERVER,
+                "cloudflare",
+                vec!["cloudflare", "antibot"],
+            ),
+            ("ordinary", SERVER, "nginx", vec![]),
+        ];
+
+        for (name, header_name, header_value, expected) in cases {
+            let mut headers = HeaderMap::new();
+            headers.insert(header_name, HeaderValue::from_static(header_value));
+
+            let actual = get_response_tags(&headers, false).unwrap();
+            assert_eq!(actual, expected, "{name}");
+        }
+    }
 }
