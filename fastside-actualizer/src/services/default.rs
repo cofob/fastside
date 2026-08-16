@@ -31,6 +31,14 @@ impl InstanceChecker for DefaultInstanceChecker {
     ) -> anyhow::Result<bool> {
         let url = instance.url.join(&service.test_url)?;
         let response = client.get(url).send().await?;
+        if instance.tags.iter().any(|tag| tag == "antibot") {
+            debug!(
+                "Skipping response checks for antibot instance: {}",
+                instance.url
+            );
+            return Ok(true);
+        }
+
         let status_code = response.status().as_u16();
         if service.allowed_http_codes.is_allowed(status_code) {
             if let Some(search_string) = &service.search_string {

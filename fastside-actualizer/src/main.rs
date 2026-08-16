@@ -217,11 +217,14 @@ async fn check_single_instance(
     checker: Arc<dyn crate::types::InstanceChecker + Sync + Send>,
     client: reqwest::Client,
     service: Arc<Service>,
-    instance: Instance,
+    mut instance: Instance,
 ) -> Result<(Instance, Vec<String>, bool)> {
+    let tags = update_instance_tags(client.clone(), instance.url.clone(), &instance.tags).await;
+    instance.tags = tags.clone();
+
     let is_alive = {
         debug!("Checking instance: {url}", url = instance.url);
-        let res = checker.check(client.clone(), &service, &instance).await;
+        let res = checker.check(client, &service, &instance).await;
         match res {
             Ok(is_alive) => is_alive,
             Err(e) => {
@@ -235,8 +238,6 @@ async fn check_single_instance(
         url = instance.url,
         is_alive = is_alive
     );
-
-    let tags = update_instance_tags(client, instance.url.clone(), &instance.tags).await;
 
     Ok((instance, tags, is_alive))
 }
