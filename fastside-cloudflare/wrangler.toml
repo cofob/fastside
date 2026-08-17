@@ -1,0 +1,20 @@
+name = "fastside"
+main = "build/index.js"
+compatibility_date = "2026-08-17"
+
+[build]
+# The legacy shim avoids the current wasm-bindgen catch-wrapper failure.
+command = "cargo install worker-build --version 0.8.5 --locked && worker-build --release --no-panic-recovery"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[kv_namespaces]]
+binding = "FASTSIDE"
+
+[vars]
+FASTSIDE_SERVICES_URL = "https://raw.githubusercontent.com/cofob/fastside/master/services.json"
+FASTSIDE_CONFIG = '{"crawler":{"ping_interval":{"secs":300,"nanos":0},"request_timeout":{"secs":5,"nanos":0},"domain_request_timeouts":[],"max_concurrent_requests":6},"auto_updater":{"enabled":false,"interval":{"secs":60,"nanos":0}},"proxies":{},"default_user_config":{"required_tags":["clearnet","https","ipv4"],"forbidden_tags":[],"select_method":"Random","ignore_fallback_warning":false,"preferred_instances":[]},"services":null}'
+
+[observability]
+enabled = true

@@ -25,7 +25,7 @@ impl Default for SearxUpdater {
 }
 
 #[derive(Debug, Deserialize)]
-struct InstancesResponse(HashMap<Url, serde_yaml::Value>);
+struct InstancesResponse(HashMap<Url, yaml_serde::Value>);
 
 #[async_trait]
 impl ServiceUpdater for SearxUpdater {
@@ -37,7 +37,7 @@ impl ServiceUpdater for SearxUpdater {
     ) -> anyhow::Result<Vec<Instance>> {
         let response = client.get(&self.instances_url).send().await?;
         let response_str = response.text().await?;
-        let parsed: InstancesResponse = serde_yaml::from_str(&response_str)?;
+        let parsed: InstancesResponse = yaml_serde::from_str(&response_str)?;
 
         let mut instances = current_instances.to_vec();
         let mut new_instances = Vec::new();

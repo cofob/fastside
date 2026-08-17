@@ -1,8 +1,12 @@
 //! Application configuration.
 
-use std::{collections::HashMap, path::PathBuf, time::Duration};
+#[cfg(feature = "native")]
+use std::path::PathBuf;
+use std::{collections::HashMap, time::Duration};
 
+#[cfg(feature = "native")]
 use anyhow::{Context, Result};
+#[cfg(feature = "native")]
 use config::Config;
 use serde::{Deserialize, Serialize};
 
@@ -96,14 +100,14 @@ pub struct UserConfig {
 
 impl UserConfig {
     pub fn to_config_string(&self) -> Result<String, UserConfigError> {
-        use base64::prelude::*;
+        use base64ct::{Base64, Encoding};
         let json: String = serde_json::to_string(&self).map_err(UserConfigError::Serialization)?;
-        Ok(BASE64_STANDARD.encode(json.as_bytes()))
+        Ok(Base64::encode_string(json.as_bytes()))
     }
 
     pub fn from_config_string(data: &str) -> Result<Self, UserConfigError> {
-        use base64::prelude::*;
-        let decoded = BASE64_STANDARD.decode(data.as_bytes())?;
+        use base64ct::{Base64, Encoding};
+        let decoded = Base64::decode_vec(data)?;
         let json = String::from_utf8(decoded).unwrap();
         serde_json::from_str(&json).map_err(UserConfigError::from)
     }
@@ -140,6 +144,7 @@ pub struct AppConfig {
 }
 
 /// Load application configuration.
+#[cfg(feature = "native")]
 pub fn load_config(config_path: &Option<PathBuf>) -> Result<AppConfig> {
     let mut config_builder = Config::builder().add_source(
         config::Environment::with_prefix("FS")

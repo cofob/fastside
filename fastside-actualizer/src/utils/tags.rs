@@ -1,8 +1,9 @@
 use anyhow::Result;
-use async_std_resolver::{
-    config,
+use hickory_resolver::{
+    Resolver,
+    config::{GOOGLE, ResolverConfig},
+    net::runtime::TokioRuntimeProvider,
     proto::rr::{RData, RecordType},
-    resolver,
 };
 use ipnet::Ipv6Net;
 use reqwest::{
@@ -87,18 +88,18 @@ async fn get_dns_tags(url: Url) -> Result<Vec<String>> {
 
     let mut tags = Vec::new();
 
-    let resolver = resolver(
-        config::ResolverConfig::default(),
-        config::ResolverOpts::default(),
+    let resolver = Resolver::builder_with_config(
+        ResolverConfig::udp_and_tcp(&GOOGLE),
+        TokioRuntimeProvider::default(),
     )
-    .await;
+    .build()?;
 
     // This shit is ugly as shit
     // Simplest method to support CNAMEs with depth 1
     let mut lookup_domain = domain.to_string();
     let mut records: Vec<RData> = Vec::new();
     match resolver.lookup(lookup_domain.clone(), RecordType::A).await {
-        Ok(l) => records.extend(l.iter().cloned()),
+        Ok(lookup) => records.extend(lookup.answers().iter().map(|record| record.data.clone())),
         Err(e) => {
             debug!("Failed to lookup A record for {}: {}", lookup_domain, e);
         }
@@ -110,7 +111,9 @@ async fn get_dns_tags(url: Url) -> Result<Vec<String>> {
             // Resolve A again
             records.clear();
             match resolver.lookup(lookup_domain.clone(), RecordType::A).await {
-                Ok(l) => records.extend(l.iter().cloned()),
+                Ok(lookup) => {
+                    records.extend(lookup.answers().iter().map(|record| record.data.clone()));
+                }
                 Err(e) => {
                     debug!("Failed to lookup A record for {}: {}", lookup_domain, e);
                 }
@@ -122,7 +125,7 @@ async fn get_dns_tags(url: Url) -> Result<Vec<String>> {
         .lookup(lookup_domain.clone(), RecordType::AAAA)
         .await
     {
-        Ok(l) => records.extend(l.iter().cloned()),
+        Ok(lookup) => records.extend(lookup.answers().iter().map(|record| record.data.clone())),
         Err(e) => {
             debug!("Failed to lookup AAAA record for {}: {}", lookup_domain, e);
         }

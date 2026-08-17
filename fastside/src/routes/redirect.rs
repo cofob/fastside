@@ -1,20 +1,20 @@
-use actix_web::{
-    HttpRequest, Responder, Scope, get,
-    http::{Method, header::LOCATION},
-    web,
-};
 use askama::Template;
-use tokio::sync::RwLock;
+use axum::{
+    Router,
+    extract::{Path, RawQuery, State},
+    http::{HeaderMap, Method, StatusCode},
+    response::{Html, IntoResponse, Redirect, Response},
+    routing::get,
+};
 
 use crate::{
-    config::AppConfig,
     crawler::{CrawledService, Crawler},
     errors::RedirectError,
     search::{
         SearchError, find_redirect_service_by_name, find_redirect_service_by_url,
         get_redirect_instance, get_redirect_instances,
     },
-    types::{LoadedData, Regexes},
+    types::{AppState, LoadedData, Regexes},
     utils::user_config::load_settings_cookie,
 };
 use fastside_shared::{
@@ -22,48 +22,58 @@ use fastside_shared::{
     serde_types::Service,
 };
 
-pub fn scope(_config: &AppConfig) -> Scope {
-    web::scope("")
-        .service(history_redirect)
-        .service(cached_redirect)
-        .route("/{path:.*}", web::get().to(base_redirect))
-        .route("/{path:.*}", web::post().to(base_redirect))
+pub fn router() -> Router<AppState> {
+    Router::new()
+        .route("/@cached/{service_name}/", get(cached_redirect_root))
+        .route("/@cached/{service_name}/{*path}", get(cached_redirect))
+        .route("/_/", get(history_redirect_root))
+        .route("/_/{*path}", get(history_redirect))
+        .route("/{*path}", get(base_redirect).post(base_redirect))
 }
 
 #[derive(Template)]
 #[template(path = "cached_redirect.html", escape = "none")]
 pub struct CachedRedirectTemplate<'a> {
-    pub urls: Vec<&'a reqwest::Url>,
+    pub urls: Vec<&'a url::Url>,
     pub select_method: &'a SelectMethod,
 }
 
-#[get("/@cached/{service_name}/{path:.*}")]
 async fn cached_redirect(
-    req: HttpRequest,
-    path: web::Path<(String, String)>,
-    config: web::Data<AppConfig>,
-    crawler: web::Data<Crawler>,
-    loaded_data: web::Data<RwLock<LoadedData>>,
-) -> actix_web::Result<impl Responder> {
-    let (service_name, _) = path.into_inner();
+    State(state): State<AppState>,
+    Path((service_name, _)): Path<(String, String)>,
+    headers: HeaderMap,
+) -> Result<Response, RedirectError> {
+    cached_redirect_response(state, service_name, headers).await
+}
 
-    let loaded_data_guard = loaded_data.read().await;
-    let user_config = load_settings_cookie(&req, &loaded_data_guard.default_user_config);
+async fn cached_redirect_root(
+    State(state): State<AppState>,
+    Path(service_name): Path<String>,
+    headers: HeaderMap,
+) -> Result<Response, RedirectError> {
+    cached_redirect_response(state, service_name, headers).await
+}
 
-    let guard = crawler.read().await;
+async fn cached_redirect_response(
+    state: AppState,
+    service_name: String,
+    headers: HeaderMap,
+) -> Result<Response, RedirectError> {
+    let loaded_data_guard = state.loaded_data.read().await;
+    let user_config = load_settings_cookie(&headers, &loaded_data_guard.default_user_config);
+
+    let guard = state.crawler.read().await;
     let (crawled_service, _) =
-        find_redirect_service_by_name(&guard, &loaded_data_guard.services, &service_name)
-            .await
-            .map_err(RedirectError::from)?;
+        find_redirect_service_by_name(&guard, &loaded_data_guard.services, &service_name).await?;
     let mut instances = get_redirect_instances(
         crawled_service,
         &user_config.required_tags,
         &user_config.forbidden_tags,
         &user_config.preferred_instances,
     )
-    .ok_or(RedirectError::from(SearchError::NoInstancesFound))?;
+    .ok_or(SearchError::NoInstancesFound)?;
     if user_config.select_method == SelectMethod::LowPing {
-        instances.sort_by(|a, b| a.status.as_isize().cmp(&b.status.as_isize()));
+        instances.sort_by_key(|instance| instance.status.as_isize());
     }
     debug!("User config: {user_config:?}");
 
@@ -72,16 +82,25 @@ async fn cached_redirect(
         select_method: &user_config.select_method,
     };
 
-    Ok(actix_web::HttpResponse::Ok()
-        .content_type("text/html; charset=utf-8")
-        .append_header((
-            "cache-control",
-            format!(
+    Ok((
+        StatusCode::OK,
+        [
+            ("content-type", "text/html; charset=utf-8".to_owned()),
+            (
+                "cache-control",
+                format!(
                 "public, max-age={}, stale-while-revalidate=86400, stale-if-error=86400, immutable",
-                config.crawler.ping_interval.as_secs()
+                    state.config.crawler.ping_interval.as_secs()
+                ),
             ),
-        ))
-        .body(template.render().expect("failed to render error page")))
+        ],
+        Html(
+            template
+                .render()
+                .expect("failed to render cached redirect page"),
+        ),
+    )
+        .into_response())
 }
 
 #[derive(Template)]
@@ -90,25 +109,36 @@ pub struct HistoryRedirectTemplate<'a> {
     pub path: &'a str,
 }
 
-#[get("/_/{path:.*}")]
-async fn history_redirect(
-    req: HttpRequest,
-    path: web::Path<String>,
-) -> actix_web::Result<impl Responder> {
-    let mut path = path.into_inner();
-    let query = req.query_string();
-    if !query.is_empty() {
+async fn history_redirect(Path(path): Path<String>, RawQuery(query): RawQuery) -> Response {
+    history_redirect_response(path, query)
+}
+
+async fn history_redirect_root(RawQuery(query): RawQuery) -> Response {
+    history_redirect_response(String::new(), query)
+}
+
+fn history_redirect_response(mut path: String, query: Option<String>) -> Response {
+    if let Some(query) = query.filter(|query| !query.is_empty()) {
         path.push('?');
-        path.push_str(query);
+        path.push_str(&query);
     }
 
     let path = format!("/{path}");
     let template = HistoryRedirectTemplate { path: &path };
 
-    Ok(actix_web::HttpResponse::Ok()
-        .content_type("text/html; charset=utf-8")
-        .append_header(("refresh", format!("1; url={path}")))
-        .body(template.render().expect("failed to render error page")))
+    (
+        StatusCode::OK,
+        [
+            ("content-type", "text/html; charset=utf-8".to_owned()),
+            ("refresh", format!("1; url={path}")),
+        ],
+        Html(
+            template
+                .render()
+                .expect("failed to render history redirect page"),
+        ),
+    )
+        .into_response()
 }
 
 #[derive(Template)]
@@ -117,7 +147,7 @@ pub struct FallbackRedirectTemplate<'a> {
     pub fallback: &'a str,
 }
 
-pub async fn find_redirect(
+pub(super) async fn find_redirect(
     crawler: &Crawler,
     loaded_data: &LoadedData,
     regexes: &Regexes,
@@ -166,52 +196,48 @@ pub async fn find_redirect(
 }
 
 async fn base_redirect(
-    req: HttpRequest,
-    path: web::Path<String>,
-    crawler: web::Data<Crawler>,
-    loaded_data: web::Data<RwLock<LoadedData>>,
-    regexes: web::Data<Regexes>,
-) -> actix_web::Result<impl Responder> {
-    let path = path.into_inner();
-
-    let loaded_data_guard = loaded_data.read().await;
-    let user_config = load_settings_cookie(&req, &loaded_data_guard.default_user_config);
+    State(state): State<AppState>,
+    method: Method,
+    Path(path): Path<String>,
+    RawQuery(query): RawQuery,
+    headers: HeaderMap,
+) -> Result<Response, RedirectError> {
+    let loaded_data_guard = state.loaded_data.read().await;
+    let user_config = load_settings_cookie(&headers, &loaded_data_guard.default_user_config);
 
     let (mut url, is_fallback) = find_redirect(
-        crawler.get_ref(),
+        &state.crawler,
         &loaded_data_guard,
-        regexes.get_ref(),
+        &state.regexes,
         &user_config,
         &path,
     )
     .await?;
 
-    let query = req.query_string();
-    if !query.is_empty() {
+    if let Some(query) = query.filter(|query| !query.is_empty()) {
         url.push('?');
-        url.push_str(query);
+        url.push_str(&query);
     }
 
     debug!("Redirecting to {url}, is_fallback: {is_fallback}");
 
-    match (
-        is_fallback,
-        user_config.ignore_fallback_warning,
-        req.method(),
-    ) {
-        (true, false, &Method::GET) => {
+    match (is_fallback, user_config.ignore_fallback_warning, method) {
+        (true, false, Method::GET) => {
             let template = FallbackRedirectTemplate { fallback: &url };
-            Ok(actix_web::HttpResponse::Ok()
-                .content_type("text/html; charset=utf-8")
-                .insert_header(("refresh", format!("15; url={url}")))
-                .body(
+            Ok((
+                StatusCode::OK,
+                [
+                    ("content-type", "text/html; charset=utf-8".to_owned()),
+                    ("refresh", format!("15; url={url}")),
+                ],
+                Html(
                     template
                         .render()
                         .expect("failed to render fallback redirect page"),
-                ))
+                ),
+            )
+                .into_response())
         }
-        _ => Ok(actix_web::HttpResponse::TemporaryRedirect()
-            .insert_header((LOCATION, url.to_string()))
-            .finish()),
+        _ => Ok(Redirect::temporary(&url).into_response()),
     }
 }

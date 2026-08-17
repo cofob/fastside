@@ -38,7 +38,7 @@ impl ServiceUpdater for FastsideUpdater {
     ) -> anyhow::Result<Vec<Instance>> {
         let response = client.get(&self.instances_url).send().await?;
         let response_str = response.text().await?;
-        let parsed: InstancesResponse = serde_yaml::from_str(&response_str)?;
+        let parsed: InstancesResponse = yaml_serde::from_str(&response_str)?;
 
         let mut instances = current_instances.to_vec();
         let mut new_instances = Vec::new();

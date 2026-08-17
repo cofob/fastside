@@ -1,6 +1,53 @@
 [workspace]
-members = ["fastside", "fastside-actualizer", "fastside-shared"]
-resolver = "2"
+members = [
+  "fastside",
+  "fastside-actualizer",
+  "fastside-cloudflare",
+  "fastside-shared",
+]
+resolver = "3"
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.97"
+
+[workspace.dependencies]
+anyhow = "1.0.104"
+askama = "0.16.0"
+async-trait = "0.1.92"
+axum = { version = "0.8.9", default-features = false, features = ["json"] }
+base64ct = { version = "1.8.3", features = ["alloc"] }
+chrono = { version = "0.4.45", features = ["serde"] }
+clap = { version = "4.6.6", features = ["derive"] }
+config = { version = "0.15.25", default-features = false, features = [
+  "convert-case",
+  "ini",
+  "json",
+  "json5",
+  "ron",
+  "toml",
+  "yaml",
+] }
+console_error_panic_hook = "0.1.7"
+cookie = "0.18.2"
+fastrand = "2.5.0"
+futures = "0.3.34"
+hickory-resolver = { version = "0.26.1", default-features = false, features = ["tokio"] }
+ipnet = "2.12.1"
+log = "0.4.33"
+pretty_env_logger = "0.5.0"
+regex = "1.13.1"
+reqwest = { version = "0.13.4", default-features = false }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.151"
+thiserror = "2.0.20"
+time = "0.3.55"
+tokio = { version = "1.53.1", default-features = false }
+tower-service = "0.3.3"
+url = { version = "2.5.8", features = ["serde"] }
+urlencoding = "2.1.3"
+worker = { version = "0.8.5", default-features = false, features = ["http"] }
+yaml_serde = "0.10.6"
 
 [profile.release]
 overflow-checks = true

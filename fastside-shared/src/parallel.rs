@@ -66,7 +66,10 @@ impl<T> Parallelise<T> {
     /// The maximum number of concurrent tasks is the doubled number of CPUs.
     #[inline]
     pub fn with_cpus() -> Self {
-        Self::with_capacity(num_cpus::get() * 2)
+        let cpus = std::thread::available_parallelism()
+            .map(std::num::NonZeroUsize::get)
+            .unwrap_or(1);
+        Self::with_capacity(cpus * 2)
     }
 
     /// Push a new task to the set.

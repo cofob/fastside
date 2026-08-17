@@ -35,5 +35,5 @@ curl -X POST http://localhost:8080/api/v1/parse_user_config_string \
 
 ## Updating the cookie
 
-1. Open `/configure` page (served by Actix-Askama) and paste string.  
+1. Open the `/configure` page and paste the string.
 2. Call `/configure/save?<string>` – server sets `config` cookie that lasts ~10k days. 

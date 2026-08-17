@@ -1,30 +1,26 @@
 use std::collections::HashMap;
 
-use actix_web::{Responder, Scope, get, web};
 use askama::Template;
+use axum::{
+    Router,
+    body::Body,
+    extract::State,
+    http::{Response, StatusCode, header::CONTENT_TYPE},
+    response::IntoResponse,
+    routing::get,
+};
 use chrono::{DateTime, Utc};
-use tokio::sync::RwLock;
 
 use crate::{
-    config::AppConfig,
-    crawler::{CrawledService, Crawler},
-    errors::RedirectError,
-    filters,
-    search::SearchError,
-    types::LoadedData,
+    crawler::CrawledService, errors::RedirectError, filters, search::SearchError, types::AppState,
 };
 use fastside_shared::serde_types::ServicesData;
 
-use super::{api, config, redirect};
-
-pub fn scope(app_config: &AppConfig) -> Scope {
-    web::scope("")
-        .service(index)
-        .service(favicon)
-        .service(robots_txt)
-        .service(config::scope(app_config))
-        .service(api::scope(app_config))
-        .service(redirect::scope(app_config))
+pub fn router() -> Router<AppState> {
+    Router::new()
+        .route("/", get(index))
+        .route("/favicon.ico", get(favicon))
+        .route("/robots.txt", get(robots_txt))
 }
 
 #[derive(Template)]
@@ -37,16 +33,12 @@ pub struct IndexTemplate<'a> {
     pub is_initialized_from_defaults: bool,
 }
 
-#[get("/")]
-async fn index(
-    crawler: web::Data<Crawler>,
-    loaded_data: web::Data<RwLock<LoadedData>>,
-) -> actix_web::Result<impl Responder> {
-    let data = crawler.read().await;
+async fn index(State(state): State<AppState>) -> Result<impl IntoResponse, RedirectError> {
+    let data = state.crawler.read().await;
     let Some(crawled_services) = data.get_services() else {
-        return Err(RedirectError::from(SearchError::CrawlerNotFetchedYet))?;
+        return Err(SearchError::CrawlerNotFetchedYet.into());
     };
-    let loaded_data_guard = loaded_data.read().await;
+    let loaded_data_guard = state.loaded_data.read().await;
     let template = IndexTemplate {
         services: &loaded_data_guard.services,
         crawled_services: &crawled_services.services,
@@ -55,25 +47,25 @@ async fn index(
         is_initialized_from_defaults: data.is_initialized_from_defaults(),
     };
 
-    Ok(actix_web::HttpResponse::Ok()
-        .content_type("text/html; charset=utf-8")
-        .body(template.render().expect("failed to render error page")))
+    Ok((
+        StatusCode::OK,
+        [(CONTENT_TYPE, "text/html; charset=utf-8")],
+        template.render().expect("failed to render index page"),
+    ))
 }
 
 const FAVICON: &[u8] = include_bytes!("../../static/favicon.ico");
 
-#[get("/favicon.ico")]
-async fn favicon() -> impl Responder {
-    actix_web::HttpResponse::Ok()
-        .content_type("image/x-icon")
-        .body(FAVICON)
+async fn favicon() -> Response<Body> {
+    Response::builder()
+        .status(StatusCode::OK)
+        .header(CONTENT_TYPE, "image/x-icon")
+        .body(Body::from(FAVICON))
+        .expect("static favicon response is valid")
 }
 
 const ROBOTS_TXT: &str = "User-agent: *\nDisallow: /\n";
 
-#[get("/robots.txt")]
-async fn robots_txt() -> impl Responder {
-    actix_web::HttpResponse::Ok()
-        .content_type("text/plain")
-        .body(ROBOTS_TXT)
+async fn robots_txt() -> impl IntoResponse {
+    ([(CONTENT_TYPE, "text/plain")], ROBOTS_TXT)
 }

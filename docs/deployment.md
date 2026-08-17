@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-* Rust (toolchain pinned via `flake.nix`).
+* Rust (toolchain pinned in `rust-toolchain.toml`).
 * A `services.json` file (download or generate with actualizer).
 * Optional: `config.yml` for fine-tuning.
 
@@ -18,7 +18,7 @@ Open http://localhost:8080 in the browser.
 
 An example multi-stage build:
 ```dockerfile
-FROM rust:1 as build
+FROM rust:1.97.1 as build
 WORKDIR /code
 COPY . .
 RUN cargo build --release -p fastside
@@ -105,4 +105,30 @@ WantedBy=multi-user.target
 
 Any config field can be overridden – see `configuration.md`. 
 
-Run `fastside validate services.json` to ensure schema correctness.
+Run `fastside validate --services services.json` to ensure schema correctness.
+
+## Cloudflare Workers
+
+The Worker uses the same Axum routes and redirect logic as the native server.
+A Cron Trigger runs the crawler every five minutes. Workers KV stores the latest
+crawler snapshot.
+
+```bash
+cd fastside-cloudflare
+npm ci
+npm run deploy
+```
+
+Wrangler creates the `FASTSIDE` KV namespace on the first deployment. The first
+snapshot becomes available after the first Cron Trigger runs. For local tests,
+start `npm run dev`, and then run:
+
+```bash
+curl http://localhost:8787/cdn-cgi/handler/scheduled
+```
+
+Set `FASTSIDE_SERVICES_URL` and `FASTSIDE_CONFIG` in `wrangler.toml` when you
+need a different services source or default configuration. Cloudflare Workers
+cannot use the native HTTP and SOCKS proxy settings. The complete bundled
+services list needs a Workers Paid plan because one crawl makes more than 50
+external subrequests.

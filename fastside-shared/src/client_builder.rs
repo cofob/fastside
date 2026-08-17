@@ -2,26 +2,18 @@ use reqwest::Client;
 
 use crate::{
     config::{CrawlerConfig, ProxyData},
+    request_headers::REQUEST_HEADERS,
     serde_types::{Instance, Service},
 };
 
 fn default_headers() -> reqwest::header::HeaderMap {
     let mut headers = reqwest::header::HeaderMap::new();
-    headers.insert(
-        reqwest::header::USER_AGENT,
-        reqwest::header::HeaderValue::from_static(
-            "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
-        ),
-    );
-    headers.insert(reqwest::header::ACCEPT, reqwest::header::HeaderValue::from_static("text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8s"));
-    headers.insert(
-        reqwest::header::ACCEPT_LANGUAGE,
-        reqwest::header::HeaderValue::from_static("en-US,en;q=0.5"),
-    );
-    headers.insert(
-        "X-Is-Fastside",
-        reqwest::header::HeaderValue::from_static("true"),
-    );
+    for (name, value) in REQUEST_HEADERS {
+        headers.insert(
+            reqwest::header::HeaderName::from_static(name),
+            reqwest::header::HeaderValue::from_static(value),
+        );
+    }
     headers
 }
 

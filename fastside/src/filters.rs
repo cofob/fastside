@@ -8,7 +8,7 @@ pub fn sort_crawled_instances(
     _env: &dyn askama::Values,
 ) -> askama::Result<Vec<CrawledInstance>> {
     let mut new = l.to_owned();
-    new.sort_by(|a, b| a.status.as_isize().cmp(&b.status.as_isize()));
+    new.sort_by_key(|instance| instance.status.as_isize());
     Ok(new)
 }
 
