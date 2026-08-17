@@ -4186,12 +4186,8 @@
         {
           "url": "https://searx.drayko.xyz/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
