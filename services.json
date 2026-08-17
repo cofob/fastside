@@ -2031,6 +2031,14 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "https://drgns.space/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://efy.piped.pages.dev/",
           "tags": [
             "antibot",
@@ -2242,8 +2250,7 @@
           "url": "https://bin.infini.fr/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
