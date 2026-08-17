@@ -1747,6 +1747,17 @@
           ]
         },
         {
+          "url": "https://nuku.trabun.org/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://xcancel.com/",
           "tags": [
             "clearnet",
@@ -3296,14 +3307,6 @@
         },
         {
           "url": "https://rimgo.reallyaweso.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://rimgo.wuemeli.com/",
           "tags": [
             "clearnet",
             "https",
