@@ -1,20 +1,53 @@
-use actix_web::{Responder, Scope, post, web};
+use axum::{
+    Json, Router,
+    extract::{FromRequest, Request, State, rejection::JsonRejection},
+    http::StatusCode,
+    routing::post,
+};
 use fastside_shared::config::UserConfig;
-use serde::{Deserialize, Serialize};
-use tokio::sync::RwLock;
+use serde::{Deserialize, Serialize, de::DeserializeOwned};
 
 use crate::{
-    config::AppConfig,
-    crawler::Crawler,
     errors::{RedirectApiError, RedirectError},
-    types::{LoadedData, Regexes},
+    types::AppState,
 };
 
-pub fn scope(_config: &AppConfig) -> Scope {
-    web::scope("/api/v1")
-        .service(redirect)
-        .service(make_user_config_string)
-        .service(parse_user_config_string)
+pub fn router() -> Router<AppState> {
+    Router::new()
+        .route("/api/v1/redirect", post(redirect))
+        .route(
+            "/api/v1/make_user_config_string",
+            post(make_user_config_string),
+        )
+        .route(
+            "/api/v1/parse_user_config_string",
+            post(parse_user_config_string),
+        )
+}
+
+struct ApiJson<T>(T);
+
+impl<S, T> FromRequest<S> for ApiJson<T>
+where
+    S: Send + Sync,
+    T: DeserializeOwned,
+{
+    type Rejection = (StatusCode, String);
+
+    async fn from_request(request: Request, state: &S) -> Result<Self, Self::Rejection> {
+        Json::from_request(request, state)
+            .await
+            .map(|Json(value)| Self(value))
+            .map_err(|rejection: JsonRejection| {
+                let status = match rejection.status() {
+                    StatusCode::UNSUPPORTED_MEDIA_TYPE | StatusCode::UNPROCESSABLE_ENTITY => {
+                        StatusCode::BAD_REQUEST
+                    }
+                    status => status,
+                };
+                (status, rejection.body_text())
+            })
+    }
 }
 
 #[derive(Deserialize)]
@@ -31,33 +64,29 @@ struct RedirectResponse {
 }
 
 /// Get the redirect URL for a given URL
-#[post("/redirect")]
 async fn redirect(
-    crawler: web::Data<Crawler>,
-    loaded_data: web::Data<RwLock<LoadedData>>,
-    regexes: web::Data<Regexes>,
-    redirect_request: web::Json<RedirectRequest>,
-) -> actix_web::Result<impl Responder> {
-    let loaded_data_guard = loaded_data.read().await;
+    State(state): State<AppState>,
+    ApiJson(redirect_request): ApiJson<RedirectRequest>,
+) -> Result<Json<RedirectResponse>, RedirectApiError> {
+    let loaded_data_guard = state.loaded_data.read().await;
     let (url, is_fallback) = super::redirect::find_redirect(
-        crawler.as_ref(),
+        &state.crawler,
         &loaded_data_guard,
-        regexes.as_ref(),
+        &state.regexes,
         &redirect_request.config,
         &redirect_request.url,
     )
     .await
     .map_err(RedirectApiError)?;
 
-    Ok(web::Json(RedirectResponse { url, is_fallback }))
+    Ok(Json(RedirectResponse { url, is_fallback }))
 }
 
 /// Convert user config to a base64 encoded string
-#[post("/make_user_config_string")]
 async fn make_user_config_string(
-    user_config: web::Json<UserConfig>,
-) -> actix_web::Result<impl Responder> {
-    Ok(web::Json(
+    ApiJson(user_config): ApiJson<UserConfig>,
+) -> Result<Json<String>, RedirectApiError> {
+    Ok(Json(
         user_config
             .to_config_string()
             .map_err(RedirectError::from)
@@ -66,11 +95,10 @@ async fn make_user_config_string(
 }
 
 /// Convert base64 encoded string to user config
-#[post("/parse_user_config_string")]
 async fn parse_user_config_string(
-    user_config_string: web::Json<String>,
-) -> actix_web::Result<impl Responder> {
-    Ok(web::Json(
+    ApiJson(user_config_string): ApiJson<String>,
+) -> Result<Json<UserConfig>, RedirectApiError> {
+    Ok(Json(
         UserConfig::from_config_string(&user_config_string)
             .map_err(RedirectError::from)
             .map_err(RedirectApiError)?,

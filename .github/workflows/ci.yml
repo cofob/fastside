@@ -6,10 +6,7 @@ on:
   pull_request:
 
 permissions:
-  contents: read #  to fetch code (actions/checkout)
-
-env:
-  nix_path: nixpkgs=channel:nixos-24.05
+  contents: read
 
 jobs:
   test:
@@ -17,22 +14,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.97.1
+          components: clippy, rustfmt
+          targets: wasm32-unknown-unknown
+      - name: Setup Node.js
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 26
+          cache: npm
+          cache-dependency-path: fastside-cloudflare/package-lock.json
       - name: Cache Rust
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@v2.9.2
         with:
           prefix-key: "v0-rust-test"
 
       - name: Check formatting
-        run: cargo fmt --check
+        run: cargo fmt --all -- --check
 
       - name: Clippy
-        run: cargo clippy
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
 
       - name: Tests
-        run: cargo test
+        run: cargo test --workspace --all-features
+
+      - name: Clippy Cloudflare Worker
+        run: cargo clippy -p fastside-cloudflare --target wasm32-unknown-unknown -- -D warnings
+
+      - name: Build Cloudflare Worker
+        run: |
+          npm ci --prefix fastside-cloudflare
+          npm run build --prefix fastside-cloudflare
 
   build-nix:
     name: Build Nix
@@ -43,13 +58,11 @@ jobs:
     needs: test
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Setup Nix
-        uses: cachix/install-nix-action@v25
-        with:
-          nix_path: "${{ env.nix_path }}"
+        uses: cachix/install-nix-action@v31.11.1
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4.2.0
         with:
           platforms: aarch64
 
@@ -66,13 +79,14 @@ jobs:
         target: [x86_64-unknown-linux-gnu, x86_64-unknown-linux-musl, aarch64-unknown-linux-musl]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Setup Rust
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@master
         with:
+          toolchain: 1.97.1
           targets: ${{ matrix.target }}
       - name: Cache Rust
-        uses: Swatinem/rust-cache@v2
+        uses: Swatinem/rust-cache@v2.9.2
         with:
           prefix-key: "v0-rust-${{ matrix.target }}"
       - name: Install dependencies
@@ -99,7 +113,7 @@ jobs:
           cp target/${{ matrix.target }}/release/fastside-actualizer dist-${{ matrix.target }}/
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: fastside-${{ matrix.target }}
           path: dist-${{ matrix.target }}
@@ -114,18 +128,16 @@ jobs:
       packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Setup Nix
-        uses: cachix/install-nix-action@v25
-        with:
-          nix_path: "${{ env.nix_path }}"
+        uses: cachix/install-nix-action@v31.11.1
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4.2.0
         with:
           platforms: aarch64
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
@@ -133,13 +145,13 @@ jobs:
 
       - name: Lowercase repository name
         id: repo
-        uses: ASzc/change-string-case-action@v6
+        uses: ASzc/change-string-case-action@v8
         with:
           string: ${{ github.repository }}
 
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6.2.0
         with:
           images: ghcr.io/${{ steps.repo.outputs.lowercase }}
           tags: |
@@ -211,9 +223,9 @@ jobs:
     needs: build-nix
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Path filter
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4.0.3
         id: filter
         with:
           filters: |
@@ -221,9 +233,7 @@ jobs:
               - 'services.json'
       - name: Setup Nix
         if: steps.filter.outputs.services == 'true'
-        uses: cachix/install-nix-action@v25
-        with:
-          nix_path: "${{ env.nix_path }}"
+        uses: cachix/install-nix-action@v31.11.1
 
       - name: Run tests
         if: steps.filter.outputs.services == 'true'

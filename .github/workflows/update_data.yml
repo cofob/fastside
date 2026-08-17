@@ -15,18 +15,18 @@ concurrency:
   group: ${{ github.workflow }}
 
 env:
-  nix_path: nixpkgs=channel:nixos-24.05
+  nix_path: nixpkgs=channel:nixos-unstable
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Nix
-        uses: cachix/install-nix-action@v25
+        uses: cachix/install-nix-action@v31.11.1
         with:
           nix_path: "${{ env.nix_path }}"
       - name: Setup cachix
-        uses: cachix/cachix-action@v14
+        uses: cachix/cachix-action@v17
         with:
           name: cofob
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -38,7 +38,7 @@ jobs:
           sleep 120
 
       - name: Checkout the data branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
         with:
           ref: data
           fetch-depth: 1
@@ -61,7 +61,7 @@ jobs:
           git commit -m "Update data.json and services.json [no ci]" || true
 
       - name: Push changes to data
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v1.3.0
         continue-on-error: true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

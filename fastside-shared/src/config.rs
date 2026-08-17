@@ -1,8 +1,12 @@
 //! Application configuration.
 
-use std::{collections::HashMap, path::PathBuf, time::Duration};
+#[cfg(feature = "native")]
+use std::path::PathBuf;
+use std::{collections::HashMap, time::Duration};
 
+#[cfg(feature = "native")]
 use anyhow::{Context, Result};
+#[cfg(feature = "native")]
 use config::Config;
 use serde::{Deserialize, Serialize};
 
@@ -65,6 +69,32 @@ pub struct Proxy {
 
 pub type ProxyData = HashMap<String, Proxy>;
 
+pub fn select_proxy<'a>(proxies: &'a ProxyData, tags: &[String]) -> Option<&'a Proxy> {
+    proxies
+        .iter()
+        .find_map(|(tag, proxy)| tags.contains(tag).then_some(proxy))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn selects_proxy_with_matching_tag() {
+        let proxy = Proxy {
+            url: "socks5h://proxy.example:1080".to_owned(),
+            auth: None,
+        };
+        let proxies = ProxyData::from([("tor".to_owned(), proxy)]);
+
+        assert_eq!(
+            select_proxy(&proxies, &["tor".to_owned()]).map(|proxy| proxy.url.as_str()),
+            Some("socks5h://proxy.example:1080")
+        );
+        assert!(select_proxy(&proxies, &["clearnet".to_owned()]).is_none());
+    }
+}
+
 #[derive(Deserialize, Serialize, Debug, Clone, Default, PartialEq)]
 pub enum SelectMethod {
     #[default]
@@ -96,14 +126,14 @@ pub struct UserConfig {
 
 impl UserConfig {
     pub fn to_config_string(&self) -> Result<String, UserConfigError> {
-        use base64::prelude::*;
+        use base64ct::{Base64, Encoding};
         let json: String = serde_json::to_string(&self).map_err(UserConfigError::Serialization)?;
-        Ok(BASE64_STANDARD.encode(json.as_bytes()))
+        Ok(Base64::encode_string(json.as_bytes()))
     }
 
     pub fn from_config_string(data: &str) -> Result<Self, UserConfigError> {
-        use base64::prelude::*;
-        let decoded = BASE64_STANDARD.decode(data.as_bytes())?;
+        use base64ct::{Base64, Encoding};
+        let decoded = Base64::decode_vec(data)?;
         let json = String::from_utf8(decoded).unwrap();
         serde_json::from_str(&json).map_err(UserConfigError::from)
     }
@@ -140,6 +170,7 @@ pub struct AppConfig {
 }
 
 /// Load application configuration.
+#[cfg(feature = "native")]
 pub fn load_config(config_path: &Option<PathBuf>) -> Result<AppConfig> {
     let mut config_builder = Config::builder().add_source(
         config::Environment::with_prefix("FS")

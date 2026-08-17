@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-* Rust (toolchain pinned via `flake.nix`).
+* Rust (toolchain pinned in `rust-toolchain.toml`).
 * A `services.json` file (download or generate with actualizer).
 * Optional: `config.yml` for fine-tuning.
 
@@ -18,7 +18,7 @@ Open http://localhost:8080 in the browser.
 
 An example multi-stage build:
 ```dockerfile
-FROM rust:1 as build
+FROM rust:1.97.1 as build
 WORKDIR /code
 COPY . .
 RUN cargo build --release -p fastside
@@ -105,4 +105,59 @@ WantedBy=multi-user.target
 
 Any config field can be overridden – see `configuration.md`. 
 
-Run `fastside validate services.json` to ensure schema correctness.
+Run `fastside validate --services services.json` to ensure schema correctness.
+
+## Cloudflare Workers
+
+The Worker uses the same Axum routes and redirect logic as the native server.
+A Cron Trigger starts one Durable Object. Its alarm runs every two minutes and
+checks 20 instances at a time. The object stores the cursor and partial results.
+Workers KV stores only the last complete crawler snapshot. A failed batch does
+not advance the cursor, so the next alarm repeats that batch.
+
+```bash
+nix develop
+cd fastside-cloudflare
+npm ci
+npm run deploy
+```
+
+The Nix shell provides the LLVM compiler that Ring needs for the Wasm target.
+
+Wrangler creates the `FASTSIDE` KV namespace and the SQLite-backed Durable Object
+on the first deployment. The first alarm publishes the services as unverified
+defaults. A complete snapshot replaces it after all batches finish. For local
+tests, start `npm run dev`, and then run:
+
+```bash
+curl http://localhost:8787/cdn-cgi/local/scheduled
+```
+
+Set `FASTSIDE_SERVICES_URL` and `FASTSIDE_CONFIG` in `wrangler.toml` when you
+need a different services source or default configuration. Set
+`FASTSIDE_CRAWL_BATCH_SIZE` from 1 to 40 to change the batch size. The default of
+20 leaves capacity below the free-plan limit of 50 external subrequests per
+invocation.
+
+The Worker supports `http://`, `https://`, `socks5://`, and `socks5h://`
+crawler proxies. It uses the same tag matching and optional basic
+authentication as the native server. SOCKS requests use proxy-side name
+resolution. To send all current network types through one proxy, map each
+network tag to that endpoint:
+
+```yaml
+proxies:
+  clearnet: &crawler_proxy
+    url: https://proxy.example.com:8443
+    auth:
+      username: fastside
+      password: change-me
+  tor: *crawler_proxy
+  i2p: *crawler_proxy
+  ygg: *crawler_proxy
+```
+
+Put the equivalent JSON in `FASTSIDE_CONFIG`. The proxy must have a public TCP
+address. Workers [cannot open TCP sockets to Cloudflare IP
+ranges](https://developers.cloudflare.com/workers/runtime-apis/tcp-sockets/#considerations).
+An HTTPS proxy must use a certificate that is valid for its host name.

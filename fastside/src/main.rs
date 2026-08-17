@@ -1,35 +1,26 @@
 //! Fastside API server.
-mod crawler;
-mod errors;
-mod filters;
-mod routes;
-mod search;
-mod types;
-mod utils;
 
-use actix_web::{App, HttpServer, middleware::Logger, web};
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
-use config::load_config;
-use crawler::Crawler;
+use fastside::{
+    app,
+    crawler::{Crawler, ReqwestInstanceClient},
+    types::{AppState, LoadedData, compile_regexes},
+};
 use fastside_shared::{
-    config::{self, AppConfig},
+    config::{AppConfig, load_config},
     errors::CliError,
     log_setup,
     serde_types::{ServicesData, StoredData},
 };
 use log_setup::configure_logging;
-use regex::Regex;
-use routes::main_scope;
 use std::{
-    collections::HashMap,
     net::{SocketAddr, SocketAddrV4},
     path::PathBuf,
     str::FromStr,
     sync::Arc,
 };
 use tokio::sync::RwLock;
-use types::{CompiledRegexSearch, LoadedData};
 use url::Url;
 
 #[deny(unused_imports)]
@@ -39,8 +30,6 @@ use url::Url;
 // Dependencies
 #[macro_use]
 extern crate log;
-
-pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -250,17 +239,57 @@ async fn reload_services_wrapper(
     }
 }
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
     let cli = Cli::parse();
-
     configure_logging(&cli.log_level).ok();
 
+    let worker_threads = match &cli.command {
+        Some(Commands::Serve { workers, .. }) => workers.unwrap_or_else(available_workers),
+        _ => available_workers(),
+    };
+    tokio::runtime::Builder::new_multi_thread()
+        .worker_threads(worker_threads)
+        .enable_all()
+        .build()
+        .context("failed to build async runtime")?
+        .block_on(run(cli))
+}
+
+fn available_workers() -> usize {
+    std::thread::available_parallelism()
+        .map(std::num::NonZeroUsize::get)
+        .unwrap_or(1)
+}
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        tokio::signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    #[cfg(unix)]
+    let terminate = async {
+        tokio::signal::unix::signal(tokio::signal::unix::SignalKind::terminate())
+            .expect("failed to install SIGTERM handler")
+            .recv()
+            .await;
+    };
+    #[cfg(not(unix))]
+    let terminate = std::future::pending::<()>();
+
+    tokio::select! {
+        () = ctrl_c => {},
+        () = terminate => {},
+    }
+}
+
+async fn run(cli: Cli) -> Result<()> {
     match &cli.command {
         Some(Commands::Serve {
             services,
             listen,
-            workers,
+            workers: _,
             skip_wait,
             ping_data_file,
             save_ping_data,
@@ -311,36 +340,18 @@ async fn main() -> Result<()> {
 
             let listen: SocketAddr = listen
                 .unwrap_or_else(|| SocketAddr::V4(SocketAddrV4::new([127, 0, 0, 1].into(), 8080)));
-            let workers: usize = workers.unwrap_or_else(num_cpus::get);
 
             let data: Arc<RwLock<LoadedData>> = {
                 let data = load_services(&services_source, &config).await?;
                 Arc::new(RwLock::new(data))
             };
-            let regexes: HashMap<String, Vec<CompiledRegexSearch>> = data
-                .read()
-                .await
-                .services
-                .iter()
-                .filter_map(|(name, service)| {
-                    let regexes = service
-                        .regexes
-                        .iter()
-                        .map(|regex| {
-                            let compiled = Regex::new(&regex.regex)
-                                .context(format!("failed to compile regex for {}", name))
-                                .ok()?;
-                            Some(CompiledRegexSearch {
-                                regex: compiled,
-                                url: regex.url.clone(),
-                            })
-                        })
-                        .collect::<Option<Vec<CompiledRegexSearch>>>()?;
-                    Some((name.clone(), regexes))
-                })
-                .collect();
+            let regexes = Arc::new(compile_regexes(&data.read().await.services));
 
-            let crawler = Arc::new(Crawler::new(data.clone(), config.crawler.clone()));
+            let crawler = Arc::new(Crawler::new(
+                data.clone(),
+                config.crawler.clone(),
+                Arc::new(ReqwestInstanceClient),
+            ));
 
             // Initialize crawler based on ping data availability and skip-wait setting
             let mut initialized_from_ping_data = false;
@@ -386,26 +397,19 @@ async fn main() -> Result<()> {
 
             info!("Listening on {}", listen);
 
-            let config_web_data = web::Data::from(config.clone());
-            let crawler_web_data = web::Data::from(crawler.clone());
-            let data_web_data = web::Data::from(data.clone());
-            let regexes_web_data = web::Data::new(regexes);
-
-            HttpServer::new(move || {
-                let logger = Logger::default();
-                App::new()
-                    .wrap(logger)
-                    .app_data(config_web_data.clone())
-                    .app_data(crawler_web_data.clone())
-                    .app_data(data_web_data.clone())
-                    .app_data(regexes_web_data.clone())
-                    .service(main_scope(&config.clone()))
-            })
-            .bind(listen)?
-            .workers(workers)
-            .run()
-            .await
-            .context("failed to start api server")?;
+            let state = AppState {
+                config,
+                crawler,
+                loaded_data: data,
+                regexes,
+            };
+            let listener = tokio::net::TcpListener::bind(listen)
+                .await
+                .context("failed to bind api listener")?;
+            axum::serve(listener, app(state))
+                .with_graceful_shutdown(shutdown_signal())
+                .await
+                .context("failed to start api server")?;
 
             reload_services_handle.abort();
             crawler_loop_handle.abort();

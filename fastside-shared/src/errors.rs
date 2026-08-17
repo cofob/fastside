@@ -13,5 +13,5 @@ pub enum UserConfigError {
     #[error("serialization error: `{0}`")]
     Serialization(#[from] serde_json::Error),
     #[error("urlencode error: `{0}`")]
-    Base64Decode(#[from] base64::DecodeError),
+    Base64Decode(#[from] base64ct::Error),
 }

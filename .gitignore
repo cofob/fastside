@@ -4,4 +4,8 @@
 /debug/
 /target/
 /data.json
+
+/fastside-cloudflare/.wrangler/
+/fastside-cloudflare/build/
+/fastside-cloudflare/node_modules/
 /ping_data.json

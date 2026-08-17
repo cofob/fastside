@@ -41,6 +41,7 @@ bottlenecks and rate-limiting.
 - [x] Fallback redirects.
 - [x] Automatic update of services list.
 - [x] API.
+- [x] Native and serverless deployment with the same Axum routes.
 
 ## Demo
 
@@ -113,13 +114,16 @@ This will deploy Fastside, making it accessible on port 8080 of your server. The
 
 ## Compiling from Source
 
-If you prefer to compile Fastside from source, ensure you have Rust's package manager, Cargo, installed. Then, navigate to the repository and run the following command:
+The repository pins the current Rust toolchain in `rust-toolchain.toml`. Install
+Rustup, and then run:
 
 ```bash
 cargo build --release
 ```
 
 The compiled executables will be located in the `target/release` directory.
+See [docs/deployment.md](docs/deployment.md) for Nix, Docker, and Cloudflare
+Workers deployment steps.
 
 ## Why does this fork exist?
 

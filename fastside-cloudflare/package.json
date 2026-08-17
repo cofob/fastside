@@ -1,0 +1,12 @@
+{
+  "name": "fastside-cloudflare",
+  "private": true,
+  "scripts": {
+    "build": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "wrangler": "4.123.0"
+  }
+}

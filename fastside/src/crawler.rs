@@ -1,37 +1,30 @@
-use std::{
-    collections::HashMap,
-    sync::Arc,
-    time::{Duration, SystemTime, UNIX_EPOCH},
-};
+use std::{collections::HashMap, fmt::Debug, sync::Arc, time::Duration};
 
+use async_trait::async_trait;
 use chrono::{DateTime, Utc};
+use fastside_shared::{
+    config::{CrawlerConfig, ProxyData},
+    serde_types::{HttpCodeRanges, Instance, Service, ServicesData},
+};
+use futures::{StreamExt, stream};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
-use tokio::{
-    sync::{Mutex, MutexGuard, RwLock},
-    time::sleep,
-};
+use tokio::sync::{Mutex, MutexGuard, RwLock};
 use url::Url;
 
-use crate::{config::CrawlerConfig, types::LoadedData};
-use fastside_shared::{
-    client_builder::build_client,
-    parallel::Parallelise,
-    serde_types::{HttpCodeRanges, Instance, Service},
-};
+use crate::types::LoadedData;
 
 #[derive(Error, Debug)]
 pub enum CrawlerError {
     #[error("url error: `{0}`")]
-    UrlError(#[from] url::ParseError),
+    Url(#[from] url::ParseError),
     #[error("request error: `{0}`")]
-    RequestError(#[from] reqwest::Error),
+    Request(String),
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 pub enum CrawledInstanceStatus {
     Ok(Duration),
-    #[allow(dead_code)]
     InvalidStatusCode(u16, Duration),
     StringNotFound,
     ConnectionError,
@@ -45,18 +38,18 @@ pub enum CrawledInstanceStatus {
 }
 
 impl CrawledInstanceStatus {
-    /// Used for sorting values in index.html template.
+    /// Get the sortable latency value used by the HTML templates.
     pub fn as_isize(&self) -> isize {
         match self {
-            Self::Ok(d) => d.as_millis() as isize,
+            Self::Ok(duration) => duration.as_millis() as isize,
             _ => isize::MAX,
         }
     }
 }
 
 impl std::fmt::Display for CrawledInstanceStatus {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{:?}", self)
+    fn fmt(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(formatter, "{self:?}")
     }
 }
 
@@ -77,7 +70,7 @@ impl CrawledService {
     pub fn get_alive_instances(&self) -> impl Iterator<Item = &CrawledInstance> {
         self.instances
             .iter()
-            .filter(|s| matches!(&s.status, CrawledInstanceStatus::Ok(_)))
+            .filter(|instance| matches!(instance.status, CrawledInstanceStatus::Ok(_)))
     }
 }
 
@@ -87,7 +80,7 @@ pub struct CrawledServices {
     pub time: DateTime<Utc>,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum CrawledData {
     CrawledServices(CrawledServices),
     InitialLoading,
@@ -98,38 +91,151 @@ pub enum CrawledData {
 impl CrawledData {
     pub fn get_services(&self) -> Option<&CrawledServices> {
         match self {
-            Self::CrawledServices(s) => Some(s),
+            Self::CrawledServices(services)
+            | Self::ReloadingServices(services)
+            | Self::InitializedFromDefaults(services) => Some(services),
             Self::InitialLoading => None,
-            Self::ReloadingServices(current) => Some(current),
-            Self::InitializedFromDefaults(current) => Some(current),
         }
     }
 
     pub fn is_reloading(&self) -> bool {
-        matches!(self, Self::ReloadingServices { .. })
+        matches!(self, Self::ReloadingServices(_))
     }
 
     pub fn is_initialized_from_defaults(&self) -> bool {
-        matches!(self, Self::InitializedFromDefaults { .. })
+        matches!(self, Self::InitializedFromDefaults(_))
     }
 
-    pub fn replace(&mut self, new: CrawledData) {
-        *self = new;
-    }
-
-    pub fn make_reloading(&mut self) {
+    #[cfg(feature = "native")]
+    fn make_reloading(&mut self) {
         let current = match self {
-            Self::CrawledServices(s) => s.clone(),
-            Self::InitializedFromDefaults(s) => s.clone(),
-            _ => return,
+            Self::CrawledServices(services) | Self::InitializedFromDefaults(services) => {
+                services.clone()
+            }
+            Self::InitialLoading | Self::ReloadingServices(_) => return,
         };
         *self = Self::ReloadingServices(current);
     }
 }
 
-impl AsRef<CrawledData> for CrawledData {
-    fn as_ref(&self) -> &CrawledData {
-        self
+#[derive(Debug)]
+pub struct InstanceResponse {
+    pub status_code: u16,
+    pub duration: Duration,
+    pub body: Option<String>,
+}
+
+#[derive(Debug)]
+pub enum InstanceRequest {
+    Response(InstanceResponse),
+    Failed(CrawledInstanceStatus),
+}
+
+#[cfg_attr(feature = "native", async_trait)]
+#[cfg_attr(not(feature = "native"), async_trait(?Send))]
+pub trait InstanceClient: Debug + Send + Sync {
+    async fn request(
+        &self,
+        config: &CrawlerConfig,
+        proxies: &ProxyData,
+        service: &Service,
+        instance: &Instance,
+        test_url: Url,
+    ) -> Result<InstanceRequest, CrawlerError>;
+}
+
+/// Select a stable range of instances across all services.
+pub fn select_instance_batch(
+    services: &ServicesData,
+    offset: usize,
+    limit: usize,
+) -> (ServicesData, usize) {
+    let mut names = services.keys().collect::<Vec<_>>();
+    names.sort_unstable();
+
+    let mut skip = offset;
+    let mut remaining = limit;
+    let mut batch = ServicesData::new();
+    for name in names {
+        let service = &services[name];
+        if skip >= service.instances.len() {
+            skip -= service.instances.len();
+            continue;
+        }
+
+        let count = remaining.min(service.instances.len() - skip);
+        if count == 0 {
+            break;
+        }
+        let mut selected = service.clone();
+        selected.instances = service.instances[skip..skip + count].to_vec();
+        batch.insert(name.clone(), selected);
+        remaining -= count;
+        skip = 0;
+        if remaining == 0 {
+            break;
+        }
+    }
+
+    (batch, limit - remaining)
+}
+
+#[cfg(feature = "native")]
+#[derive(Debug, Default)]
+pub struct ReqwestInstanceClient;
+
+#[cfg(feature = "native")]
+#[async_trait]
+impl InstanceClient for ReqwestInstanceClient {
+    async fn request(
+        &self,
+        config: &CrawlerConfig,
+        proxies: &ProxyData,
+        service: &Service,
+        instance: &Instance,
+        test_url: Url,
+    ) -> Result<InstanceRequest, CrawlerError> {
+        use std::time::Instant;
+
+        use fastside_shared::client_builder::build_client;
+
+        let client = build_client(service, config, proxies, instance)
+            .map_err(|error| CrawlerError::Request(error.to_string()))?;
+        let start = Instant::now();
+        let response = match client.get(test_url).send().await {
+            Ok(response) => response,
+            Err(error) => {
+                let status = match error {
+                    _ if error.is_timeout() => CrawledInstanceStatus::TimedOut,
+                    _ if error.is_builder() => CrawledInstanceStatus::BuilderError,
+                    _ if error.is_redirect() => CrawledInstanceStatus::RedirectPolicyError,
+                    _ if error.is_request() => CrawledInstanceStatus::RequestError,
+                    _ if error.is_body() => CrawledInstanceStatus::BodyError,
+                    _ if error.is_decode() => CrawledInstanceStatus::DecodeError,
+                    _ if error.is_connect() => CrawledInstanceStatus::ConnectionError,
+                    _ => CrawledInstanceStatus::Unknown,
+                };
+                return Ok(InstanceRequest::Failed(status));
+            }
+        };
+
+        let duration = start.elapsed();
+        let status_code = response.status().as_u16();
+        let body = if should_read_response_body(service, instance, status_code) {
+            Some(
+                response
+                    .text()
+                    .await
+                    .map_err(|error| CrawlerError::Request(error.to_string()))?,
+            )
+        } else {
+            None
+        };
+        Ok(InstanceRequest::Response(InstanceResponse {
+            status_code,
+            duration,
+            body,
+        }))
     }
 }
 
@@ -137,21 +243,36 @@ impl AsRef<CrawledData> for CrawledData {
 pub struct Crawler {
     loaded_data: Arc<RwLock<LoadedData>>,
     config: Arc<CrawlerConfig>,
+    client: Arc<dyn InstanceClient>,
     data: RwLock<CrawledData>,
     crawler_lock: Mutex<()>,
 }
 
 impl Crawler {
-    pub fn new(loaded_data: Arc<RwLock<LoadedData>>, config: CrawlerConfig) -> Self {
+    pub fn new(
+        loaded_data: Arc<RwLock<LoadedData>>,
+        config: CrawlerConfig,
+        client: Arc<dyn InstanceClient>,
+    ) -> Self {
+        Self::with_data(loaded_data, config, client, CrawledData::InitialLoading)
+    }
+
+    pub fn with_data(
+        loaded_data: Arc<RwLock<LoadedData>>,
+        config: CrawlerConfig,
+        client: Arc<dyn InstanceClient>,
+        data: CrawledData,
+    ) -> Self {
         Self {
             loaded_data,
             config: Arc::new(config),
-            data: RwLock::new(CrawledData::InitialLoading),
+            client,
+            data: RwLock::new(data),
             crawler_lock: Mutex::new(()),
         }
     }
 
-    /// Save ping data to file
+    #[cfg(feature = "native")]
     pub async fn save_ping_data_to_file(
         &self,
         file_path: &std::path::Path,
@@ -160,12 +281,12 @@ impl Crawler {
         if let Some(crawled_services) = data.get_services() {
             let json = serde_json::to_string_pretty(crawled_services)?;
             tokio::fs::write(file_path, json).await?;
-            debug!("Saved ping data to file: {:?}", file_path);
+            debug!("Saved ping data to file: {file_path:?}");
         }
         Ok(())
     }
 
-    /// Load ping data from file
+    #[cfg(feature = "native")]
     pub async fn load_ping_data_from_file(
         &self,
         file_path: &std::path::Path,
@@ -175,40 +296,39 @@ impl Crawler {
         }
 
         let content = tokio::fs::read_to_string(file_path).await?;
-        let crawled_services: CrawledServices = serde_json::from_str(&content)?;
-
-        let mut data = self.data.write().await;
-        *data = CrawledData::InitializedFromDefaults(crawled_services);
-        info!("Loaded ping data from file: {:?}", file_path);
+        let crawled_services = serde_json::from_str(&content)?;
+        *self.data.write().await = CrawledData::InitializedFromDefaults(crawled_services);
+        info!("Loaded ping data from file: {file_path:?}");
         Ok(true)
     }
 
-    /// Initialize crawler with default data from services.json without pinging
     pub async fn initialize_with_defaults(&self) {
         let loaded_data = self.loaded_data.read().await;
-        let mut crawled_services: HashMap<String, CrawledService> = HashMap::new();
+        let services = loaded_data
+            .services
+            .iter()
+            .map(|(name, service)| {
+                let instances = service
+                    .instances
+                    .iter()
+                    .map(|instance| CrawledInstance {
+                        url: instance.url.clone(),
+                        status: CrawledInstanceStatus::Ok(Duration::ZERO),
+                        tags: instance.tags.clone(),
+                    })
+                    .collect();
+                (
+                    name.clone(),
+                    CrawledService {
+                        name: name.clone(),
+                        instances,
+                    },
+                )
+            })
+            .collect();
 
-        for (name, service) in &loaded_data.services {
-            let mut instances = Vec::new();
-            for instance in &service.instances {
-                instances.push(CrawledInstance {
-                    url: instance.url.clone(),
-                    status: CrawledInstanceStatus::Ok(Duration::from_millis(0)),
-                    tags: instance.tags.clone(),
-                });
-            }
-            crawled_services.insert(
-                name.clone(),
-                CrawledService {
-                    name: name.clone(),
-                    instances,
-                },
-            );
-        }
-
-        let mut data = self.data.write().await;
-        *data = CrawledData::InitializedFromDefaults(CrawledServices {
-            services: crawled_services,
+        *self.data.write().await = CrawledData::InitializedFromDefaults(CrawledServices {
+            services,
             time: Utc::now(),
         });
         info!("Initialized crawler with default data from services.json");
@@ -220,196 +340,285 @@ impl Crawler {
     }
 
     async fn crawl_single_instance(
+        client: Arc<dyn InstanceClient>,
         config: Arc<CrawlerConfig>,
-        loaded_data: Arc<RwLock<LoadedData>>,
+        proxies: Arc<ProxyData>,
         service: Arc<Service>,
         instance: Instance,
     ) -> Result<(CrawledInstance, String), CrawlerError> {
-        let client = build_client(
-            service.as_ref(),
-            config.as_ref(),
-            &loaded_data.read().await.proxies,
-            &instance,
-        )?;
-
         let test_url = instance.url.join(&service.test_url)?;
-        let start = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
-        let response = client.get(test_url).send().await;
-        let status = match response {
-            Ok(response) => {
-                let end = SystemTime::now().duration_since(UNIX_EPOCH).unwrap();
-                if instance.tags.iter().any(|tag| tag == "antibot") {
-                    debug!(
-                        "Skipping response checks for antibot instance: {}",
-                        instance.url
-                    );
-                    CrawledInstanceStatus::Ok(end - start)
-                } else if service
-                    .allowed_http_codes
-                    .is_allowed(response.status().as_u16())
-                {
-                    if let Some(search_string) = &service.search_string {
-                        let body = response.text().await?;
-                        if !body.contains(search_string) {
-                            CrawledInstanceStatus::StringNotFound
-                        } else {
-                            CrawledInstanceStatus::Ok(end - start)
-                        }
-                    } else {
-                        CrawledInstanceStatus::Ok(end - start)
-                    }
-                } else {
-                    CrawledInstanceStatus::InvalidStatusCode(
-                        response.status().as_u16(),
-                        end - start,
-                    )
-                }
-            }
-            Err(e) => match e {
-                _ if e.is_timeout() => CrawledInstanceStatus::TimedOut,
-                _ if e.is_builder() => CrawledInstanceStatus::BuilderError,
-                _ if e.is_redirect() => CrawledInstanceStatus::RedirectPolicyError,
-                _ if e.is_request() => CrawledInstanceStatus::RequestError,
-                _ if e.is_body() => CrawledInstanceStatus::BodyError,
-                _ if e.is_decode() => CrawledInstanceStatus::DecodeError,
-                _ if e.is_connect() => CrawledInstanceStatus::ConnectionError,
-                _ => CrawledInstanceStatus::Unknown,
-            },
+        let status = match client
+            .request(&config, &proxies, &service, &instance, test_url)
+            .await?
+        {
+            InstanceRequest::Failed(status) => status,
+            InstanceRequest::Response(response) => classify_response(&service, &instance, response),
         };
 
-        let ret = (
+        let result = (
             CrawledInstance {
-                url: instance.url.clone(),
-                tags: instance.tags.clone(),
+                url: instance.url,
+                tags: instance.tags,
                 status,
             },
             service.name.clone(),
         );
-        debug!("Crawled instance: {ret:?}");
-        Ok(ret)
+        debug!("Crawled instance: {result:?}");
+        Ok(result)
     }
 
     async fn crawl<'a>(
         &self,
         crawler_guard: Option<MutexGuard<'a, ()>>,
-        save_ping_data: Option<&std::path::Path>,
     ) -> Result<(), CrawlerError> {
         let crawler_guard = match crawler_guard {
             Some(guard) => guard,
             None => {
-                let Ok(crawler_guard) = self.crawler_lock.try_lock() else {
+                let Ok(guard) = self.crawler_lock.try_lock() else {
                     warn!("Crawler lock is already acquired, skipping crawl");
                     return Ok(());
                 };
-                crawler_guard
+                guard
             }
         };
 
-        let mut crawled_services: HashMap<String, CrawledService> = self
-            .loaded_data
-            .read()
-            .await
-            .services
-            .keys()
-            .map(|name| {
-                (
-                    name.clone(),
-                    CrawledService {
-                        name: name.clone(),
-                        instances: Vec::new(),
-                    },
+        let (mut crawled_services, jobs, proxies) = {
+            let loaded_data = self.loaded_data.read().await;
+            let crawled_services: HashMap<String, CrawledService> = loaded_data
+                .services
+                .keys()
+                .map(|name| {
+                    (
+                        name.clone(),
+                        CrawledService {
+                            name: name.clone(),
+                            instances: Vec::new(),
+                        },
+                    )
+                })
+                .collect();
+            let jobs = loaded_data
+                .services
+                .values()
+                .flat_map(|service| {
+                    let service = Arc::new(service.clone());
+                    service
+                        .instances
+                        .clone()
+                        .into_iter()
+                        .map(move |instance| (service.clone(), instance))
+                })
+                .collect::<Vec<_>>();
+            (
+                crawled_services,
+                jobs,
+                Arc::new(loaded_data.proxies.clone()),
+            )
+        };
+
+        let results = stream::iter(jobs)
+            .map(|(service, instance)| {
+                Self::crawl_single_instance(
+                    self.client.clone(),
+                    self.config.clone(),
+                    proxies.clone(),
+                    service,
+                    instance,
                 )
             })
-            .collect();
-        let mut parallelise = Parallelise::with_capacity(self.config.max_concurrent_requests);
-
-        for service in self.loaded_data.read().await.services.values() {
-            let service = Arc::new(service.clone());
-            for instance in &service.instances {
-                let loaded_data = self.loaded_data.clone();
-                let config = self.config.clone();
-                let instance = instance.clone();
-                parallelise
-                    .push(tokio::spawn(Self::crawl_single_instance(
-                        config,
-                        loaded_data.clone(),
-                        service.clone(),
-                        instance,
-                    )))
-                    .await;
-            }
-        }
-
-        let results = parallelise.wait().await;
+            .buffer_unordered(self.config.max_concurrent_requests)
+            .collect::<Vec<_>>()
+            .await;
 
         for result in results {
             let (crawled_instance, name) = match result {
-                Ok(c) => c,
-                Err(e) => {
-                    error!("Error occured during crawling: {e}");
+                Ok(result) => result,
+                Err(error) => {
+                    error!("Error occurred during crawling: {error}");
                     continue;
                 }
             };
             crawled_services
                 .get_mut(&name)
-                .unwrap()
+                .expect("service exists in crawler map")
                 .instances
-                .push(crawled_instance.clone());
+                .push(crawled_instance);
         }
 
-        let mut data = self.data.write().await;
-        data.replace(CrawledData::CrawledServices(CrawledServices {
+        *self.data.write().await = CrawledData::CrawledServices(CrawledServices {
             services: crawled_services,
             time: Utc::now(),
-        }));
-
-        match data.as_ref() {
-            CrawledData::ReloadingServices { .. } => {
-                info!("Finished reloading services");
-            }
-            CrawledData::InitialLoading => {
-                info!("Finished initial crawl, we are ready to serve requests");
-            }
-            CrawledData::InitializedFromDefaults { .. } => {
-                info!("Finished initial crawl from defaults, we are ready to serve requests");
-            }
-            CrawledData::CrawledServices(_) => {
-                debug!("Finished crawl");
-            }
-        }
-
-        // Save ping data to file if enabled
-        if let Some(file_path) = save_ping_data {
-            drop(data); // Release the lock before saving
-            if let Err(e) = self.save_ping_data_to_file(file_path).await {
-                error!("Failed to save ping data to file: {}", e);
-            }
-        }
-
+        });
+        debug!("Finished crawl");
         drop(crawler_guard);
         Ok(())
     }
 
-    /// Run crawler instantly in update loaded_data mode.
+    pub async fn crawl_once(&self) -> Result<(), CrawlerError> {
+        self.crawl(None).await
+    }
+
+    #[cfg(feature = "native")]
     pub async fn update_crawl(
         &self,
         save_ping_data: Option<&std::path::Path>,
     ) -> Result<(), CrawlerError> {
         let crawler_guard = self.crawler_lock.lock().await;
-        let mut data = self.data.write().await;
-        data.make_reloading();
-        drop(data);
-        self.crawl(Some(crawler_guard), save_ping_data).await
+        self.data.write().await.make_reloading();
+        self.crawl(Some(crawler_guard)).await?;
+        if let Some(file_path) = save_ping_data
+            && let Err(error) = self.save_ping_data_to_file(file_path).await
+        {
+            error!("Failed to save ping data to file: {error}");
+        }
+        Ok(())
     }
 
+    #[cfg(feature = "native")]
     pub async fn crawler_loop(&self, save_ping_data: Option<&std::path::Path>) {
         loop {
             debug!("Starting crawl");
-            if let Err(e) = self.crawl(None, save_ping_data).await {
-                error!("Error occured during crawl loop: {e}");
-            };
+            if let Err(error) = self.crawl_once().await {
+                error!("Error occurred during crawl loop: {error}");
+            } else if let Some(file_path) = save_ping_data
+                && let Err(error) = self.save_ping_data_to_file(file_path).await
+            {
+                error!("Failed to save ping data to file: {error}");
+            }
             debug!("Next crawl will start in {:?}", self.config.ping_interval);
-            sleep(self.config.ping_interval).await;
+            tokio::time::sleep(self.config.ping_interval).await;
         }
+    }
+}
+
+pub fn should_read_response_body(service: &Service, instance: &Instance, status_code: u16) -> bool {
+    service.search_string.is_some()
+        && service.allowed_http_codes.is_allowed(status_code)
+        && !instance.tags.iter().any(|tag| tag == "antibot")
+}
+
+fn classify_response(
+    service: &Service,
+    instance: &Instance,
+    response: InstanceResponse,
+) -> CrawledInstanceStatus {
+    if instance.tags.iter().any(|tag| tag == "antibot") {
+        debug!(
+            "Skipping response checks for antibot instance: {}",
+            instance.url
+        );
+        CrawledInstanceStatus::Ok(response.duration)
+    } else if !service.allowed_http_codes.is_allowed(response.status_code) {
+        CrawledInstanceStatus::InvalidStatusCode(response.status_code, response.duration)
+    } else if service.search_string.as_ref().is_some_and(|search_string| {
+        !response
+            .body
+            .as_deref()
+            .unwrap_or_default()
+            .contains(search_string)
+    }) {
+        CrawledInstanceStatus::StringNotFound
+    } else {
+        CrawledInstanceStatus::Ok(response.duration)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use fastside_shared::serde_types::AllowedHttpCodes;
+
+    fn service(name: &str, hosts: &[&str]) -> Service {
+        Service {
+            name: name.into(),
+            test_url: "/".into(),
+            fallback: None,
+            follow_redirects: false,
+            allowed_http_codes: AllowedHttpCodes {
+                codes: vec![200],
+                inclusive_ranges: Vec::new(),
+                exclusive_ranges: Vec::new(),
+            },
+            search_string: None,
+            regexes: Vec::new(),
+            aliases: Vec::new(),
+            source_link: None,
+            deprecated_message: None,
+            instances: hosts
+                .iter()
+                .map(|host| Instance {
+                    url: Url::parse(&format!("https://{host}/")).unwrap(),
+                    tags: Vec::new(),
+                })
+                .collect(),
+        }
+    }
+
+    fn response(status_code: u16, body: Option<&str>) -> InstanceResponse {
+        InstanceResponse {
+            status_code,
+            duration: Duration::from_millis(42),
+            body: body.map(str::to_owned),
+        }
+    }
+
+    #[test]
+    fn response_checks_keep_existing_order() {
+        let mut service = service("demo", &[]);
+        service.search_string = Some("expected".into());
+        let mut instance = Instance {
+            url: Url::parse("https://demo.example/").unwrap(),
+            tags: Vec::new(),
+        };
+        let ok = CrawledInstanceStatus::Ok(Duration::from_millis(42));
+
+        assert!(should_read_response_body(&service, &instance, 200));
+        assert!(!should_read_response_body(&service, &instance, 503));
+        assert_eq!(
+            classify_response(&service, &instance, response(200, Some("expected"))),
+            ok
+        );
+        assert_eq!(
+            classify_response(&service, &instance, response(200, Some("other"))),
+            CrawledInstanceStatus::StringNotFound
+        );
+        assert_eq!(
+            classify_response(&service, &instance, response(503, None)),
+            CrawledInstanceStatus::InvalidStatusCode(503, Duration::from_millis(42))
+        );
+
+        instance.tags.push("antibot".into());
+        assert!(!should_read_response_body(&service, &instance, 200));
+        assert_eq!(
+            classify_response(&service, &instance, response(503, None)),
+            ok
+        );
+    }
+
+    #[test]
+    fn instance_batch_crosses_service_boundaries_in_stable_order() {
+        let services = ServicesData::from([
+            (
+                "zeta".into(),
+                service("zeta", &["z1.example", "z2.example"]),
+            ),
+            (
+                "alpha".into(),
+                service("alpha", &["a1.example", "a2.example"]),
+            ),
+        ]);
+
+        let (batch, count) = select_instance_batch(&services, 1, 2);
+
+        assert_eq!(count, 2);
+        assert_eq!(
+            batch["alpha"].instances[0].url.host_str(),
+            Some("a2.example")
+        );
+        assert_eq!(
+            batch["zeta"].instances[0].url.host_str(),
+            Some("z1.example")
+        );
+        assert_eq!(select_instance_batch(&services, 4, 2).1, 0);
     }
 }

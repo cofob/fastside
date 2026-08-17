@@ -2,36 +2,59 @@
 name = "fastside"
 description = "A smart redirecting gateway for various frontend services."
 version = "0.2.0"
-edition = "2024"
+edition.workspace = true
+rust-version.workspace = true
 default-run = "fastside"
 
+[features]
+default = ["native"]
+native = [
+  "axum/http1",
+  "axum/http2",
+  "axum/tokio",
+  "dep:anyhow",
+  "dep:clap",
+  "dep:reqwest",
+  "dep:serde_json",
+  "fastside-shared/native",
+  "reqwest/http2",
+  "reqwest/rustls",
+  "reqwest/socks",
+  "tokio/fs",
+  "tokio/macros",
+  "tokio/net",
+  "tokio/rt-multi-thread",
+  "tokio/signal",
+  "tokio/time",
+]
+
 [dependencies]
-fastside-shared = { path = "../fastside-shared" }
+fastside-shared = { path = "../fastside-shared", default-features = false }
 
-actix-web = { version = "4.13.0", features = [
-  "macros",
-  "cookies",
-], default-features = false } # web framework
-askama = "0.15.4" # templating engine
-reqwest = { version = "0.13.2", default-features = false, features = [
-  "rustls",
-  "http2",
-  "socks",
-] } # http client
+anyhow = { workspace = true, optional = true }
+askama.workspace = true
+async-trait.workspace = true
+axum.workspace = true
+chrono.workspace = true
+clap = { workspace = true, optional = true }
+cookie.workspace = true
+fastrand.workspace = true
+futures.workspace = true
+log.workspace = true
+regex.workspace = true
+reqwest = { workspace = true, optional = true }
+serde.workspace = true
+serde_json = { workspace = true, optional = true }
+thiserror.workspace = true
+time.workspace = true
+tokio = { workspace = true, features = ["sync"] }
+url.workspace = true
+urlencoding.workspace = true
 
-clap = { version = "4.5.60", features = ["derive"] }    # cli
-serde = { version = "1.0.228", features = ["derive"] } # serialization
-serde_json = "1.0.149"                                 # serialization
-url = { version = "2.5.8", features = ["serde"] }      # url
-log = "0.4.29"                                         # logging
-anyhow = "1.0.102"                                      # error
-thiserror = "1.0.69"                                   # error
-tokio = { version = "1.49.0", features = ["full"] }    # async
-futures = "0.3.32"                                     # async
-num_cpus = "1.17.0"                                    # get number of cpus
-rand = "0.8.5"                                          # random
-chrono = { version = "0.4", features = ["serde"] }
-time = "0.3.47"                                        # time offsets
-regex = "1.12.3"                                       # regex
-base64 = "0.22.1"                                      # base64
-urlencoding = "2.1.3"                                  # url encoding
+[dev-dependencies]
+tower-service.workspace = true
+
+[[bin]]
+name = "fastside"
+path = "src/main.rs"
+required-features = ["native"]

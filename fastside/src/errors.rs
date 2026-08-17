@@ -1,5 +1,9 @@
-use actix_web::http::StatusCode;
 use askama::Template;
+use axum::{
+    Json,
+    http::StatusCode,
+    response::{Html, IntoResponse, Response},
+};
 use serde::Serialize;
 use thiserror::Error;
 
@@ -10,51 +14,9 @@ pub struct ErrorTemplate<'a> {
     pub status_code: StatusCode,
 }
 
-macro_rules! impl_template_error {
-    ($err:ty, status => {$($variant:pat => $code:expr),+ $(,)?}) => {
-        impl actix_web::ResponseError for $err where $err: std::error::Error + 'static {
-            fn error_response(&self) -> actix_web::HttpResponse {
-                use askama::Template;
-
-                let detail = format!("{}", self);
-                let error_page = crate::errors::ErrorTemplate { detail: &detail, status_code: self.status_code() };
-
-                actix_web::HttpResponse::build(self.status_code()).body(error_page.render().expect("failed to render error page"))
-            }
-
-            fn status_code(&self) -> actix_web::http::StatusCode {
-                match self {
-                    $(
-                        $variant => $code,
-                    )+
-                }
-            }
-        }
-    };
-}
-
 #[derive(Serialize)]
 pub struct ApiError {
     pub detail: String,
-}
-
-macro_rules! impl_api_error {
-    ($err:ty, status => {$($variant:pat => $code:expr),+ $(,)?}) => {
-        impl actix_web::ResponseError for $err where $err: std::error::Error + 'static {
-            fn error_response(&self) -> actix_web::HttpResponse {
-                let detail = format!("{}", self);
-                actix_web::HttpResponse::build(self.status_code()).json(crate::errors::ApiError { detail })
-            }
-
-            fn status_code(&self) -> actix_web::http::StatusCode {
-                match self {
-                    $(
-                        $variant => $code,
-                    )+
-                }
-            }
-        }
-    };
 }
 
 use crate::search::SearchError;
@@ -69,23 +31,45 @@ pub enum RedirectError {
     UserConfig(#[from] fastside_shared::errors::UserConfigError),
 }
 
-impl_template_error!(RedirectError,
-    status => {
-        RedirectError::Search(s) => match s {
-            SearchError::ServiceNotFound => StatusCode::NOT_FOUND,
-            _ => StatusCode::INTERNAL_SERVER_ERROR
-        },
-        RedirectError::UrlParse(_) => StatusCode::INTERNAL_SERVER_ERROR,
-        RedirectError::UserConfig(_) => StatusCode::INTERNAL_SERVER_ERROR,
+impl RedirectError {
+    fn status_code(&self) -> StatusCode {
+        match self {
+            Self::Search(error) => match error {
+                SearchError::ServiceNotFound => StatusCode::NOT_FOUND,
+                _ => StatusCode::INTERNAL_SERVER_ERROR,
+            },
+            Self::UrlParse(_) | Self::UserConfig(_) => StatusCode::INTERNAL_SERVER_ERROR,
+        }
     }
-);
+}
+
+impl IntoResponse for RedirectError {
+    fn into_response(self) -> Response {
+        let status_code = self.status_code();
+        let detail = self.to_string();
+        let page = ErrorTemplate {
+            detail: &detail,
+            status_code,
+        }
+        .render()
+        .expect("failed to render error page");
+        (status_code, Html(page)).into_response()
+    }
+}
 
 #[derive(Error, Debug)]
 #[error(transparent)]
 pub struct RedirectApiError(#[from] pub RedirectError);
 
-impl_api_error!(RedirectApiError,
-    status => {
-        RedirectApiError(internal) => internal.status_code(),
+impl IntoResponse for RedirectApiError {
+    fn into_response(self) -> Response {
+        let status_code = self.0.status_code();
+        (
+            status_code,
+            Json(ApiError {
+                detail: self.to_string(),
+            }),
+        )
+            .into_response()
     }
-);
+}
