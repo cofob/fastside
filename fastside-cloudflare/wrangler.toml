@@ -4,16 +4,25 @@ compatibility_date = "2026-08-17"
 
 [build]
 # The legacy shim avoids the current wasm-bindgen catch-wrapper failure.
-command = "cargo install worker-build --version 0.8.5 --locked && worker-build --release --no-panic-recovery"
+command = "cargo install worker-build --version 0.8.5 --locked && ESBUILD_BIN=node_modules/.bin/esbuild worker-build --release --no-panic-recovery"
 
 [triggers]
-crons = ["*/5 * * * *"]
+crons = ["*/2 * * * *"]
 
 [[kv_namespaces]]
 binding = "FASTSIDE"
 
+[[durable_objects.bindings]]
+name = "CRAWLER"
+class_name = "CrawlerCoordinator"
+
+[exports.CrawlerCoordinator]
+type = "durable-object"
+storage = "sqlite"
+
 [vars]
 FASTSIDE_SERVICES_URL = "https://raw.githubusercontent.com/cofob/fastside/master/services.json"
+FASTSIDE_CRAWL_BATCH_SIZE = "20"
 FASTSIDE_CONFIG = '{"crawler":{"ping_interval":{"secs":300,"nanos":0},"request_timeout":{"secs":5,"nanos":0},"domain_request_timeouts":[],"max_concurrent_requests":6},"auto_updater":{"enabled":false,"interval":{"secs":60,"nanos":0}},"proxies":{},"default_user_config":{"required_tags":["clearnet","https","ipv4"],"forbidden_tags":[],"select_method":"Random","ignore_fallback_warning":false,"preferred_instances":[]},"services":null}'
 
 [observability]

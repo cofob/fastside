@@ -7,7 +7,8 @@ flowchart TD
     Worker[Cloudflare Worker] --> Axum
     Axum -->|select| Crawler
     Native -->|periodic crawl| Crawler
-    Worker -->|scheduled crawl| Crawler
+    Cron[Cloudflare Cron Trigger] --> DurableObject[Durable Object]
+    DurableObject -->|two-minute crawl batches| Crawler
     Crawler -->|read| ServicesData[services.json]
     Crawler -->|liveness & latency| Instances((Instances))
     Axum -->|Shared structs| Shared[fastside-shared]
@@ -23,7 +24,8 @@ flowchart TD
    * Periodically pings every instance to measure availability & RTT.
    * Stores results in memory, shared via `RwLock` with request handlers.
    * Configurable through `crawler` section in `config.yml`.
-   * Uses Reqwest on native targets and the Workers Fetch API on Cloudflare.
+   * Uses Reqwest on native targets.
+   * On Cloudflare, uses Workers Fetch for direct requests and TCP sockets for configured HTTP, HTTPS and SOCKS5 proxies.
 
 3. **Fastside-Actualizer**
    * Stand-alone CLI run manually or in CI.
@@ -42,7 +44,8 @@ flowchart TD
    * Optional background task watching file system or remote URL to hot-reload `services.json` without downtime.
 
 7. **Cloudflare Worker**
-   * A Cron Trigger refreshes the services file and crawler snapshot every five minutes.
-   * Workers KV stores the snapshot that the shared Axum router reads.
+   * A Cron Trigger starts one Durable Object.
+   * The object crawls one batch every two minutes and stores its cursor and partial results.
+   * Workers KV stores the last complete snapshot that the shared Axum router reads.
 
 For a step-by-step request timeline see `api.md`.

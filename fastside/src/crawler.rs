@@ -4,7 +4,7 @@ use async_trait::async_trait;
 use chrono::{DateTime, Utc};
 use fastside_shared::{
     config::{CrawlerConfig, ProxyData},
-    serde_types::{HttpCodeRanges, Instance, Service},
+    serde_types::{HttpCodeRanges, Instance, Service, ServicesData},
 };
 use futures::{StreamExt, stream};
 use serde::{Deserialize, Serialize};
@@ -142,6 +142,42 @@ pub trait InstanceClient: Debug + Send + Sync {
         instance: &Instance,
         test_url: Url,
     ) -> Result<InstanceRequest, CrawlerError>;
+}
+
+/// Select a stable range of instances across all services.
+pub fn select_instance_batch(
+    services: &ServicesData,
+    offset: usize,
+    limit: usize,
+) -> (ServicesData, usize) {
+    let mut names = services.keys().collect::<Vec<_>>();
+    names.sort_unstable();
+
+    let mut skip = offset;
+    let mut remaining = limit;
+    let mut batch = ServicesData::new();
+    for name in names {
+        let service = &services[name];
+        if skip >= service.instances.len() {
+            skip -= service.instances.len();
+            continue;
+        }
+
+        let count = remaining.min(service.instances.len() - skip);
+        if count == 0 {
+            break;
+        }
+        let mut selected = service.clone();
+        selected.instances = service.instances[skip..skip + count].to_vec();
+        batch.insert(name.clone(), selected);
+        remaining -= count;
+        skip = 0;
+        if remaining == 0 {
+            break;
+        }
+    }
+
+    (batch, limit - remaining)
 }
 
 #[cfg(feature = "native")]
@@ -492,6 +528,32 @@ mod tests {
     use super::*;
     use fastside_shared::serde_types::AllowedHttpCodes;
 
+    fn service(name: &str, hosts: &[&str]) -> Service {
+        Service {
+            name: name.into(),
+            test_url: "/".into(),
+            fallback: None,
+            follow_redirects: false,
+            allowed_http_codes: AllowedHttpCodes {
+                codes: vec![200],
+                inclusive_ranges: Vec::new(),
+                exclusive_ranges: Vec::new(),
+            },
+            search_string: None,
+            regexes: Vec::new(),
+            aliases: Vec::new(),
+            source_link: None,
+            deprecated_message: None,
+            instances: hosts
+                .iter()
+                .map(|host| Instance {
+                    url: Url::parse(&format!("https://{host}/")).unwrap(),
+                    tags: Vec::new(),
+                })
+                .collect(),
+        }
+    }
+
     fn response(status_code: u16, body: Option<&str>) -> InstanceResponse {
         InstanceResponse {
             status_code,
@@ -502,23 +564,8 @@ mod tests {
 
     #[test]
     fn response_checks_keep_existing_order() {
-        let service = Service {
-            name: "demo".into(),
-            test_url: "/".into(),
-            fallback: None,
-            follow_redirects: false,
-            allowed_http_codes: AllowedHttpCodes {
-                codes: vec![200],
-                inclusive_ranges: Vec::new(),
-                exclusive_ranges: Vec::new(),
-            },
-            search_string: Some("expected".into()),
-            regexes: Vec::new(),
-            aliases: Vec::new(),
-            source_link: None,
-            deprecated_message: None,
-            instances: Vec::new(),
-        };
+        let mut service = service("demo", &[]);
+        service.search_string = Some("expected".into());
         let mut instance = Instance {
             url: Url::parse("https://demo.example/").unwrap(),
             tags: Vec::new(),
@@ -546,5 +593,32 @@ mod tests {
             classify_response(&service, &instance, response(503, None)),
             ok
         );
+    }
+
+    #[test]
+    fn instance_batch_crosses_service_boundaries_in_stable_order() {
+        let services = ServicesData::from([
+            (
+                "zeta".into(),
+                service("zeta", &["z1.example", "z2.example"]),
+            ),
+            (
+                "alpha".into(),
+                service("alpha", &["a1.example", "a2.example"]),
+            ),
+        ]);
+
+        let (batch, count) = select_instance_batch(&services, 1, 2);
+
+        assert_eq!(count, 2);
+        assert_eq!(
+            batch["alpha"].instances[0].url.host_str(),
+            Some("a2.example")
+        );
+        assert_eq!(
+            batch["zeta"].instances[0].url.host_str(),
+            Some("z1.example")
+        );
+        assert_eq!(select_instance_batch(&services, 4, 2).1, 0);
     }
 }

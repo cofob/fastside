@@ -14,13 +14,27 @@ fastside-shared = { path = "../fastside-shared", default-features = false }
 
 async-trait.workspace = true
 axum.workspace = true
+base64ct.workspace = true
+bytes.workspace = true
+chrono.workspace = true
 console_error_panic_hook.workspace = true
-fastrand = { workspace = true, features = ["js"] }
+fastrand.workspace = true
 futures.workspace = true
+getrandom.workspace = true
+http-body-util.workspace = true
+hyper = { workspace = true, features = ["client", "http1"] }
+hyper-util = { workspace = true, features = ["tokio"] }
+ring = { workspace = true, features = ["wasm32_unknown_unknown_js"] }
+rustls = { workspace = true, features = ["ring", "std", "tls12"] }
+rustls-pki-types.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 time = { workspace = true, features = ["wasm-bindgen"] }
-tokio = { workspace = true, features = ["sync"] }
+tokio = { workspace = true, features = ["io-util", "sync"] }
+tokio-rustls.workspace = true
 tower-service.workspace = true
 url.workspace = true
+urlencoding.workspace = true
+wasm-bindgen.workspace = true
+webpki-roots.workspace = true
 worker.workspace = true

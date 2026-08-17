@@ -69,6 +69,32 @@ pub struct Proxy {
 
 pub type ProxyData = HashMap<String, Proxy>;
 
+pub fn select_proxy<'a>(proxies: &'a ProxyData, tags: &[String]) -> Option<&'a Proxy> {
+    proxies
+        .iter()
+        .find_map(|(tag, proxy)| tags.contains(tag).then_some(proxy))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn selects_proxy_with_matching_tag() {
+        let proxy = Proxy {
+            url: "socks5h://proxy.example:1080".to_owned(),
+            auth: None,
+        };
+        let proxies = ProxyData::from([("tor".to_owned(), proxy)]);
+
+        assert_eq!(
+            select_proxy(&proxies, &["tor".to_owned()]).map(|proxy| proxy.url.as_str()),
+            Some("socks5h://proxy.example:1080")
+        );
+        assert!(select_proxy(&proxies, &["clearnet".to_owned()]).is_none());
+    }
+}
+
 #[derive(Deserialize, Serialize, Debug, Clone, Default, PartialEq)]
 pub enum SelectMethod {
     #[default]

@@ -1,7 +1,7 @@
 use reqwest::Client;
 
 use crate::{
-    config::{CrawlerConfig, ProxyData},
+    config::{CrawlerConfig, ProxyData, select_proxy},
     request_headers::REQUEST_HEADERS,
     serde_types::{Instance, Service},
 };
@@ -40,18 +40,7 @@ pub fn build_client(
         .default_headers(default_headers())
         .redirect(redirect_policy);
 
-    let proxy_name: Option<String> = {
-        let mut val: Option<String> = None;
-        for proxy in proxies.keys() {
-            if instance.tags.contains(proxy) {
-                val = Some(proxy.clone());
-                break;
-            }
-        }
-        val
-    };
-    if let Some(proxy_name) = proxy_name {
-        let proxy_config = proxies.get(&proxy_name).unwrap();
+    if let Some(proxy_config) = select_proxy(proxies, &instance.tags) {
         let proxy = {
             let mut builder = reqwest::Proxy::all(&proxy_config.url)?;
             if let Some(auth) = &proxy_config.auth {
