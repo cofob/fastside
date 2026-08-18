@@ -2250,7 +2250,8 @@
           "url": "https://bin.infini.fr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
