@@ -3358,6 +3358,13 @@
       "deprecated_message": null,
       "instances": [
         {
+          "url": "http://ask.habeehrhadazsw3izbrbilqajalfyqqln54mrja3iwpqxgcuxnus7eid.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "https://quetre.jeikobu.net/",
           "tags": [
             "antibot",
