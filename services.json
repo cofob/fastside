@@ -1921,6 +1921,8 @@
         {
           "url": "https://nitter.privacyredirect.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
