@@ -4249,6 +4249,17 @@
           ]
         },
         {
+          "url": "https://searx.ononoki.org/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://searx.party/",
           "tags": [
             "clearnet",
