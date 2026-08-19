@@ -3,13 +3,77 @@
 {% block title %}Fastside Redirect{% endblock %}
 
 {% block head %}
-<meta http-equiv="refresh" content="1; url={{ path }}">
+<noscript><meta http-equiv="refresh" content="1; url={{ path }}"></noscript>
 <script>
+  const redirectPath = {{ path_json|safe }};
   history.pushState({ page: 1 }, "Fastside Redirect");
-  window.location.href = "{{ path }}";
+  let redirectTimer = setTimeout(() => window.location.href = redirectPath, 1000);
+
+  {% if reputation_enabled %}
+  function cookieValue(name) {
+    const prefix = `${name}=`;
+    const value = document.cookie.split('; ').find(cookie => cookie.startsWith(prefix));
+    return value ? value.substring(prefix.length) : null;
+  }
+
+  function showLastInstanceVote() {
+    clearTimeout(redirectTimer);
+    const stored = cookieValue("fastside_last_instance");
+    if (!stored) return;
+    let instance;
+    try {
+      instance = decodeURIComponent(stored);
+    } catch (_) {
+      return;
+    }
+    document.querySelectorAll('[data-last-instance]').forEach(input => input.value = instance);
+    document.getElementById('last-instance-url').textContent = instance;
+    document.getElementById('last-instance-vote').hidden = false;
+  }
+
+  window.addEventListener('pageshow', event => {
+    const navigation = performance.getEntriesByType('navigation')[0];
+    if (event.persisted || navigation?.type === 'back_forward') showLastInstanceVote();
+  });
+  {% endif %}
 </script>
 {% endblock %}
 
 {% block content %}
 <h1>Redirecting to {{ path }}...</h1>
+{% if reputation_enabled %}
+<div id="last-instance-vote" hidden>
+  <h2>Last visited instance</h2>
+  <p><code id="last-instance-url"></code></p>
+  {% if captcha_enabled %}
+  <form action="/reputation/vote" method="get" style="display: inline">
+    <input data-last-instance type="hidden" name="instance" value="">
+    <input type="hidden" name="direction" value="up">
+    <input type="hidden" name="return_to" value="{{ path }}">
+    <button type="submit">[+]</button>
+  </form>
+  <form action="/reputation/vote" method="get" style="display: inline">
+    <input data-last-instance type="hidden" name="instance" value="">
+    <input type="hidden" name="direction" value="down">
+    <input type="hidden" name="return_to" value="{{ path }}">
+    <button type="submit">[-]</button>
+  </form>
+  {% else %}
+  <form action="/reputation/vote" method="post" style="display: inline">
+    <input data-last-instance type="hidden" name="instance" value="">
+    <input type="hidden" name="direction" value="up">
+    <input type="hidden" name="return_to" value="{{ path }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit">[+]</button>
+  </form>
+  <form action="/reputation/vote" method="post" style="display: inline">
+    <input data-last-instance type="hidden" name="instance" value="">
+    <input type="hidden" name="direction" value="down">
+    <input type="hidden" name="return_to" value="{{ path }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit">[-]</button>
+  </form>
+  {% endif %}
+</div>
+{% endif %}
 {% endblock %}

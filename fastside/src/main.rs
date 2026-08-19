@@ -4,7 +4,10 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use fastside::{
     app,
+    captcha::NativeCaptchaVerifier,
     crawler::{Crawler, ReqwestInstanceClient},
+    reputation::{VoteProtector, cleanup_loop, validate_config as validate_reputation_config},
+    storage::create_native_store,
     types::{AppState, LoadedData, compile_regexes},
 };
 use fastside_shared::{
@@ -59,15 +62,6 @@ enum Commands {
         /// Skip waiting for initial ping and start serving immediately.
         #[arg(long)]
         skip_wait: bool,
-        /// Path to ping data file for preservation across restarts.
-        #[arg(long)]
-        ping_data_file: Option<PathBuf>,
-        /// Save ping data to file after each crawl.
-        #[arg(long)]
-        save_ping_data: bool,
-        /// Load ping data from file on startup if available.
-        #[arg(long)]
-        load_ping_data: bool,
     },
     /// Validate services file.
     Validate {
@@ -78,9 +72,8 @@ enum Commands {
 }
 
 // This function is needed to take ownership over cloned reference to crawler.
-async fn crawler_loop(crawler: Arc<Crawler>, save_ping_data_path: Option<std::path::PathBuf>) {
-    let save_path = save_ping_data_path.as_deref();
-    crawler.crawler_loop(save_path).await
+async fn crawler_loop(crawler: Arc<Crawler>) {
+    crawler.crawler_loop().await
 }
 
 #[derive(Debug)]
@@ -169,7 +162,7 @@ async fn reload_services(
                     *data.write().await = new_data;
                     file_stat = new_file_stat;
                     crawler
-                        .update_crawl(None)
+                        .update_crawl()
                         .await
                         .context("failed to update crawl")?;
                 }
@@ -206,7 +199,7 @@ async fn reload_services(
                     *data.write().await = new_data;
                     etag = new_etag;
                     crawler
-                        .update_crawl(None)
+                        .update_crawl()
                         .await
                         .context("failed to update crawl")?;
                 }
@@ -291,31 +284,15 @@ async fn run(cli: Cli) -> Result<()> {
             listen,
             workers: _,
             skip_wait,
-            ping_data_file,
-            save_ping_data,
-            load_ping_data,
         }) => {
             let config = Arc::new(load_config(&cli.config).context("failed to load config")?);
+            validate_reputation_config(&config)
+                .map_err(anyhow::Error::msg)
+                .context("invalid reputation configuration")?;
 
             // Check if we should skip waiting for initial ping
             let should_skip_wait = *skip_wait
                 || std::env::var("FS__SKIP_WAIT")
-                    .map(|v| v.to_lowercase() == "true")
-                    .unwrap_or(false);
-
-            // Configure ping data settings
-            let ping_data_file_path = ping_data_file
-                .clone()
-                .or_else(|| std::env::var("FS__PING_DATA_FILE").ok().map(PathBuf::from))
-                .unwrap_or_else(|| PathBuf::from("ping_data.json"));
-
-            let should_save_ping_data = *save_ping_data
-                || std::env::var("FS__SAVE_PING_DATA")
-                    .map(|v| v.to_lowercase() == "true")
-                    .unwrap_or(false);
-
-            let should_load_ping_data = *load_ping_data
-                || std::env::var("FS__LOAD_PING_DATA")
                     .map(|v| v.to_lowercase() == "true")
                     .unwrap_or(false);
 
@@ -347,32 +324,26 @@ async fn run(cli: Cli) -> Result<()> {
             };
             let regexes = Arc::new(compile_regexes(&data.read().await.services));
 
-            let crawler = Arc::new(Crawler::new(
+            let state_store = create_native_store(&config.storage)
+                .await
+                .context("failed to initialize state storage")?;
+            let crawler = Arc::new(Crawler::new_with_store(
                 data.clone(),
                 config.crawler.clone(),
                 Arc::new(ReqwestInstanceClient),
+                state_store.clone(),
             ));
 
-            // Initialize crawler based on ping data availability and skip-wait setting
-            let mut initialized_from_ping_data = false;
-            if should_load_ping_data {
-                match crawler.load_ping_data_from_file(&ping_data_file_path).await {
-                    Ok(loaded) => {
-                        if loaded {
-                            initialized_from_ping_data = true;
-                            info!(
-                                "Started server with ping data from file: {:?}",
-                                ping_data_file_path
-                            );
-                        }
-                    }
-                    Err(e) => {
-                        error!("Failed to load ping data from file: {}", e);
-                    }
-                }
-            }
+            let initialized_from_storage = match state_store
+                .load_crawl_snapshot()
+                .await
+                .context("failed to load crawler snapshot")?
+            {
+                Some(snapshot) => crawler.restore_snapshot(snapshot).await,
+                None => false,
+            };
 
-            if !initialized_from_ping_data && should_skip_wait {
+            if !initialized_from_storage && should_skip_wait {
                 // Initialize with defaults and start crawler loop in background
                 crawler.initialize_with_defaults().await;
                 info!("Starting server immediately with default data from services.json");
@@ -380,13 +351,7 @@ async fn run(cli: Cli) -> Result<()> {
             }
 
             let cloned_crawler = crawler.clone();
-            let save_ping_data_path = if should_save_ping_data {
-                Some(ping_data_file_path.clone())
-            } else {
-                None
-            };
-            let crawler_loop_handle =
-                tokio::spawn(crawler_loop(cloned_crawler, save_ping_data_path));
+            let crawler_loop_handle = tokio::spawn(crawler_loop(cloned_crawler));
 
             let reload_services_handle = tokio::spawn(reload_services_wrapper(
                 services_source,
@@ -397,22 +362,32 @@ async fn run(cli: Cli) -> Result<()> {
 
             info!("Listening on {}", listen);
 
+            let vote_protector = Arc::new(VoteProtector::default());
             let state = AppState {
                 config,
                 crawler,
                 loaded_data: data,
                 regexes,
+                state_store,
+                captcha_verifier: Arc::new(NativeCaptchaVerifier::default()),
+                vote_protector: vote_protector.clone(),
             };
+            let protection_cleanup_handle =
+                tokio::spawn(cleanup_loop(vote_protector, state.config.clone()));
             let listener = tokio::net::TcpListener::bind(listen)
                 .await
                 .context("failed to bind api listener")?;
-            axum::serve(listener, app(state))
-                .with_graceful_shutdown(shutdown_signal())
-                .await
-                .context("failed to start api server")?;
+            axum::serve(
+                listener,
+                app(state).into_make_service_with_connect_info::<SocketAddr>(),
+            )
+            .with_graceful_shutdown(shutdown_signal())
+            .await
+            .context("failed to start api server")?;
 
             reload_services_handle.abort();
             crawler_loop_handle.abort();
+            protection_cleanup_handle.abort();
         }
         None => {
             return Err(CliError::NoSubcommand)

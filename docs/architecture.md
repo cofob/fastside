@@ -6,9 +6,16 @@ flowchart TD
     Native[Native Tokio server] --> Axum
     Worker[Cloudflare Worker] --> Axum
     Axum -->|select| Crawler
+    Axum -->|batch reputation reads| StateStore[StateStore]
+    Axum -->|atomic vote| StateStore
     Native -->|periodic crawl| Crawler
+    Native --> SQLite[(SQLite)]
+    Native --> Redis[(Redis)]
+    StateStore --> SQLite
+    StateStore --> Redis
     Cron[Cloudflare Cron Trigger] --> DurableObject[Durable Object]
     DurableObject -->|two-minute crawl batches| Crawler
+    DurableObject -->|serialized votes| KV[(Workers KV)]
     Crawler -->|read| ServicesData[services.json]
     Crawler -->|liveness & latency| Instances((Instances))
     Axum -->|Shared structs| Shared[fastside-shared]
@@ -38,6 +45,8 @@ flowchart TD
 5. **Data flow**
    * `services.json` → loaded at startup → kept in sync by optional auto-reloader.
    * Crawler fills RTT & health → request handlers pick best instance per user prefs.
+   * `StateStore` saves crawler snapshots and permanent reputation totals.
+   * Native `Auto` storage uses SQLite. Redis is optional on native servers.
    * Only actualizer writes to `services.json`, main server only reads it.
 
 6. **Auto-Updater**
@@ -47,5 +56,6 @@ flowchart TD
    * A Cron Trigger starts one Durable Object.
    * The object crawls one batch every two minutes and stores its cursor and partial results.
    * Workers KV stores the last complete snapshot that the shared Axum router reads.
+   * The object serializes votes and publishes a separate reputation snapshot to KV.
 
 For a step-by-step request timeline see `api.md`.
