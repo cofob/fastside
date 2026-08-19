@@ -4279,6 +4279,8 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
