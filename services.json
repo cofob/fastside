@@ -3460,6 +3460,15 @@
           ]
         },
         {
+          "url": "https://ri.bcow.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://rimgo.4o1x5.dev/",
           "tags": [
             "clearnet",
@@ -3938,7 +3947,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
