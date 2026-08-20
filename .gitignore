@@ -1,4 +1,5 @@
 /.direnv/
+/.wrangler/
 /result*
 /*.local*
 /debug/

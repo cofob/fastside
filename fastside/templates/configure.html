@@ -24,6 +24,7 @@
   <h3>Selector Method</h3>
   <label><input type="radio" name="selector-method" value="Random" checked> Random</label>
   <label><input type="radio" name="selector-method" value="LowPing"> LowPing</label>
+  {% if reputation_enabled %}<label><input type="radio" name="selector-method" value="Weighted"> Weighted</label>{% endif %}
 </div>
 
 <div>
@@ -71,8 +72,11 @@
       renderTags('forbidden');
       renderPreferred();
       if (selectorMethod) {
-        document.querySelector('input[name="selector-method"]:checked').checked = false;
-        document.querySelector(`input[name="selector-method"][value="${selectorMethod}"]`).checked = true;
+        const selectorInput = document.querySelector(`input[name="selector-method"][value="${selectorMethod}"]`);
+        if (selectorInput) {
+          document.querySelector('input[name="selector-method"]:checked').checked = false;
+          selectorInput.checked = true;
+        }
       }
       ignoreFallbackWarning = decodedConfig.ignore_fallback_warning || false;
       document.getElementById('ignore-fallback-warning').checked = ignoreFallbackWarning;

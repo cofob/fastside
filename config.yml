@@ -9,3 +9,7 @@ default_user_config:
   - clearnet
   - https
   - ipv4
+storage:
+  backend: Auto
+reputation:
+  enabled: false
