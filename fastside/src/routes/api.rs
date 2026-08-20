@@ -1,7 +1,8 @@
 use axum::{
     Json, Router,
     extract::{FromRequest, Request, State, rejection::JsonRejection},
-    http::StatusCode,
+    http::{HeaderMap, StatusCode, header::USER_AGENT},
+    response::{IntoResponse, Response},
     routing::post,
 };
 use fastside_shared::config::UserConfig;
@@ -63,11 +64,20 @@ struct RedirectResponse {
     is_fallback: bool,
 }
 
+/// Check whether the request was made with cURL.
+fn is_curl_request(headers: &HeaderMap) -> bool {
+    headers
+        .get(USER_AGENT)
+        .and_then(|value| value.to_str().ok())
+        .is_some_and(|value| value.contains("curl"))
+}
+
 /// Get the redirect URL for a given URL
 async fn redirect(
     State(state): State<AppState>,
+    headers: HeaderMap,
     ApiJson(redirect_request): ApiJson<RedirectRequest>,
-) -> Result<Json<RedirectResponse>, RedirectApiError> {
+) -> Result<Response, RedirectApiError> {
     let loaded_data_guard = state.loaded_data.read().await;
     let (url, is_fallback) = super::redirect::find_redirect(
         &state.crawler,
@@ -79,7 +89,11 @@ async fn redirect(
     .await
     .map_err(RedirectApiError)?;
 
-    Ok(Json(RedirectResponse { url, is_fallback }))
+    if is_curl_request(&headers) {
+        Ok(url.into_response())
+    } else {
+        Ok(Json(RedirectResponse { url, is_fallback }).into_response())
+    }
 }
 
 /// Convert user config to a base64 encoded string
