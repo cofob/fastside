@@ -4130,6 +4130,14 @@
           ]
         },
         {
+          "url": "https://search.privacyredirect.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -4391,6 +4399,8 @@
         {
           "url": "https://searxng.deggo.fyi/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
