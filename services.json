@@ -267,6 +267,14 @@
           ]
         },
         {
+          "url": "https://biblioreads.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://biblioreads.mooo.com/",
           "tags": [
             "antibot",
@@ -718,6 +726,14 @@
       "source_link": "https://codeberg.org/gothub/gothub",
       "deprecated_message": null,
       "instances": [
+        {
+          "url": "https://gothub.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
         {
           "url": "https://gothub.projectsegfau.lt/",
           "tags": [
@@ -1643,6 +1659,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://lingva.lunar.icu/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
