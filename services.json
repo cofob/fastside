@@ -4230,13 +4230,6 @@
           ]
         },
         {
-          "url": "https://searx.drayko.xyz/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
           "url": "https://searx.dresden.network/",
           "tags": [
             "clearnet",
