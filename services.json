@@ -472,8 +472,6 @@
         {
           "url": "https://bw.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -732,15 +730,6 @@
             "clearnet",
             "https",
             "ipv4"
-          ]
-        },
-        {
-          "url": "https://gothub.projectsegfau.lt/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
           ]
         }
       ]
@@ -4171,6 +4160,14 @@
         },
         {
           "url": "https://search.rowie.at/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.seddens.net/",
           "tags": [
             "clearnet",
             "https",
