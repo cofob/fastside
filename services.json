@@ -1933,7 +1933,9 @@
         {
           "url": "https://nitter.kareem.one/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
