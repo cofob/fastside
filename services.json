@@ -106,20 +106,6 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://anonymousoverflow.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "http://ocp7zhdsbl2mjabv5ma5jvbzg2dqzglieayjvyj4j2r7qvsqlboa.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
           "url": "https://a.opnxng.com/",
           "tags": [
             "clearnet",
@@ -141,13 +127,6 @@
         },
         {
           "url": "https://anonoverflow.moonshadow.dev/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
-          "url": "https://anonymousoverflow.catsarch.com/",
           "tags": [
             "clearnet",
             "https"
@@ -4876,31 +4855,10 @@
       "deprecated_message": null,
       "instances": [
         {
-          "url": "http://eidq3irhlc235szbka6nn3odru3aovrxplhf4tggbz7ffam2jjiq.b32.i2p/",
-          "tags": [
-            "http",
-            "i2p"
-          ]
-        },
-        {
-          "url": "http://soprano.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
           "url": "http://tenorxfrvzsgjde6k3f64jen7fqr5mouk7qr7c3tptab5b5ohnwpniyd.onion/",
           "tags": [
             "http",
             "tor"
-          ]
-        },
-        {
-          "url": "https://soprano.catsarch.com/",
-          "tags": [
-            "clearnet",
-            "https"
           ]
         },
         {
