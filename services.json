@@ -45,23 +45,7 @@
           ]
         },
         {
-          "url": "https://4get.cynic.moe/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://4get.neco.lol/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://4get.silly.computer/",
           "tags": [
             "clearnet",
             "https",
@@ -1921,7 +1905,9 @@
         {
           "url": "https://nitter.kareem.one/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
