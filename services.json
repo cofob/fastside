@@ -1011,8 +1011,7 @@
           "url": "https://jitsi.unp.edu.ar/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -1905,7 +1904,9 @@
         {
           "url": "https://nitter.kareem.one/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4124,14 +4125,6 @@
         },
         {
           "url": "https://search.rowie.at/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.seddens.net/",
           "tags": [
             "clearnet",
             "https",
