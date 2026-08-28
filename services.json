@@ -1263,9 +1263,7 @@
           "url": "https://vc.autistici.org/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4111,6 +4109,14 @@
         },
         {
           "url": "https://search.rowie.at/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.seddens.net/",
           "tags": [
             "clearnet",
             "https",
