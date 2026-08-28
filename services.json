@@ -530,8 +530,6 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -4090,6 +4088,14 @@
           ]
         },
         {
+          "url": "https://search.privacyredirect.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -4109,14 +4115,6 @@
         },
         {
           "url": "https://search.rowie.at/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://search.seddens.net/",
           "tags": [
             "clearnet",
             "https",
@@ -4238,8 +4236,6 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
