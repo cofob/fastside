@@ -128,6 +128,17 @@
           ]
         },
         {
+          "url": "https://overflow.canine.tools/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://overflow.fascinated.cc/",
           "tags": [
             "antibot",
@@ -529,6 +540,17 @@
         {
           "url": "https://dumb.bloat.cat/",
           "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://dumb.canine.tools/",
+          "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3501,6 +3523,14 @@
           ]
         },
         {
+          "url": "https://rimgo.manerakai.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://rimgo.nohost.network/",
           "tags": [
             "clearnet",
@@ -4313,6 +4343,17 @@
           ]
         },
         {
+          "url": "https://searxng.canine.tools/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://searxng.cups.moe/",
           "tags": [
             "clearnet",
@@ -4891,6 +4932,17 @@
           "tags": [
             "http",
             "i2p"
+          ]
+        },
+        {
+          "url": "https://tent.canine.tools/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
