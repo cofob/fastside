@@ -203,6 +203,8 @@
         {
           "url": "https://biblioreads.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -313,6 +315,8 @@
         {
           "url": "https://binternet.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -530,6 +534,8 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1502,6 +1508,8 @@
         {
           "url": "https://libremdb.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1757,6 +1765,8 @@
         {
           "url": "https://mozhi.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3243,6 +3253,8 @@
         {
           "url": "https://priviblur.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3488,6 +3500,8 @@
         {
           "url": "https://rimgo.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -4236,6 +4250,8 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
