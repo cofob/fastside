@@ -4133,6 +4133,14 @@
           ]
         },
         {
+          "url": "https://search.seddens.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.serpensin.com/",
           "tags": [
             "clearnet",
@@ -4247,6 +4255,8 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
