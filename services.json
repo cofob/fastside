@@ -2941,7 +2941,8 @@
           "url": "https://search.uwabaki.party/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5281,7 +5282,8 @@
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5356,6 +5358,8 @@
         {
           "url": "https://anaimg.starbeamrainbowlabs.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6258,6 +6262,8 @@
         {
           "url": "https://search.hbubli.cc/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6294,7 +6300,8 @@
           "url": "https://search.internetsucks.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7255,7 +7262,8 @@
           "url": "https://st.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
