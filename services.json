@@ -85,6 +85,8 @@
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -633,7 +635,9 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2357,6 +2361,8 @@
         {
           "url": "https://koub.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3164,6 +3170,8 @@
         {
           "url": "https://mozhi.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5465,6 +5473,8 @@
         {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5641,6 +5651,8 @@
         {
           "url": "https://rd.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7635,6 +7647,8 @@
         {
           "url": "https://tent.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7928,6 +7942,8 @@
         {
           "url": "http://hflqp2ejxygpj6cdwo3ogfieqmxw3b56w7dblt7bor2ltwk6kcfa.b32.i2p/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "i2p"
           ]
