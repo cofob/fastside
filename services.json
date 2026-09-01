@@ -6038,6 +6038,14 @@
           ]
         },
         {
+          "url": "https://anonsearch.win/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://auth.seddens.net/?rd=https://search.seddens.net/",
           "tags": [
             "clearnet",
@@ -6423,6 +6431,14 @@
           ]
         },
         {
+          "url": "https://search.spiralab.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.undertale.uk/",
           "tags": [
             "clearnet",
@@ -6551,6 +6567,8 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6800,6 +6818,14 @@
         },
         {
           "url": "https://sx.h4rl3y.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://sx.xo.st/",
           "tags": [
             "clearnet",
             "https",
