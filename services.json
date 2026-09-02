@@ -6437,6 +6437,14 @@
           ]
         },
         {
+          "url": "https://search.seddens.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.serpensin.com/",
           "tags": [
             "clearnet",
@@ -6768,6 +6776,8 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
