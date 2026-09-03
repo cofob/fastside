@@ -85,6 +85,8 @@
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -272,6 +274,8 @@
         {
           "url": "https://ao.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -2357,6 +2361,8 @@
         {
           "url": "https://koub.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3164,6 +3170,8 @@
         {
           "url": "https://mozhi.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -4816,6 +4824,8 @@
         {
           "url": "https://pb.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5463,6 +5473,8 @@
         {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5639,6 +5651,8 @@
         {
           "url": "https://rd.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6038,6 +6052,14 @@
           ]
         },
         {
+          "url": "https://anonsearch.win/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://auth.seddens.net/?rd=https://search.seddens.net/",
           "tags": [
             "clearnet",
@@ -6423,6 +6445,14 @@
           ]
         },
         {
+          "url": "https://search.spiralab.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.undertale.uk/",
           "tags": [
             "clearnet",
@@ -6738,6 +6768,8 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -6802,6 +6834,14 @@
         },
         {
           "url": "https://sx.h4rl3y.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://sx.xo.st/",
           "tags": [
             "clearnet",
             "https",
@@ -7609,6 +7649,8 @@
         {
           "url": "https://tent.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7902,6 +7944,8 @@
         {
           "url": "http://hflqp2ejxygpj6cdwo3ogfieqmxw3b56w7dblt7bor2ltwk6kcfa.b32.i2p/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "i2p"
           ]
