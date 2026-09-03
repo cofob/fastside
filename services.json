@@ -4475,8 +4475,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -7940,8 +7939,6 @@
         {
           "url": "http://hflqp2ejxygpj6cdwo3ogfieqmxw3b56w7dblt7bor2ltwk6kcfa.b32.i2p/",
           "tags": [
-            "antibot",
-            "anubis",
             "http",
             "i2p"
           ]
