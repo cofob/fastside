@@ -3529,6 +3529,15 @@
           ]
         },
         {
+          "url": "https://piped.ducks.party/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://piped.kavin.rocks/",
           "tags": [
             "antibot",
@@ -3730,6 +3739,17 @@
         },
         {
           "url": "https://03c.de/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://0bin.ch/",
           "tags": [
             "antibot",
             "clearnet",
@@ -4284,12 +4304,8 @@
         {
           "url": "https://paste.notadjacent.net/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
