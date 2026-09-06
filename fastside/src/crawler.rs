@@ -12,7 +12,10 @@ use thiserror::Error;
 use tokio::sync::{Mutex, MutexGuard, RwLock};
 use url::Url;
 
-use crate::types::LoadedData;
+use crate::{
+    storage::{CrawlSnapshot, MemoryStateStore, StateStore},
+    types::LoadedData,
+};
 
 #[derive(Error, Debug)]
 pub enum CrawlerError {
@@ -53,14 +56,14 @@ impl std::fmt::Display for CrawledInstanceStatus {
     }
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CrawledInstance {
     pub url: Url,
     pub status: CrawledInstanceStatus,
     pub tags: Vec<String>,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CrawledService {
     pub name: String,
     pub instances: Vec<CrawledInstance>,
@@ -74,7 +77,7 @@ impl CrawledService {
     }
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CrawledServices {
     pub services: HashMap<String, CrawledService>,
     pub time: DateTime<Utc>,
@@ -246,6 +249,7 @@ pub struct Crawler {
     client: Arc<dyn InstanceClient>,
     data: RwLock<CrawledData>,
     crawler_lock: Mutex<()>,
+    state_store: Arc<dyn StateStore>,
 }
 
 impl Crawler {
@@ -254,7 +258,27 @@ impl Crawler {
         config: CrawlerConfig,
         client: Arc<dyn InstanceClient>,
     ) -> Self {
-        Self::with_data(loaded_data, config, client, CrawledData::InitialLoading)
+        Self::new_with_store(
+            loaded_data,
+            config,
+            client,
+            Arc::new(MemoryStateStore::default()),
+        )
+    }
+
+    pub fn new_with_store(
+        loaded_data: Arc<RwLock<LoadedData>>,
+        config: CrawlerConfig,
+        client: Arc<dyn InstanceClient>,
+        state_store: Arc<dyn StateStore>,
+    ) -> Self {
+        Self::with_data_and_store(
+            loaded_data,
+            config,
+            client,
+            CrawledData::InitialLoading,
+            state_store,
+        )
     }
 
     pub fn with_data(
@@ -263,43 +287,75 @@ impl Crawler {
         client: Arc<dyn InstanceClient>,
         data: CrawledData,
     ) -> Self {
+        Self::with_data_and_store(
+            loaded_data,
+            config,
+            client,
+            data,
+            Arc::new(MemoryStateStore::default()),
+        )
+    }
+
+    pub fn with_data_and_store(
+        loaded_data: Arc<RwLock<LoadedData>>,
+        config: CrawlerConfig,
+        client: Arc<dyn InstanceClient>,
+        data: CrawledData,
+        state_store: Arc<dyn StateStore>,
+    ) -> Self {
         Self {
             loaded_data,
             config: Arc::new(config),
             client,
             data: RwLock::new(data),
             crawler_lock: Mutex::new(()),
+            state_store,
         }
     }
 
-    #[cfg(feature = "native")]
-    pub async fn save_ping_data_to_file(
-        &self,
-        file_path: &std::path::Path,
-    ) -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-        let data = self.data.read().await;
-        if let Some(crawled_services) = data.get_services() {
-            let json = serde_json::to_string_pretty(crawled_services)?;
-            tokio::fs::write(file_path, json).await?;
-            debug!("Saved ping data to file: {file_path:?}");
+    pub async fn restore_snapshot(&self, snapshot: CrawlSnapshot) -> bool {
+        let loaded_data = self.loaded_data.read().await;
+        let mut restored_count = 0;
+        let services = loaded_data
+            .services
+            .iter()
+            .map(|(name, service)| {
+                let stored = snapshot.crawled_services.services.get(name);
+                let instances = service
+                    .instances
+                    .iter()
+                    .filter_map(|instance| {
+                        let stored_instance = stored?
+                            .instances
+                            .iter()
+                            .find(|stored_instance| stored_instance.url == instance.url)?;
+                        restored_count += 1;
+                        Some(CrawledInstance {
+                            url: instance.url.clone(),
+                            status: stored_instance.status.clone(),
+                            tags: instance.tags.clone(),
+                        })
+                    })
+                    .collect();
+                (
+                    name.clone(),
+                    CrawledService {
+                        name: name.clone(),
+                        instances,
+                    },
+                )
+            })
+            .collect();
+        drop(loaded_data);
+        if restored_count == 0 {
+            return false;
         }
-        Ok(())
-    }
-
-    #[cfg(feature = "native")]
-    pub async fn load_ping_data_from_file(
-        &self,
-        file_path: &std::path::Path,
-    ) -> Result<bool, Box<dyn std::error::Error + Send + Sync>> {
-        if !file_path.exists() {
-            return Ok(false);
-        }
-
-        let content = tokio::fs::read_to_string(file_path).await?;
-        let crawled_services = serde_json::from_str(&content)?;
-        *self.data.write().await = CrawledData::InitializedFromDefaults(crawled_services);
-        info!("Loaded ping data from file: {file_path:?}");
-        Ok(true)
+        *self.data.write().await = CrawledData::CrawledServices(CrawledServices {
+            services,
+            time: snapshot.crawled_services.time,
+        });
+        info!("Restored {restored_count} instance statuses from storage");
+        true
     }
 
     pub async fn initialize_with_defaults(&self) {
@@ -445,10 +501,18 @@ impl Crawler {
                 .push(crawled_instance);
         }
 
-        *self.data.write().await = CrawledData::CrawledServices(CrawledServices {
+        let crawled_services = CrawledServices {
             services: crawled_services,
             time: Utc::now(),
-        });
+        };
+        *self.data.write().await = CrawledData::CrawledServices(crawled_services.clone());
+        if let Err(error) = self
+            .state_store
+            .save_crawl_snapshot(&CrawlSnapshot { crawled_services })
+            .await
+        {
+            error!("Failed to save crawler snapshot: {error}");
+        }
         debug!("Finished crawl");
         drop(crawler_guard);
         Ok(())
@@ -459,31 +523,18 @@ impl Crawler {
     }
 
     #[cfg(feature = "native")]
-    pub async fn update_crawl(
-        &self,
-        save_ping_data: Option<&std::path::Path>,
-    ) -> Result<(), CrawlerError> {
+    pub async fn update_crawl(&self) -> Result<(), CrawlerError> {
         let crawler_guard = self.crawler_lock.lock().await;
         self.data.write().await.make_reloading();
-        self.crawl(Some(crawler_guard)).await?;
-        if let Some(file_path) = save_ping_data
-            && let Err(error) = self.save_ping_data_to_file(file_path).await
-        {
-            error!("Failed to save ping data to file: {error}");
-        }
-        Ok(())
+        self.crawl(Some(crawler_guard)).await
     }
 
     #[cfg(feature = "native")]
-    pub async fn crawler_loop(&self, save_ping_data: Option<&std::path::Path>) {
+    pub async fn crawler_loop(&self) {
         loop {
             debug!("Starting crawl");
             if let Err(error) = self.crawl_once().await {
                 error!("Error occurred during crawl loop: {error}");
-            } else if let Some(file_path) = save_ping_data
-                && let Err(error) = self.save_ping_data_to_file(file_path).await
-            {
-                error!("Failed to save ping data to file: {error}");
             }
             debug!("Next crawl will start in {:?}", self.config.ping_interval);
             tokio::time::sleep(self.config.ping_interval).await;

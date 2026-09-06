@@ -7,7 +7,9 @@ use fastside_shared::{
 use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
 
-use crate::crawler::Crawler;
+use crate::{
+    captcha::CaptchaVerifier, crawler::Crawler, reputation::VoteProtector, storage::StateStore,
+};
 
 pub struct CompiledRegexSearch {
     pub regex: regex::Regex,
@@ -29,6 +31,9 @@ pub struct AppState {
     pub crawler: Arc<Crawler>,
     pub loaded_data: Arc<RwLock<LoadedData>>,
     pub regexes: Arc<Regexes>,
+    pub state_store: Arc<dyn StateStore>,
+    pub captcha_verifier: Arc<dyn CaptchaVerifier>,
+    pub vote_protector: Arc<VoteProtector>,
 }
 
 pub fn compile_regexes(services: &ServicesData) -> Regexes {

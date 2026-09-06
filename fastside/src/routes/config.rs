@@ -21,6 +21,7 @@ pub fn router() -> Router<AppState> {
 #[template(path = "configure.html")]
 pub struct ConfigureTemplate<'a> {
     current_config: &'a str,
+    reputation_enabled: bool,
 }
 
 async fn configure_page(
@@ -32,6 +33,7 @@ async fn configure_page(
 
     let template = ConfigureTemplate {
         current_config: &user_config.to_config_string()?,
+        reputation_enabled: state.config.reputation.enabled,
     };
 
     Ok(axum::response::Html(

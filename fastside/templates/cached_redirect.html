@@ -4,18 +4,31 @@
 
 {% block head %}
 <script>
-  let instances = [{% for instance in urls %}"{{ instance }}", {% endfor %}];
+  const instances = {{ instances_json }};
   {% match select_method %}
   {% when SelectMethod::Random %}
   console.log("Random selector")
   let randomIndex = Math.floor(Math.random() * instances.length);
-  let entry = instances[randomIndex];
+  let entry = instances[randomIndex]?.url;
   {% when SelectMethod::LowPing %}
   console.log("LowPing selector")
-  let entry = instances[0];
+  let entry = instances[0]?.url;
+  {% when SelectMethod::Weighted %}
+  console.log("Weighted selector")
+  const totalWeight = instances.reduce((sum, instance) => sum + instance.weight, 0);
+  let targetWeight = Math.random() * totalWeight;
+  let entry;
+  for (const instance of instances) {
+    if (targetWeight < instance.weight) {
+      entry = instance.url;
+      break;
+    }
+    targetWeight -= instance.weight;
+  }
+  entry ??= instances.at(-1)?.url;
   {% else %}
   console.log("Unknown selector. Using first instance.")
-  let entry = instances[0];
+  let entry = instances[0]?.url;
   {% endmatch %}
   if (entry == undefined) {
     alert("No instances available");
@@ -34,6 +47,15 @@
 <h1>Redirecting...</h1>
 <h3>Online instances</h3>
 <ul>
-  {% for instance in urls %}<li><a href="{{ instance }}">{{ instance }}</a></li>{% endfor %}
+  <script>
+    for (const instance of instances) {
+      const item = document.createElement("li");
+      const link = document.createElement("a");
+      link.href = instance.url;
+      link.textContent = instance.url;
+      item.appendChild(link);
+      document.currentScript.parentElement.insertBefore(item, document.currentScript);
+    }
+  </script>
 </ul>
 {% endblock %}

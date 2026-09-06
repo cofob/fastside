@@ -16,24 +16,29 @@ The crawler keeps a near-real-time view of instance availability.
    * `InvalidStatusCode`, `TimedOut`, `StringNotFound`, … – see enum.
 4. Aggregate per-service → `CrawledServices` snapshot.
 5. Store in `RwLock<CrawledData>` so request handlers can read without blocking.
-6. Optionally write RTT table to `ping_data.json` (flags `--save-ping-data/--load-ping-data`).
+6. Save the complete snapshot through the configured state store.
 
 ## Instance selection
 
 Redirect logic prefers instances with:
 
 1. All **required tags** AND NONE of **forbidden tags** from `UserConfig`.
-2. If `select_method = LowPing` – sorted by lowest RTT.
-3. Otherwise random among healthy instances.
-4. If none match → fall back to defined fallback in `services.json` (with warning page).
+2. Apply the preferred-instance list when a preferred instance is healthy.
+3. Use the selected method:
+   * `LowPing` selects the lowest RTT.
+   * `Random` selects a random instance.
+   * `Weighted` uses bounded instance reputation weights.
+4. If none match, use the fallback in `services.json` with the warning page.
 
 ## Persistence
 
-The crawler can persist its latest snapshot to disk to avoid a cold-start:
+The crawler always uses the configured state store. `Auto` uses SQLite at
+`fastside.sqlite3` on a native server. Redis is optional. On Cloudflare, the
+Durable Object keeps partial crawl state and Workers KV serves the last complete
+snapshot. Fastside loads stored state at startup and ignores stored instances
+that are not in the current services source.
 
-```
-fastside serve --save-ping-data --load-ping-data --ping-data-file ping_data.json
-```
+The old ping JSON save and load options no longer exist.
 
 ## Domain overrides
 

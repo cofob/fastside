@@ -68,18 +68,22 @@ async fn redirect(
     State(state): State<AppState>,
     ApiJson(redirect_request): ApiJson<RedirectRequest>,
 ) -> Result<Json<RedirectResponse>, RedirectApiError> {
-    let loaded_data_guard = state.loaded_data.read().await;
-    let (url, is_fallback) = super::redirect::find_redirect(
+    let target = super::redirect::find_redirect(
         &state.crawler,
-        &loaded_data_guard,
+        &state.loaded_data,
         &state.regexes,
         &redirect_request.config,
+        &state.config.reputation,
+        state.state_store.as_ref(),
         &redirect_request.url,
     )
     .await
     .map_err(RedirectApiError)?;
 
-    Ok(Json(RedirectResponse { url, is_fallback }))
+    Ok(Json(RedirectResponse {
+        url: target.url,
+        is_fallback: target.is_fallback,
+    }))
 }
 
 /// Convert user config to a base64 encoded string

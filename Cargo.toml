@@ -15,7 +15,7 @@ rust-version = "1.97"
 anyhow = "1.0.104"
 askama = "0.16.0"
 async-trait = "0.1.92"
-axum = { version = "0.8.9", default-features = false, features = ["json"] }
+axum = { version = "0.8.9", default-features = false, features = ["form", "json", "macros", "query"] }
 base64ct = { version = "1.8.3", features = ["alloc"] }
 bytes = "1.12.1"
 chrono = { version = "0.4.45", features = ["serde"] }
@@ -42,12 +42,14 @@ ipnet = "2.12.1"
 log = "0.4.33"
 pretty_env_logger = "0.5.0"
 regex = "1.13.1"
+redis = { version = "0.32.7", default-features = false, features = ["aio", "connection-manager", "tokio-comp", "tokio-rustls-comp"] }
 reqwest = { version = "0.13.4", default-features = false }
 ring = { version = "0.17.14", default-features = false }
 rustls = { version = "0.23.43", default-features = false }
 rustls-pki-types = { version = "1.15.1", features = ["web"] }
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = "1.0.151"
+sqlx = { version = "0.8.6", default-features = false, features = ["runtime-tokio", "sqlite"] }
 thiserror = "2.0.20"
 time = "0.3.55"
 tokio = { version = "1.53.1", default-features = false }

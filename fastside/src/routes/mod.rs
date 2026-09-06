@@ -17,6 +17,7 @@ pub fn router() -> Router<AppState> {
         .merge(index::router())
         .merge(config::router())
         .merge(api::router())
+        .merge(crate::reputation::router())
         .merge(redirect::router())
         .layer(middleware::from_fn(log_request))
 }

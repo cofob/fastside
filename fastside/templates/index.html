@@ -37,11 +37,44 @@
     <ul>
       {% let instances = crawled_service.instances|sort_crawled_instances %}
       {% for instance in instances %}
+      {% let reputation = reputations|instance_reputation(instance.url) %}
       <li>
         <a href="{{ instance.url }}">{{ instance.url }}</a> <span>Status:
           <code>{{ instance.status }}</code></span> <span>Tags: {% for tag in instance.tags %}{% if loop.index != 1 %},
           {% endif %}
           <code>{{ tag }}</code>{% endfor %}</span>
+        {% if reputation_enabled %}
+        <span>Reputation: <code>+{{ reputation.upvotes }}</code> <code>-{{ reputation.downvotes }}</code></span>
+        {% if captcha_enabled %}
+        <form action="/reputation/vote" method="get" style="display: inline">
+          <input type="hidden" name="instance" value="{{ instance.url }}">
+          <input type="hidden" name="direction" value="up">
+          <input type="hidden" name="return_to" value="/#{{ crawled_service.name }}">
+          <button type="submit" aria-label="Upvote {{ instance.url }}">[+]</button>
+        </form>
+        <form action="/reputation/vote" method="get" style="display: inline">
+          <input type="hidden" name="instance" value="{{ instance.url }}">
+          <input type="hidden" name="direction" value="down">
+          <input type="hidden" name="return_to" value="/#{{ crawled_service.name }}">
+          <button type="submit" aria-label="Downvote {{ instance.url }}">[-]</button>
+        </form>
+        {% else %}
+        <form action="/reputation/vote" method="post" style="display: inline">
+          <input type="hidden" name="instance" value="{{ instance.url }}">
+          <input type="hidden" name="direction" value="up">
+          <input type="hidden" name="return_to" value="/#{{ crawled_service.name }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" aria-label="Upvote {{ instance.url }}">[+]</button>
+        </form>
+        <form action="/reputation/vote" method="post" style="display: inline">
+          <input type="hidden" name="instance" value="{{ instance.url }}">
+          <input type="hidden" name="direction" value="down">
+          <input type="hidden" name="return_to" value="/#{{ crawled_service.name }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" aria-label="Downvote {{ instance.url }}">[-]</button>
+        </form>
+        {% endif %}
+        {% endif %}
       </li>
       {% endfor %}
     </ul>

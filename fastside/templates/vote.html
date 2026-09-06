@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Vote on an instance{% endblock %}
+
+{% block content %}
+<h1>Vote on an instance</h1>
+<p>Instance: <code>{{ instance }}</code></p>
+<form action="/reputation/vote" method="post">
+  <input type="hidden" name="instance" value="{{ instance }}">
+  <input type="hidden" name="direction" value="{{ direction }}">
+  <input type="hidden" name="return_to" value="{{ return_to }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  {{ widget_html|safe }}
+  <button type="submit">Submit {{ direction }}vote</button>
+</form>
+<p><a href="{{ return_to }}">Cancel</a></p>
+{% endblock %}

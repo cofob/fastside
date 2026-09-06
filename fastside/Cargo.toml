@@ -15,7 +15,8 @@ native = [
   "dep:anyhow",
   "dep:clap",
   "dep:reqwest",
-  "dep:serde_json",
+  "dep:redis",
+  "dep:sqlx",
   "fastside-shared/native",
   "reqwest/http2",
   "reqwest/rustls",
@@ -40,11 +41,15 @@ clap = { workspace = true, optional = true }
 cookie.workspace = true
 fastrand.workspace = true
 futures.workspace = true
+getrandom.workspace = true
+ipnet.workspace = true
 log.workspace = true
 regex.workspace = true
 reqwest = { workspace = true, optional = true }
+redis = { workspace = true, optional = true }
 serde.workspace = true
-serde_json = { workspace = true, optional = true }
+serde_json.workspace = true
+sqlx = { workspace = true, optional = true }
 thiserror.workspace = true
 time.workspace = true
 tokio = { workspace = true, features = ["sync"] }

@@ -13,6 +13,7 @@ This `docs/` directory groups concise, task-oriented guides:
 * `configuration.md` – runtime options (files, ENV, CLI)
 * `actualizer.md` – keeping `services.json` up-to-date
 * `crawler.md` – how liveness/latency checks work
+* `reputation.md` – optional voting, storage, CAPTCHA, and IP controls
 * `api.md` – HTTP endpoints
 * `user-config.md` – per-user preferences cookie
 * `services-file.md` – `services.json` format & tags

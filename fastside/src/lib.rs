@@ -1,10 +1,13 @@
 //! Shared Fastside HTTP application.
 
+pub mod captcha;
 pub mod crawler;
 mod errors;
 mod filters;
+pub mod reputation;
 mod routes;
 mod search;
+pub mod storage;
 pub mod types;
 mod utils;
 

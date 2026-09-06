@@ -42,9 +42,14 @@ docker pull ghcr.io/cofob/fastside:latest
 docker run -d --name fastside \
   -p 8080:8080 \
   -v $PWD/config.yml:/config.yml:ro \
+  -v $PWD/fastside-data:/data \
   ghcr.io/cofob/fastside:latest \
   --config /config.yml serve --listen 0.0.0.0:8080
 ```
+
+For this volume example, set `storage.sqlite.path` to
+`/data/fastside.sqlite3`. This keeps crawler and reputation data after a
+container restart.
 
 ### Docker Compose
 
@@ -59,6 +64,7 @@ services:
     volumes:
       - ./services.json:/services.json:ro
       - ./config.yml:/config.yml:ro
+      - ./fastside-data:/data
     command: [
       "--config", "/config.yml",
       "serve",
@@ -101,7 +107,6 @@ WantedBy=multi-user.target
 |------|---------|
 | `FS__LOG` | `error`, `warn`, `info` *(default)*, `debug`, `trace` |
 | `FS__SKIP_WAIT` | Start immediately without initial crawl |
-| `FS__PING_DATA_FILE` | Path to ping data snapshot |
 
 Any config field can be overridden – see `configuration.md`. 
 
@@ -112,8 +117,11 @@ Run `fastside validate --services services.json` to ensure schema correctness.
 The Worker uses the same Axum routes and redirect logic as the native server.
 A Cron Trigger starts one Durable Object. Its alarm runs every two minutes and
 checks 20 instances at a time. The object stores the cursor and partial results.
-Workers KV stores only the last complete crawler snapshot. A failed batch does
-not advance the cursor, so the next alarm repeats that batch.
+Workers KV stores the last complete crawler snapshot. A failed batch does not
+advance the cursor, so the next alarm repeats that batch. The Durable Object is
+also the authoritative writer for reputation votes. It publishes reputation
+snapshots to a separate KV key. KV reads can lag, but accepted vote increments
+are not lost.
 
 ```bash
 nix develop
@@ -138,6 +146,10 @@ need a different services source or default configuration. Set
 `FASTSIDE_CRAWL_BATCH_SIZE` from 1 to 40 to change the batch size. The default of
 20 leaves capacity below the free-plan limit of 50 external subrequests per
 invocation.
+
+Use `storage.backend: Auto` or `Cloudflare` in Worker configuration. Redis and
+native IP vote controls are not supported on Workers. CAPTCHA verification is
+supported.
 
 The Worker supports `http://`, `https://`, `socks5://`, and `socks5h://`
 crawler proxies. It uses the same tag matching and optional basic

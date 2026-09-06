@@ -55,7 +55,7 @@ crawler:
   internal_port = 8080 # The port your app listens on inside the container
   processes = ["app"]  # This service runs the 'app' process defined above
 
-  # Machines can be stopped and started automatically because of the ping data file.
+  # Machines can be stopped and started automatically because SQLite keeps crawler state.
   auto_stop_machines = "suspend"
   auto_start_machines = true
   min_machines_running = 1

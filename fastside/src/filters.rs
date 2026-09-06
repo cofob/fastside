@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use crate::crawler::{CrawledInstance, CrawledService};
+use crate::storage::InstanceReputation;
 
 #[askama::filter_fn]
 pub fn sort_crawled_instances(
@@ -20,4 +21,13 @@ pub fn sort_crawled_services<'a>(
     let mut new = l.iter().collect::<Vec<_>>();
     new.sort_by(|a, b| a.1.name.cmp(&b.1.name));
     Ok(new.to_owned())
+}
+
+#[askama::filter_fn]
+pub fn instance_reputation(
+    reputations: &HashMap<String, InstanceReputation>,
+    _env: &dyn askama::Values,
+    url: &url::Url,
+) -> askama::Result<InstanceReputation> {
+    Ok(reputations.get(url.as_str()).copied().unwrap_or_default())
 }

@@ -7,7 +7,7 @@ The cookie stores a JSON-serialised `fastside_shared::config::UserConfig` struct
 |-------|------|---------|---------|
 | `required_tags` | `Vec<String>` | `["clearnet", "https", "ipv4"]` | Instance must contain **all** listed tags. |
 | `forbidden_tags` | `Vec<String>` | `[]` | Instance must contain **none** of these tags. |
-| `select_method` | `"Random" ⟋ "LowPing"` | `Random` | Pick random healthy instance or lowest RTT. |
+| `select_method` | `"Random"`, `"LowPing"`, or `"Weighted"` | `Random` | Pick a random instance, the lowest RTT, or use reputation weights. |
 | `ignore_fallback_warning` | `bool` | `false` | Suppress 15-second warning when falling back to untagged instance. |
 | `preferred_instances` | `Vec<String>` | `[]` | Absolute URLs that are tried **first** if alive. |
 
@@ -24,6 +24,11 @@ curl -X POST http://localhost:8080/api/v1/make_user_config_string \
 # In browser console (raw base64 encoding)
 btoa(JSON.stringify({ required_tags:["https"] }))
 ```
+
+`Weighted` is available on the Configure page when the operator enables
+instance reputation. It uses `(upvotes + 1) / (downvotes + 1)`, limited by the
+operator's minimum and maximum weights. If reputation is disabled or its store
+cannot be read, Fastside uses random selection.
 
 To decode:
 ```bash

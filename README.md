@@ -42,6 +42,7 @@ bottlenecks and rate-limiting.
 - [x] Automatic update of services list.
 - [x] API.
 - [x] Native and serverless deployment with the same Axum routes.
+- [x] Optional instance reputation and weighted redirects.
 
 ## Demo
 
