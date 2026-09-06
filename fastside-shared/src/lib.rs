@@ -1,4 +1,7 @@
 #[cfg(feature = "native")]
+pub mod anubis;
+pub mod captcha;
+#[cfg(feature = "native")]
 pub mod client_builder;
 pub mod config;
 pub mod errors;

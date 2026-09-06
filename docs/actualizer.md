@@ -35,3 +35,23 @@ The utility respects the same `config.yml` (for proxy settings and crawler timeo
 7. Write back sorted & pretty-printed `services.json`.
 
 Run it periodically (cron/GitHub Action) and commit the updated file so the server does not have to guess.
+
+## Anubis probes
+
+The actualizer and native crawler automatically solve `fast`, `slow`, `sha256`,
+`argon2id`, `hashx`, `metarefresh`, and `preact` challenges. Cloudflare Workers
+uses a [remote solver](deployment.md#remote-captcha-solver).
+
+Probes reuse saved cookies and solve again when needed. They use the same proxy
+and user agent throughout, then check the service HTTP status and search string.
+Proof calculations have a 10-second limit, with at most two running at once.
+
+To check instances tagged `anubis` without changing the catalogue or ping history:
+
+```sh
+cargo run -p fastside-shared --release --example probe_anubis -- services.json report.json
+```
+
+Optional arguments after `report.json` select a configuration file and the
+number of probes per instance (default: 1). The report records challenge
+completion, session reuse, and service availability.

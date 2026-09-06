@@ -1,5 +1,6 @@
 #![cfg(target_arch = "wasm32")]
 
+mod anubis;
 mod proxy;
 
 use std::{
@@ -17,26 +18,23 @@ use chrono::Utc;
 use fastside::{
     app,
     crawler::{
-        CrawledData, CrawledInstanceStatus, CrawledService, CrawledServices, Crawler, CrawlerError,
-        InstanceClient, InstanceRequest, InstanceResponse, select_instance_batch,
-        should_read_response_body,
+        CrawledData, CrawledService, CrawledServices, Crawler, CrawlerError, InstanceClient,
+        InstanceRequest, select_instance_batch,
     },
     types::{AppState, LoadedData, compile_regexes},
 };
 use fastside_shared::{
     config::{AppConfig, CrawlerConfig, ProxyData, select_proxy},
-    request_headers::REQUEST_HEADERS,
     serde_types::{Instance, Service as FastsideService, ServicesData, StoredData},
 };
-use futures::{future::Either, pin_mut};
 use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
 use tower_service::Service as _;
 use url::Url;
 use worker::{
-    AbortController, Context, Date, Delay, DurableObject, Env, Fetch, Headers, HttpRequest,
-    Request as WorkerRequest, RequestInit, RequestRedirect, Response as WorkerResponse, Result,
-    ScheduleContext, ScheduledEvent, State as DurableObjectState, console_error, event,
+    Context, DurableObject, Env, Fetch, HttpRequest, Request as WorkerRequest,
+    Response as WorkerResponse, Result, ScheduleContext, ScheduledEvent,
+    State as DurableObjectState, console_error, event,
 };
 
 const CONFIG_VARIABLE: &str = "FASTSIDE_CONFIG";
@@ -109,8 +107,24 @@ impl CrawlState {
     }
 }
 
-#[derive(Debug, Default)]
-struct CloudflareInstanceClient;
+struct CloudflareInstanceClient {
+    solver: Option<anubis::RemoteSolver>,
+}
+
+impl std::fmt::Debug for CloudflareInstanceClient {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("CloudflareInstanceClient")
+            .field("remote_solver", &self.solver.is_some())
+            .finish()
+    }
+}
+impl CloudflareInstanceClient {
+    fn new(env: &Env) -> Result<Self> {
+        Ok(Self {
+            solver: anubis::RemoteSolver::from_env(env)?,
+        })
+    }
+}
 
 #[async_trait(?Send)]
 impl InstanceClient for CloudflareInstanceClient {
@@ -122,72 +136,16 @@ impl InstanceClient for CloudflareInstanceClient {
         instance: &Instance,
         test_url: Url,
     ) -> std::result::Result<InstanceRequest, CrawlerError> {
-        if let Some(proxy) = select_proxy(proxies, &instance.tags) {
-            return proxy::request(proxy, config, service, instance, test_url).await;
-        }
-
-        let headers = Headers::new();
-        for (name, value) in REQUEST_HEADERS {
-            headers
-                .set(name, value)
-                .map_err(|error| CrawlerError::Request(error.to_string()))?;
-        }
-
-        let redirect = if service.follow_redirects {
-            RequestRedirect::Follow
-        } else {
-            RequestRedirect::Manual
-        };
-        let mut init = RequestInit::new();
-        init.with_headers(headers).with_redirect(redirect);
-        let request = WorkerRequest::new_with_init(test_url.as_str(), &init)
-            .map_err(|error| CrawlerError::Request(error.to_string()))?;
         let timeout =
             config.get_domain_timeout(instance.url.host_str().expect("instance URL has a host"));
-        let controller = AbortController::default();
-        let signal = controller.signal();
-        let fetch = Fetch::Request(request);
-        let response = fetch.send_with_signal(&signal);
-        let delay = Delay::from(timeout);
-        pin_mut!(response, delay);
-
-        let start = Date::now().as_millis();
-        let mut response = match futures::future::select(response, delay).await {
-            Either::Left((Ok(response), _)) => response,
-            Either::Left((Err(_), _)) => {
-                return Ok(InstanceRequest::Failed(CrawledInstanceStatus::RequestError));
-            }
-            Either::Right(((), _)) => {
-                controller.abort();
-                return Ok(InstanceRequest::Failed(CrawledInstanceStatus::TimedOut));
-            }
-        };
-        let duration = Duration::from_millis(Date::now().as_millis().saturating_sub(start));
-        let status_code = response.status_code();
-        let body = if should_read_response_body(service, instance, status_code) {
-            let body = response.text();
-            let delay = Delay::from(timeout);
-            pin_mut!(body, delay);
-            match futures::future::select(body, delay).await {
-                Either::Left((Ok(body), _)) => Some(body),
-                Either::Left((Err(error), _)) => {
-                    controller.abort();
-                    return Err(CrawlerError::Request(error.to_string()));
-                }
-                Either::Right(((), _)) => {
-                    controller.abort();
-                    return Err(CrawlerError::Request("response body timed out".to_owned()));
-                }
-            }
-        } else {
-            controller.abort();
-            None
-        };
-        Ok(InstanceRequest::Response(InstanceResponse {
-            status_code,
-            duration,
-            body,
-        }))
+        anubis::request(
+            self.solver.as_ref(),
+            select_proxy(proxies, &instance.tags),
+            test_url,
+            service.follow_redirects,
+            timeout,
+        )
+        .await
     }
 }
 
@@ -222,7 +180,7 @@ async fn load_state(env: &Env) -> Result<AppState> {
     let crawler = Arc::new(Crawler::with_data(
         loaded_data.clone(),
         config.crawler.clone(),
-        Arc::new(CloudflareInstanceClient),
+        Arc::new(CloudflareInstanceClient::new(env)?),
         snapshot.crawled_data,
     ));
     Ok(AppState {
@@ -265,7 +223,12 @@ fn batch_size(env: &Env) -> Result<usize> {
             "{BATCH_SIZE_VARIABLE} must be between 1 and {MAX_BATCH_SIZE}"
         )));
     }
-    Ok(value)
+    // A challenged probe needs a remote call and two extra target requests.
+    Ok(if env.var("FASTSIDE_CAPTCHA_SOLVER_URL").is_ok() {
+        value.min(8)
+    } else {
+        value
+    })
 }
 
 async fn load_services(env: &Env, config: &AppConfig) -> Result<LoadedData> {
@@ -288,7 +251,7 @@ async fn default_snapshot(loaded_data: LoadedData, config: &AppConfig) -> Snapsh
     let crawler = Crawler::new(
         shared_data,
         config.crawler.clone(),
-        Arc::new(CloudflareInstanceClient),
+        Arc::new(CloudflareInstanceClient { solver: None }),
     );
     crawler.initialize_with_defaults().await;
     let crawled_data = crawler.read().await.clone();
@@ -298,7 +261,12 @@ async fn default_snapshot(loaded_data: LoadedData, config: &AppConfig) -> Snapsh
     }
 }
 
-async fn crawl_batch(state: &mut CrawlState, config: &AppConfig, limit: usize) -> Result<()> {
+async fn crawl_batch(
+    state: &mut CrawlState,
+    config: &AppConfig,
+    limit: usize,
+    env: &Env,
+) -> Result<()> {
     let (services, count) =
         select_instance_batch(&state.loaded_data.services, state.next_instance, limit);
     if count == 0 {
@@ -310,10 +278,15 @@ async fn crawl_batch(state: &mut CrawlState, config: &AppConfig, limit: usize) -
         proxies: state.loaded_data.proxies.clone(),
         default_user_config: state.loaded_data.default_user_config.clone(),
     };
+    let instance_client = CloudflareInstanceClient::new(env)?;
+    let mut crawler_config = config.crawler.clone();
+    if instance_client.solver.is_some() {
+        crawler_config.max_concurrent_requests = crawler_config.max_concurrent_requests.min(2);
+    }
     let crawler = Crawler::new(
         Arc::new(RwLock::new(loaded_data)),
-        config.crawler.clone(),
-        Arc::new(CloudflareInstanceClient),
+        crawler_config,
+        Arc::new(instance_client),
     );
     crawler
         .crawl_once()
@@ -365,7 +338,7 @@ async fn update_snapshot(object_state: &DurableObjectState, env: &Env) -> Result
         return Ok(());
     }
 
-    crawl_batch(&mut state, &config, batch_size(env)?).await?;
+    crawl_batch(&mut state, &config, batch_size(env)?, env).await?;
     if state.is_complete() {
         kv.put(SNAPSHOT_KEY, serde_json::to_string(&state.snapshot())?)?
             .execute()

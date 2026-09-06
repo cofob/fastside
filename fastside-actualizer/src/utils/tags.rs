@@ -1,4 +1,5 @@
 use anyhow::Result;
+use fastside_shared::client_builder::ProbeClient;
 use hickory_resolver::{
     Resolver,
     config::{GOOGLE, ResolverConfig},
@@ -6,10 +7,7 @@ use hickory_resolver::{
     proto::rr::{RData, RecordType},
 };
 use ipnet::Ipv6Net;
-use reqwest::{
-    Client,
-    header::{HeaderMap, SERVER, SET_COOKIE},
-};
+use reqwest::header::{HeaderMap, SERVER, SET_COOKIE};
 use url::Url;
 
 const AUTO_TAGS: [&str; 12] = [
@@ -60,15 +58,20 @@ fn get_response_tags(headers: &HeaderMap, is_hidden: bool) -> Result<Vec<String>
     Ok(tags)
 }
 
-async fn get_network_tags(client: Client, url: Url) -> Result<Vec<String>> {
+async fn get_network_tags(client: ProbeClient, url: Url) -> Result<Vec<String>> {
     let is_hidden = if let Some(domain) = url.domain() {
         HIDDEN_DOMAINS.iter().any(|d| domain.ends_with(d))
     } else {
         false
     };
 
-    let response = client.get(url).send().await?;
-    get_response_tags(response.headers(), is_hidden)
+    let (response, authenticated) = client.inspect(url).await?;
+    let mut tags = get_response_tags(response.headers(), is_hidden)?;
+    // A valid saved cookie can hide the challenge headers on later probes.
+    if authenticated {
+        tags.extend(["anubis".to_owned(), "antibot".to_owned()]);
+    }
+    Ok(tags)
 }
 
 fn is_ygg(ip: &std::net::Ipv6Addr) -> bool {
@@ -201,7 +204,7 @@ fn get_url_tags(url: &Url) -> Vec<String> {
 /// Update instance tags.
 ///
 /// This function updates instance tags based on URL, network and DNS information.
-pub async fn update_instance_tags(client: Client, url: Url, tags: &[String]) -> Vec<String> {
+pub async fn update_instance_tags(client: ProbeClient, url: Url, tags: &[String]) -> Vec<String> {
     let mut tags = tags.to_owned();
 
     // Actualize auto tags

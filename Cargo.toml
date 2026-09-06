@@ -4,6 +4,7 @@ members = [
   "fastside-actualizer",
   "fastside-cloudflare",
   "fastside-shared",
+  "fastside-captcha-solver",
 ]
 resolver = "3"
 
