@@ -1545,8 +1545,7 @@
           "url": "https://hyperpipe.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -3512,9 +3511,12 @@
         {
           "url": "https://drgns.space/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3666,8 +3668,7 @@
           "url": "https://pixivfe.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5206,8 +5207,7 @@
           "url": "https://quetre.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5755,8 +5755,7 @@
           "url": "https://safetwitch.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7816,8 +7815,7 @@
           "url": "https://twineo.drgns.space/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
