@@ -1,0 +1,19 @@
+[package]
+name = "fastside-captcha-solver"
+version = "0.1.0"
+edition.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+fastside-shared = { path = "../fastside-shared" }
+anyhow.workspace = true
+axum = { workspace = true, features = ["tokio", "http1"] }
+clap.workspace = true
+serde_json.workspace = true
+subtle = "2.6.1"
+tokio = { workspace = true, features = ["net", "signal", "macros", "rt-multi-thread", "sync"] }
+
+[dev-dependencies]
+async-trait.workspace = true
+tower-service.workspace = true
+http-body-util.workspace = true

@@ -12,6 +12,7 @@ crate-type = ["cdylib", "rlib"]
 fastside = { path = "../fastside", default-features = false }
 fastside-shared = { path = "../fastside-shared", default-features = false }
 
+cookie_store = { version = "0.22.1", default-features = false, features = ["wasm-bindgen"] }
 async-trait.workspace = true
 axum.workspace = true
 base64ct.workspace = true

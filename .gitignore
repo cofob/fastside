@@ -9,3 +9,6 @@
 /fastside-cloudflare/build/
 /fastside-cloudflare/node_modules/
 /ping_data.json
+
+/fastside-cloudflare/.dev.vars*
+/fastside-cloudflare/tests/__pycache__/

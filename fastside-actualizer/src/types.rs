@@ -29,5 +29,10 @@ pub trait ServiceUpdater {
 #[async_trait]
 pub trait InstanceChecker {
     /// Check single instance.
-    async fn check(&self, client: Client, service: &Service, instance: &Instance) -> Result<bool>;
+    async fn check(
+        &self,
+        client: fastside_shared::client_builder::ProbeClient,
+        service: &Service,
+        instance: &Instance,
+    ) -> Result<bool>;
 }

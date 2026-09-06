@@ -161,3 +161,34 @@ Put the equivalent JSON in `FASTSIDE_CONFIG`. The proxy must have a public TCP
 address. Workers [cannot open TCP sockets to Cloudflare IP
 ranges](https://developers.cloudflare.com/workers/runtime-apis/tcp-sockets/#considerations).
 An HTTPS proxy must use a certificate that is valid for its host name.
+
+## Remote captcha solver
+
+Cloudflare Workers can use `fastside-captcha-solver` to calculate Anubis proofs.
+Service requests and cookies stay in the Worker.
+
+```sh
+cargo build --release -p fastside-captcha-solver
+export FASTSIDE_CAPTCHA_SOLVER_TOKEN='replace-with-a-random-token'
+./target/release/fastside-captcha-solver --listen 127.0.0.1:8090
+```
+
+Expose the listener through an HTTPS reverse proxy. Add the full endpoint to
+the existing `[vars]` table in `fastside-cloudflare/wrangler.toml`:
+
+```toml
+FASTSIDE_CAPTCHA_SOLVER_URL = "https://solver.example.com/v1/solve"
+```
+
+Store the same token as a Worker secret:
+
+```sh
+cd fastside-cloudflare
+npx wrangler secret put FASTSIDE_CAPTCHA_SOLVER_TOKEN
+```
+
+Local development permits HTTP on loopback addresses and a token in `.dev.vars`.
+Without a solver, Anubis challenges fail the service check. With a solver,
+batches are limited to eight instances and two concurrent probes. Lower
+`FASTSIDE_CRAWL_BATCH_SIZE` for long redirect chains. Use a proxy with a fixed
+outbound IP if a target requires a stable source IP.

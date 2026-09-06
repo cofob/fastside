@@ -215,7 +215,7 @@ async fn update_service(
 /// Check a single instance.
 async fn check_single_instance(
     checker: Arc<dyn crate::types::InstanceChecker + Sync + Send>,
-    client: reqwest::Client,
+    client: fastside_shared::client_builder::ProbeClient,
     service: Arc<Service>,
     mut instance: Instance,
 ) -> Result<(Instance, Vec<String>, bool)> {

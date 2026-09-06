@@ -1,6 +1,6 @@
 use async_trait::async_trait;
+use fastside_shared::client_builder::ProbeClient;
 use fastside_shared::serde_types::{HttpCodeRanges, Instance, Service};
-use reqwest::Client;
 
 use crate::types::InstanceChecker;
 
@@ -25,13 +25,17 @@ impl Default for DefaultInstanceChecker {
 impl InstanceChecker for DefaultInstanceChecker {
     async fn check(
         &self,
-        client: Client,
+        client: ProbeClient,
         service: &Service,
         instance: &Instance,
     ) -> anyhow::Result<bool> {
         let url = instance.url.join(&service.test_url)?;
-        let response = client.get(url).send().await?;
-        if instance.tags.iter().any(|tag| tag == "antibot") {
+        let response = client.probe(url).await?;
+        if !response.solved
+            && !response.reused
+            && instance.tags.iter().any(|tag| tag == "antibot")
+            && !instance.tags.iter().any(|tag| tag == "anubis")
+        {
             debug!(
                 "Skipping response checks for antibot instance: {}",
                 instance.url
@@ -39,10 +43,10 @@ impl InstanceChecker for DefaultInstanceChecker {
             return Ok(true);
         }
 
-        let status_code = response.status().as_u16();
+        let status_code = response.status.as_u16();
         if service.allowed_http_codes.is_allowed(status_code) {
             if let Some(search_string) = &service.search_string {
-                let body = response.text().await?;
+                let body = response.body;
                 if body.contains(search_string) {
                     Ok(true)
                 } else {

@@ -120,6 +120,7 @@ impl CrawledData {
 
 #[derive(Debug)]
 pub struct InstanceResponse {
+    pub anubis_solved: bool,
     pub status_code: u16,
     pub duration: Duration,
     pub body: Option<String>,
@@ -202,9 +203,12 @@ impl InstanceClient for ReqwestInstanceClient {
         let client = build_client(service, config, proxies, instance)
             .map_err(|error| CrawlerError::Request(error.to_string()))?;
         let start = Instant::now();
-        let response = match client.get(test_url).send().await {
+        let response = match client.probe(test_url).await {
             Ok(response) => response,
             Err(error) => {
+                let Some(error) = error.downcast_ref::<reqwest::Error>() else {
+                    return Err(CrawlerError::Request(error.to_string()));
+                };
                 let status = match error {
                     _ if error.is_timeout() => CrawledInstanceStatus::TimedOut,
                     _ if error.is_builder() => CrawledInstanceStatus::BuilderError,
@@ -220,18 +224,10 @@ impl InstanceClient for ReqwestInstanceClient {
         };
 
         let duration = start.elapsed();
-        let status_code = response.status().as_u16();
-        let body = if should_read_response_body(service, instance, status_code) {
-            Some(
-                response
-                    .text()
-                    .await
-                    .map_err(|error| CrawlerError::Request(error.to_string()))?,
-            )
-        } else {
-            None
-        };
+        let status_code = response.status.as_u16();
+        let body = Some(response.body);
         Ok(InstanceRequest::Response(InstanceResponse {
+            anubis_solved: response.solved || response.reused,
             status_code,
             duration,
             body,
@@ -494,7 +490,8 @@ impl Crawler {
 pub fn should_read_response_body(service: &Service, instance: &Instance, status_code: u16) -> bool {
     service.search_string.is_some()
         && service.allowed_http_codes.is_allowed(status_code)
-        && !instance.tags.iter().any(|tag| tag == "antibot")
+        && (!instance.tags.iter().any(|tag| tag == "antibot")
+            || instance.tags.iter().any(|tag| tag == "anubis"))
 }
 
 fn classify_response(
@@ -502,7 +499,10 @@ fn classify_response(
     instance: &Instance,
     response: InstanceResponse,
 ) -> CrawledInstanceStatus {
-    if instance.tags.iter().any(|tag| tag == "antibot") {
+    if !response.anubis_solved
+        && instance.tags.iter().any(|tag| tag == "antibot")
+        && !instance.tags.iter().any(|tag| tag == "anubis")
+    {
         debug!(
             "Skipping response checks for antibot instance: {}",
             instance.url
@@ -556,6 +556,7 @@ mod tests {
 
     fn response(status_code: u16, body: Option<&str>) -> InstanceResponse {
         InstanceResponse {
+            anubis_solved: false,
             status_code,
             duration: Duration::from_millis(42),
             body: body.map(str::to_owned),
@@ -592,6 +593,28 @@ mod tests {
         assert_eq!(
             classify_response(&service, &instance, response(503, None)),
             ok
+        );
+    }
+
+    #[test]
+    fn anubis_responses_require_service_checks() {
+        let mut service = service("demo", &[]);
+        service.search_string = Some("expected".into());
+        let mut instance = Instance {
+            url: Url::parse("https://demo.example/").unwrap(),
+            tags: vec!["antibot".into()],
+        };
+        let mut solved = response(200, Some("challenge page"));
+        solved.anubis_solved = true;
+        assert_eq!(
+            classify_response(&service, &instance, solved),
+            CrawledInstanceStatus::StringNotFound
+        );
+        instance.tags.push("anubis".into());
+        assert!(should_read_response_body(&service, &instance, 200));
+        assert_eq!(
+            classify_response(&service, &instance, response(503, None)),
+            CrawledInstanceStatus::InvalidStatusCode(503, Duration::from_millis(42))
         );
     }
 

@@ -40,6 +40,7 @@ bottlenecks and rate-limiting.
 - [x] History redirects via `/_/{path}` routes.
 - [x] Fallback redirects.
 - [x] Automatic update of services list.
+- [x] Automatic Anubis CAPTCHA solving during service checks.
 - [x] API.
 - [x] Native and serverless deployment with the same Axum routes.
 
@@ -97,6 +98,13 @@ each instance, as long as the instance takes <5 seconds to respond and returns
 a successful response code, the instance is added to a list of available
 instances for that particular service. If not, it is discarded until the next
 update period.
+
+The native crawler and actualizer automatically solve Anubis CAPTCHA challenges
+when they check services. They reuse successful sessions and solve a new
+challenge when needed. See [Anubis probes](docs/actualizer.md#anubis-probes) for
+supported methods and limits. Cloudflare Workers can use the
+[token-protected remote solver](docs/deployment.md#remote-captcha-solver) for
+proof calculation while keeping the service requests and cookies in Workers.
 
 Fastside's routing is minimal, similar to [Farside](https://github.com/benbusby/farside), but includes
 an additional `/@cached/<service>#<path>` endpoint, which utilizes browser caching to achieve instant

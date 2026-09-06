@@ -9,16 +9,13 @@ use std::{
     time::Duration,
 };
 
+use crate::anubis::{ProbeError, WireResponse};
 use base64ct::{Base64, Encoding};
 use bytes::Bytes;
-use fastside::crawler::{
-    CrawledInstanceStatus, CrawlerError, InstanceRequest, InstanceResponse,
-    should_read_response_body,
-};
+use fastside::crawler::CrawlerError;
 use fastside_shared::{
-    config::{CrawlerConfig, Proxy, ProxyAuth},
+    config::{Proxy, ProxyAuth},
     request_headers::REQUEST_HEADERS,
-    serde_types::{Instance, Service},
 };
 use futures::{
     future::{AbortHandle, Abortable, Either},
@@ -40,7 +37,6 @@ use url::{Host, Url};
 use worker::{Date, Delay, Socket, wasm_bindgen_futures::spawn_local};
 
 const MAX_CONNECT_RESPONSE_SIZE: usize = 16 * 1024;
-const MAX_REDIRECTS: usize = 10;
 
 trait Io: AsyncRead + AsyncWrite + Unpin {}
 impl<T: AsyncRead + AsyncWrite + Unpin> Io for T {}
@@ -504,7 +500,11 @@ async fn connect(
     Ok((stream, absolute_form, socket))
 }
 
-async fn send(endpoint: &ProxyEndpoint, target: &Url) -> Result<PendingResponse, RequestFailure> {
+async fn send(
+    endpoint: &ProxyEndpoint,
+    target: &Url,
+    cookie: Option<&str>,
+) -> Result<PendingResponse, RequestFailure> {
     let (stream, absolute_form, socket) = connect(endpoint, target).await?;
     let (mut sender, connection) = http1::handshake(TokioIo::new(stream))
         .await
@@ -532,6 +532,9 @@ async fn send(endpoint: &ProxyEndpoint, target: &Url) -> Result<PendingResponse,
     for (name, value) in REQUEST_HEADERS {
         request = request.header(name, value);
     }
+    if let Some(cookie) = cookie {
+        request = request.header("Cookie", cookie);
+    }
     if absolute_form && let Some(auth) = &endpoint.auth {
         request = request.header(PROXY_AUTHORIZATION, basic_auth(auth));
     }
@@ -548,90 +551,58 @@ async fn send(endpoint: &ProxyEndpoint, target: &Url) -> Result<PendingResponse,
     })
 }
 
-fn is_redirect(status: u16) -> bool {
-    matches!(status, 301 | 302 | 303 | 307 | 308)
-}
-
-async fn follow_redirects(
-    endpoint: &ProxyEndpoint,
-    service: &Service,
-    mut target: Url,
-) -> Result<PendingResponse, RequestFailure> {
-    for redirects in 0..=MAX_REDIRECTS {
-        let response = send(endpoint, &target).await?;
-        if !service.follow_redirects || !is_redirect(response.response.status().as_u16()) {
-            return Ok(response);
-        }
-        let Some(location) = response.response.headers().get(LOCATION) else {
-            return Ok(response);
-        };
-        if redirects == MAX_REDIRECTS {
-            return Err(RequestFailure::Redirect);
-        }
-        let location = location.to_str().map_err(|_| RequestFailure::Redirect)?;
-        target = target
-            .join(location)
-            .map_err(|_| RequestFailure::Redirect)?;
-        target.set_fragment(None);
-        if !matches!(target.scheme(), "http" | "https") {
-            return Err(RequestFailure::Redirect);
-        }
-    }
-    unreachable!()
-}
-
-pub async fn request(
+/// One request through the configured proxy. The caller handles cookies and redirects.
+pub async fn get(
     proxy: &Proxy,
-    config: &CrawlerConfig,
-    service: &Service,
-    instance: &Instance,
-    test_url: Url,
-) -> Result<InstanceRequest, CrawlerError> {
+    target: Url,
+    cookie: Option<&str>,
+    timeout: Duration,
+) -> Result<WireResponse, ProbeError> {
     let endpoint = ProxyEndpoint::parse(proxy)?;
-    let timeout =
-        config.get_domain_timeout(instance.url.host_str().expect("instance URL has a host"));
-    let start = Date::now().as_millis();
-    let response = follow_redirects(&endpoint, service, test_url);
+    let work = async {
+        let pending = send(&endpoint, &target, cookie)
+            .await
+            .map_err(|error| match error {
+                RequestFailure::Request(message) => ProbeError::Request(message),
+                RequestFailure::Redirect => ProbeError::Redirect,
+            })?;
+        let status = pending.response.status().as_u16();
+        let cookies = pending
+            .response
+            .headers()
+            .get_all("set-cookie")
+            .iter()
+            .filter_map(|value| value.to_str().ok().map(str::to_owned))
+            .collect();
+        let location = pending
+            .response
+            .headers()
+            .get(LOCATION)
+            .and_then(|value| value.to_str().ok())
+            .map(str::to_owned);
+        let mut body = pending.response.into_body();
+        let mut bytes = Vec::new();
+        while let Some(frame) = body.frame().await {
+            let frame = frame.map_err(|error| ProbeError::Body(error.to_string()))?;
+            if let Some(data) = frame.data_ref() {
+                if bytes.len() + data.len() > fastside_shared::captcha::MAX_RESPONSE_BYTES {
+                    return Err(ProbeError::Body("probe response is too large".into()));
+                }
+                bytes.extend_from_slice(data);
+            }
+        }
+        Ok(WireResponse {
+            url: target,
+            status,
+            cookies,
+            location,
+            body: String::from_utf8_lossy(&bytes).into_owned(),
+        })
+    };
     let delay = Delay::from(timeout);
-    pin_mut!(response, delay);
-    let pending = match futures::future::select(response, delay).await {
-        Either::Left((Ok(response), _)) => response,
-        Either::Left((Err(RequestFailure::Redirect), _)) => {
-            return Ok(InstanceRequest::Failed(
-                CrawledInstanceStatus::RedirectPolicyError,
-            ));
-        }
-        Either::Left((Err(RequestFailure::Request(error)), _)) => {
-            worker::console_error!("Proxy request failed: {error}");
-            return Ok(InstanceRequest::Failed(CrawledInstanceStatus::RequestError));
-        }
-        Either::Right(((), _)) => {
-            return Ok(InstanceRequest::Failed(CrawledInstanceStatus::TimedOut));
-        }
-    };
-    let duration = Duration::from_millis(Date::now().as_millis().saturating_sub(start));
-    let status_code = pending.response.status().as_u16();
-    let body = if should_read_response_body(service, instance, status_code) {
-        let body = pending.response.into_body().collect();
-        let delay = Delay::from(timeout);
-        pin_mut!(body, delay);
-        match futures::future::select(body, delay).await {
-            Either::Left((Ok(body), _)) => {
-                Some(String::from_utf8_lossy(&body.to_bytes()).into_owned())
-            }
-            Either::Left((Err(error), _)) => {
-                return Err(CrawlerError::Request(error.to_string()));
-            }
-            Either::Right(((), _)) => {
-                return Err(CrawlerError::Request("response body timed out".to_owned()));
-            }
-        }
-    } else {
-        None
-    };
-    Ok(InstanceRequest::Response(InstanceResponse {
-        status_code,
-        duration,
-        body,
-    }))
+    pin_mut!(work, delay);
+    match futures::future::select(work, delay).await {
+        Either::Left((result, _)) => result,
+        Either::Right(((), _)) => Err(ProbeError::TimedOut),
+    }
 }

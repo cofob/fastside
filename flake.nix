@@ -42,6 +42,7 @@
           cp -r ${./fastside-actualizer} $out/fastside-actualizer
           cp -r ${./fastside-cloudflare} $out/fastside-cloudflare
           cp -r ${./fastside-shared} $out/fastside-shared
+          cp -r ${./fastside-captcha-solver} $out/fastside-captcha-solver
           cp ${./Cargo.toml} $out/Cargo.toml
           cp ${./Cargo.lock} $out/Cargo.lock
           cp ${./rust-toolchain.toml} $out/rust-toolchain.toml
