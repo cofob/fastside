@@ -13,7 +13,6 @@ pub const LIBREDIRECT_SERVICES: &[&str] = &[
     "cloudtube",
     "proxitok",
     "send",
-    "nitter",
     "redlib",
     "scribe",
     "quetre",

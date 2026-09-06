@@ -12,6 +12,7 @@ mod librex;
 mod scribe;
 mod searx;
 mod searxng;
+mod shitter;
 mod simplytranslate;
 mod soprano;
 mod tent;
@@ -24,6 +25,7 @@ pub use default::DefaultInstanceChecker;
 /// Get a service updater by name.
 pub fn get_service_updater(name: &str) -> Option<Box<dyn ServiceUpdater>> {
     match name {
+        "shitter" => Some(Box::new(shitter::ShitterUpdater::new())),
         "searx" => Some(Box::new(searx::SearxUpdater::new())),
         "searxng" => Some(Box::new(searxng::SearxngUpdater::new())),
         "simplytranslate" => Some(Box::new(simplytranslate::SimplyTranslateUpdater::new())),

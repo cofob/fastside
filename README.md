@@ -23,7 +23,7 @@ Contents
 A redirecting service for FOSS alternative frontends.
 
 [Fastside](https://fastsi.de/) provides links that automatically redirect to
-working instances of privacy-oriented alternative frontends, such as Nitter,
+working instances of privacy-oriented alternative frontends, such as Shitter,
 Libreddit, etc. This allows for users to have more reliable access to the
 available public instances for a particular service, while also helping to
 distribute traffic more evenly across all instances and avoid performance
