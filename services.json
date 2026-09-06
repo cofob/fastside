@@ -3330,114 +3330,11 @@
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [
-        {
-          "regex": "^(https?:\\/\\/)?((www\\.|mobile\\.)?twitter\\.com)(\\/.*|)$",
-          "url": "$4"
-        },
-        {
-          "regex": "^(https?:\\/\\/)?((www\\.)?x\\.com)(\\/.*|)$",
-          "url": "$4"
-        }
-      ],
+      "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": "Discontinued. Twitter has blocked all instances.",
-      "instances": [
-        {
-          "url": "http://nitter.catsarchywsyuss6jdxlypsw5dc7owd5u5tr6bujxb7o6xw2hipqehyd.onion/",
-          "tags": [
-            "http",
-            "tor"
-          ]
-        },
-        {
-          "url": "https://lightbrd.com/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://nitter.catsarch.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://nitter.kareem.one/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://nitter.poast.org/",
-          "tags": [
-            "clearnet",
-            "https"
-          ]
-        },
-        {
-          "url": "https://nitter.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://nitter.space/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://nitter.tiekoetter.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://nuku.trabun.org/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://xcancel.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        }
-      ]
+      "deprecated_message": "Deprecated. Use Shitter instead.",
+      "instances": []
     },
     {
       "type": "osm",
@@ -7168,6 +7065,127 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "shitter",
+      "test_url": "/jack/status/20",
+      "fallback": "https://x.com/",
+      "follow_redirects": false,
+      "allowed_http_codes": "200",
+      "search_string": null,
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.|mobile\\.)?twitter\\.com)(\\/.*|)$",
+          "url": "$4"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?((www\\.)?x\\.com)(\\/.*|)$",
+          "url": "$4"
+        }
+      ],
+      "aliases": [],
+      "source_link": "https://codeberg.org/mv12star/shitter",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "http://dhgjnhkxtgesvcddfwzqm4d4zmyz2x2jud6huweu5iywuvoo7qaqpjid.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://nitter.dog5267ah4m4f4677r33b2pzq667lwhsqupojioqz4rg6e2q74p3xtyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "http://nitter.lesboswza6waq3itqo46rvf5a7dibxih32f2umwg6fpssxj66spmclyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "https://nitter.click/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.jaydenha.uk/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://nitter.kareem.one/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.meowing.monster/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.miningtcup.me/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://nitter.xitter.cc/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://shitter.thepixora.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://tw.eir-nya.gay/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://x.n0g.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         }
       ]
