@@ -724,6 +724,13 @@
           ]
         },
         {
+          "url": "http://binternet.nadeko24jhlqccyfnmvynwkojcfzmub53m74y5b7l5e6hn55jlml4pqd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://binternet.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/",
           "tags": [
             "http",
@@ -784,6 +791,15 @@
           ]
         },
         {
+          "url": "https://binternet.nadeko.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://binternet.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -833,6 +849,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://curate.liv.town/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -954,8 +978,6 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -7131,7 +7153,9 @@
         {
           "url": "https://nitter.kareem.one/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7157,7 +7181,10 @@
         {
           "url": "https://nitter.xitter.cc/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7166,7 +7193,9 @@
         {
           "url": "https://shitter.thepixora.com/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
