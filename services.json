@@ -2384,6 +2384,8 @@
         {
           "url": "https://koub.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
