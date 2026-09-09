@@ -85,8 +85,6 @@
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -635,9 +633,7 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
