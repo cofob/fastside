@@ -3521,7 +3521,9 @@
           "url": "https://eds-v2.piped.xn--17b.net/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6219,8 +6221,6 @@
         {
           "url": "https://search.hbubli.cc/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6516,6 +6516,8 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
