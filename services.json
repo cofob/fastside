@@ -978,6 +978,8 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -2969,7 +2971,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7179,6 +7182,17 @@
           ]
         },
         {
+          "url": "https://nitter.netbub.com/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
@@ -7215,6 +7229,15 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://xcancel.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
