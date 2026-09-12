@@ -1210,6 +1210,7 @@
           "url": "https://dumb.jeikobu.net/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -2706,6 +2707,7 @@
           "url": "https://libremdb.jeikobu.net/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -3661,7 +3663,9 @@
         {
           "url": "https://03c.de/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4177,7 +4181,9 @@
         {
           "url": "https://paste.loryy.dev/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4570,7 +4576,9 @@
         {
           "url": "https://privatebin.rinuploads.org/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5153,6 +5161,7 @@
           "url": "https://quetre.jeikobu.net/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -6643,6 +6652,8 @@
         {
           "url": "https://searxng.deggo.fyi/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
