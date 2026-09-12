@@ -5411,6 +5411,8 @@
         {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
