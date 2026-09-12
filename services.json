@@ -7184,7 +7184,9 @@
         {
           "url": "https://nitter.netbub.com/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
