@@ -3194,6 +3194,8 @@
         {
           "url": "https://mozhi.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7182,9 +7184,7 @@
         {
           "url": "https://nitter.netbub.com/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
