@@ -85,8 +85,6 @@
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5317,6 +5315,8 @@
         {
           "url": "https://imgur.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
