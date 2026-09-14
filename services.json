@@ -274,6 +274,8 @@
         {
           "url": "https://ao.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7225,6 +7227,8 @@
         {
           "url": "https://x.n0g.xyz/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
