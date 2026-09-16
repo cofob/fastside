@@ -828,8 +828,6 @@
         {
           "url": "https://bn.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6124,7 +6122,8 @@
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
