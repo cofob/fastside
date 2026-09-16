@@ -4506,6 +4506,17 @@
           ]
         },
         {
+          "url": "https://privatebin.cc/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://privatebin.deblan.org/",
           "tags": [
             "clearnet",
