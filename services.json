@@ -349,7 +349,8 @@
           "url": "https://o.iii.st/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4506,6 +4507,17 @@
           ]
         },
         {
+          "url": "https://privatebin.cc/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://privatebin.deblan.org/",
           "tags": [
             "clearnet",
@@ -4783,8 +4795,7 @@
           "url": "https://pb.proxik.cloud/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5521,8 +5532,7 @@
           "url": "https://rimgo.proxik.cloud/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5962,6 +5972,13 @@
           ]
         },
         {
+          "url": "http://search.lesboswza6waq3itqo46rvf5a7dibxih32f2umwg6fpssxj66spmclyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://searx3aolosaf3urwnhpynlhuokqsgz47si4pzz5hvb7uuzyjncl2tid.onion/",
           "tags": [
             "http",
@@ -6313,6 +6330,15 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.mizuki.st/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6691,7 +6717,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6801,6 +6828,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://www.isci.si/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6938,12 +6973,9 @@
         {
           "url": "https://send.aurorabilisim.com/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -7227,6 +7259,8 @@
         {
           "url": "https://tw.eir-nya.gay/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -7240,6 +7274,17 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://x.yuuki.sh/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7737,6 +7782,8 @@
         {
           "url": "https://bandcamp.lurkmore.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -8083,8 +8130,12 @@
         {
           "url": "https://w.sneed.network/",
           "tags": [
+            "antibot",
             "clearnet",
-            "https"
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
