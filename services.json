@@ -636,7 +636,9 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5598,6 +5600,8 @@
         {
           "url": "https://rd.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
