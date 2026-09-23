@@ -989,6 +989,8 @@
         {
           "url": "https://bw.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
