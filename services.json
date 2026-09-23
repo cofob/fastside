@@ -3676,12 +3676,9 @@
         {
           "url": "https://0bin.ch/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
