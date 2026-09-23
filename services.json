@@ -5355,8 +5355,6 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6236,8 +6234,6 @@
         {
           "url": "https://search.hbubli.cc/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7172,6 +7168,14 @@
           "tags": [
             "http",
             "tor"
+          ]
+        },
+        {
+          "url": "https://bitter.st/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
