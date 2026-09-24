@@ -1163,8 +1163,6 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5597,6 +5595,8 @@
         {
           "url": "https://rd.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
