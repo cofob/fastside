@@ -1544,7 +1544,9 @@
         {
           "url": "https://hp.iqbalrifai.eu.org/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4803,8 +4805,6 @@
         {
           "url": "https://priviblur.privadency.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -5713,8 +5713,6 @@
         {
           "url": "https://safetwitch.privadency.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -6740,8 +6738,6 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
