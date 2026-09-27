@@ -1163,6 +1163,8 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1542,9 +1544,7 @@
         {
           "url": "https://hp.iqbalrifai.eu.org/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
