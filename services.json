@@ -988,6 +988,8 @@
         {
           "url": "https://bw.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6688,7 +6690,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7286,6 +7289,17 @@
           "url": "https://xcancel.com/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://xcopy.uk/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
