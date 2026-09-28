@@ -4805,6 +4805,8 @@
         {
           "url": "https://priviblur.privadency.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -6684,8 +6686,6 @@
         {
           "url": "https://searxng.deggo.fyi/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6738,6 +6738,8 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
