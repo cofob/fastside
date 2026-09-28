@@ -274,6 +274,8 @@
         {
           "url": "https://ao.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1542,7 +1544,9 @@
         {
           "url": "https://hp.iqbalrifai.eu.org/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6142,9 +6146,7 @@
           "url": "https://search.2b9t.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
