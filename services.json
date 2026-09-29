@@ -3207,8 +3207,6 @@
         {
           "url": "https://mozhi.canine.tools/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7243,6 +7241,17 @@
           "tags": [
             "antibot",
             "anubis",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://shi.meowing.de/",
+          "tags": [
+            "antibot",
             "clearnet",
             "cloudflare",
             "https",
