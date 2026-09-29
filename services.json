@@ -1544,7 +1544,9 @@
         {
           "url": "https://hp.iqbalrifai.eu.org/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -3202,6 +3204,8 @@
         {
           "url": "https://mozhi.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6240,8 +6244,6 @@
         {
           "url": "https://search.hbubli.cc/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
