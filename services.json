@@ -1544,9 +1544,7 @@
         {
           "url": "https://hp.iqbalrifai.eu.org/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -1718,6 +1716,14 @@
             "https",
             "ipv6",
             "ygg"
+          ]
+        },
+        {
+          "url": "https://inv.miningtcup.me/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -3196,8 +3202,6 @@
         {
           "url": "https://mozhi.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
