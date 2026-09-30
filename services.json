@@ -2728,12 +2728,8 @@
         {
           "url": "https://libremdb.nerdyfam.tech/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -4025,7 +4021,9 @@
         {
           "url": "https://paste.blazar.observer/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7240,7 +7238,6 @@
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
             "cloudflare",
             "https",
