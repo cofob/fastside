@@ -1721,14 +1721,6 @@
           ]
         },
         {
-          "url": "https://inv.miningtcup.me/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://inv.nadeko.net/",
           "tags": [
             "clearnet",
@@ -4033,9 +4025,7 @@
         {
           "url": "https://paste.blazar.observer/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
