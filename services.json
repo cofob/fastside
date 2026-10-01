@@ -989,8 +989,6 @@
         {
           "url": "https://bw.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -4765,8 +4763,6 @@
         {
           "url": "https://pb.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
