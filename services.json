@@ -636,9 +636,7 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -937,7 +935,8 @@
           "url": "https://breezewiki.moonshadow.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -4763,6 +4762,8 @@
         {
           "url": "https://pb.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
