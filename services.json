@@ -7239,6 +7239,7 @@
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -7815,6 +7816,8 @@
         {
           "url": "https://tent.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7853,8 +7856,7 @@
           "url": "https://tent.nbh.ax/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
