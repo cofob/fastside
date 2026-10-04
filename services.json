@@ -829,6 +829,8 @@
         {
           "url": "https://bn.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -937,7 +939,8 @@
           "url": "https://breezewiki.moonshadow.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -2728,12 +2731,8 @@
         {
           "url": "https://libremdb.nerdyfam.tech/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -3207,6 +3206,8 @@
         {
           "url": "https://mozhi.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -3602,7 +3603,9 @@
           "url": "https://pixivfe.exozy.me/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4937,9 +4940,7 @@
         {
           "url": "https://proxitok.r4fo.com/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6169,7 +6170,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7993,7 +7995,9 @@
           "url": "https://twineo.exozy.me/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -8173,12 +8177,8 @@
         {
           "url": "https://w.sneed.network/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
