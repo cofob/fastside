@@ -1,0 +1,19 @@
+---
+proxies:
+  tor:
+    url: socks5h://127.0.0.1:9050
+  i2p:
+    url: http://127.0.0.1:4444
+crawler:
+  request_timeout:
+    secs: 20
+    nanos: 0
+  domain_request_timeouts:
+    - domain: ".i2p"
+      timeout:
+        secs: 60
+        nanos: 0
+    - domain: ".onion"
+      timeout:
+        secs: 60
+        nanos: 0
