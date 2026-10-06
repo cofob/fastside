@@ -1751,10 +1751,7 @@
         {
           "url": "https://invidious.f5.si/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
