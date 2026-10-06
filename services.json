@@ -5920,6 +5920,13 @@
           ]
         },
         {
+          "url": "http://bityvhr2ur4gafjnnzmn4p2gjdvegvrrmg76wwvj3ngwecxkisydcuyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://ieqzkvy4bf3xi4bzsfzfax42t4iuqcbqn6oah4uwrm4ip354gavsviad.onion/",
           "tags": [
             "http",
@@ -6272,6 +6279,14 @@
         },
         {
           "url": "https://search.internetsucks.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://search.jeremyh.xyz/",
           "tags": [
             "clearnet",
             "https",
