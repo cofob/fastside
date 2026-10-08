@@ -4232,8 +4232,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -5920,6 +5919,13 @@
           ]
         },
         {
+          "url": "http://bityvhr2ur4gafjnnzmn4p2gjdvegvrrmg76wwvj3ngwecxkisydcuyd.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "http://ieqzkvy4bf3xi4bzsfzfax42t4iuqcbqn6oah4uwrm4ip354gavsviad.onion/",
           "tags": [
             "http",
@@ -6279,6 +6285,14 @@
           ]
         },
         {
+          "url": "https://search.jeremyh.xyz/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://search.jns.net.ar/",
           "tags": [
             "clearnet",
@@ -6554,8 +6568,7 @@
             "anubis",
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -6714,8 +6727,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -6789,8 +6801,7 @@
           "url": "https://seek.fyi/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7239,6 +7250,26 @@
           ]
         },
         {
+          "url": "https://nitter.pp.ua/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.tiekoetter.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
@@ -7275,8 +7306,6 @@
         {
           "url": "https://tw.eir-nya.gay/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
