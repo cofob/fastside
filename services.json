@@ -447,6 +447,8 @@
         {
           "url": "https://overflow.hostux.net/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -913,6 +915,8 @@
         {
           "url": "https://breeze.hostux.net/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6137,8 +6141,7 @@
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6289,6 +6292,8 @@
         {
           "url": "https://search.jeremyh.xyz/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
