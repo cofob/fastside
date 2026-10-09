@@ -1007,8 +1007,6 @@
         {
           "url": "https://fandom.reallyaweso.me/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -5355,8 +5353,6 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6141,7 +6137,8 @@
           "url": "https://s.trung.fun/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
