@@ -647,6 +647,17 @@
           ]
         },
         {
+          "url": "https://biblioreads.utilibre.org/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://biblioreads.vercel.app/",
           "tags": [
             "clearnet",
@@ -1170,6 +1181,8 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5417,6 +5430,8 @@
         {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6516,6 +6531,17 @@
         {
           "url": "https://searx.dresden.network/",
           "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://searx.githo.st/",
+          "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
