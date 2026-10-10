@@ -1170,8 +1170,6 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5354,6 +5352,8 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5417,8 +5417,6 @@
         {
           "url": "https://rimgo.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
