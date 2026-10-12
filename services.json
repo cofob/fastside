@@ -7303,7 +7303,6 @@
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -7379,6 +7378,15 @@
             "antibot",
             "clearnet",
             "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://xnologin.com/",
+          "tags": [
+            "clearnet",
             "https",
             "ipv4",
             "ipv6"
