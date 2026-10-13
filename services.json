@@ -638,9 +638,7 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4892,8 +4890,7 @@
           "url": "https://cringe.seitan-ayoub.lol/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5510,6 +5507,8 @@
         {
           "url": "https://rimgo.nohost.network/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6863,14 +6862,6 @@
             "https",
             "ipv4",
             "ipv6"
-          ]
-        },
-        {
-          "url": "https://www.indst.eu/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
           ]
         },
         {
