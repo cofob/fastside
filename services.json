@@ -85,8 +85,6 @@
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -4382,6 +4380,17 @@
           "url": "https://paste.unit193.net/",
           "tags": [
             "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://paste.utilibre.org/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
