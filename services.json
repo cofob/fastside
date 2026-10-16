@@ -5258,8 +5258,7 @@
           "url": "https://quetre.tokhmi.xyz/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7361,12 +7360,8 @@
         {
           "url": "https://x.yuuki.sh/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
