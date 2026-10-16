@@ -4389,6 +4389,17 @@
           ]
         },
         {
+          "url": "https://paste.utilibre.org/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://paste.ztn.sh/",
           "tags": [
             "clearnet",
@@ -6588,8 +6599,6 @@
         {
           "url": "https://searx.ononoki.org/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
