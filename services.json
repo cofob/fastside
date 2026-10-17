@@ -3767,7 +3767,8 @@
           "url": "https://bin.infini.fr/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -3973,8 +3974,7 @@
           "url": "https://p.blueridgedebate.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
