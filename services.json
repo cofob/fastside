@@ -5908,8 +5908,7 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7352,8 +7351,6 @@
         {
           "url": "https://x.n0g.xyz/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
