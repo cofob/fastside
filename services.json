@@ -7359,8 +7359,12 @@
         {
           "url": "https://x.yuuki.sh/",
           "tags": [
+            "antibot",
             "clearnet",
-            "https"
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
