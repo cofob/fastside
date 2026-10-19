@@ -634,9 +634,7 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -1760,7 +1758,6 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -7255,6 +7252,15 @@
         },
         {
           "url": "https://nitter.meowing.monster/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.mie.foundation/",
           "tags": [
             "clearnet",
             "https",
