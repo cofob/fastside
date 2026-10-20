@@ -991,8 +991,6 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -5519,8 +5517,6 @@
         {
           "url": "https://rimgo.nohost.network/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
