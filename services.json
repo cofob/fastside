@@ -634,7 +634,9 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -999,6 +1001,8 @@
         {
           "url": "https://bw.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1171,6 +1175,8 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5338,6 +5344,8 @@
         {
           "url": "https://imgur.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5511,8 +5519,6 @@
         {
           "url": "https://rimgo.nohost.network/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
