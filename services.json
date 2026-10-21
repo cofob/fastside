@@ -2876,7 +2876,9 @@
         {
           "url": "https://librex.nohost.network/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -5519,8 +5521,8 @@
           "url": "https://rimgo.nohost.network/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7334,7 +7336,9 @@
         {
           "url": "https://shitter.thepixora.com/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
