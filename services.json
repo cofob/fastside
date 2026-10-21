@@ -4575,9 +4575,7 @@
           "url": "https://privatebin.imagisphe.re/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5519,6 +5517,8 @@
         {
           "url": "https://rimgo.nohost.network/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
