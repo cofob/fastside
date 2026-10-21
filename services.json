@@ -4645,8 +4645,7 @@
           "url": "https://privatebin.wildberries.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7335,9 +7334,7 @@
         {
           "url": "https://shitter.thepixora.com/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
