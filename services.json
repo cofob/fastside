@@ -4575,7 +4575,9 @@
           "url": "https://privatebin.imagisphe.re/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
