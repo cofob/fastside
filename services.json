@@ -1778,7 +1778,6 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -7100,8 +7099,7 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
