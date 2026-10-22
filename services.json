@@ -755,6 +755,13 @@
           ]
         },
         {
+          "url": "http://ued2jl2ahvngdegugysin2fa6malo6omyf33j5tpfgex47erv453wbad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
           "url": "https://binternet.4o1x5.dev/",
           "tags": [
             "clearnet",
@@ -833,6 +840,17 @@
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://binternet.utilibre.org/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7357,11 +7375,8 @@
         {
           "url": "https://x.n0g.xyz/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
