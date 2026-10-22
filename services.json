@@ -4665,7 +4665,8 @@
           "url": "https://privatebin.wildberries.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
