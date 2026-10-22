@@ -4210,12 +4210,9 @@
         {
           "url": "https://paste.loryy.dev/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -7099,7 +7096,8 @@
           "url": "https://send.kokomo.cloud/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
