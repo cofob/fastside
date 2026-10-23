@@ -7326,9 +7326,7 @@
         {
           "url": "https://nitter.pp.ua/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
