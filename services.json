@@ -443,8 +443,6 @@
         {
           "url": "https://overflow.hostux.net/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1778,6 +1776,7 @@
           "url": "https://invidious.f5.si/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -3990,6 +3989,15 @@
           ]
         },
         {
+          "url": "https://p.bittenbyt.es/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://p.blueridgedebate.com/",
           "tags": [
             "clearnet",
@@ -4598,6 +4606,14 @@
         },
         {
           "url": "https://privatebin.limpidit.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://privatebin.lol/",
           "tags": [
             "clearnet",
             "https",
