@@ -2142,7 +2142,9 @@
         {
           "url": "https://meet.meerfarbig.net/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
