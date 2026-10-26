@@ -2140,9 +2140,7 @@
         {
           "url": "https://meet.meerfarbig.net/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -6047,6 +6045,8 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "tor"
           ]
@@ -6161,6 +6161,15 @@
         },
         {
           "url": "https://opnxng.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://oziway.net/",
           "tags": [
             "clearnet",
             "https",
@@ -6530,6 +6539,15 @@
           ]
         },
         {
+          "url": "https://search.utilibre.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.wdpserver.com/",
           "tags": [
             "clearnet",
@@ -6818,6 +6836,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://searxng.jaydenha.uk/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
