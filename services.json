@@ -6609,6 +6609,8 @@
         {
           "url": "https://searx.githo.st/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6855,8 +6857,6 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
