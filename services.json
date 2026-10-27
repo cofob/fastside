@@ -6053,6 +6053,8 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "tor"
           ]
@@ -6863,8 +6865,6 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
