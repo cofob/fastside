@@ -2744,6 +2744,7 @@
           "url": "https://libremdb.jeikobu.net/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -3693,7 +3694,9 @@
         {
           "url": "https://03c.de/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -4873,8 +4876,6 @@
         {
           "url": "https://priviblur.privadency.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -6050,8 +6051,6 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
-            "antibot",
-            "anubis",
             "http",
             "tor"
           ]
@@ -7432,7 +7431,9 @@
         {
           "url": "https://shitter.thepixora.com/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
