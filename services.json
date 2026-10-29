@@ -2744,7 +2744,6 @@
           "url": "https://libremdb.jeikobu.net/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -3694,9 +3693,7 @@
         {
           "url": "https://03c.de/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -7435,9 +7432,7 @@
         {
           "url": "https://shitter.thepixora.com/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
