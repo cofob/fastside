@@ -6366,8 +6366,6 @@
         {
           "url": "https://search.jeremyh.xyz/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6616,6 +6614,8 @@
         {
           "url": "https://searx.githo.st/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
