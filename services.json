@@ -5496,6 +5496,8 @@
         {
           "url": "https://rimgo.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -8004,6 +8006,8 @@
         {
           "url": "https://tent.canine.tools/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
