@@ -5957,7 +5957,8 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
