@@ -827,6 +827,8 @@
         {
           "url": "https://binternet.privadency.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4877,6 +4879,8 @@
         {
           "url": "https://priviblur.privadency.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -7983,8 +7987,6 @@
         {
           "url": "https://bandcamp.lurkmore.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
