@@ -5957,7 +5957,8 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -7476,9 +7477,7 @@
           "url": "https://xcancel.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -7987,6 +7986,8 @@
         {
           "url": "https://bandcamp.lurkmore.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
