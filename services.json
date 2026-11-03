@@ -5957,8 +5957,7 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7416,6 +7415,7 @@
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -7477,7 +7477,9 @@
           "url": "https://xcancel.com/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
