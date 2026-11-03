@@ -827,8 +827,6 @@
         {
           "url": "https://binternet.privadency.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4879,8 +4877,6 @@
         {
           "url": "https://priviblur.privadency.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -5957,8 +5953,7 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -7416,7 +7411,6 @@
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
-            "anubis",
             "clearnet",
             "cloudflare",
             "https",
