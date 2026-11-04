@@ -1009,8 +1009,6 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -6055,8 +6053,6 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
-            "antibot",
-            "anubis",
             "http",
             "tor"
           ]
