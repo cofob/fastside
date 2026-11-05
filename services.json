@@ -95,8 +95,7 @@
           "url": "https://ak.dc09.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5139,9 +5138,7 @@
           "url": "https://ask.habedieeh.re/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6619,6 +6616,8 @@
         {
           "url": "https://searx.githo.st/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
