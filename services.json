@@ -95,7 +95,8 @@
           "url": "https://ak.dc09.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -1281,7 +1282,8 @@
           "url": "https://lyr.dc09.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -5382,6 +5384,8 @@
         {
           "url": "https://imgur.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -7753,7 +7757,8 @@
           "url": "https://sa.dc09.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -8056,7 +8061,8 @@
           "url": "https://tn.dc09.ru/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
