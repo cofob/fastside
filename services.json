@@ -3663,6 +3663,8 @@
         {
           "url": "https://poketube.fun/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -5380,8 +5382,6 @@
         {
           "url": "https://imgur.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6905,6 +6905,15 @@
           "tags": [
             "clearnet",
             "https"
+          ]
+        },
+        {
+          "url": "https://shrt.win/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
