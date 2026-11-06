@@ -3663,8 +3663,6 @@
         {
           "url": "https://poketube.fun/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4424,14 +4422,6 @@
         },
         {
           "url": "https://paste.webevolutions.ch/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
-          "url": "https://paste.webevolutions.ch/dwpa-replay-4045416",
           "tags": [
             "clearnet",
             "https",
