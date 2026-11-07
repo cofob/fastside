@@ -265,8 +265,7 @@
           "url": "https://anonymousoverflow.privacyredirect.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5262,8 +5261,7 @@
           "url": "https://quetre.privacyredirect.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5298,7 +5296,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5768,8 +5767,7 @@
           "url": "https://safetwitch.privacyredirect.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6045,6 +6043,8 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "tor"
           ]
@@ -6440,6 +6440,13 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://search.privacyredirect.com/",
+          "tags": [
+            "clearnet",
+            "https"
           ]
         },
         {
@@ -7647,7 +7654,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
