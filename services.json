@@ -94,9 +94,12 @@
         {
           "url": "https://ak.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -1280,9 +1283,12 @@
         {
           "url": "https://lyr.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4720,7 +4726,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7769,9 +7776,12 @@
         {
           "url": "https://sa.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -8073,9 +8083,12 @@
         {
           "url": "https://tn.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
