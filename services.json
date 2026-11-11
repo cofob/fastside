@@ -3670,6 +3670,8 @@
         {
           "url": "https://poketube.fun/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4432,7 +4434,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -6048,8 +6051,6 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
-            "antibot",
-            "anubis",
             "http",
             "tor"
           ]
@@ -7399,12 +7400,8 @@
         {
           "url": "https://nitter.pp.ua/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
