@@ -94,9 +94,12 @@
         {
           "url": "https://ak.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -265,8 +268,7 @@
           "url": "https://anonymousoverflow.privacyredirect.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -1019,8 +1021,6 @@
         {
           "url": "https://bw.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1283,9 +1283,12 @@
         {
           "url": "https://lyr.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -3569,7 +3572,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -3666,6 +3670,8 @@
         {
           "url": "https://poketube.fun/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4428,7 +4434,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -4720,7 +4727,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -5130,9 +5138,7 @@
           "url": "https://ask.habedieeh.re/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -5263,8 +5269,7 @@
           "url": "https://quetre.privacyredirect.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -5770,8 +5775,7 @@
           "url": "https://safetwitch.privacyredirect.com/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
@@ -6171,6 +6175,15 @@
           ]
         },
         {
+          "url": "https://oziway.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://paulgo.io/",
           "tags": [
             "clearnet",
@@ -6438,6 +6451,13 @@
           ]
         },
         {
+          "url": "https://search.privacyredirect.com/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
           "url": "https://search.reallyaweso.me/",
           "tags": [
             "clearnet",
@@ -6532,6 +6552,15 @@
           ]
         },
         {
+          "url": "https://search.utilibre.org/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://search.wdpserver.com/",
           "tags": [
             "clearnet",
@@ -6593,8 +6622,6 @@
         {
           "url": "https://searx.githo.st/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6823,6 +6850,14 @@
           ]
         },
         {
+          "url": "https://searxng.jaydenha.uk/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://searxng.moonshadow.dev/",
           "tags": [
             "clearnet",
@@ -6885,6 +6920,15 @@
           "tags": [
             "clearnet",
             "https"
+          ]
+        },
+        {
+          "url": "https://shrt.win/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -7273,6 +7317,15 @@
           ]
         },
         {
+          "url": "https://nitter.catsarch.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://nitter.click/",
           "tags": [
             "clearnet",
@@ -7305,8 +7358,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -7327,6 +7379,14 @@
           ]
         },
         {
+          "url": "https://nitter.mizuki.st/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://nitter.netbub.com/",
           "tags": [
             "antibot",
@@ -7339,6 +7399,13 @@
         },
         {
           "url": "https://nitter.pp.ua/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        },
+        {
+          "url": "https://nitter.r4fo.com/",
           "tags": [
             "antibot",
             "clearnet",
@@ -7361,6 +7428,7 @@
           "url": "https://nitter.xitter.cc/",
           "tags": [
             "antibot",
+            "anubis",
             "clearnet",
             "cloudflare",
             "https",
@@ -7703,9 +7771,12 @@
         {
           "url": "https://sa.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -8007,9 +8078,12 @@
         {
           "url": "https://tn.dc09.ru/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
