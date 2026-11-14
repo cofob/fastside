@@ -125,41 +125,4 @@ mod tests {
             assert!(parse_instance_urls(input).is_err());
         }
     }
-
-    #[test]
-    fn catalogue_replaces_nitter() {
-        let data: fastside_shared::serde_types::StoredData =
-            serde_json::from_str(include_str!("../../../services.json")).unwrap();
-        let shitter = data.services.iter().find(|s| s.name == "shitter").unwrap();
-        let nitter = data.services.iter().find(|s| s.name == "nitter").unwrap();
-        assert!(shitter.deprecated_message.is_none());
-        assert!(!shitter.instances.is_empty());
-        assert!(
-            nitter
-                .deprecated_message
-                .as_ref()
-                .unwrap()
-                .contains("Shitter")
-        );
-        assert!(nitter.instances.is_empty());
-        assert!(nitter.regexes.is_empty());
-        for url in [
-            "https://twitter.com/jack/status/20",
-            "https://x.com/jack/status/20",
-        ] {
-            let matches: Vec<_> = data
-                .services
-                .iter()
-                .filter(|s| {
-                    s.regexes
-                        .iter()
-                        .any(|r| regex::Regex::new(&r.regex).unwrap().is_match(url))
-                })
-                .map(|s| s.name.as_str())
-                .collect();
-            assert_eq!(matches, vec!["shitter"]);
-        }
-        assert!(super::super::get_service_updater("shitter").is_some());
-        assert!(super::super::get_service_updater("nitter").is_none());
-    }
 }

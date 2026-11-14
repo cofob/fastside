@@ -3383,19 +3383,6 @@
       ]
     },
     {
-      "type": "nitter",
-      "test_url": "/jack/status/20",
-      "fallback": "https://x.com/",
-      "follow_redirects": false,
-      "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
-      "aliases": [],
-      "source_link": null,
-      "deprecated_message": "Deprecated. Use Shitter instead.",
-      "instances": []
-    },
-    {
       "type": "osm",
       "test_url": "/",
       "fallback": null,
@@ -7283,7 +7270,9 @@
           "url": "$4"
         }
       ],
-      "aliases": [],
+      "aliases": [
+        "nitter"
+      ],
       "source_link": "https://codeberg.org/mv12star/shitter",
       "deprecated_message": null,
       "instances": [
