@@ -57,7 +57,9 @@ fn decode_hex(value: &str) -> Result<Vec<u8>> {
     );
     value
         .as_bytes()
-        .chunks_exact(2)
+        .as_chunks::<2>()
+        .0
+        .iter()
         .map(|pair| {
             let digit = |b: u8| (b as char).to_digit(16).context("Invalid Anubis hex data");
             Ok((digit(pair[0])? * 16 + digit(pair[1])?) as u8)
