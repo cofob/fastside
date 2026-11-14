@@ -80,31 +80,13 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": "All instances are down.",
+      "deprecated_message": null,
       "instances": [
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://ak.dc09.ru/",
-          "tags": [
             "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://ak2.bloat.cat/",
-          "tags": [
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -112,17 +94,12 @@
           ]
         },
         {
-          "url": "https://akademik.clovius.club/",
+          "url": "https://ak.dc09.xyz/",
           "tags": [
             "clearnet",
-            "https"
-          ]
-        },
-        {
-          "url": "https://akademik.lumaeris.com/",
-          "tags": [
-            "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -518,9 +495,21 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/Extravi/araa-search",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://araa.extravi.dev/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "beatbump",
@@ -1110,8 +1099,8 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
+      "source_link": "https://git.vern.cc/cobra/Destructables",
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -1547,12 +1536,20 @@
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "hckrnws",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
-      "instances": []
+      "source_link": "https://github.com/rajatkulkarni95/hckrnws",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://www.hckrnws.com/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        }
+      ]
     },
     {
       "type": "hyperpipe",
@@ -2428,15 +2425,8 @@
         {
           "url": "https://koub.bloat.cat/",
           "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://koub2.bloat.cat/",
-          "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -2582,7 +2572,97 @@
       ],
       "source_link": "https://github.com/redlib-org/redlib",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "http://red.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "https://redlib.cow.rip/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.freedit.eu/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.privadency.com/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://redlib.reallyaweso.me/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://redlib.tiekoetter.com/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.utilibre.org/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.zanity.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://reddit.jeremyh.xyz/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "libremdb",
@@ -4824,15 +4904,15 @@
     },
     {
       "type": "priviblur",
-      "test_url": "/",
+      "test_url": "/explore/trending",
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
+      "source_link": "https://github.com/syeopite/priviblur",
+      "deprecated_message": null,
       "instances": [
         {
           "url": "http://priviblur.bunny5exbgbp4sqe2h2rfq2brgrx3dhohdweonepzwfgumfyygb35wyd.onion/",
@@ -4933,7 +5013,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": "https://github.com/dextouu/proxigram",
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -5077,7 +5157,7 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -7906,6 +7986,34 @@
       ]
     },
     {
+      "type": "structables",
+      "test_url": "/",
+      "fallback": "https://www.instructables.com/",
+      "follow_redirects": false,
+      "allowed_http_codes": "200",
+      "search_string": null,
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?instructables\\.com(\\/?.*)$",
+          "url": "$3"
+        }
+      ],
+      "aliases": [],
+      "source_link": "https://git.private.coffee/PrivateCoffee/structables",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://structables.bloat.cat/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https"
+          ]
+        }
+      ]
+    },
+    {
       "type": "suds",
       "test_url": "/",
       "fallback": null,
@@ -7951,8 +8059,8 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
+      "source_link": "https://codeberg.org/teddit/teddit",
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
@@ -8173,12 +8281,20 @@
       "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "Tubo",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
-      "instances": []
+      "source_link": "https://github.com/migalmoreno/tubo",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://tubo.reallyaweso.me/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        }
+      ]
     },
     {
       "type": "twineo",
@@ -8219,9 +8335,21 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/tempoworks/txtdot",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://txt.bloat.cat/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "unfunny",
@@ -8495,8 +8623,8 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
+      "source_link": "https://git.disroot.org/wolfree/wolfree-dockerfile",
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {

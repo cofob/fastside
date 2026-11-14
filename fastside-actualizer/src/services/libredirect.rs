@@ -53,6 +53,7 @@ pub const LIBREDIRECT_SERVICES: &[&str] = &[
     "soundcloak",
     "vixipy",
     "litexiv",
+    "structables",
 ];
 
 pub struct LibredirectUpdater {
