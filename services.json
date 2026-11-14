@@ -3648,7 +3648,8 @@
           "url": "https://pixivfe.thebunny.zone/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         }
       ]
@@ -4896,7 +4897,8 @@
           "url": "https://priviblur.thebunny.zone/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6045,6 +6047,8 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "tor"
           ]
