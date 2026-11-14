@@ -29,10 +29,10 @@
       "fallback": "https://4get.ca/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "\"service\":\"4get\"",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://git.lolcat.ca/lolcat/4get",
       "deprecated_message": null,
       "instances": [
         {
@@ -80,31 +80,13 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": "All instances are down.",
+      "deprecated_message": null,
       "instances": [
         {
           "url": "https://ak.bloat.cat/",
           "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://ak.dc09.ru/",
-          "tags": [
             "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://ak2.bloat.cat/",
-          "tags": [
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -112,17 +94,12 @@
           ]
         },
         {
-          "url": "https://akademik.clovius.club/",
+          "url": "https://ak.dc09.xyz/",
           "tags": [
             "clearnet",
-            "https"
-          ]
-        },
-        {
-          "url": "https://akademik.lumaeris.com/",
-          "tags": [
-            "clearnet",
-            "https"
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         }
       ]
@@ -130,13 +107,13 @@
     {
       "type": "anonymousoverflow",
       "test_url": "/questions/6591213/how-do-i-rename-a-local-git-branch",
-      "fallback": "https://code.whatever.social/",
+      "fallback": "https://stackoverflow.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "How can I rename a local Git branch?",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/httpjamesm/AnonymousOverflow",
       "deprecated_message": null,
       "instances": [
         {
@@ -518,33 +495,50 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/Extravi/araa-search",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://araa.extravi.dev/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "beatbump",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://music.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/snuffyDev/Beatbump",
       "deprecated_message": "No instances.",
       "instances": []
     },
     {
       "type": "biblioreads",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.goodreads.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?goodreads\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/nesaku/BiblioReads",
       "deprecated_message": null,
       "instances": [
         {
@@ -718,14 +712,19 @@
     },
     {
       "type": "binternet",
-      "test_url": "/",
-      "fallback": null,
+      "test_url": "/search.php?q=cat",
+      "fallback": "https://www.pinterest.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
+      "search_string": "image_proxy.php",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?([a-z]{2}\\.|www\\.)?pinterest\\.[a-z.]+\\/search\\/pins\\/\\?(.*&)?q=([^&]+).*$",
+          "url": "/search.php?q=$4"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/Ahwxorg/binternet",
       "deprecated_message": null,
       "instances": [
         {
@@ -894,7 +893,7 @@
     {
       "type": "breezewiki",
       "test_url": "/undertale/wiki/Hot_Dog...%3F",
-      "fallback": null,
+      "fallback": "https://www.fandom.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "Hot Dog...?",
@@ -1049,13 +1048,13 @@
     {
       "type": "cloudtube",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": null,
+      "fallback": "https://www.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://sr.ht/~cadence/tube",
       "deprecated_message": "All instances are down.",
       "instances": [
         {
@@ -1100,19 +1099,6 @@
           ]
         }
       ]
-    },
-    {
-      "type": "destructables",
-      "test_url": "/",
-      "fallback": null,
-      "follow_redirects": false,
-      "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
-      "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
-      "instances": []
     },
     {
       "type": "dumb",
@@ -1303,13 +1289,13 @@
     {
       "type": "eddrit",
       "test_url": "/r/popular",
-      "fallback": null,
+      "fallback": "https://www.reddit.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/corenting/eddrit",
       "deprecated_message": null,
       "instances": [
         {
@@ -1332,7 +1318,7 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/facilmap/facilmap",
       "deprecated_message": null,
       "instances": [
         {
@@ -1461,13 +1447,13 @@
     {
       "type": "freexiv",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.pixiv.net/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/PrivacyDevel/freexiv",
       "deprecated_message": "No instances.",
       "instances": []
     },
@@ -1544,26 +1530,44 @@
     {
       "type": "hckrnws",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://news.ycombinator.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
+      "search_string": "hckrnws",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?news\\.ycombinator\\.com\\/item\\?id=([0-9]+).*$",
+          "url": "/stories/$2"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
-      "instances": []
+      "source_link": "https://github.com/rajatkulkarni95/hckrnws",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://www.hckrnws.com/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        }
+      ]
     },
     {
       "type": "hyperpipe",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://music.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?music\\.youtube\\.com(\\/.*)?$",
+          "url": "$2"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/Hyperpipe/Hyperpipe",
       "deprecated_message": null,
       "instances": [
         {
@@ -1665,13 +1669,13 @@
     {
       "type": "indetructables",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.instructables.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/PrivateCoffee/indestructables",
       "deprecated_message": "No instances.",
       "instances": []
     },
@@ -1705,7 +1709,7 @@
       "search_string": "Never Gonna Give You Up",
       "regexes": [
         {
-          "regex": "^(https?:\\/\\/)?((www\\.)?youtube\\.com)(\\/?.*)$",
+          "regex": "^(https?:\\/\\/)?((www\\.|m\\.)?youtube\\.com)(\\/?.*)$",
           "url": "$4"
         },
         {
@@ -1714,7 +1718,7 @@
         }
       ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/iv-org/invidious",
       "deprecated_message": null,
       "instances": [
         {
@@ -2284,7 +2288,7 @@
     {
       "type": "kittygram",
       "test_url": "/p/DSjn9gtkRjq",
-      "fallback": null,
+      "fallback": "https://www.instagram.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "Wing",
@@ -2428,15 +2432,8 @@
         {
           "url": "https://koub.bloat.cat/",
           "tags": [
-            "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://koub2.bloat.cat/",
-          "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -2448,7 +2445,7 @@
     {
       "type": "laboratory",
       "test_url": "/gitlab.com/gitlab-org/gitlab",
-      "fallback": null,
+      "fallback": "https://gitlab.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "GitLab",
@@ -2473,14 +2470,14 @@
     },
     {
       "type": "libmedium",
-      "test_url": "/",
-      "fallback": null,
+      "test_url": "/@ftrain/big-data-small-effort-b62607a43a8c",
+      "fallback": "https://medium.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "Big Data, Small Effort",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://git.batsense.net/realaravinth/libmedium",
       "deprecated_message": null,
       "instances": [
         {
@@ -2544,14 +2541,19 @@
     },
     {
       "type": "librarian",
-      "test_url": "",
-      "fallback": "https://lbry.bcow.xyz/",
+      "test_url": "/",
+      "fallback": "https://odysee.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?odysee\\.com\\/(@.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/librarian/librarian",
       "deprecated_message": null,
       "instances": [
         {
@@ -2582,18 +2584,113 @@
       ],
       "source_link": "https://github.com/redlib-org/redlib",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "http://red.lpoaj7z2zkajuhgnlltpeqh3zyq7wk2iyeggqaduhgxhyajtdt2j7wad.onion/",
+          "tags": [
+            "http",
+            "tor"
+          ]
+        },
+        {
+          "url": "https://redlib.cow.rip/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.freedit.eu/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.privadency.com/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://redlib.reallyaweso.me/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://redlib.tiekoetter.com/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.utilibre.org/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.zanity.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
+          "url": "https://reddit.jeremyh.xyz/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "libremdb",
       "test_url": "/title/tt0133093",
-      "fallback": "https://libremdb.herokuapp.com/",
+      "fallback": "https://www.imdb.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.|m\\.)?imdb\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/zyachel/libremdb",
       "deprecated_message": null,
       "instances": [
         {
@@ -2833,7 +2930,7 @@
     {
       "type": "librex",
       "test_url": "/search.php?q=<%=query%>",
-      "fallback": "https://librex.myroware.eu/",
+      "fallback": null,
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
@@ -2841,7 +2938,7 @@
       "aliases": [
         "librey"
       ],
-      "source_link": null,
+      "source_link": "https://github.com/Ahwxorg/LibreY",
       "deprecated_message": null,
       "instances": [
         {
@@ -3034,7 +3131,7 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/thedaviddelta/lingva-translate",
       "deprecated_message": null,
       "instances": [
         {
@@ -3119,7 +3216,7 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/mediathekview/mediathekviewweb",
       "deprecated_message": null,
       "instances": [
         {
@@ -3149,26 +3246,31 @@
     {
       "type": "mikuinvidious",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.bilibili.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/apicalshark/mikuinvidious",
       "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
       "type": "mozhi",
-      "test_url": "/",
-      "fallback": null,
+      "test_url": "/?engine=google&from=es&to=en&text=hola",
+      "fallback": "https://translate.google.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
+      "search_string": "hello</textarea>",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?translate\\.google\\.com\\/\\?(.*&)?sl=([^&]*)&tl=([^&]*)&text=([^&]*).*$",
+          "url": "/?engine=google&from=$3&to=$4&text=$5"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/aryak/mozhi",
       "deprecated_message": null,
       "instances": [
         {
@@ -3316,13 +3418,13 @@
     {
       "type": "musicale",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://music.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/Bellisario/musicale",
       "deprecated_message": null,
       "instances": [
         {
@@ -3337,11 +3439,16 @@
     {
       "type": "neuters",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.reuters.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?reuters\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
       "source_link": "https://github.com/HookedBehemoth/neuters",
       "deprecated_message": null,
@@ -3391,7 +3498,7 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/zedeus/nitter",
       "deprecated_message": "Deprecated. Use Shitter instead.",
       "instances": []
     },
@@ -3404,7 +3511,7 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/openstreetmap/openstreetmap-website",
       "deprecated_message": null,
       "instances": [
         {
@@ -3421,13 +3528,13 @@
     {
       "type": "photon-reddit",
       "test_url": "/r/popular",
-      "fallback": null,
+      "fallback": "https://www.reddit.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/ArthurHeitmann/photon-reddit",
       "deprecated_message": null,
       "instances": [
         {
@@ -3446,13 +3553,13 @@
     {
       "type": "piped",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": null,
+      "fallback": "https://www.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "An alternative privacy-friendly YouTube frontend",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/TeamPiped/Piped",
       "deprecated_message": null,
       "instances": [
         {
@@ -3542,7 +3649,7 @@
     {
       "type": "pipedmaterial",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": null,
+      "fallback": "https://www.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "piped-material",
@@ -3581,7 +3688,7 @@
     {
       "type": "pixiv-novel",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.pixiv.net/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
@@ -3594,13 +3701,18 @@
     {
       "type": "pixivfe",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.pixiv.net/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?pixiv\\.net\\/(?:[a-z-]+\\/)?(artworks\\/.*|users\\/.*|tags\\/.*|novel\\/.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/VnPower/PixivFE",
       "deprecated_message": null,
       "instances": [
         {
@@ -3658,13 +3770,13 @@
     {
       "type": "poke",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "https://codeberg.org/ashley/poke",
       "regexes": [],
       "aliases": [],
-      "source_link": "https://codeberg.org/ashley/poke",
+      "source_link": "https://codeberg.org/ashleyirispuppy/poke",
       "deprecated_message": null,
       "instances": [
         {
@@ -4824,15 +4936,24 @@
     },
     {
       "type": "priviblur",
-      "test_url": "/",
-      "fallback": null,
+      "test_url": "/explore/trending",
+      "fallback": "https://www.tumblr.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?tumblr\\.com\\/(.*)$",
+          "url": "/$3"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?([a-z0-9-]+)\\.tumblr\\.com\\/post\\/(\\d+)(\\/.*)?$",
+          "url": "/$2/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
+      "source_link": "https://github.com/syeopite/priviblur",
+      "deprecated_message": null,
       "instances": [
         {
           "url": "http://priviblur.bunny5exbgbp4sqe2h2rfq2brgrx3dhohdweonepzwfgumfyygb35wyd.onion/",
@@ -4926,26 +5047,26 @@
     {
       "type": "proxigram",
       "test_url": "/p/Ch2WRmiLMjj",
-      "fallback": null,
+      "fallback": "https://www.instagram.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
       "source_link": "https://github.com/dextouu/proxigram",
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
       "type": "proxitok",
       "test_url": "/discover",
-      "fallback": "https://proxitok.pabloferreiro.es/",
+      "fallback": "https://www.tiktok.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/pablouser1/ProxiTok",
       "deprecated_message": "All instances are down.",
       "instances": [
         {
@@ -5077,19 +5198,24 @@
       "regexes": [],
       "aliases": [],
       "source_link": null,
-      "deprecated_message": null,
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
       "type": "quetre",
       "test_url": "/How-does-the-Z-boson-decay",
-      "fallback": "https://quetre.iket.me/",
+      "fallback": "https://www.quora.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?quora\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/zyachel/quetre",
       "deprecated_message": null,
       "instances": [
         {
@@ -5320,7 +5446,7 @@
     {
       "type": "rdx",
       "test_url": "/r/popular",
-      "fallback": null,
+      "fallback": "https://www.reddit.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
@@ -5337,9 +5463,14 @@
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.|i\\.)?imgur\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/rimgo/rimgo",
       "deprecated_message": null,
       "instances": [
         {
@@ -5636,13 +5767,18 @@
     {
       "type": "ruraldictionary",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.urbandictionary.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?urbandictionary\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/cobra/rural-dict",
       "deprecated_message": null,
       "instances": [
         {
@@ -5818,10 +5954,19 @@
       "fallback": "https://scribe.rip/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
+      "search_string": "Big Data, Small Effort",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?medium\\.com\\/(.*)$",
+          "url": "/$3"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?([a-z0-9-]+)\\.medium\\.com\\/(.*)$",
+          "url": "/@$2/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://git.sr.ht/~edwardloveall/scribe",
       "deprecated_message": null,
       "instances": [
         {
@@ -5890,7 +6035,7 @@
       "search_string": "searx",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/searx/searx",
       "deprecated_message": null,
       "instances": [
         {
@@ -5975,7 +6120,7 @@
       "search_string": "searxng",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/searxng/searxng",
       "deprecated_message": null,
       "instances": [
         {
@@ -7272,7 +7417,7 @@
       "fallback": "https://x.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "just setting up my twttr",
       "regexes": [
         {
           "regex": "^(https?:\\/\\/)?((www\\.|mobile\\.)?twitter\\.com)(\\/.*|)$",
@@ -7544,7 +7689,7 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/ManeraKai/simplytranslate",
       "deprecated_message": null,
       "instances": [
         {
@@ -7734,13 +7879,13 @@
     {
       "type": "skunkyart",
       "test_url": "/",
-      "fallback": "http://deviantart.com/",
+      "fallback": "https://www.deviantart.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://git.bloat.cat/gospodin/skunkyart",
       "deprecated_message": "All instances are down.",
       "instances": [
         {
@@ -7807,7 +7952,7 @@
     {
       "type": "skyview",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://bsky.app/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "skyview",
@@ -7834,7 +7979,7 @@
     {
       "type": "soprano",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://tenor.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
@@ -7906,15 +8051,50 @@
       ]
     },
     {
-      "type": "suds",
+      "type": "structables",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.instructables.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?instructables\\.com(\\/?.*)$",
+          "url": "$3"
+        }
+      ],
+      "aliases": [
+        "destructables"
+      ],
+      "source_link": "https://git.private.coffee/PrivateCoffee/structables",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://structables.bloat.cat/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "suds",
+      "test_url": "/",
+      "fallback": "https://www.snopes.com/",
+      "follow_redirects": false,
+      "allowed_http_codes": "200",
+      "search_string": null,
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?snopes\\.com\\/(.*)$",
+          "url": "/$3"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/cobra/Suds",
       "deprecated_message": null,
       "instances": [
         {
@@ -7951,14 +8131,14 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
+      "source_link": "https://codeberg.org/teddit/teddit",
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
       "type": "tent",
       "test_url": "/search.php?query=Red+Hot+Chilli+Peppers",
-      "fallback": null,
+      "fallback": "https://bandcamp.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "Red Hot Chilli Peppers",
@@ -8109,13 +8289,13 @@
     {
       "type": "translite",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://translate.google.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "TransLite",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/gospodin/translite",
       "deprecated_message": null,
       "instances": [
         {
@@ -8170,26 +8350,34 @@
     {
       "type": "tubo",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://www.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
+      "search_string": "Tubo",
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": "No instances.",
-      "instances": []
+      "source_link": "https://github.com/migalmoreno/tubo",
+      "deprecated_message": null,
+      "instances": [
+        {
+          "url": "https://tubo.reallyaweso.me/",
+          "tags": [
+            "clearnet",
+            "https"
+          ]
+        }
+      ]
     },
     {
       "type": "twineo",
       "test_url": "/",
-      "fallback": null,
+      "fallback": "https://twitch.tv/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://codeberg.org/CloudyyUw/twineo",
       "deprecated_message": null,
       "instances": [
         {
@@ -8219,9 +8407,21 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/tempoworks/txtdot",
       "deprecated_message": null,
-      "instances": []
+      "instances": [
+        {
+          "url": "https://txt.bloat.cat/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        }
+      ]
     },
     {
       "type": "unfunny",
@@ -8239,26 +8439,31 @@
     {
       "type": "viewtube",
       "test_url": "/watch?v=dQw4w9WgXcQ",
-      "fallback": null,
+      "fallback": "https://www.youtube.com/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/viewtube/viewtube",
       "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
       "type": "wayback-classic",
-      "test_url": "/",
-      "fallback": null,
+      "test_url": "/cgi-bin/history.cgi?q=http://example.com/",
+      "fallback": "https://web.archive.org/",
       "follow_redirects": false,
       "allowed_http_codes": "200",
-      "search_string": null,
-      "regexes": [],
+      "search_string": "Date index for URL",
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?web\\.archive\\.org\\/web\\/[0-9*]+\\/(.+)$",
+          "url": "/cgi-bin/history.cgi?q=?$2"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/ticky/wayback-classic",
       "deprecated_message": null,
       "instances": [
         {
@@ -8333,9 +8538,14 @@
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": null,
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?([a-z-]+)\\.(m\\.)?wikipedia\\.org\\/(.*)$",
+          "url": "/$4?lang=$2"
+        }
+      ],
       "aliases": [],
-      "source_link": null,
+      "source_link": "https://github.com/tiekoetter/Wikiless",
       "deprecated_message": null,
       "instances": [
         {
@@ -8495,8 +8705,8 @@
       "search_string": null,
       "regexes": [],
       "aliases": [],
-      "source_link": null,
-      "deprecated_message": null,
+      "source_link": "https://git.disroot.org/wolfree/wolfree-dockerfile",
+      "deprecated_message": "All instances are down.",
       "instances": []
     },
     {
