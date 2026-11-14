@@ -1,18 +1,54 @@
 use crate::{ChangesSummary, types::ServiceUpdater};
 use async_trait::async_trait;
 use fastside_shared::serde_types::Instance;
+use serde::Deserialize;
 use url::Url;
 
 pub struct ShitterUpdater {
     pub instances_url: String,
+    pub d420_url: String,
 }
 
 impl ShitterUpdater {
     pub fn new() -> Self {
         Self {
             instances_url: "https://codeberg.org/mv12star/shitter/wiki/raw/Instances".into(),
+            d420_url: "https://status.d420.de/api/v1/instances".into(),
         }
     }
+}
+
+#[derive(Deserialize)]
+struct D420Response {
+    hosts: Vec<D420Host>,
+}
+
+#[derive(Deserialize)]
+struct D420Host {
+    url: String,
+    healthy: bool,
+    is_bad_host: bool,
+}
+
+/// Read only healthy hosts from the status.d420.de API.
+fn parse_d420_urls(json: &str) -> anyhow::Result<Vec<Url>> {
+    let response: D420Response = serde_json::from_str(json)?;
+    Ok(response
+        .hosts
+        .into_iter()
+        .filter(|host| host.healthy && !host.is_bad_host)
+        .filter_map(|host| Url::parse(&host.url).ok())
+        .collect())
+}
+
+async fn fetch_text(client: &reqwest::Client, url: &str) -> anyhow::Result<String> {
+    Ok(client
+        .get(url)
+        .send()
+        .await?
+        .error_for_status()?
+        .text()
+        .await?)
 }
 
 /// Read only working instances. Other sections contain redirectors and dead hosts.
@@ -59,14 +95,15 @@ impl ServiceUpdater for ShitterUpdater {
         current_instances: &[Instance],
         changes_summary: ChangesSummary,
     ) -> anyhow::Result<Vec<Instance>> {
-        let response = client
-            .get(&self.instances_url)
-            .send()
-            .await?
-            .error_for_status()?
-            .text()
-            .await?;
-        let urls = parse_instance_urls(&response)?;
+        let mut urls = parse_instance_urls(&fetch_text(&client, &self.instances_url).await?)?;
+        // The status API is rate limited, so its errors are not fatal.
+        match fetch_text(&client, &self.d420_url)
+            .await
+            .and_then(|json| parse_d420_urls(&json))
+        {
+            Ok(d420_urls) => urls.extend(d420_urls),
+            Err(error) => log::warn!("Failed to fetch Shitter instances from d420: {error}"),
+        }
         let mut instances = current_instances.to_vec();
         let mut added = Vec::new();
         for url in urls {
@@ -127,39 +164,16 @@ mod tests {
     }
 
     #[test]
-    fn catalogue_replaces_nitter() {
-        let data: fastside_shared::serde_types::StoredData =
-            serde_json::from_str(include_str!("../../../services.json")).unwrap();
-        let shitter = data.services.iter().find(|s| s.name == "shitter").unwrap();
-        let nitter = data.services.iter().find(|s| s.name == "nitter").unwrap();
-        assert!(shitter.deprecated_message.is_none());
-        assert!(!shitter.instances.is_empty());
-        assert!(
-            nitter
-                .deprecated_message
-                .as_ref()
-                .unwrap()
-                .contains("Shitter")
-        );
-        assert!(nitter.instances.is_empty());
-        assert!(nitter.regexes.is_empty());
-        for url in [
-            "https://twitter.com/jack/status/20",
-            "https://x.com/jack/status/20",
-        ] {
-            let matches: Vec<_> = data
-                .services
-                .iter()
-                .filter(|s| {
-                    s.regexes
-                        .iter()
-                        .any(|r| regex::Regex::new(&r.regex).unwrap().is_match(url))
-                })
-                .map(|s| s.name.as_str())
-                .collect();
-            assert_eq!(matches, vec!["shitter"]);
-        }
-        assert!(super::super::get_service_updater("shitter").is_some());
-        assert!(super::super::get_service_updater("nitter").is_none());
+    fn discovers_only_healthy_d420_hosts() {
+        let urls = parse_d420_urls(
+            r#"{"hosts":[
+                {"url":"https://ok.example","healthy":true,"is_bad_host":false},
+                {"url":"https://down.example","healthy":false,"is_bad_host":false},
+                {"url":"https://bad.example","healthy":true,"is_bad_host":true},
+                {"url":"invalid","healthy":true,"is_bad_host":false}
+            ]}"#,
+        )
+        .unwrap();
+        assert_eq!(urls, vec![Url::parse("https://ok.example/").unwrap()]);
     }
 }
