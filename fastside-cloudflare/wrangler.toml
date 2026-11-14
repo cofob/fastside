@@ -6,7 +6,7 @@ compatibility_flags = ["no_nodejs_global_timers"]
 
 [build]
 # The legacy shim avoids the current wasm-bindgen catch-wrapper failure.
-command = "cargo install worker-build --version 0.8.5 --locked && ESBUILD_BIN=node_modules/.bin/esbuild worker-build --release --no-panic-recovery"
+command = "cargo install worker-build --version 0.9.0 --locked && ESBUILD_BIN=node_modules/.bin/esbuild worker-build --release --no-panic-recovery"
 
 [triggers]
 crons = ["*/2 * * * *"]
