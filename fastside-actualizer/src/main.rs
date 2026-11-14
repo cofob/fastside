@@ -375,7 +375,10 @@ async fn main() -> Result<()> {
             actualizer_data.remove_removed_services(&services_data);
             actualizer_data.remove_removed_instances(&services_data);
 
-            let update_service_client = reqwest::Client::new();
+            // Some sources (bloat.cat, sr.ht) reject requests without a User-Agent.
+            let update_service_client = reqwest::Client::builder()
+                .user_agent("fastside-actualizer")
+                .build()?;
 
             // Filter services data
             let mut filtered_services_data = services_data
