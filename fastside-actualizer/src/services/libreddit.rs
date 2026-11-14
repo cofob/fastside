@@ -26,7 +26,8 @@ impl Default for LibredditUpdater {
 
 #[derive(Debug, Deserialize)]
 struct LibredditInstance {
-    url: Url,
+    url: Option<Url>,
+    onion: Option<Url>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -50,7 +51,9 @@ impl ServiceUpdater for LibredditUpdater {
         let mut new_instances = Vec::new();
 
         for instance in parsed.instances {
-            let url = instance.url;
+            let Some(url) = instance.url.or(instance.onion) else {
+                continue;
+            };
             if current_instances.iter().any(|i| i.url == url) {
                 continue;
             }
