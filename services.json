@@ -111,7 +111,20 @@
       "follow_redirects": false,
       "allowed_http_codes": "200",
       "search_string": "How can I rename a local Git branch?",
-      "regexes": [],
+      "regexes": [
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?stackoverflow\\.com(\\/(questions|q|a)\\/.*)$",
+          "url": "$3"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?([a-z0-9-]+)\\.stackexchange\\.com\\/((questions|q|a)\\/.*)$",
+          "url": "/exchange/$2/$3"
+        },
+        {
+          "regex": "^(https?:\\/\\/)?(www\\.)?(superuser\\.com|serverfault\\.com|askubuntu\\.com|mathoverflow\\.net|stackapps\\.com)\\/((questions|q|a)\\/.*)$",
+          "url": "/exchange/$3/$4"
+        }
+      ],
       "aliases": [],
       "source_link": "https://github.com/httpjamesm/AnonymousOverflow",
       "deprecated_message": null,
