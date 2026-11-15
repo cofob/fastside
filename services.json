@@ -216,7 +216,9 @@
         {
           "url": "https://anonflow.aketawi.space/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -948,6 +950,8 @@
         {
           "url": "https://breeze.hostux.net/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -1017,8 +1021,6 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -5072,8 +5074,6 @@
         {
           "url": "https://tb.opnxng.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5597,8 +5597,6 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6242,6 +6240,8 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "tor"
           ]
@@ -7527,17 +7527,6 @@
           ]
         },
         {
-          "url": "https://nitter.ip6arpa.uk/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://nitter.jaydenha.uk/",
           "tags": [
             "clearnet",
@@ -7608,14 +7597,6 @@
           ]
         },
         {
-          "url": "https://nitter.privacyredirect.com/",
-          "tags": [
-            "clearnet",
-            "https",
-            "ipv4"
-          ]
-        },
-        {
           "url": "https://nitter.r4fo.com/",
           "tags": [
             "antibot",
@@ -7637,17 +7618,6 @@
         },
         {
           "url": "https://nitter.xitter.cc/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
-          "url": "https://nitterts.pages.dev/",
           "tags": [
             "antibot",
             "clearnet",
