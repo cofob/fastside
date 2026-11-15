@@ -216,9 +216,7 @@
         {
           "url": "https://anonflow.aketawi.space/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -950,8 +948,6 @@
         {
           "url": "https://breeze.hostux.net/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -2617,6 +2613,15 @@
           ]
         },
         {
+          "url": "https://redlib.catsarch.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://redlib.cow.rip/",
           "tags": [
             "antibot",
@@ -2639,6 +2644,26 @@
           ]
         },
         {
+          "url": "https://redlib.hbubli.cc/",
+          "tags": [
+            "antibot",
+            "anubis",
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://redlib.nadeko.net/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://redlib.privadency.com/",
           "tags": [
             "antibot",
@@ -2649,11 +2674,31 @@
           ]
         },
         {
+          "url": "https://redlib.r4fo.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://redlib.reallyaweso.me/",
           "tags": [
             "clearnet",
             "https",
             "ipv4"
+          ]
+        },
+        {
+          "url": "https://redlib.thepixora.com/",
+          "tags": [
+            "antibot",
+            "clearnet",
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
