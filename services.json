@@ -1188,6 +1188,8 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6628,8 +6630,7 @@
           "url": "https://search.pereira.is/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
