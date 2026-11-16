@@ -216,9 +216,7 @@
         {
           "url": "https://anonflow.aketawi.space/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -1021,6 +1019,8 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -1188,8 +1188,6 @@
         {
           "url": "https://dumb.artemislena.eu/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5074,6 +5072,8 @@
         {
           "url": "https://tb.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5597,6 +5597,8 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6240,6 +6242,8 @@
         {
           "url": "http://searxngorpgnztkcftpz3ycdpyajd4q55y2nejw3tbszocht5zdh4lyd.onion/",
           "tags": [
+            "antibot",
+            "anubis",
             "http",
             "tor"
           ]
@@ -7056,6 +7060,8 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -7648,6 +7654,15 @@
             "antibot",
             "clearnet",
             "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
+          "url": "https://nohup.cz/",
+          "tags": [
+            "clearnet",
             "https",
             "ipv4",
             "ipv6"
