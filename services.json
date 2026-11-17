@@ -216,7 +216,9 @@
         {
           "url": "https://anonflow.aketawi.space/",
           "tags": [
+            "antibot",
             "clearnet",
+            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -1019,6 +1021,8 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4464,6 +4468,14 @@
           ]
         },
         {
+          "url": "https://paste.probablyvpn.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://paste.rosset.net/",
           "tags": [
             "clearnet",
@@ -5072,6 +5084,8 @@
         {
           "url": "https://tb.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5595,6 +5609,8 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4",
