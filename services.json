@@ -2670,6 +2670,8 @@
         {
           "url": "https://redlib.privadency.com/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
