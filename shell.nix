@@ -5,6 +5,8 @@ pkgs.mkShell {
     binaryen
     nixfmt
     nodejs_latest
+    openssl
+    pkg-config
     rustToolchain
   ];
 }

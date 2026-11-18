@@ -9,6 +9,7 @@ default = ["native"]
 native = [
   "dep:anyhow",
   "dep:config",
+  "dep:yaml_serde",
   "dep:log",
   "dep:pretty_env_logger",
   "dep:reqwest",
@@ -27,11 +28,12 @@ native = [
 
 [dependencies]
 async-trait.workspace = true
-argon2 = { version = "0.5", optional = true }
-hashx = { version = "0.8", default-features = false, optional = true }
+argon2 = { version = "0.6", optional = true }
+hashx = { version = "0.10", default-features = false, optional = true }
 anyhow = { workspace = true, optional = true }
 base64ct.workspace = true
 config = { workspace = true, optional = true }
+yaml_serde = { workspace = true, optional = true }
 log = { workspace = true, optional = true }
 pretty_env_logger = { workspace = true, optional = true }
 ring = { workspace = true, optional = true }

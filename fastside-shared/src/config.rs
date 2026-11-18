@@ -169,6 +169,32 @@ pub struct AppConfig {
     pub services: Option<String>,
 }
 
+/// YAML config file format.
+#[cfg(feature = "native")]
+#[derive(Debug, Clone, Copy)]
+struct Yaml;
+
+#[cfg(feature = "native")]
+impl config::Format for Yaml {
+    fn parse(
+        &self,
+        _uri: Option<&String>,
+        text: &str,
+    ) -> std::result::Result<
+        config::Map<String, config::Value>,
+        Box<dyn std::error::Error + Send + Sync>,
+    > {
+        Ok(yaml_serde::from_str::<Option<_>>(text)?.unwrap_or_default())
+    }
+}
+
+#[cfg(feature = "native")]
+impl config::FileStoredFormat for Yaml {
+    fn file_extensions(&self) -> &'static [&'static str] {
+        &["yml", "yaml"]
+    }
+}
+
 /// Load application configuration.
 #[cfg(feature = "native")]
 pub fn load_config(config_path: &Option<PathBuf>) -> Result<AppConfig> {
@@ -180,12 +206,12 @@ pub fn load_config(config_path: &Option<PathBuf>) -> Result<AppConfig> {
 
     match config_path {
         Some(path) => {
-            config_builder =
-                config_builder.add_source(config::File::from(path.clone()).required(true));
+            config_builder = config_builder
+                .add_source(config::File::new(&path.to_string_lossy(), Yaml).required(true));
         }
         None => {
             config_builder =
-                config_builder.add_source(config::File::with_name("config").required(false));
+                config_builder.add_source(config::File::new("config", Yaml).required(false));
         }
     }
 
