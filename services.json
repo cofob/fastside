@@ -235,7 +235,8 @@
           "url": "https://anonoverflow.moonshadow.dev/",
           "tags": [
             "clearnet",
-            "https"
+            "https",
+            "ipv4"
           ]
         },
         {
@@ -6157,8 +6158,7 @@
           "url": "https://searx.ru/",
           "tags": [
             "clearnet",
-            "https",
-            "ipv4"
+            "https"
           ]
         },
         {
