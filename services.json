@@ -236,7 +236,8 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4"
+            "ipv4",
+            "ipv6"
           ]
         },
         {
@@ -642,9 +643,7 @@
         {
           "url": "https://biblioreads.snine.nl/",
           "tags": [
-            "antibot",
             "clearnet",
-            "cloudflare",
             "https",
             "ipv4",
             "ipv6"
@@ -2612,12 +2611,8 @@
         {
           "url": "https://reddit.jeremyh.xyz/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -6589,12 +6584,8 @@
         {
           "url": "https://search.jeremyh.xyz/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
-            "https",
-            "ipv4",
-            "ipv6"
+            "https"
           ]
         },
         {
@@ -7557,6 +7548,14 @@
             "https",
             "ipv4",
             "ipv6"
+          ]
+        },
+        {
+          "url": "https://nitter.femboy.delivery/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
           ]
         },
         {
