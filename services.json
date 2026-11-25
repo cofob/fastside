@@ -2735,6 +2735,14 @@
             "https",
             "ipv4"
           ]
+        },
+        {
+          "url": "https://safereddit.com/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
         }
       ]
     },
@@ -7737,8 +7745,6 @@
         {
           "url": "https://tw.eir-nya.gay/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
