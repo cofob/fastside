@@ -1024,8 +1024,6 @@
         {
           "url": "https://breezewiki.woodland.cafe/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -4939,17 +4937,6 @@
           ]
         },
         {
-          "url": "https://share-secret.info/",
-          "tags": [
-            "antibot",
-            "clearnet",
-            "cloudflare",
-            "https",
-            "ipv4",
-            "ipv6"
-          ]
-        },
-        {
           "url": "https://snip.dssr.ch/",
           "tags": [
             "clearnet",
@@ -5113,8 +5100,6 @@
         {
           "url": "https://tb.opnxng.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -5638,8 +5623,6 @@
         {
           "url": "https://r.opnxng.com/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4",
@@ -6864,6 +6847,15 @@
           ]
         },
         {
+          "url": "https://searx.idler.me/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4",
+            "ipv6"
+          ]
+        },
+        {
           "url": "https://searx.linxx.net/",
           "tags": [
             "clearnet",
@@ -7104,8 +7096,6 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -7745,8 +7735,6 @@
         {
           "url": "https://tw.eir-nya.gay/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
