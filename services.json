@@ -831,6 +831,14 @@
           ]
         },
         {
+          "url": "https://binternet.notbig.business/",
+          "tags": [
+            "clearnet",
+            "https",
+            "ipv4"
+          ]
+        },
+        {
           "url": "https://binternet.privacyredirect.com/",
           "tags": [
             "clearnet",
@@ -3842,8 +3850,6 @@
         {
           "url": "https://poketube.fun/",
           "tags": [
-            "antibot",
-            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -6857,8 +6863,7 @@
           "tags": [
             "clearnet",
             "https",
-            "ipv4",
-            "ipv6"
+            "ipv4"
           ]
         },
         {
@@ -7102,6 +7107,8 @@
         {
           "url": "https://searxng.paralaxitaentomology.org/",
           "tags": [
+            "antibot",
+            "anubis",
             "clearnet",
             "https",
             "ipv4"
@@ -7774,8 +7781,12 @@
         {
           "url": "https://xcopy.uk/",
           "tags": [
+            "antibot",
             "clearnet",
-            "https"
+            "cloudflare",
+            "https",
+            "ipv4",
+            "ipv6"
           ]
         },
         {
